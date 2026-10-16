@@ -1,0 +1,54 @@
+/* Mosaico Lab: estilo común. Paleta de Primera Línea (docs/arte/sombrillas-estilo.md).
+   Sin fuentes externas, sin scripts, sin trackers. */
+:root {
+  --tinta: #2B1D14;
+  --papel: #FFF4DC;
+  --papel-sombra: #EBD9B0;
+  --blanco: #FFFBF0;
+  --rojo: #E2412B;
+  --rojo-oscuro: #A82A1C;
+  --mar: #1E8FB3;
+  --mar-oscuro: #12607A;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+header.sitio {
+  background: var(--mar-oscuro);
+  color: var(--blanco);
+  border-bottom: 4px solid var(--rojo);
+}
+header.sitio .caja { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; align-items: baseline; padding-top: .9rem; padding-bottom: .9rem; }
+header.sitio a { color: var(--blanco); text-decoration: none; font-weight: 700; }
+header.sitio a.marca { font-size: 1.15rem; letter-spacing: .02em; }
+header.sitio nav a { font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+.caja { max-width: 42rem; margin: 0 auto; padding: 0 1.1rem; }
+main { padding-top: 1.5rem; padding-bottom: 3rem; }
+h1 { font-size: 1.8rem; line-height: 1.2; margin: .5rem 0 1rem; }
+h2 { font-size: 1.3rem; line-height: 1.3; margin: 2rem 0 .5rem; padding-top: .5rem; border-top: 2px solid var(--papel-sombra); }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 .4rem; }
+a { color: var(--rojo-oscuro); text-underline-offset: 3px; overflow-wrap: anywhere; }
+a:focus-visible { outline: 3px solid var(--mar); outline-offset: 2px; }
+ul, ol { padding-left: 1.3rem; }
+li { margin: .25rem 0; }
+blockquote { margin: 1rem 0; padding: .6rem 1rem; background: var(--blanco); border-left: 4px solid var(--mar); }
+.tabla { overflow-x: auto; margin: 1rem 0; }
+table { border-collapse: collapse; width: 100%; min-width: 28rem; background: var(--blanco); font-size: .95rem; }
+th, td { border: 1px solid var(--papel-sombra); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+th { background: var(--papel-sombra); }
+.tarjeta { background: var(--blanco); border: 2px solid var(--tinta); border-radius: 12px; padding: 1rem 1.2rem; margin: 1.2rem 0; }
+.tarjeta h2 { border: 0; margin-top: 0; padding-top: 0; }
+.boton {
+  display: inline-block; background: var(--rojo-oscuro); color: var(--blanco);
+  padding: .65rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 700;
+}
+.boton:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
+details { background: var(--blanco); border: 1px solid var(--papel-sombra); border-radius: 10px; padding: .6rem 1rem; margin: .7rem 0; }
+summary { cursor: pointer; font-weight: 700; }
+details[open] summary { margin-bottom: .4rem; }
+footer.sitio { border-top: 2px solid var(--papel-sombra); font-size: .9rem; padding-top: 1rem; padding-bottom: 2rem; }

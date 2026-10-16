@@ -1,0 +1,3 @@
+# app-ads.txt de mosaicolab.app
+# Pendiente: añadir aquí las líneas de AppLovin y AdMob cuando existan sus IDs.
+# Formato: dominio-del-anunciante, ID-de-cuenta, DIRECT|RESELLER, ID-de-certificación
