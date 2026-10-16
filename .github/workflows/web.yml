@@ -1,0 +1,39 @@
+name: Web Mosaico Lab
+
+# Publica la carpeta web/ en GitHub Pages (mosaicolab.app).
+# Solo corre si el repo es público: GitHub Pages es gratis solo en repos públicos.
+# Ver docs/infra/web-mosaicolab.md.
+
+on:
+  push:
+    branches: [main]
+    paths: ['web/**', '.github/workflows/web.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - id: despliegue
+        uses: actions/deploy-pages@v4
