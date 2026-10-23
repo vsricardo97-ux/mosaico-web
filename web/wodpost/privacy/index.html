@@ -1,0 +1,168 @@
+<!doctype html>
+<!-- Pending professional review: written by Lola (not a lawyer). English version of /wodpost/privacidad/ (if you change one, change the other). Based on mosaico-games docs/legal/pizarra-legal.md, docs/legal/pizarra-lectura-nube.md and the code of apps/pizarra and servicios/lectura-pizarra (23-10-2026). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wodpost privacy policy | Mosaico Lab</title>
+<meta name="description" content="What data Wodpost uses, why, and how you decide.">
+<meta name="theme-color" content="#12607A">
+<link rel="stylesheet" href="/assets/estilo.css">
+<link rel="alternate" hreflang="es" href="/wodpost/privacidad/">
+</head>
+<body>
+<header class="sitio">
+  <div class="caja">
+    <a class="marca" href="/">Mosaico Lab</a>
+    <nav>
+      <a href="/wodpost/privacidad/" hreflang="es" lang="es">Español</a>
+    </nav>
+  </div>
+</header>
+
+<main class="caja">
+  <h1>Wodpost privacy policy</h1>
+  <p><strong>Last updated:</strong> 23 October 2026</p>
+
+  <p>Wodpost reads the photo of your box's whiteboard, builds a workout card for your stories and keeps your WODs. There are no accounts and no sign-up: your workouts stay on your phone. We fund it with ads served by Google and with Premium, an optional purchase. This page explains what data is used, why, and how you decide.</p>
+
+  <h2>1. Who is responsible</h2>
+  <ul>
+    <li><strong>Controller:</strong> Ricardo Verdú Sánchez (Mosaico Lab)</li>
+    <li><strong>Privacy email:</strong> <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a></li>
+    <li><strong>Website:</strong> <a href="https://mosaicolab.app">https://mosaicolab.app</a></li>
+  </ul>
+  <p>Other details are in the <a href="/aviso-legal/">legal notice</a> (in Spanish). We don't have a data protection officer because we are not required to (Article 37 GDPR).</p>
+
+  <h2>2. Quick summary</h2>
+  <div class="tabla">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Where it's stored</th><th>Does it reach us?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Your workouts, results, notes, settings and card styles</td><td>Only on your phone</td><td>No</td></tr>
+        <tr><td>Your weight (optional, to estimate calories)</td><td>Only in your iPhone's Keychain</td><td>No</td></tr>
+        <tr><td>Your age band</td><td>Only on your phone</td><td>No</td></tr>
+        <tr><td>The whiteboard photo, when it's read</td><td>Passes through our service on Cloudflare to Anthropic</td><td>We don't keep it (section 4)</td></tr>
+        <tr><td>A random installation ID, to count free readings</td><td>On your iPhone; our service uses it and doesn't keep it</td><td>Only hashed and only for the day (section 4.3)</td></tr>
+        <tr><td>Your Premium purchases</td><td>On your phone and at Apple</td><td>Only Apple's receipt when reading in the cloud (section 6)</td></tr>
+        <tr><td>Technical and advertising data when there are ads</td><td>Collected by Google</td><td>We don't see it individually</td></tr>
+        <tr><td>Technical data when checking for app updates</td><td>Received by Expo</td><td>We don't see it individually</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3. Data that stays on your phone</h2>
+  <ul>
+    <li><strong>Your workouts:</strong> WODs read or typed in, the ones you save "for another day", your results (times, rounds, loads), your notes and the date.</li>
+    <li><strong>Weight (optional):</strong> only if you enter it to see an estimated calorie range. It's stored in the <strong>Keychain of this iPhone only</strong>: it doesn't go to iCloud backup or other devices. You can delete it in Settings.</li>
+    <li><strong>Settings and preferences:</strong> units, card style, the background you chose last time, the numbers you usually pick and similar.</li>
+    <li><strong>Age:</strong> the band you choose (under 14, 14 to 17, or 18 or over). Only the band, never your date of birth.</li>
+    <li><strong>Free readings:</strong> how many you have left today, in the iPhone's Keychain, so they're not lost if you reinstall.</li>
+    <li><strong>Photos:</strong> the whiteboard photo is deleted from the phone when the reading ends. You choose the background photo or video from your camera roll or camera; the app uses a temporary copy while you build the card.</li>
+  </ul>
+  <p><strong>Legal basis:</strong> what's needed for the app to work as you ask (Art. 6(1)(b) GDPR); storing it on the device is strictly necessary for the service. We have no access to this data.</p>
+  <p><strong>How long:</strong> until you delete it or delete the app. If you use iCloud backup, Apple may include your workouts in it depending on your settings (not your weight).</p>
+  <p><strong>Sharing:</strong> if you share the card (to Instagram, through the share sheet or by saving it to Photos), you choose where it goes. When you share to Instagram, the image or video goes to Instagram through the iPhone's clipboard and Meta's policy applies. We receive nothing.</p>
+
+  <h2>4. Reading the whiteboard in the cloud</h2>
+  <h3>4.1 What happens to the photo</h3>
+  <p>Before the first reading we explain this and ask for your permission. When reading, Wodpost sends the whiteboard photo, <strong>downsized and without location or device data</strong>, to our service on <strong>Cloudflare</strong> (Cloudflare, Inc.), which forwards it to <strong>Anthropic</strong> (Anthropic, PBC) so its Claude AI model can read the workout. <strong>Our service does not store the photo or the result.</strong> Anthropic does not train its models on it and deletes it <strong>within 30 days</strong>, unless it needs it longer to investigate a breach of its usage policy or the law requires it. We only receive the workout (sections, movements and numbers): <strong>never other people's names or scores</strong>.</p>
+  <p>The board may show other people's names: that's why we ask you to crop to your workout. If your name is in a photo and you want to exercise your rights, write to us.</p>
+
+  <h3>4.2 Legal basis and processors</h3>
+  <ul>
+    <li><strong>Your photo:</strong> providing the service you ask for (Art. 6(1)(b) GDPR).</li>
+    <li><strong>Other people's names that may appear on the board:</strong> our legitimate interest in reading your workout with as little data as possible (Art. 6(1)(f)). They are not extracted or kept.</li>
+    <li><strong>Anthropic and Cloudflare</strong> act as processors under contract (Art. 28) and European Commission Standard Contractual Clauses (and, for Cloudflare, the EU-U.S. Data Privacy Framework) for the transfer to the United States. Policies: <a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a> and <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a>.</li>
+  </ul>
+
+  <h3>4.3 How we count readings</h3>
+  <ul>
+    <li><strong>Without Premium:</strong> you get <strong>1 free reading a day</strong> and another for each rewarded video you watch (up to a daily maximum). To count them, the app creates a <strong>random installation ID</strong> (not your Apple ID, not the advertising ID, nothing about you) and keeps it in the iPhone's Keychain. Our service turns it into a hashed code with a key that changes every day and <strong>deletes everything at midnight (UTC)</strong>, key included: we can't tell who you are or link one day to another.</li>
+    <li><strong>To prevent abuse</strong> we use Apple's <strong>DeviceCheck</strong>, which checks that the request comes from a real iPhone without identifying you.</li>
+    <li><strong>With Premium:</strong> the app sends Apple's signed purchase receipt; our service checks it and counts your readings for the day with the same hashed code, deleted at midnight.</li>
+    <li><strong>Legal basis:</strong> providing the service (Art. 6(1)(b) GDPR); creating the ID and storing it on the iPhone is necessary for the service you ask for.</li>
+  </ul>
+  <p>If you don't want to use the cloud, you can type your workout in yourself.</p>
+
+  <h2>5. Ads</h2>
+  <h3>5.1 When there are ads</h3>
+  <ul>
+    <li><strong>Rewarded video (your choice):</strong> once you've used today's free reading, you can watch a video to read another photo in the cloud, or type the workout in yourself without a video.</li>
+    <li><strong>Full screen:</strong> at most <strong>one a day</strong>, when you come back after sharing a card, and never the first time you share.</li>
+    <li><strong>No ads at all</strong> with Premium, or if you're under 14.</li>
+    <li>When an ad appears doesn't depend on any of your data, only on the rules above and your age.</li>
+  </ul>
+
+  <h3>5.2 Who serves them and what they collect</h3>
+  <p><strong>Google</strong> (Google Ireland Ltd. and Google LLC) serves the ads with AdMob and provides the consent form (UMP). Policies: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a> and <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>. We don't use other ad networks.</p>
+  <p>Google's SDK inside the app, <strong>not our code</strong>, may collect: Apple's advertising identifier (IDFA), <strong>only if you're 18 or over and allow it</strong>; the identifier for vendors (IDFV); approximate location derived from your IP (never GPS); technical device data; which ads you saw or tapped; and SDK diagnostics.</p>
+  <p><strong>What our code never sends to Google:</strong> your workouts, your photos, your weight, your age or whether you've bought anything. We only tell it the maximum ad content rating (PG) and whether ads must be non-personalized.</p>
+
+  <h3>5.3 Legal basis, transfers and retention</h3>
+  <ul>
+    <li><strong>Storing or reading information on your phone for ads:</strong> your consent.</li>
+    <li><strong>Personalized ads (18 or over only):</strong> your consent (Art. 6(1)(a) GDPR) and, on iPhone, your permission in Apple's prompt (ATT).</li>
+    <li><strong>Non-personalized or limited ads, fraud, frequency capping and security:</strong> what you choose in the form, under IAB Europe's TCF.</li>
+    <li>Google may process data in the United States, under the EU-U.S. Data Privacy Framework and Standard Contractual Clauses. Retention is set by Google's policy.</li>
+  </ul>
+
+  <h3>5.4 How you decide</h3>
+  <ul>
+    <li><strong>18 or over:</strong> you see Google's consent form (in Europe, with "Accept" and "Reject" given equal weight) and then a short screen and Apple's tracking prompt. If you don't allow tracking, the app works the same and ads aren't personalized.</li>
+    <li><strong>14 to 17:</strong> you see Google's form but <strong>not</strong> Apple's tracking prompt, and your ads are <strong>always non-personalized</strong> (Art. 28 of the Digital Services Act).</li>
+    <li>You can change tracking permission in <strong>iOS Settings &gt; Privacy &amp; Security &gt; Tracking</strong>. Withdrawing consent doesn't affect what was done before.</li>
+  </ul>
+
+  <h2>6. Premium: purchases and subscriptions</h2>
+  <p>Premium removes ads and the Wodpost mark from your cards and gives up to 10 cloud readings a day. It can be an annual subscription, a monthly one or a one-time purchase, at the prices shown by the store.</p>
+  <ul>
+    <li><strong>Apple handles payment.</strong> We <strong>don't see</strong> your name, Apple ID or payment details (<a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a>).</li>
+    <li>The app stores your purchase status and Apple's signed receipt on your phone and checks it with the store, including when you tap "Restore purchases". We don't use any third-party purchase service.</li>
+    <li><strong>Cancelling and refunds:</strong> in your Apple account settings. Apple handles refunds at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</li>
+    <li><strong>Legal basis:</strong> performing what you bought (Art. 6(1)(b) GDPR).</li>
+  </ul>
+
+  <h2>7. Analytics</h2>
+  <p><strong>We don't use third-party analytics</strong>: the app doesn't send usage statistics to anyone. If we ever do, we'll say so here first and change the date above.</p>
+
+  <h2>8. App updates</h2>
+  <p>When it opens, the app may check for a small update on <strong>Expo</strong>'s servers (650 Industries, Inc., United States). That request carries technical data: IP address, platform, app version and a random installation ID. It's used only to download the update. <strong>Legal basis:</strong> our legitimate interest in the app working and being secure (Art. 6(1)(f) GDPR). Policy: <a href="https://expo.dev/privacy">expo.dev/privacy</a>.</p>
+
+  <h2>9. Children and age</h2>
+  <p>Wodpost is <strong>not directed at children</strong>. When you start, we ask for your age band; the answer is required and is stored only on your phone.</p>
+  <ul>
+    <li><strong>Under 14:</strong> the cloud is not used and no ad SDK is started: no consent form, no tracking prompt, no ads. You can type your workouts in yourself.</li>
+    <li><strong>14 to 17:</strong> cloud reading, always non-personalized ads and no Apple tracking prompt. For purchases, only the one-time purchase.</li>
+    <li><strong>Ad content:</strong> we ask Google for PG at most (may need parental guidance): these are not "for all ages" ads, and Google's filter isn't perfect. If you see something inappropriate, write to us with a screenshot.</li>
+    <li>We comply with applicable child-protection and data-protection laws. If you're a parent or guardian and believe a child's data was processed, write to us.</li>
+  </ul>
+
+  <h2>10. Your rights</h2>
+  <p>You have the right to access, rectify, erase and port your data, to restrict or object to processing and to withdraw consent (Arts. 15 to 22 GDPR).</p>
+  <ul>
+    <li><strong>Data on your phone:</strong> you control it, and it's deleted when you delete it in the app or uninstall. Since it doesn't reach us, we can't access or delete it for you.</li>
+    <li><strong>Photos read in the cloud:</strong> we don't keep them; for what Anthropic keeps up to 30 days, write to us and we'll handle it.</li>
+    <li><strong>Ad data:</strong> turn off tracking in iOS settings and, for data already collected, contact Google.</li>
+    <li><strong>How:</strong> write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. We reply within one month.</li>
+    <li><strong>Complaints:</strong> to the Spanish Data Protection Agency (<a href="https://www.aepd.es">www.aepd.es</a>) or your country's authority. In the UK, the ICO (<a href="https://ico.org.uk">ico.org.uk</a>).</li>
+    <li><strong>United States:</strong> we don't sell your data. Users under 18 never see personalized ads, and the app does not knowingly collect data from children under 13.</li>
+  </ul>
+
+  <h2>11. Security</h2>
+  <p>We have no servers holding your workouts. The photo travels encrypted (HTTPS) and our service doesn't log its content or your IP. App data is protected by your phone's security.</p>
+
+  <h2>12. Changes to this policy</h2>
+  <p>If we change something important, we'll update this page, change the date above and, if your consent is needed, ask again in the app.</p>
+
+  <h2>13. Contact</h2>
+  <p><a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a> · <a href="/aviso-legal/">Legal notice</a></p>
+</main>
+
+<footer class="sitio caja">
+  <a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Legal notice</a>. This site uses no cookies or trackers.
+</footer>
+</body>
+</html>
