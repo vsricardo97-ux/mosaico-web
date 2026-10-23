@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /reto/
+
+Sitemap: https://mosaicolab.app/sitemap.xml
