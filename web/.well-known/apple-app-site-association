@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["7VXSVH6XKV.app.mosaicolab.tenminutemind"],
+        "components": [
+          { "/": "/tenminutemind", "comment": "Reto de la familia de Ten Minute Mind" },
+          { "/": "/tenminutemind/*" }
+        ]
+      }
+    ]
+  }
+}
