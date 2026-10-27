@@ -28,10 +28,18 @@
 <li>No account needed</li>
 </ul>
 <section class="tarjeta">
-<p><strong>It doesn't exist yet.</strong> We're checking whether it's worth building. If you're interested, email us and we'll let you know when it's ready; we'll only use your email for that.</p>
-<p><a class="boton" href="mailto:hola@mosaicolab.app?subject=Notify%20me%3A%20Puppy%20100&body=Hi%2C%20please%20let%20me%20know%20when%20Puppy%20100%20is%20ready.%20Thanks.">Notify me when it's ready</a></p>
+<p><strong>It doesn't exist yet.</strong> We're checking whether it's worth building. If you're interested, leave your email and we'll let you know when it's ready; we'll only use it for that.</p>
+<form method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
+<input type="hidden" name="idea" value="puppy-100">
+<p><input type="email" name="correo" required maxlength="254" autocomplete="email" placeholder="Your email" aria-label="Your email" style="width:100%;padding:.7em;font:inherit;box-sizing:border-box"></p>
+<p style="display:none"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
+<p><label><input type="checkbox" name="acepto" value="si" required> I want to be notified about this idea and agree that Mosaico Lab stores my email only for that.</label></p>
+<p><button class="boton" type="submit" style="border:0;font:inherit;cursor:pointer">Notify me when it's ready</button></p>
+</form>
 </section>
 <p>An idea from Mosaico Lab, a studio based in Valencia, Spain.</p>
+<p style="font-size:.85em"><strong>Privacy.</strong> Controller: Mosaico Lab (Valencia, Spain), hola@mosaicolab.app. We store your email only to notify you about this idea, with your consent. We don't share it or use it for anything else, and we delete it when the test ends or when you ask by email (you can ask for access or deletion at any time). This page counts visits with a one-pixel image, with no cookies or identifiers.</p>
+<img src="https://avisame.vsricardo97.workers.dev/v/puppy-100.gif" width="1" height="1" alt="" style="position:absolute;left:-9999px">
 </main>
 <footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Legal notice</a>. This site uses no cookies or trackers.</footer>
 </body>

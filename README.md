@@ -8,4 +8,4 @@ Sin cookies, sin trackers y sin JavaScript. SEO: cada página lleva canonical y 
 
 `web/.well-known/apple-app-site-association` abre esos enlaces en la app de iOS cuando está instalada.
 
-**Landings de prueba de idea:** `web/menu-del-domingo/`, `rey-del-pueblo/`, `santo-y-refran/`, `turnos-de-mama/` y `puppy-100/` (en inglés) son páginas estáticas `noindex` para medir interés real antes de construir una app. Dicen claramente que la app todavía no existe; el «Avísame» es un `mailto:` a hola@mosaicolab.app. Sin JavaScript ni rastreadores. Si una idea no despega, se borra su carpeta.
+**Landings de prueba de idea:** `web/menu-del-domingo/`, `rey-del-pueblo/`, `santo-y-refran/`, `turnos-de-mama/` y `puppy-100/` (en inglés) son páginas estáticas `noindex` para medir interés real antes de construir una app. Dicen claramente que la app todavía no existe; el «Avísame» es un formulario que envía al Worker `servicios/avisame` (mosaico-games), que también cuenta visitas con un GIF de 1×1. Sin JavaScript, cookies ni rastreadores. Si una idea no despega, se borra su carpeta.
