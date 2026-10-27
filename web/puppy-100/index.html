@@ -31,6 +31,7 @@
 <p><strong>It doesn't exist yet.</strong> We're checking whether it's worth building. If you're interested, leave your email and we'll let you know when it's ready; we'll only use it for that.</p>
 <form method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
 <input type="hidden" name="idea" value="puppy-100">
+<input type="hidden" name="anuncio" value="">
 <p><input type="email" name="correo" required maxlength="254" autocomplete="email" placeholder="Your email" aria-label="Your email" style="width:100%;padding:.7em;font:inherit;box-sizing:border-box"></p>
 <p style="display:none"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
 <p><label><input type="checkbox" name="acepto" value="si" required> I want to be notified about this idea and agree that Mosaico Lab stores my email only for that.</label></p>
@@ -39,7 +40,9 @@
 </section>
 <p>An idea from Mosaico Lab, a studio based in Valencia, Spain.</p>
 <p style="font-size:.85em"><strong>Privacy.</strong> Controller: Mosaico Lab (Valencia, Spain), hola@mosaicolab.app. We store your email only to notify you about this idea, with your consent. We don't share it or use it for anything else, and we delete it when the test ends or when you ask by email (you can ask for access or deletion at any time). This page counts visits with a one-pixel image, with no cookies or identifiers.</p>
-<img src="https://avisame.vsricardo97.workers.dev/v/puppy-100.gif" width="1" height="1" alt="" style="position:absolute;left:-9999px">
+<noscript><img src="https://avisame.vsricardo97.workers.dev/v/puppy-100.gif" width="1" height="1" alt="" style="position:absolute;left:-9999px"></noscript>
+<script>/* Cuenta la visita con el anuncio que la trajo (utm_content), sin cookies */
+(function(){var c=(new URLSearchParams(location.search).get('utm_content')||'').replace(/[^a-z0-9_-]/gi,'').slice(0,40);new Image().src='https://avisame.vsricardo97.workers.dev/v/puppy-100.gif'+(c?'?c='+c:'');var i=document.querySelector('input[name=anuncio]');if(i)i.value=c;})();</script>
 </main>
 <footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Legal notice</a>. This site uses no cookies. It counts visits anonymously, with no personal data (Cloudflare Web Analytics).</footer>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
