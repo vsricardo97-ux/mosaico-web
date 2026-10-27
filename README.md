@@ -7,3 +7,5 @@ Sin cookies, sin trackers y sin JavaScript. SEO: cada página lleva canonical y 
 **Excepción:** `web/tenminutemind/` es la versión web de la app Ten Minute Mind (export de Expo de `apps/tenminutemind` en mosaico-games, con `baseUrl` `/tenminutemind`), para que el enlace del reto de la familia se pueda jugar sin instalar nada. Lleva JavaScript, pero sigue sin cookies ni trackers: solo guarda el progreso en el propio navegador. Se regenera con `pnpm --filter @mosaico/tenminutemind build:web` y se copia `dist/` aquí (sin `metadata.json`).
 
 `web/.well-known/apple-app-site-association` abre esos enlaces en la app de iOS cuando está instalada.
+
+**Landings de prueba de idea:** `web/menu-del-domingo/`, `rey-del-pueblo/`, `santo-y-refran/`, `turnos-de-mama/` y `puppy-100/` (en inglés) son páginas estáticas `noindex` para medir interés real antes de construir una app. Dicen claramente que la app todavía no existe; el «Avísame» es un `mailto:` a hola@mosaicolab.app. Sin JavaScript ni rastreadores. Si una idea no despega, se borra su carpeta.
