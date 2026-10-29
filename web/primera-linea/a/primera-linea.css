@@ -98,7 +98,7 @@ p { margin: 0 0 16px; max-width: 60ch; }
 .mesa { display: grid; gap: 20px; color: var(--tinta); }
 .bocadillo-juego { min-height: 96px; }
 .tablero-marco { padding: 14px; background: var(--papel); border: var(--borde); border-radius: 10px; box-shadow: var(--golpe); }
-.tablero { --n: 5; display: grid; grid-template-columns: repeat(var(--n), 1fr); aspect-ratio: 1; border: var(--borde); touch-action: manipulation; }
+.tablero { --n: 5; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); grid-template-rows: repeat(var(--n), minmax(0, 1fr)); aspect-ratio: 1; border: var(--borde); touch-action: manipulation; }
 .casilla { position: relative; display: grid; place-items: center; padding: 0; border: 1px solid rgba(43, 29, 20, .22); background: var(--fondo); cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .casilla.b-arr { border-top: 2.5px solid var(--tinta); }
 .casilla.b-aba { border-bottom: 2.5px solid var(--tinta); }
@@ -110,7 +110,7 @@ p { margin: 0 0 16px; max-width: 60ch; }
 .casilla.auto::before, .casilla.auto::after { content: ""; position: absolute; width: 34%; height: 3px; border-radius: 2px; background: var(--tinta); transform: rotate(45deg); }
 .casilla.x::after, .casilla.auto::after { transform: rotate(-45deg); }
 .casilla.auto::before, .casilla.auto::after { opacity: .28; width: 22%; }
-.casilla img { width: 84%; }
+.casilla img { width: 84%; height: 84%; object-fit: contain; }
 .planta img { animation: planta .38s cubic-bezier(.3, 1.7, .5, 1); }
 @keyframes planta { from { transform: translateY(-14%) scale(.6); } to { transform: none; } }
 .no { animation: no .3s ease; }
