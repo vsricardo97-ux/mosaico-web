@@ -1,4 +1,4 @@
-/* Landing «Hoy Sí»: test de 6 preguntas, plan según lo que te frena y plan de 4 semanas en «gracias».
+/* Landing «hoy sí»: test de 6 preguntas, plan según lo que te frena y plan de 4 semanas en «gracias».
    Sin cookies ni librerías. El resultado se guarda solo en sessionStorage (este navegador) para enseñarlo en «gracias»:
    al servidor solo llegan el correo, el código postal, la ciudad, las respuestas y el anuncio por el que viniste. */
 (function () {
@@ -123,7 +123,7 @@
     var c = $('#compartir');
     if (c) c.addEventListener('click', function () {
       var txt = '¿Te lo has planteado mil veces y no lo logras? Test de 1 minuto para empezar sin miedo:';
-      if (navigator.share) { navigator.share({ title: 'Hoy Sí', text: txt, url: URL_WEB }).catch(function () {}); return; }
+      if (navigator.share) { navigator.share({ title: 'hoy sí', text: txt, url: URL_WEB }).catch(function () {}); return; }
       var done = function () { c.textContent = 'Enlace copiado ✓'; };
       if (navigator.clipboard) navigator.clipboard.writeText(URL_WEB).then(done, function () { c.textContent = URL_WEB; }); else c.textContent = URL_WEB;
     });
