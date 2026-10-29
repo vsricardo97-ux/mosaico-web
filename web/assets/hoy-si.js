@@ -94,6 +94,7 @@
     }
     function elegir(b) {
       var q = PREGUNTAS[paso], v = b.getAttribute('data-v');
+      if (paso === 0) marca('ini');
       if (q.id === 'barrera') estado.barrera = v;
       if (q.id === 'trae') estado.trae = v;
       estado.r[q.f] = v;
@@ -101,7 +102,7 @@
       setTimeout(function () { if (paso < PREGUNTAS.length - 1) { paso++; pintar(); } else resultado(); }, 200);
     }
     function resultado() {
-      guardar(estado);
+      guardar(estado); marca('fin');
       host.innerHTML = '<div class="resultado" tabindex="-1" id="res">' + planHTML(estado, true) + '</div><button type="button" class="atras" id="q-repetir">Repetir el test</button>';
       Object.keys(estado.r).forEach(function (k) { var i = $('input[name=' + k + ']', form); if (i) i.value = estado.r[k]; });
       if (form) form.classList.remove('oculto');
@@ -127,6 +128,14 @@
       var done = function () { c.textContent = 'Enlace copiado ✓'; };
       if (navigator.clipboard) navigator.clipboard.writeText(URL_WEB).then(done, function () { c.textContent = URL_WEB; }); else c.textContent = URL_WEB;
     });
+  }
+
+  /* Embudo: cuenta una vez por carga quién empieza y quién acaba el test, como visita con anuncio «ini_…»/«fin_…». */
+  var marcado = {};
+  function marca(etapa) {
+    if (marcado[etapa]) return; marcado[etapa] = 1;
+    var c = (new URLSearchParams(location.search).get('utm_content') || 'directo').replace(/[^a-z0-9_-]/gi, '').slice(0, 30);
+    new Image().src = 'https://avisame.vsricardo97.workers.dev/v/hoy-si.gif?c=' + etapa + '_' + c;
   }
 
   function visita() {
