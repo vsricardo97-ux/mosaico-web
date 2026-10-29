@@ -3,53 +3,207 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mosaico Lab</title>
-<meta name="description" content="Mosaico Lab: juegos de móvil hechos en España.">
-<meta name="theme-color" content="#12607A">
+<title>Mosaico Lab: juegos y apps de móvil, cada una con su cara</title>
+<meta name="description" content="Mosaico Lab es un estudio pequeño de Valencia. Hacemos juegos y apps de móvil: Primera Línea, Tesela, ¿Dónde cae?, Wodpost, Squady, Ten Minute Mind y Top Dog.">
+<meta name="theme-color" content="#F4F0E8">
 <meta name="google-adsense-account" content="ca-pub-4488435659395641">
 <link rel="canonical" href="https://mosaicolab.app/">
+<link rel="icon" href="/assets/mosaico/favicon.png">
+<link rel="apple-touch-icon" href="/assets/mosaico/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mosaico Lab">
 <meta property="og:locale" content="es_ES">
-<meta property="og:title" content="Mosaico Lab">
-<meta property="og:description" content="Mosaico Lab: juegos de móvil hechos en España.">
+<meta property="og:title" content="Mosaico Lab: juegos y apps de móvil, cada una con su cara">
+<meta property="og:description" content="Un estudio pequeño de Valencia. Siete apps, cada una con su propio estilo.">
 <meta property="og:url" content="https://mosaicolab.app/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://mosaicolab.app/assets/mosaico/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://mosaicolab.app/#org", "name": "Mosaico Lab", "url": "https://mosaicolab.app/", "email": "hola@mosaicolab.app", "address": {"@type": "PostalAddress", "addressLocality": "Valencia", "addressCountry": "ES"}}, {"@type": "WebSite", "name": "Mosaico Lab", "url": "https://mosaicolab.app/", "inLanguage": "es", "publisher": {"@id": "https://mosaicolab.app/#org"}}]}</script>
-<link rel="stylesheet" href="/assets/estilo.css">
+<link rel="preload" href="/assets/mosaico/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/mosaico/mosaico.css">
 </head>
 <body>
-<header class="sitio"><div class="caja"><a class="marca" href="/">Mosaico Lab</a></div></header>
-<main class="caja">
-<h1>Mosaico Lab</h1>
-<p>Somos Mosaico Lab, un estudio de Valencia (España). Hacemos juegos de móvil sencillos, sin cuentas ni registros y con respeto por tus datos.</p>
-<section class="tarjeta">
-<h2>Primera Línea</h2>
-<p>Un puzle de lógica para iPhone, de playa en playa. Sin prisas. Con anuncios opcionales para conseguir pistas y un anuncio breve entre algunos niveles, siempre con aviso. Con «Quitar anuncios» (pago único) desaparecen todos.</p>
-<p><a class="boton" href="https://apps.apple.com/es/app/id6823426273">Descargar en la App Store</a></p>
-<p><a href="/primera-linea/">Conoce Primera Línea</a> · <a href="/primera-linea/soporte/">Ayuda y soporte</a></p>
-<p><a href="/primera-linea/privacidad/">Política de privacidad</a></p>
+
+<header class="barra">
+  <div class="marco barra-dentro">
+    <a class="logo" href="/"><span class="logo-teselas" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Mosaico Lab</a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#apps">Las apps</a>
+      <a href="#como">Cómo las hacemos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="portada" aria-labelledby="titulo">
+  <div class="marco portada-rejilla">
+    <div>
+      <p class="antetitulo">Estudio de apps · Valencia</p>
+      <h1 id="titulo">Apps pequeñas, cada una con <em>su propia cara</em>.</h1>
+      <p class="entradilla">Somos Mosaico Lab. Hacemos juegos y apps para el móvil: un puzle de playa, el mapa de España, la pizarra del box hecha historia, juegos para la fiesta. Cada una con su dibujo, su música y su forma de hablarte.</p>
+      <p><a class="boton" href="#apps">Ver las siete</a></p>
+    </div>
+    <div class="mosaico" aria-hidden="true">
+      <span class="t t-icono" style="--c:#FFD23F"><img src="/primera-linea/a/icono.webp" width="160" height="160" alt=""></span>
+      <span class="t" style="--c:#1F4F8F"></span>
+      <span class="t t-icono" style="--c:#F3EEE4"><img src="/tesela/a/icono.webp" width="160" height="160" alt=""></span>
+      <span class="t" style="--c:#FF5A5F"></span>
+      <span class="t" style="--c:#8FD9B6"></span>
+      <span class="t t-icono" style="--c:#123A78"><img src="/dondecae/a/icono.webp" width="160" height="160" alt=""></span>
+      <span class="t" style="--c:#F2B544"></span>
+      <span class="t t-icono" style="--c:#0A0A0A"><img src="/wodpost/a/icono.webp" width="160" height="160" alt=""></span>
+      <span class="t t-icono" style="--c:#1B1033"><img src="/squady/a/icono.webp" width="160" height="160" alt=""></span>
+      <span class="t" style="--c:#1F5A4E"></span>
+      <span class="t" style="--c:#F2FF1A"></span>
+      <span class="t t-icono" style="--c:#F6F1E7"><img src="/tenminutemind/a/icono.webp" width="160" height="160" alt=""></span>
+      <span class="t" style="--c:#C8321D"></span>
+      <span class="t t-icono" style="--c:#FFC83D"><img src="/topdog/a/icono.webp" width="160" height="160" alt=""></span>
+      <span class="t" style="--c:#9FC2EA"></span>
+      <span class="t" style="--c:#C99A2E"></span>
+    </div>
+  </div>
 </section>
-<section class="tarjeta">
-<h2>Tesela</h2>
-<p>Puzles de lógica con un reto nuevo cada día: Zonas, Camino, Binario y Flota. El día cuenta con resolver uno. Próximamente en App Store.</p>
-<p><a class="boton" href="/tesela/">Conoce Tesela</a></p>
-<p><a href="/tesela/soporte/">Ayuda y soporte</a> · <a href="/tesela/privacidad/">Política de privacidad</a> · <a href="/tesela/privacy/" lang="en">Privacy policy</a></p>
+
+<section id="apps" class="seccion apps" aria-labelledby="apps-titulo">
+  <div class="marco">
+    <div class="cabeza">
+      <h2 id="apps-titulo" class="aparece">Lo que hay en el taller</h2>
+      <p class="aparece">Todavía no están en la App Store: Apple las revisa una a una. Mientras, casi todas se pueden probar desde su web.</p>
+    </div>
+    <ul class="rejilla-apps">
+      <li class="app aparece" style="--marca:#C8321D">
+        <a href="/primera-linea/">
+          <img src="/primera-linea/a/og.jpg" width="1200" height="630" loading="lazy" alt="">
+          <span class="app-texto">
+            <span class="app-nombre">Primera Línea</span>
+            <span class="app-linea">Un puzle de lógica con la playa de toda la vida: planta cada sombrilla sin que se toquen. 240 niveles en 12 playas de España.</span>
+            <span class="estado">Juega un nivel en su web</span>
+          </span>
+        </a>
+      </li>
+      <li class="app aparece" style="--marca:#1F4F8F">
+        <a href="/tesela/">
+          <img src="/tesela/a/og.jpg" width="1200" height="630" loading="lazy" alt="">
+          <span class="app-texto">
+            <span class="app-nombre">Tesela</span>
+            <span class="app-linea">Zonas, Camino, Binario y Flota: cuatro puzles de lógica nuevos cada día. Cada uno pone una tesela en tu mosaico.</span>
+            <span class="estado">Resuelve un Camino en su web</span>
+          </span>
+        </a>
+      </li>
+      <li class="app aparece" style="--marca:#123A78">
+        <a href="/dondecae/">
+          <img src="/dondecae/a/og.jpg" width="1200" height="630" loading="lazy" alt="">
+          <span class="app-texto">
+            <span class="app-nombre">¿Dónde cae?</span>
+            <span class="app-linea">Cada día, 8 provincias de España. Tócalas en el mapa a la primera y llévate un dato de cada una.</span>
+            <span class="estado">Haz una ronda en su web</span>
+          </span>
+        </a>
+      </li>
+      <li class="app aparece" style="--marca:#0A0A0A">
+        <a href="/wodpost/">
+          <img src="/wodpost/a/og.jpg" width="1200" height="630" loading="lazy" alt="">
+          <span class="app-texto">
+            <span class="app-nombre">Wodpost</span>
+            <span class="app-linea">Haz una foto a la pizarra de tu box: Wodpost lee el WOD y te deja la historia lista, encima de tu foto del entreno.</span>
+            <span class="estado">Muy pronto en el iPhone</span>
+          </span>
+        </a>
+      </li>
+      <li class="app aparece" style="--marca:#1B1033">
+        <a href="/squady/">
+          <img src="/squady/a/og.jpg" width="1200" height="630" loading="lazy" alt="">
+          <span class="app-texto">
+            <span class="app-nombre">Squady</span>
+            <span class="app-linea">Siete juegos de fiesta con un solo móvil que va pasando de mano en mano: el impostor, la ruleta, yo nunca y más.</span>
+            <span class="estado">Muy pronto en el iPhone</span>
+          </span>
+        </a>
+      </li>
+      <li class="app aparece" style="--marca:#1F5A4E">
+        <a href="/tenminutemind/">
+          <img src="/tenminutemind/a/og.jpg" width="1200" height="630" loading="lazy" alt="">
+          <span class="app-texto">
+            <span class="app-nombre">Ten Minute Mind</span>
+            <span class="app-linea">Tres ejercicios cortos al día para la cabeza, con letra grande, botones grandes y todo explicado con calma.</span>
+            <span class="estado">Se juega en el navegador</span>
+          </span>
+        </a>
+      </li>
+      <li class="app aparece" style="--marca:#C4361C">
+        <a href="/topdog/">
+          <img src="/topdog/a/og.jpg" width="1200" height="630" loading="lazy" alt="">
+          <span class="app-texto">
+            <span class="app-nombre">Top Dog</span>
+            <span class="app-linea">Cartas de perros: alguien se ha comido la tarta y hay que pasarle la Culpa al otro antes de que vuelva el dueño.</span>
+            <span class="estado">Se juega en el navegador</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </section>
-<section class="tarjeta">
-<h2>¿Dónde cae?</h2>
-<p>Cada día, 8 provincias de España: tócalas en el mapa a la primera. Próximamente en App Store.</p>
-<p><a class="boton" href="/dondecae/">Conoce ¿Dónde cae?</a></p>
+
+<section id="como" class="seccion como" aria-labelledby="como-titulo">
+  <div class="marco como-rejilla">
+    <h2 id="como-titulo" class="aparece">Cómo las hacemos</h2>
+    <ol class="principios">
+      <li class="aparece"><b>Cada una, su cara.</b> Dibujos, música y tono propios. No hay dos apps con la misma plantilla.</li>
+      <li class="aparece"><b>Cuentas, solo si tú quieres.</b> Se juega sin registrarse. Pedimos los datos mínimos y lo contamos en cada política de privacidad.</li>
+      <li class="aparece"><b>Sin trampas para gastar.</b> Ni cajas de botín ni precios que cambian según lo que gastes. Si una app lleva anuncios, su web lo dice claro.</li>
+      <li class="aparece"><b>Hechas aquí.</b> Playas, provincias y boxes de verdad. Pensadas en español, para gente de aquí.</li>
+    </ol>
+  </div>
 </section>
-<section class="tarjeta">
-<h2>Wodpost</h2>
-<p>Haz foto a la pizarra de tu box y Wodpost lee el WOD y te deja la tarjeta para tu historia, encima de tu foto del entreno. Para iPhone, muy pronto en App Store.</p>
-<p><a class="boton" href="/wodpost/">Conoce Wodpost</a></p>
-<p><a href="/wodpost/soporte/">Ayuda y soporte</a> · <a href="/wodpost/privacidad/">Política de privacidad</a> · <a href="/wodpost/privacy/" lang="en">Privacy policy</a></p>
+
+<section id="contacto" class="seccion contacto" aria-labelledby="contacto-titulo">
+  <div class="marco contacto-rejilla">
+    <div>
+      <h2 id="contacto-titulo" class="aparece">¿Hablamos?</h2>
+      <p class="aparece">Dudas, fallos, ideas o prensa: escríbenos y te contesta una persona.</p>
+    </div>
+    <p class="aparece"><a class="correo" href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a></p>
+  </div>
 </section>
-<p>Contacto: <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a></p>
+
 </main>
-<footer class="sitio caja">Mosaico Lab · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</footer>
+
+<footer class="pie">
+  <div class="marco">
+    <div class="pie-rejilla">
+      <div>
+        <p class="pie-marca">Mosaico Lab</p>
+        <p>Valencia, España</p>
+        <p><a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a></p>
+        <p><a href="/aviso-legal/">Aviso legal</a></p>
+      </div>
+      <dl class="pie-apps">
+        <div><dt>Primera Línea</dt><dd><a href="/primera-linea/soporte/">Ayuda</a> <a href="/primera-linea/privacidad/">Privacidad</a></dd></div>
+        <div><dt>Tesela</dt><dd><a href="/tesela/soporte/">Ayuda</a> <a href="/tesela/privacidad/">Privacidad</a> <a href="/tesela/privacy/" lang="en">Privacy</a></dd></div>
+        <div><dt>¿Dónde cae?</dt><dd><a href="/dondecae/soporte/">Ayuda</a> <a href="/dondecae/privacidad/">Privacidad</a></dd></div>
+        <div><dt>Wodpost</dt><dd><a href="/wodpost/soporte/">Ayuda</a> <a href="/wodpost/privacidad/">Privacidad</a> <a href="/wodpost/privacy/" lang="en">Privacy</a></dd></div>
+        <div><dt>Squady</dt><dd><a href="/squady/soporte/">Ayuda</a> <a href="https://cuadrilla.mosaicolab.app/privacidad.html">Privacidad</a></dd></div>
+        <div><dt>Ten Minute Mind</dt><dd><a href="/tenminutemind/soporte/">Ayuda</a> <a href="/tenminutemind/privacidad/">Privacidad</a></dd></div>
+        <div><dt>Top Dog</dt><dd><a href="https://topdog.mosaicolab.app/soporte">Ayuda</a> <a href="https://topdog.mosaicolab.app/privacidad">Privacidad</a></dd></div>
+      </dl>
+    </div>
+    <p class="pie-letra">Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</p>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function () {
+  var b = document.querySelectorAll('.aparece');
+  document.querySelectorAll('section').forEach(function (s) { s.querySelectorAll('.aparece').forEach(function (el, i) { el.style.setProperty('--i', Math.min(i, 8)); }); });
+  if (!('IntersectionObserver' in window)) { b.forEach(function (el) { el.classList.add('visto'); }); return; }
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
+  b.forEach(function (el) { io.observe(el); });
+})();
+</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
