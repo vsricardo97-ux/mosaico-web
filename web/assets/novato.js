@@ -1,4 +1,4 @@
-/* Landing «novato»: pizarra interactiva, test de 5 preguntas, plan personalizado y buscador del diccionario.
+/* Landing «novato»: pizarra interactiva, test de 8 preguntas, plan personalizado y buscador del diccionario.
    Sin cookies ni librerías. El resultado se guarda solo en sessionStorage (este navegador) para enseñarlo en «gracias»:
    al servidor solo llegan el correo, a quién traerías y el anuncio por el que viniste. */
 (function () {
@@ -34,28 +34,44 @@
   }
 
   /* ---------- Test ---------- */
+  // Cada pregunta con campo (f) viaja con el correo al Worker (s_e, s_b…): es lo que necesitamos para decidir
+  // si Novato vale, si convive con Wodpost y qué pedir a los boxes. Las de siglas solo enseñan y puntúan.
   var PREGUNTAS = [
-    { id: 'barrera', t: '¿Qué es lo que más te frena para ir?', op: [
+    { id: 'e', f: 's_e', t: '¿Ya entrenas en un box?', op: [
+      ['nunca', 'Nunca he ido'],
+      ['probe', 'Fui alguna vez y lo dejé'],
+      ['voy', 'Sí, ya voy']] },
+    { id: 'barrera', f: 's_b', t: '¿Qué es lo que más te frena (o te frenaba) para ir?', op: [
       ['corte', 'Me da corte: todos parecerán saber lo que hacen'],
       ['forma', 'Creo que estoy demasiado fuera de forma'],
       ['pizarra', 'No entiendo ni una sigla de la pizarra'],
       ['lesion', 'Me da miedo lesionarme'],
       ['solo', 'No tengo con quién ir']] },
-    { id: 'nivel', t: '¿Cómo te mueves ahora mismo?', op: [
-      ['sofa', 'Casi nada: llevo tiempo sin hacer deporte'],
-      ['gym', 'Voy al gimnasio o hago algo de ejercicio'],
-      ['depo', 'Corro, nado o juego a algo con regularidad']] },
     { id: 'amrap', t: 'En la pizarra pone «AMRAP 10\'». ¿Qué te toca hacer?', ctx: "AMRAP 10'\n10 sentadillas\n5 flexiones", ok: 1, op: [
       ['a', 'Hacer 10 rondas lo más rápido posible'],
       ['b', 'Todas las rondas que pueda en 10 minutos'],
       ['c', 'Terminar el entreno en menos de 10 minutos']],
       ex: 'AMRAP = as many rounds as possible: todas las rondas que te salgan en 10 minutos. Nadie «termina»: se acaba el tiempo.' },
+    { id: 'v', f: 's_v', t: 'Si vieses un vídeo del box cerca de tu casa con cómo va a ser tu primera clase, ¿irías más tranquilo?', op: [
+      ['mucho', 'Sí, mucho más'],
+      ['algo', 'Algo más'],
+      ['igual', 'Me daría igual'],
+      ['no', 'No']] },
     { id: 'escalar', t: 'El coach te dice: «escala la dominada». ¿Qué significa?', ok: 0, op: [
       ['a', 'Que la hagas más fácil (menos peso, goma, otra variante)'],
       ['b', 'Que la hagas en una barra más alta'],
       ['c', 'Que la hagas más rápido']],
       ex: 'Escalar es adaptar el ejercicio a tu nivel. Es lo normal el primer año y, muchos días, para casi todos.' },
-    { id: 'trae', t: '¿A quién traerías a tu primera clase?', op: [
+    { id: 'g', f: 's_g', t: '¿Irías antes si la primera clase fuese gratis o más barata para novatos?', op: [
+      ['si', 'Sí'],
+      ['quiza', 'Quizá'],
+      ['no', 'No, no es el dinero']] },
+    { id: 'a', f: 's_a', t: 'Imagina una app que te explica la pizarra con una foto y te deja compartir tu entreno en Instagram. ¿Qué usarías?', op: [
+      ['ambas', 'Las dos cosas'],
+      ['explica', 'Solo que me explique la pizarra'],
+      ['comparte', 'Solo compartir mi entreno'],
+      ['no', 'Ninguna']] },
+    { id: 'trae', f: 'trae', t: '¿A quién traerías a tu primera clase?', op: [
       ['pareja', 'A mi pareja'],
       ['amigo', 'A un amigo o amiga'],
       ['familia', 'A alguien de mi familia'],
@@ -79,25 +95,26 @@
       pasos: ['Pregunta si hay clase de iniciación: ahí todos empezáis de cero.', 'Los entrenos por parejas (partner WOD) son los mejores para empezar: os repartís el trabajo.', 'Y si conoces a alguien con curiosidad, invítalo: «Ven conmigo» es justo lo que estamos preparando.'],
       tu: '«Partner WOD» → trabajáis por turnos. Es el mejor día para empezar.' }
   };
-  var NIVEL = { sofa: 'Punto de partida: desde cero', gym: 'Punto de partida: ya te mueves', depo: 'Punto de partida: deportista' };
+  var NIVEL = { nunca: 'Nunca has ido a un box', probe: 'Vuelves al box', voy: 'Ya vas al box' };
   var TRAE = { pareja: 'Traerías a tu pareja: dos novatos a la vez, y los partner WOD os van a ir de perlas.', amigo: 'Traerías a un amigo: ir acompañado ayuda a no rendirse la primera semana.', familia: 'Traerías a alguien de tu familia: ya tenéis plan.', nadie: 'Irás por tu cuenta, y se puede: pregunta por la clase de iniciación.' };
 
   function planHTML(r, completo) {
     var p = PERFILES[r.barrera] || PERFILES.corte;
     var h = '<p class="etiqueta">Tu resultado</p><p class="perfil">' + p.n + '</p><div class="chips">' +
       '<span class="chip">Siglas: <b>' + r.aciertos + ' de 2</b></span>' +
-      '<span class="chip">' + esc(NIVEL[r.nivel] || NIVEL.sofa) + '</span></div>' +
+      '<span class="chip">' + esc(NIVEL[r.e] || NIVEL.nunca) + '</span></div>' +
       '<p>' + esc(p.lead) + '</p>' +
       '<h3>Tu primera clase en 3 pasos</h3><ol class="pasos">' + p.pasos.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol>' +
       '<p class="tu-version"><b>Un ejemplo de «tu versión»:</b> ' + esc(p.tu) + '</p>';
     if (completo && TRAE[r.trae]) h += '<p class="suave">' + esc(TRAE[r.trae]) + '</p>';
+    if (r.e === 'voy') h += '<p class="suave">Si ya vas al box, <a href="/wodpost/">Wodpost</a> convierte la foto de la pizarra en una tarjeta para tus historias.</p>';
     return h;
   }
 
   function test() {
     var host = $('#test-caja'); if (!host) return;
     var form = $('#registro');
-    var estado = { barrera: 'corte', nivel: 'sofa', aciertos: 0, trae: '' };
+    var estado = { barrera: 'corte', e: 'nunca', aciertos: 0, trae: '', r: {} };
     var paso = 0, respuestas = [];
     if (form) form.classList.add('oculto');
     function cabecera(i) {
@@ -119,8 +136,9 @@
     function elegir(b) {
       var q = PREGUNTAS[paso], v = b.getAttribute('data-v'), i = +b.getAttribute('data-i');
       if (q.id === 'barrera') estado.barrera = v;
-      if (q.id === 'nivel') estado.nivel = v;
+      if (q.id === 'e') estado.e = v;
       if (q.id === 'trae') estado.trae = v;
+      if (q.f) estado.r[q.f] = v;
       if (q.ex) {
         var bien = i === q.ok;
         if (bien) estado.aciertos++;
@@ -146,11 +164,11 @@
       host.innerHTML = '<div class="resultado" tabindex="-1" id="res">' + planHTML(estado, true) + '</div>' +
         '<button type="button" class="atras" id="q-repetir">Repetir el test</button>';
       host.setAttribute('data-hecho', '1');
-      var ti = $('input[name=trae]', form); if (ti) ti.value = estado.trae;
+      Object.keys(estado.r).forEach(function (k) { var i = $('input[name=' + k + ']', form); if (i) i.value = estado.r[k]; });
       if (form) form.classList.remove('oculto');
       var res = $('#res'); if (res) { res.focus({ preventScroll: true }); res.scrollIntoView({ block: 'start' }); }
       $('#q-repetir').addEventListener('click', function () {
-        paso = 0; respuestas = []; estado = { barrera: 'corte', nivel: 'sofa', aciertos: 0, trae: '' };
+        paso = 0; respuestas = []; estado = { barrera: 'corte', e: 'nunca', aciertos: 0, trae: '', r: {} };
         if (form) form.classList.add('oculto'); host.removeAttribute('data-hecho'); pintar();
         $('#test').scrollIntoView({ block: 'start' });
       });
