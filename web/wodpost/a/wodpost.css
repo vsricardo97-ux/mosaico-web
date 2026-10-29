@@ -240,7 +240,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 /* Precio */
 .precio-rejilla { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
 .precio-texto > p:not(.nota) { color: var(--suave); font-size: 20px; max-width: 32em; }
-.precios { list-style: none; margin: 40px 0 28px; padding: 0; display: flex; gap: clamp(20px, 3.4vw, 48px); }
+.precios { list-style: none; margin: 40px 0 28px; padding: 0; display: flex; flex-wrap: wrap; gap: 20px clamp(20px, 3.4vw, 48px); }
 .precios li { display: grid; }
 .precios strong { font: 700 clamp(36px, 4.2vw, 64px)/.9 var(--condensada); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .precios span { color: var(--suave); font-size: 16px; margin-top: 6px; }
@@ -368,3 +368,6 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   .aviso .boton { flex: 1 1 100%; }
   .acordeon summary { font-size: 22px; }
 }
+
+/* Que ninguna columna se ensanche por su contenido en móviles estrechos (320 px). */
+[class*="-rejilla"] > *, .aviso input { min-width: 0; }

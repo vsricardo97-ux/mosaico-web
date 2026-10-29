@@ -256,6 +256,8 @@ fieldset { border: 0; margin: 0; padding: 0; }
 }
 
 @media (max-width: 1020px) {
+  .portada h1 { font-size: clamp(44px, 6.4vw, 64px); }
+  .portada h1 span { white-space: normal; }
   .j-trivial { grid-column: span 2; }
   .menu { display: none; }
   .barra-dentro { justify-content: space-between; }
@@ -289,3 +291,6 @@ fieldset { border: 0; margin: 0; padding: 0; }
   .pie-rejilla { grid-template-columns: 1fr; }
   .acordeon summary { font-size: 22px; }
 }
+
+/* Que ninguna columna se ensanche por su contenido en móviles estrechos (320 px). */
+[class*="-rejilla"] > *, .aviso input { min-width: 0; }

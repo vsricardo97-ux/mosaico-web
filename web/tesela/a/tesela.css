@@ -181,3 +181,6 @@ p { margin: 0 0 16px; max-width: 60ch; }
   .avisame-rejilla { grid-template-columns: 1fr; gap: 28px; }
   .avisame-icono { width: 112px; border-radius: 26px; }
 }
+
+/* Que ninguna columna se ensanche por su contenido en móviles estrechos (320 px). */
+[class*="-rejilla"] > *, .aviso input { min-width: 0; }
