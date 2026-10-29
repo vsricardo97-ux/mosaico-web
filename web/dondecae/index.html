@@ -1,43 +1,183 @@
 <!doctype html>
-<!-- Destino del enlace de compartir de ¿Dónde cae? (apps/dondecae/src/config.ts, ENLACE = mosaicolab.app/dondecae). Cuando exista la ficha de la App Store, cambiar «Próximamente en App Store» por el botón a la tienda. -->
+<!-- Destino del enlace de compartir de ¿Dónde cae? (apps/dondecae/src/config.ts, ENLACE = mosaicolab.app/dondecae). Cuando exista la ficha de la App Store, cambiar los «Avísame» por el botón a la tienda. -->
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>¿Dónde cae? | Mosaico Lab</title>
-<meta name="description" content="¿Dónde cae?: cada día, 8 provincias de España. Tócalas en el mapa a la primera.">
-<meta name="theme-color" content="#142A47">
+<title>¿Dónde cae? Cada día, 8 provincias</title>
+<meta name="description" content="¿Dónde cae? es un juego de provincias para iPhone: cada día 8, sin GPS y sin chuleta. Tócalas en el mapa a la primera y pinta tu mapa de España. Sin anuncios y sin compras.">
+<meta name="theme-color" content="#123A78">
 <link rel="canonical" href="https://mosaicolab.app/dondecae/">
+<link rel="icon" href="/dondecae/a/favicon.png">
+<link rel="apple-touch-icon" href="/dondecae/a/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mosaico Lab">
 <meta property="og:locale" content="es_ES">
-<meta property="og:title" content="¿Dónde cae? | Mosaico Lab">
-<meta property="og:description" content="¿Dónde cae?: cada día, 8 provincias de España. Tócalas en el mapa a la primera.">
+<meta property="og:title" content="¿Dónde cae? Cada día, 8 provincias">
+<meta property="og:description" content="Sin GPS y sin chuleta. Tócalas en el mapa a la primera.">
 <meta property="og:url" content="https://mosaicolab.app/dondecae/">
-<meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="/assets/estilo.css">
+<meta property="og:image" content="https://mosaicolab.app/dondecae/a/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"¿Dónde cae?","operatingSystem":"iOS","applicationCategory":"GameApplication","description":"Cada día, 8 provincias de España. Tócalas en el mapa a la primera.","url":"https://mosaicolab.app/dondecae/","inLanguage":"es","author":{"@type":"Organization","name":"Mosaico Lab","url":"https://mosaicolab.app/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<link rel="preload" href="/dondecae/a/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/dondecae/a/dondecae.css">
 </head>
 <body>
-<header class="sitio"><div class="caja"><a class="marca" href="/">Mosaico Lab</a></div></header>
-<main class="caja">
-<h1>¿Dónde cae?</h1>
-<p>Cada día, 8 provincias. Tócalas en el mapa a la primera.</p>
-<p><img src="/dondecae/mapa.png" width="240" height="240" alt="Mapa de España por provincias con Cuenca marcada en verde" style="border-radius:16px"></p>
 
-<section class="tarjeta">
-<h2>Cómo se juega</h2>
-<ul>
-<li>Sale una provincia: «Toca Soria». Tócala en el mapa.</li>
-<li>Si fallas, te dice qué has tocado y a cuántos kilómetros te has ido.</li>
-<li>El reto es el mismo para todo el mundo y cambia cada día. Compara tu resultado: ■ a la primera, ▣ cerca, □ lejos.</li>
-</ul>
-<p><strong>Próximamente en App Store.</strong></p>
+<header class="barra">
+  <div class="marco barra-dentro">
+    <a class="logo" href="/dondecae/"><img src="/dondecae/a/icono.webp" width="32" height="32" alt=""><span>¿Dónde cae?</span></a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#juega">Juega</a>
+      <a href="#tu-mapa">Tu mapa</a>
+      <a href="#compara">Compara</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="boton boton-peque" href="#avisame">Avísame</a>
+  </div>
+</header>
+
+<main>
+
+<section id="juega" class="portada" aria-labelledby="titulo">
+  <div class="marco portada-rejilla">
+    <div class="cabeza">
+      <h1 id="titulo">¿Dónde cae?</h1>
+      <p class="lema">Cada día, 8 provincias. Sin GPS y sin chuleta.</p>
+    </div>
+
+    <div class="pregunta" id="pregunta">
+      <p class="cuenta-ronda" id="cuenta-ronda">Ronda de práctica · 1 de 8</p>
+      <p class="toca">Toca</p>
+      <p class="provincia" id="buscada" aria-live="polite">Soria</p>
+    </div>
+
+    <figure class="mapa-caja">
+      <svg id="mapa" class="mapa" viewBox="0 0 1000 880" role="img" aria-label="Mapa de España por provincias. Toca la provincia que se pide."></svg>
+    </figure>
+
+    <div class="tras">
+      <div class="respuesta" id="respuesta" aria-live="polite"></div>
+      <ol class="casillas" id="casillas" aria-label="Resultado de la ronda"></ol>
+      <button type="button" class="boton" id="siguiente" hidden>Siguiente</button>
+      <div class="final" id="final" hidden>
+        <p class="nota"><span id="nota-num">0</span>/8</p>
+        <p class="veredicto" id="veredicto"></p>
+        <div class="cifras-final">
+          <p><b id="km-total">0 km</b>de despiste</p>
+          <p><b id="pintadas">0</b>pintadas en tu mapa</p>
+        </div>
+        <div class="acciones">
+          <button type="button" class="boton" id="otra">Otra ronda</button>
+          <a class="boton boton-mar" href="#avisame">Avísame cuando salga</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<p>Sin cuentas ni registro, y nada sale de tu móvil: tu racha y tus resultados se quedan en él.</p>
-<p>¿Dudas? Escríbenos a <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>.</p>
+<section id="tu-mapa" class="seccion" aria-labelledby="mapa-titulo">
+  <div class="marco dos">
+    <img class="movil aparece" src="/dondecae/a/01-pinta-espana.webp" width="420" height="877" loading="lazy" alt="Portada de la app: el mapa de España con 21 provincias pintadas de colores y Tachi clavada en Valencia">
+    <div>
+      <h2 id="mapa-titulo" class="aparece">Pinta tu mapa de España</h2>
+      <p class="aparece">Cada provincia que aciertas a la primera se queda pintada, con su color y su salpicadura. La portada es tu álbum: cuántas llevas de 50 y cuál te sigue esperando.</p>
+      <div class="cifras aparece">
+        <p><b>50</b>provincias por pintar</p>
+        <p><b>8</b>cada día, las mismas para todos</p>
+        <p><b>10</b>en la práctica, cuando quieras</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion escalon" aria-labelledby="fallo-titulo">
+  <div class="marco dos dos-al-reves">
+    <div>
+      <h2 id="fallo-titulo" class="aparece">Fallar también enseña</h2>
+      <p class="aparece">Si te vas a Albacete buscando Málaga, te lo dice sin rodeos y te enseña dónde estaba.</p>
+      <blockquote class="ejemplo aparece">
+        <p class="mal">Eso es Albacete. 345 km de excursión.</p>
+        <p>Málaga queda al suroeste de Albacete, en Andalucía.</p>
+      </blockquote>
+      <p class="aparece">Y aciertes o no, te llevas un dato de la provincia. Hay uno para cada una:</p>
+      <ul class="datos aparece">
+        <li><b>A Coruña</b>La Torre de Hércules es el faro romano más antiguo en uso.</li>
+        <li><b>Almería</b>En Tabernas hay un desierto donde se rodaron cientos de westerns.</li>
+        <li><b>Ávila</b>Su muralla mide unos 2,5 km y conserva 88 torreones.</li>
+        <li><b>Badajoz</b>Es la provincia más grande de España por superficie.</li>
+      </ul>
+    </div>
+    <img class="movil aparece" src="/dondecae/a/04-fallar-ensena.webp" width="420" height="877" loading="lazy" alt="Pantalla de fallo: buscabas Málaga, tocaste Albacete, que queda rayada, y Málaga destella en amarillo">
+  </div>
+</section>
+
+<section id="compara" class="seccion" aria-labelledby="compara-titulo">
+  <div class="marco dos">
+    <img class="movil aparece" src="/dondecae/a/05-compara.webp" width="420" height="877" loading="lazy" alt="Pantalla de resultado: 7 de 8, 345 km de despiste y cinco provincias nuevas en el mapa">
+    <div>
+      <h2 id="compara-titulo" class="aparece">Compara con los tuyos</h2>
+      <p class="aparece">El reto es el mismo para todo el mundo y cambia cada día. Al acabar, mandas tu resultado al grupo sin destripar ninguna provincia.</p>
+      <pre class="whatsapp aparece" aria-label="Ejemplo de resultado compartido">¿Dónde cae? #14 · 7/8
+■■■□■■■■
+345 km Muy fino. Se nota que has hecho kilómetros.</pre>
+      <p class="aparece">Y una racha que suma cada día que juegas. Si un día no puedes, un comodín por semana te la guarda.</p>
+    </div>
+  </div>
+</section>
+
+<section class="seccion escalon" aria-labelledby="limpio-titulo">
+  <div class="marco limpio">
+    <h2 id="limpio-titulo" class="aparece">Sin anuncios, sin compras, sin cuentas</h2>
+    <p class="aparece">Nada que pagar y nada que te interrumpa. Tu mapa, tu racha y tus resultados se quedan en tu iPhone.</p>
+  </div>
+</section>
+
+<section id="preguntas" class="seccion" aria-labelledby="preguntas-titulo">
+  <div class="marco preguntas-rejilla">
+    <h2 id="preguntas-titulo" class="aparece">Preguntas</h2>
+    <div class="lista-preguntas">
+      <details class="aparece"><summary>¿Cuándo sale?</summary><p>Está en camino a la App Store. Déjanos tu correo abajo y te avisamos el día que se pueda descargar.</p></details>
+      <details class="aparece"><summary>¿Y las provincias pequeñas?</summary><p>En la app se hace zoom con dos dedos. Ceuta y Melilla salen en el mapa, pero no se preguntan.</p></details>
+      <details class="aparece"><summary>¿Cuenta lo de cerca?</summary><p>Si tocas una vecina de la buscada, o te quedas a menos de 150 km, cuenta como cerca (▣). Si no, lejos (□).</p></details>
+      <details class="aparece"><summary>¿Puedo jugar más de 8 al día?</summary><p>Sí. La práctica te da 10 provincias al azar, con más peso las que más fallas, y no cuenta para la racha.</p></details>
+      <details class="aparece"><summary>¿Hay versión para Android?</summary><p>De momento solo iPhone. La de Android vendrá después.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="avisame" class="seccion avisame" aria-labelledby="avisame-titulo">
+  <div class="marco avisame-rejilla">
+    <img class="avisame-icono aparece" src="/dondecae/a/icono.webp" width="144" height="144" alt="Icono de ¿Dónde cae?: la península en papel sobre mar cobalto con una provincia pintada">
+    <div>
+      <h2 id="avisame-titulo" class="aparece">Te avisamos cuando salga</h2>
+      <p class="aparece">Un correo el día que ¿Dónde cae? esté en la App Store. Nada más.</p>
+      <form class="aviso aparece" method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
+        <input type="hidden" name="idea" value="dondecae-pronto">
+        <input type="hidden" name="anuncio" value="web-dondecae">
+        <input type="hidden" name="acepto" value="si">
+        <p class="trampa" aria-hidden="true"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
+        <label class="oculto" for="correo">Tu correo</label>
+        <input id="correo" type="email" name="correo" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Tu correo">
+        <button class="boton" type="submit">Avísame</button>
+      </form>
+      <p class="letra aparece">Al pulsar, aceptas que Mosaico Lab (Valencia, hola@mosaicolab.app) guarde tu correo solo para avisarte de esto. No lo cedemos a nadie y lo borramos cuando nos lo pidas.</p>
+    </div>
+  </div>
+</section>
+
 </main>
-<footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</footer>
+
+<footer class="pie">
+  <div class="marco pie-rejilla">
+    <p>¿Dónde cae? es un juego de <a href="/">Mosaico Lab</a>, un estudio de Valencia.</p>
+    <p class="pie-enlaces"><a href="/dondecae/soporte/">Ayuda y soporte</a> <a href="/dondecae/privacidad/">Privacidad</a> <a href="/aviso-legal/">Aviso legal</a></p>
+    <p class="pie-letra">Mapa de provincias a partir de Natural Earth (dominio público). Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</p>
+  </div>
+</footer>
+
+<script src="/dondecae/a/mapa-datos.js" defer></script>
+<script src="/dondecae/a/dondecae.js" defer></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
