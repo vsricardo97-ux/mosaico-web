@@ -4,7 +4,7 @@ Web estática de [mosaicolab.app](https://mosaicolab.app): portada, y páginas d
 
 Sin cookies ni datos personales. La medición es Cloudflare Web Analytics (beacon con el token en cada página; sin cookies), más un GIF propio en las landings de idea. SEO: cada página lleva canonical y Open Graph; la portada y Primera Línea, datos estructurados (JSON-LD). La medición, si se activa, es Cloudflare Web Analytics (sin cookies).
 
-**Excepción:** `web/tenminutemind/` es la versión web de la app Ten Minute Mind (export de Expo de `apps/tenminutemind` en mosaico-games, con `baseUrl` `/tenminutemind`), para que el enlace del reto de la familia se pueda jugar sin instalar nada. Lleva JavaScript, pero sigue sin cookies ni trackers: solo guarda el progreso en el propio navegador. Se regenera con `pnpm --filter @mosaico/tenminutemind build:web` y se copia `dist/` aquí (sin `metadata.json`).
+**Excepción:** `web/tenminutemind/` es la versión web de la app Ten Minute Mind (export de Expo de `apps/tenminutemind` en mosaico-games, con `baseUrl` `/tenminutemind`), para que el enlace del reto de la familia se pueda jugar sin instalar nada. Lleva JavaScript, pero sigue sin cookies ni trackers: solo guarda el progreso en el propio navegador. Se regenera con `pnpm --filter @mosaico/tenminutemind build:web:mosaicolab` y se copia `dist/` aquí (sin `metadata.json`), **pero su `index.html` va a `web/tenminutemind/jugar/index.html`**: `web/tenminutemind/index.html` es la web de la app (con su carpeta `a/`), que reenvía a `jugar/` los enlaces del reto de la familia (`?d=…&m=…`).
 
 `web/.well-known/apple-app-site-association` abre esos enlaces en la app de iOS cuando está instalada.
 
