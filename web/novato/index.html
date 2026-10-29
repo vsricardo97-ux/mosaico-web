@@ -35,20 +35,27 @@
 <section class="seccion caja" id="test">
 <p class="etiqueta">Test</p>
 <h2>¿Qué novato <mark>eres</mark>?</h2>
-<p class="suave" style="margin:.7rem 0 0">5 preguntas, 1 minuto. Al final, tu plan de primera clase y el diccionario de la pizarra.</p>
+<p class="suave" style="margin:.7rem 0 0">8 preguntas, 1 minuto. Al final, tu plan de primera clase y el diccionario de la pizarra.</p>
 <div class="test-caja" id="test-caja" data-visita="novato"><noscript><p>Para hacer el test necesitas JavaScript. Si prefieres, déjanos tu correo abajo y te abrimos el diccionario.</p></noscript></div>
 
 <form class="registro" id="registro" method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
 <h3>Guarda tu plan y abre el diccionario</h3>
-<p>Déjanos tu correo y te abrimos ahora mismo el diccionario de la pizarra: 70 siglas y movimientos explicados, con tu versión para el primer día. Te escribiremos solo cuando lo demás esté listo.</p>
+<p>Déjanos tu correo y te abrimos ahora mismo el diccionario de la pizarra: 70 siglas y movimientos explicados, con tu versión para el primer día. Te escribiremos solo cuando lo demás esté listo. Con tus respuestas decidimos qué construir y qué pedir a los boxes.</p>
 <input type="hidden" name="idea" value="novato">
 <input type="hidden" name="anuncio" value="">
 <input type="hidden" name="trae" value="">
+<input type="hidden" name="s_e" value="">
+<input type="hidden" name="s_b" value="">
+<input type="hidden" name="s_v" value="">
+<input type="hidden" name="s_g" value="">
+<input type="hidden" name="s_a" value="">
+
 <input type="hidden" name="acepto" value="si">
 <p style="display:none"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
 <input type="email" name="correo" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Tu correo" aria-label="Tu correo">
+<input class="ciudad" type="text" name="s_ciudad" maxlength="40" autocomplete="address-level2" placeholder="Tu ciudad o barrio (opcional)" aria-label="Tu ciudad o barrio, opcional">
 <button class="boton" type="submit">Abrir el diccionario</button>
-<p class="legal">Al pulsar, aceptas que Mosaico Lab guarde tu correo solo para avisarte de esto. Lo borras cuando quieras.</p>
+<p class="legal">Al pulsar, aceptas que Mosaico Lab guarde tu correo y tus respuestas solo para esta prueba. Lo borras cuando quieras.</p>
 </form>
 <noscript><style>.oculto{display:block!important}</style></noscript>
 </section>
@@ -71,7 +78,7 @@
 </section>
 </main>
 <footer class="pie caja">
-<p><strong>Privacidad.</strong> Responsable: Mosaico Lab (Valencia), hola@mosaicolab.app. Guardamos tu correo, a quién traerías a tu primera clase y el anuncio por el que llegaste solo para avisarte de esta idea, con tu consentimiento. No lo cedemos a nadie ni lo usamos para otra cosa, y lo borramos cuando acabe la prueba o cuando nos lo pidas por correo (puedes pedir acceso o borrado en cualquier momento). Tus respuestas al test se quedan en tu navegador y no se envían. Esta página cuenta visitas con una imagen de un píxel, sin cookies ni identificadores.</p>
+<p><strong>Privacidad.</strong> Responsable: Mosaico Lab (Valencia), hola@mosaicolab.app. Guardamos tu correo, a quién traerías a tu primera clase, tus respuestas al test (incluida la ciudad, si la pones) y el anuncio por el que llegaste para avisarte de esta idea y, sumando las respuestas de todos, decidir qué construir y qué proponer a los boxes, con tu consentimiento. No lo cedemos a nadie ni lo usamos para otra cosa, y lo borramos cuando acabe la prueba o cuando nos lo pidas por correo (puedes pedir acceso o borrado en cualquier momento). Si no dejas el correo, tus respuestas no salen de tu navegador. Con los boxes solo compartiremos totales (del tipo «a tantos de cada diez les ayudaría un vídeo»), nunca tu correo ni tus respuestas sueltas. Esta página cuenta visitas con una imagen de un píxel, sin cookies ni identificadores.</p>
 <p><a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</p>
 </footer>
 <noscript><img src="https://avisame.vsricardo97.workers.dev/v/novato.gif" width="1" height="1" alt="" style="position:absolute;left:-9999px"></noscript>
