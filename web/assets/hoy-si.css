@@ -1,19 +1,19 @@
-/* Landing «hoy sí» de Mosaico Lab: marca propia. Violeta para lo que se toca; menta solo detrás de texto en tinta
-   o como interruptor (nunca texto blanco sobre menta). Letra Bricolage Grotesque (OFL) servida desde aquí, sin cookies. */
+/* Landing «hoy sí» de Mosaico Lab: marca propia, gama «Polideportivo». Verde pista para lo que se toca; azul cielo
+   solo detrás de texto en verde oscuro o en el interruptor (nunca texto blanco sobre azul cielo). Letra Bricolage Grotesque (OFL) servida desde aquí, sin cookies. */
 :root {
-  --bg: #EEEAFF;
+  --bg: #EEF2EC;
   --surface: #FFFFFF;
-  --elevated: #E2DCFF;
-  --text: #160F33;
-  --muted: #4A4566;
-  --border: #D9D2FF;
-  --border-strong: #B4A9F2;
-  --accent: #4B2EE6;
-  --accent-pressed: #3A1FC4;
+  --elevated: #DDE8DF;
+  --text: #0F3B2C;
+  --muted: #45574D;
+  --border: #D3DDD5;
+  --border-strong: #A9BBAE;
+  --accent: #1F6B4F;
+  --accent-pressed: #175440;
   --on-accent: #FFFFFF;
-  --soft: #2EE59D;
-  --ok: #1E9E6A;
-  --bad: #C42B4B;
+  --soft: #7CC6EE;
+  --ok: #1F6B4F;
+  --bad: #B3261E;
 }
 @font-face { font-family: "Bricolage Grotesque"; src: url("/assets/fuentes/bricolage-grotesque.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
 * { box-sizing: border-box; }
