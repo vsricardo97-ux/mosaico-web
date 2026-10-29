@@ -136,5 +136,18 @@
     if (el) new Image().src = 'https://avisame.vsricardo97.workers.dev/v/' + el.getAttribute('data-visita') + '.gif' + (c ? '?c=' + c : '');
   }
 
-  visita(); test(); gracias();
+  function buscador() {
+    var q = $('#buscar'); if (!q) return;
+    var ents = $$('.ent'), secs = $$('.seccion-dic'), nada = $('#nada');
+    function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+    var textos = ents.map(function (e) { return norm(e.textContent); });
+    q.addEventListener('input', function () {
+      var v = norm(q.value.trim()), total = 0;
+      ents.forEach(function (e, i) { var ok = !v || textos[i].indexOf(v) > -1; e.classList.toggle('oculto', !ok); if (ok) total++; });
+      secs.forEach(function (s) { s.classList.toggle('oculto', !!v && !$$('.ent:not(.oculto)', s).length); });
+      if (nada) nada.classList.toggle('oculto', total > 0);
+    });
+  }
+
+  visita(); test(); gracias(); buscador();
 })();
