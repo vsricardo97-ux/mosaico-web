@@ -1,0 +1,291 @@
+/* Squady · web. Marca de Carmen (docs/arte/cuadrilla-marca.md, mosaico-games): la sobremesa que se alarga.
+   Noche morada con mantel de puntos, cartas como pegatinas con sombra dura, Anton en los titulares y DM Sans para leer.
+   Regla de oro: sobre un color de juego, el texto va siempre en tinta. */
+
+@font-face { font-family: "Anton"; font-display: swap; src: url("Anton-Regular.woff2") format("woff2"); }
+@font-face { font-family: "DM Sans"; font-weight: 500; font-display: swap; src: url("DMSans-Medium.woff2") format("woff2"); }
+@font-face { font-family: "DM Sans"; font-weight: 700; font-display: swap; src: url("DMSans-SemiBold.woff2") format("woff2"); }
+
+:root {
+  --tinta: #1B1033; --tinta-2: #26174A; --tinta-3: #33215F; --tinta-4: #4A3884;
+  --tenue: #C6B8E6; --papel: #FFF6E5;
+  --coral: #FF5A5F; --coral-claro: #FFC9C7; --coral-oscuro: #A3212B;
+  --mostaza: #FFC83D; --mostaza-claro: #FFE9A8; --mostaza-oscuro: #8F5F00;
+  --menta: #3DDC97; --menta-claro: #BDF3D9; --menta-oscuro: #0D6E47;
+  --chicle: #FF8FC7; --chicle-claro: #FFD6EB; --chicle-oscuro: #A3245F;
+  --cielo: #7CC6FE; --cielo-claro: #CFE9FF; --cielo-oscuro: #1C5C92;
+  --butano: #FF8A3D; --butano-claro: #FFD3B3; --butano-oscuro: #9B3D00;
+  --lima: #C4EC3E; --lima-claro: #E9F9B0; --lima-oscuro: #4D6600;
+  --lila: #C9A7FF;
+
+  --cartel: "Anton", Impact, "Arial Narrow", sans-serif;
+  --texto: "DM Sans", system-ui, -apple-system, sans-serif;
+  --margen: clamp(16px, 4vw, 56px);
+  --hueco: clamp(96px, 12vw, 168px);
+  --rebote: cubic-bezier(.34, 1.4, .5, 1);
+  --curva: cubic-bezier(.2, .7, .2, 1);
+  /* el juego activo; fuera de los juegos, mostaza */
+  --j: var(--mostaza); --j-claro: var(--mostaza-claro); --j-oscuro: var(--mostaza-oscuro);
+  color-scheme: dark;
+}
+.t-coral { --j: var(--coral); --j-claro: var(--coral-claro); --j-oscuro: var(--coral-oscuro); }
+.t-mostaza { --j: var(--mostaza); --j-claro: var(--mostaza-claro); --j-oscuro: var(--mostaza-oscuro); }
+.t-menta { --j: var(--menta); --j-claro: var(--menta-claro); --j-oscuro: var(--menta-oscuro); }
+.t-chicle { --j: var(--chicle); --j-claro: var(--chicle-claro); --j-oscuro: var(--chicle-oscuro); }
+.t-cielo { --j: var(--cielo); --j-claro: var(--cielo-claro); --j-oscuro: var(--cielo-oscuro); }
+.t-butano { --j: var(--butano); --j-claro: var(--butano-claro); --j-oscuro: var(--butano-oscuro); }
+.t-lima { --j: var(--lima); --j-claro: var(--lima-claro); --j-oscuro: var(--lima-oscuro); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  margin: 0; overflow-x: hidden;
+  background-color: var(--tinta);
+  /* el mantel: una trama de puntos muy suave, como el papel de un bar */
+  background-image: radial-gradient(var(--tinta-2) 1.3px, transparent 1.8px);
+  background-size: 22px 22px;
+  color: var(--papel);
+  font: 500 18px/1.55 var(--texto);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+p { margin: 0 0 1em; }
+h1, h2, h3 { margin: 0; font-family: var(--cartel); font-weight: 400; text-transform: uppercase; letter-spacing: .005em; text-wrap: balance; }
+h2 { font-size: clamp(44px, 6vw, 88px); line-height: .98; margin-bottom: 24px; }
+h3 { font-size: 30px; line-height: 1.02; margin-bottom: 10px; }
+::selection { background: var(--mostaza); color: var(--tinta); }
+:focus-visible { outline: 3px solid var(--mostaza); outline-offset: 2px; border-radius: 6px; }
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.marco { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 var(--margen); }
+.seccion { padding-top: var(--hueco); }
+
+/* Logo: las cinco cabezas */
+.c-mostaza { fill: var(--mostaza); } .c-menta { fill: var(--menta); } .c-coral { fill: var(--coral); }
+.c-cielo { fill: var(--cielo); } .c-lila { fill: var(--lila); } .c-tinta { fill: var(--tinta); } .c-papel { fill: var(--papel); }
+
+/* Botones: píldora con sombra dura que se aprieta como una pegatina */
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 56px; padding: 0 28px; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--j); color: var(--tinta); box-shadow: 0 5px 0 var(--j-oscuro);
+  font: 700 19px/1.1 var(--texto); text-decoration: none;
+  transition: transform .12s var(--curva), box-shadow .12s var(--curva);
+}
+.boton:hover { transform: translateY(-1px); box-shadow: 0 6px 0 var(--j-oscuro); }
+.boton:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--j-oscuro); }
+.boton-sec { background: var(--tinta-3); color: var(--papel); box-shadow: 0 5px 0 var(--tinta-2); }
+.boton-sec:hover { box-shadow: 0 6px 0 var(--tinta-2); }
+.boton-sec:active { box-shadow: 0 2px 0 var(--tinta-2); }
+.boton-peque { min-height: 44px; padding: 0 20px; font-size: 16px; box-shadow: 0 4px 0 var(--j-oscuro); }
+
+/* Barra */
+.barra { position: sticky; top: 0; z-index: 20; background: var(--tinta); }
+.barra-dentro { display: flex; align-items: center; gap: 32px; height: 72px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 400 30px/1 var(--cartel); text-transform: uppercase; }
+.logo .cabezas { width: 64px; height: auto; }
+.menu { display: flex; gap: 28px; margin-left: auto; }
+.menu a { color: var(--tenue); text-decoration: none; font-weight: 700; font-size: 16px; transition: color .15s; }
+.menu a:hover { color: var(--papel); }
+
+/* Portada: el logo, el titular de cartel y tres cartas tiradas en la mesa */
+.portada { padding: clamp(48px, 7vw, 96px) 0 24px; }
+.portada-dentro { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
+.cabezas-grandes { width: clamp(180px, 20vw, 260px); height: auto; margin-bottom: 28px; }
+.portada h1 { font-size: clamp(56px, 6.2vw, 92px); line-height: .98; margin-bottom: 28px; }
+.portada h1 span { display: block; white-space: nowrap; }
+.entrada { font-size: clamp(19px, 1.7vw, 23px); color: var(--papel); max-width: 30em; margin-bottom: 36px; }
+.acciones { display: flex; flex-wrap: wrap; gap: 16px 14px; }
+
+.mesa { position: relative; height: clamp(520px, 50vw, 640px); }
+.carta-mesa { position: absolute; width: min(64%, 300px); }
+.mesa-1 { top: 0; right: 0; transform: rotate(5deg); }
+.mesa-2 { top: 26%; left: 0; transform: rotate(-7deg); }
+.mesa-3 { bottom: 0; right: 6%; transform: rotate(2deg); }
+.js .mesa .carta-mesa { animation: repartir .7s var(--rebote) both; }
+.js .mesa-1 { animation-delay: .25s !important; --giro: 5deg; }
+.js .mesa-2 { animation-delay: .45s !important; --giro: -7deg; }
+.js .mesa-3 { animation-delay: .65s !important; --giro: 2deg; }
+
+/* Cartas: color plano del juego, esquinas muy redondas y sombra dura en su oscuro */
+.carta {
+  background: var(--j); color: var(--tinta);
+  border-radius: 26px; padding: 26px 22px 24px; text-align: center;
+  box-shadow: 0 10px 0 var(--j-oscuro);
+}
+.carta p { margin: 0; }
+.dibujo { --disco: var(--j-claro); --luz: var(--papel); width: 64px; height: 64px; color: var(--tinta); display: block; margin: 0 auto 12px; }
+.carta-etiqueta { font-weight: 700; font-size: 15px; margin-bottom: 8px !important; }
+.carta-texto { font: 400 clamp(24px, 2.2vw, 30px)/1.08 var(--cartel); }
+.carta-titulo { font: 400 40px/1 var(--cartel); text-transform: uppercase; margin-bottom: 10px !important; }
+.carta-ayuda { font-size: 15px; margin-bottom: 14px !important; }
+.carta-caja { margin-top: 16px !important; padding: 10px 14px; border-radius: 12px; background: var(--j-claro); font-weight: 700; font-size: 15px; line-height: 1.35; }
+
+/* Saca una carta */
+.saca-rejilla { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
+.saca-texto > p { font-size: 20px; color: var(--tenue); max-width: 30em; }
+.campo { display: block; margin: 32px 0 28px; max-width: 520px; }
+.campo span, legend { display: block; font-weight: 700; font-size: 16px; margin-bottom: 10px; }
+.campo input {
+  width: 100%; min-height: 56px; padding: 0 20px; border: 2px solid var(--tinta-4); border-radius: 16px;
+  background: var(--tinta-2); color: var(--papel); font: 500 18px/1 var(--texto); caret-color: var(--mostaza);
+}
+.campo input:focus { outline: none; border-color: var(--mostaza); }
+fieldset { border: 0; margin: 0; padding: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chips input { position: absolute; opacity: 0; pointer-events: none; }
+.chips span {
+  display: inline-flex; align-items: center; min-height: 46px; padding: 0 18px; border-radius: 999px; cursor: pointer;
+  border: 2px solid var(--tinta-4); color: var(--papel); font-weight: 700; font-size: 16px;
+  transition: transform .12s var(--curva), background-color .15s, border-color .15s;
+}
+.chips label:hover span { border-color: var(--j); }
+.chips label:active span { transform: scale(.96); }
+.chips input:checked + span { background: var(--j); border-color: var(--j); color: var(--tinta); box-shadow: 0 4px 0 var(--j-oscuro); }
+.chips input:focus-visible + span { outline: 3px solid var(--mostaza); outline-offset: 3px; }
+.saca-carta { display: grid; gap: 34px; justify-items: center; }
+.carta-grande { width: min(100%, 420px); min-height: 400px; display: flex; flex-direction: column; justify-content: center; padding: 34px 28px; }
+.carta-grande .carta-texto { font-size: clamp(28px, 3vw, 40px); }
+.carta-grande .dibujo { width: 76px; height: 76px; }
+.carta-grande .vs { display: grid; gap: 10px; }
+.carta-grande .vs span { font-weight: 700; font-size: 15px; }
+.carta-grande .diez-n { font: 400 96px/.9 var(--cartel); margin-bottom: 8px; }
+.boton-carta { min-width: 220px; }
+.reparte { animation: reparte .45s var(--rebote); }
+
+/* Los juegos: cada uno su color, en un bento con dos piezas grandes */
+.juegos-entrada, .pantallas-entrada { font-size: 20px; color: var(--tenue); max-width: 34em; margin-bottom: 48px; }
+.bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 22px; }
+.juego {
+  background: var(--j); color: var(--tinta); border-radius: 26px; padding: 26px 24px 28px;
+  box-shadow: 0 8px 0 var(--j-oscuro); transition: transform .2s var(--curva), box-shadow .2s var(--curva);
+}
+.juego:hover { transform: translateY(-4px) rotate(-.6deg); box-shadow: 0 12px 0 var(--j-oscuro); }
+.juego .dibujo { margin: 0 0 18px; }
+.juego p { margin: 0; font-size: 17px; }
+.j-impostor { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; justify-content: flex-end; padding: 36px; }
+.j-impostor .dibujo { width: 120px; height: 120px; margin-bottom: auto; }
+.j-impostor h3 { font-size: clamp(48px, 5vw, 72px); margin-top: 32px; }
+.j-impostor p { font-size: 20px; max-width: 26em; }
+.j-trivial { grid-column: span 3; display: grid; grid-template-columns: auto 1fr; column-gap: 24px; align-items: center; }
+.j-trivial .dibujo { grid-row: span 2; margin: 0; width: 88px; height: 88px; }
+
+/* Pantallas: los móviles salen desde abajo, como si estuvieran sobre la mesa */
+.fila-moviles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.fila-moviles figure { margin: 0; }
+.fila-moviles img { width: 100%; }
+.fila-moviles figure:nth-child(even) { margin-top: 56px; }
+.fila-moviles figcaption { margin-top: 14px; font-weight: 700; font-size: 16px; color: var(--tenue); }
+
+/* Vuestra squad */
+.squad-rejilla { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(40px, 7vw, 112px); align-items: center; }
+.squad-movil { margin: 0; }
+.squad-texto > p { font-size: 20px; color: var(--tenue); max-width: 32em; }
+.lista { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 18px; }
+.lista li { position: relative; padding-left: 40px; font-size: 18px; color: var(--tenue); }
+.lista li::before { content: ""; position: absolute; left: 0; top: .32em; width: 22px; height: 22px; border-radius: 50%; background: var(--menta); }
+.lista li:nth-child(2)::before { background: var(--cielo); }
+.lista li:nth-child(3)::before { background: var(--coral); }
+.lista strong { color: var(--papel); }
+
+/* Gratis: la caja en tinta-2, un escalón de tono sobre el mantel */
+.gratis-caja { background: var(--tinta-2); border-radius: 36px; padding: clamp(36px, 6vw, 80px); }
+.gratis-columnas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); margin-top: 40px; }
+.gratis-columnas h3 { font-size: 26px; }
+.gratis-columnas p { color: var(--tenue); margin: 0; }
+.gratis-pie { margin: 40px 0 0; color: var(--tenue); }
+.gratis-pie a, .acordeon a { color: var(--papel); text-underline-offset: 4px; }
+.gratis-pie a:hover, .acordeon a:hover { color: var(--mostaza); }
+
+/* Preguntas */
+.preguntas-rejilla { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(32px, 5vw, 80px); }
+.acordeon { display: grid; gap: 12px; }
+.acordeon details { background: var(--tinta-2); border-radius: 20px; padding: 0 26px; }
+.acordeon details[open] { background: var(--tinta-3); }
+.acordeon summary { list-style: none; cursor: pointer; padding: 22px 40px 22px 0; position: relative; font: 400 26px/1.1 var(--cartel); text-transform: uppercase; }
+.acordeon summary::-webkit-details-marker { display: none; }
+.acordeon summary::after {
+  content: ""; position: absolute; right: 4px; top: 50%; width: 22px; height: 22px; margin-top: -11px; border-radius: 50%;
+  background: var(--mostaza); transition: transform .25s var(--rebote);
+}
+.acordeon summary::before {
+  content: ""; position: absolute; right: 12.5px; top: 50%; width: 6px; height: 6px; margin-top: -5px; z-index: 1;
+  border-right: 2.5px solid var(--tinta); border-bottom: 2.5px solid var(--tinta); transform: rotate(45deg);
+  transition: transform .25s var(--rebote), margin-top .25s;
+}
+.acordeon details[open] summary::before { transform: rotate(-135deg); margin-top: -1px; }
+.acordeon details p { color: var(--tenue); padding-bottom: 24px; margin: 0; max-width: 40em; }
+
+/* Avísame: la caja mostaza, el color del botón principal fuera de los juegos */
+.avisame { padding-bottom: var(--hueco); }
+.avisame-caja { background: var(--mostaza); color: var(--tinta); border-radius: 36px; padding: clamp(36px, 6vw, 80px); display: grid; grid-template-columns: auto 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; box-shadow: 0 12px 0 var(--mostaza-oscuro); }
+.avisame-icono { width: clamp(120px, 14vw, 180px); border-radius: 22%; }
+.avisame h2 { margin-bottom: 12px; }
+.avisame p { font-size: 20px; }
+.aviso { display: flex; flex-wrap: wrap; gap: 12px; max-width: 620px; margin: 8px 0 16px; }
+.aviso input[type=email] {
+  flex: 1 1 260px; min-height: 58px; padding: 0 22px; border: 0; border-radius: 999px;
+  background: var(--tinta); color: var(--papel); font: 500 18px/1 var(--texto);
+}
+.aviso input[type=email]::placeholder { color: var(--tenue); }
+.aviso input[type=email]:focus { outline: 3px solid var(--tinta); outline-offset: 3px; }
+.boton-tinta { --j: var(--tinta); --j-oscuro: #0A0518; color: var(--mostaza); min-height: 58px; }
+.boton-tinta:focus-visible { outline-color: var(--tinta); }
+.avisame .letra { font-size: 14px; margin: 0; max-width: 46em; color: #4A3500; }
+.trampa { position: absolute; left: -9999px; }
+
+/* Pie */
+.pie { background: #120A24; padding: 52px 0 60px; font-size: 15px; color: var(--tenue); }
+.pie-rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.pie-marca { color: var(--papel); font-size: 18px; }
+.pie a { color: var(--papel); text-underline-offset: 3px; }
+.pie a:hover { color: var(--mostaza); }
+.pie-enlaces { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+
+/* Entradas: solo con JS; sin JS se ve todo */
+.js .aparece { opacity: 0; transform: translateY(26px); transition: opacity .6s var(--curva), transform .7s var(--rebote); transition-delay: calc(var(--i, 0) * 70ms); }
+.js .aparece.visto { opacity: 1; transform: none; }
+
+@keyframes repartir { from { opacity: 0; transform: translate(-60px, 120px) rotate(-24deg) scale(.9); } to { opacity: 1; transform: rotate(var(--giro)); } }
+@keyframes reparte { 0% { transform: translateX(40px) rotate(6deg); opacity: 0; } 100% { transform: none; opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .aparece { opacity: 1; transform: none; }
+}
+
+@media (max-width: 1020px) {
+  .j-trivial { grid-column: span 2; }
+  .menu { display: none; }
+  .barra-dentro { justify-content: space-between; }
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gratis-columnas { grid-template-columns: 1fr; }
+  .preguntas-rejilla { grid-template-columns: 1fr; }
+  .fila-moviles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  body { font-size: 17px; }
+  .portada-dentro, .saca-rejilla, .squad-rejilla { grid-template-columns: 1fr; }
+  .portada h1 { font-size: clamp(44px, 11.6vw, 76px); }
+  .portada h1 span { white-space: normal; }
+  .acciones .boton { flex: 1 1 100%; }
+  .mesa { height: 500px; margin-top: 8px; }
+  .carta-mesa { width: 74%; }
+  .carta-texto { font-size: 22px; }
+  .carta-titulo { font-size: 32px; }
+  .bento { grid-template-columns: 1fr; }
+  .j-impostor, .j-trivial { grid-column: auto; grid-row: auto; }
+  .j-impostor .dibujo { width: 88px; height: 88px; }
+  .j-trivial { display: block; }
+  .j-trivial .dibujo { margin-bottom: 18px; width: 64px; height: 64px; }
+  .fila-moviles { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; scrollbar-width: none; }
+  .fila-moviles figure { flex: 0 0 66vw; scroll-snap-align: start; }
+  .fila-moviles figure:nth-child(even) { margin-top: 0; }
+  .squad-movil { width: 72%; justify-self: center; }
+  .avisame-caja { grid-template-columns: 1fr; border-radius: 28px; }
+  .aviso .boton { flex: 1 1 100%; }
+  .pie-rejilla { grid-template-columns: 1fr; }
+  .acordeon summary { font-size: 22px; }
+}

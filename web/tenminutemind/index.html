@@ -1,39 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Ten Minute Mind | Mosaico Lab</title>
-    <meta name="description" content="Ten Minute Mind: ejercicios de memoria y mente en diez minutos al día. Una app de Mosaico Lab." />
-    <link rel="canonical" href="https://mosaicolab.app/tenminutemind/" />
-    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
-    <style id="expo-reset">
-      /* These styles make the body full-height */
-      html,
-      body {
-        height: 100%;
-      }
-      /* These styles disable body scrolling if you are using <ScrollView> */
-      body {
-        overflow: hidden;
-      }
-      /* These styles make the root element full-height */
-      #root {
-        display: flex;
-        height: 100%;
-        flex: 1;
-      }
-    </style>
-  </head>
+<!doctype html>
+<!-- Web de Ten Minute Mind. La app jugable (export web de apps/tenminutemind) vive en /tenminutemind/jugar/: al regenerarla, su index.html va a jugar/ y no aquí. El enlace del reto de la familia (/tenminutemind?d=…&m=…) se reenvía a la app con el script de abajo. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>if (/[?&]d=/.test(location.search)) location.replace('/tenminutemind/jugar/' + location.search + location.hash);</script>
+<title>Ten Minute Mind: diez minutos al día, a tu ritmo</title>
+<meta name="description" content="Ten Minute Mind: tres ejercicios cortos al día con letra grande, todo explicado con calma y sin prisas. Sin registro, sin anuncios y sin compras. Para iPhone, y se puede probar aquí.">
+<meta name="theme-color" content="#1F5A4E">
+<link rel="canonical" href="https://mosaicolab.app/tenminutemind/">
+<link rel="icon" href="/tenminutemind/a/favicon.png">
+<link rel="apple-touch-icon" href="/tenminutemind/a/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mosaico Lab">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Ten Minute Mind: diez minutos al día, a tu ritmo">
+<meta property="og:description" content="Tres ejercicios cortos al día, con letra grande y sin prisas.">
+<meta property="og:url" content="https://mosaicolab.app/tenminutemind/">
+<meta property="og:image" content="https://mosaicolab.app/tenminutemind/a/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Ten Minute Mind","operatingSystem":"iOS","applicationCategory":"GameApplication","description":"Tres ejercicios cortos al día, con letra grande y sin prisas.","url":"https://mosaicolab.app/tenminutemind/","inLanguage":["es","en"],"author":{"@type":"Organization","name":"Mosaico Lab","url":"https://mosaicolab.app/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<link rel="preload" href="/tenminutemind/a/AtkinsonHyperlegible-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/tenminutemind/a/tenminutemind.css">
+</head>
+<body>
 
-  <body>
-    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <!-- The root element for your Expo app. -->
-    <div id="root"></div>
-  <script src="/tenminutemind/_expo/static/js/web/entry-712f410e6f5b1fe255548ba03a58ef21.js" defer></script>
+<header class="barra">
+  <div class="marco barra-dentro">
+    <a class="logo" href="/tenminutemind/"><img src="/tenminutemind/a/icono.webp" width="36" height="36" alt=""><span>Ten Minute Mind</span></a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#ejercicios">Los ejercicios</a>
+      <a href="#familia">Reta a la familia</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="boton boton-peque" href="/tenminutemind/jugar/">Jugar</a>
+  </div>
+</header>
+
+<main>
+
+<section class="portada" aria-labelledby="titulo">
+  <div class="marco portada-rejilla">
+    <div>
+      <h1 id="titulo"><span>Diez minutos al día,</span> <span class="subrayado">a tu ritmo</span></h1>
+      <p class="entradilla">Tres ejercicios cortos cada día: el cambio de la tienda, la hora del reloj, la lista de la compra… Con letra grande, botones grandes y todo explicado con calma.</p>
+      <div class="acciones">
+        <a class="boton" href="/tenminutemind/jugar/">Jugar el reto de hoy</a>
+        <a class="boton boton-claro" href="#avisame">Avísame cuando salga</a>
+      </div>
+      <p class="nota">Se juega aquí mismo, en el navegador, sin instalar nada. La app para iPhone llega pronto.</p>
+    </div>
+    <div class="movil" id="movil">
+      <img class="movil-foto" src="/tenminutemind/a/01-diez-minutos.webp" width="420" height="912" alt="La app: hoy tocan El cambio, ¿Qué hora será? y Palabra escondida, y debajo la semana con la marca de cada día">
+    </div>
+  </div>
+</section>
+
+<section id="ejercicios" class="seccion ejercicios" aria-labelledby="ejercicios-titulo">
+  <div class="marco">
+    <h2 id="ejercicios-titulo" class="aparece">Seis ejercicios de la vida de siempre</h2>
+    <p class="intro aparece">Cada día salen tres, los mismos para todo el mundo. Si te apetece repetir alguno, está «Practicar un ejercicio».</p>
+    <ul class="seis">
+      <li class="aparece e-cambio"><span>1</span><div><h3>El cambio</h3><p>Pagas algo en la tienda y eliges cuánto te devuelven.</p></div></li>
+      <li class="aparece e-cuentas"><span>2</span><div><h3>Cuentas</h3><p>Sumas y restas con un teclado de números grandes.</p></div></li>
+      <li class="aparece e-compra"><span>3</span><div><h3>La lista de la compra</h3><p>Miras la lista el rato que quieras y luego tocas lo que estaba.</p></div></li>
+      <li class="aparece e-parejas"><span>4</span><div><h3>Parejas</h3><p>Das la vuelta a las cartas hasta encontrar las seis parejas.</p></div></li>
+      <li class="aparece e-hora"><span>5</span><div><h3>¿Qué hora será?</h3><p>Miras el reloj de agujas y calculas qué hora será.</p></div></li>
+      <li class="aparece e-palabra"><span>6</span><div><h3>Palabra escondida</h3><p>Ordenas las letras de una palabra, con una pista.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="seccion explicado" aria-labelledby="explicado-titulo">
+  <div class="marco dos">
+    <img class="pantalla aparece" src="/tenminutemind/a/02-bien-explicado.webp" width="420" height="912" loading="lazy" alt="Antes de El cambio, un ejemplo resuelto: cuesta 6,40 €, pagas con 10 € y el aro amarillo marca 3,60 €">
+    <div>
+      <h2 id="explicado-titulo" class="aparece">Cada ejercicio, bien explicado</h2>
+      <p class="aparece">Antes de empezar hay un ejemplo resuelto, con un aro amarillo que marca dónde se toca. Si se olvida, se vuelve a ver cuando quieras con «Ver explicación».</p>
+      <ul class="puntos aparece">
+        <li>Letra «Grande» o «Muy grande», y respeta la del iPhone.</li>
+        <li>Botones grandes, como teclas, que bajan al pulsar.</li>
+        <li>Música suave y sonidos al tocar, solo si gustan.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="seccion calma" aria-labelledby="calma-titulo">
+  <div class="marco dos dos-al-reves">
+    <div>
+      <h2 id="calma-titulo" class="aparece">Fallar no pasa nada</h2>
+      <p class="aparece">No hay reloj ni cuenta atrás. Si una respuesta no es, la app enseña la buena con calma y se sigue.</p>
+      <p class="aviso-ejemplo aparece">Casi. Eran 4,00 €. ¡A la próxima!</p>
+      <p class="aparece">El reto se puede dejar a medias y retomar más tarde, tal cual estaba.</p>
+    </div>
+    <img class="pantalla aparece" src="/tenminutemind/a/04-sin-prisas.webp" width="420" height="912" loading="lazy" alt="El cambio: la opción 3,90 € marcada como Casi y 4,00 € como Correcta">
+  </div>
+</section>
+
+<section id="familia" class="seccion familia" aria-labelledby="familia-titulo">
+  <div class="marco dos">
+    <img class="pantalla aparece" src="/tenminutemind/a/06-reta-a-la-familia.webp" width="420" height="912" loading="lazy" alt="Tarjeta Te han retado: quien te retó hizo 12 de 15, con los botones Aceptar el reto y Ahora no">
+    <div>
+      <h2 id="familia-titulo" class="aparece">Reta a la familia</h2>
+      <p class="aparece">Al terminar, tu marca del día (por ejemplo, 12 de 15) se manda por WhatsApp a los hijos, a los nietos o a quien quieras. Quien abre el enlace hace el mismo reto de ese día, sin instalar nada, y se ve quién ha ganado.</p>
+      <div class="cifras aparece">
+        <p><b>3</b>ejercicios al día</p>
+        <p><b>15</b>puntos de marca</p>
+        <p><b>10</b>minutos, más o menos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion tranquilo" aria-labelledby="tranquilo-titulo">
+  <div class="marco tranquilo-rejilla">
+    <h2 id="tranquilo-titulo" class="aparece">Si la instalas a tu madre o a tu padre</h2>
+    <div>
+      <p class="aparece">Se usa sin registrarse. No tiene anuncios ni compras, así que no hay nada que pagar sin querer. Lo que guarda se queda en el móvil.</p>
+      <p class="aparece">Un aviso al día a la hora que elijan, solo si lo activan.</p>
+      <p class="letra-chica aparece">Ten Minute Mind es un pasatiempo para entrenar la agilidad. No es una prueba médica y no mide nada de la salud.</p>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas" class="seccion preguntas" aria-labelledby="preguntas-titulo">
+  <div class="marco preguntas-rejilla">
+    <h2 id="preguntas-titulo" class="aparece">Preguntas</h2>
+    <div class="lista-preguntas">
+      <details class="aparece"><summary>¿Cuándo sale en el iPhone?</summary><p>Está casi lista para la App Store. Mientras tanto, se juega entera en el navegador con el botón «Jugar el reto de hoy».</p></details>
+      <details class="aparece"><summary>¿Cuesta algo?</summary><p>No. No tiene anuncios ni compras.</p></details>
+      <details class="aparece"><summary>¿Hace falta registrarse?</summary><p>No. Se abre y se juega. El progreso se guarda en el propio móvil o navegador.</p></details>
+      <details class="aparece"><summary>¿Y si se cierra a mitad?</summary><p>El reto se guarda tal cual y se sigue donde se dejó.</p></details>
+      <details class="aparece"><summary>¿Está en otros idiomas?</summary><p>En español y en inglés: se pone sola en el idioma del teléfono.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="avisame" class="seccion avisame" aria-labelledby="avisame-titulo">
+  <div class="marco avisame-rejilla">
+    <img class="avisame-icono aparece" src="/tenminutemind/a/icono.webp" width="144" height="144" alt="Icono de Ten Minute Mind: un 10 grande dentro de un anillo con un tramo ámbar">
+    <div>
+      <h2 id="avisame-titulo" class="aparece">Te avisamos cuando esté en el iPhone</h2>
+      <p class="aparece">Un correo el día que salga en la App Store. Nada más.</p>
+      <form class="aviso aparece" method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
+        <input type="hidden" name="idea" value="tenminutemind-pronto">
+        <input type="hidden" name="anuncio" value="web-tenminutemind">
+        <input type="hidden" name="acepto" value="si">
+        <p class="trampa" aria-hidden="true"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
+        <label class="oculto" for="correo">Tu correo</label>
+        <input id="correo" type="email" name="correo" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Tu correo">
+        <button class="boton" type="submit">Avísame</button>
+      </form>
+      <p class="letra aparece">Al pulsar, aceptas que Mosaico Lab (Valencia, hola@mosaicolab.app) guarde tu correo solo para avisarte de esto. No lo cedemos a nadie y lo borramos cuando nos lo pidas.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="marco pie-rejilla">
+    <p>Ten Minute Mind es una app de <a href="/">Mosaico Lab</a>, un estudio de Valencia.</p>
+    <p class="pie-enlaces"><a href="/tenminutemind/jugar/">Jugar en el navegador</a> <a href="/tenminutemind/soporte/">Ayuda y soporte</a> <a href="/tenminutemind/privacidad/">Privacidad</a> <a href="/aviso-legal/">Aviso legal</a></p>
+    <p class="pie-letra">Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</p>
+  </div>
+</footer>
+
+<script src="/tenminutemind/a/tenminutemind.js" defer></script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

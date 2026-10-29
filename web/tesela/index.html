@@ -1,48 +1,200 @@
 <!doctype html>
-<!-- Destino del enlace de compartir de Tesela (apps/reto/src/share/shareText.ts, SHARE_URL = https://mosaicolab.app/tesela/, sin parámetros). Cuando exista la ficha de la App Store, cambiar «Próximamente en App Store» por el botón a la tienda. -->
+<!-- Destino del enlace de compartir de Tesela (apps/reto/src/share/shareText.ts, SHARE_URL = https://mosaicolab.app/tesela/, sin parámetros). Cuando exista la ficha de la App Store, cambiar los «Avísame» por el botón a la tienda. -->
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tesela | Mosaico Lab</title>
-<meta name="description" content="Tesela: puzles diarios de lógica. Cuatro juegos cada día; el día cuenta con resolver uno.">
-<meta name="theme-color" content="#12607A">
+<title>Tesela: cuatro puzles de lógica nuevos cada día</title>
+<meta name="description" content="Tesela es una app de puzles de lógica para iPhone: Zonas, Camino, Binario y Flota, nuevos cada día. Todo se deduce, nada se adivina, y cada puzle pone una tesela en tu mosaico.">
+<meta name="theme-color" content="#1F4F8F">
 <link rel="canonical" href="https://mosaicolab.app/tesela/">
+<link rel="icon" href="/tesela/a/favicon.png">
+<link rel="apple-touch-icon" href="/tesela/a/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mosaico Lab">
 <meta property="og:locale" content="es_ES">
-<meta property="og:title" content="Tesela | Mosaico Lab">
-<meta property="og:description" content="Tesela: puzles diarios de lógica. Cuatro juegos cada día; el día cuenta con resolver uno.">
+<meta property="og:title" content="Tesela: cuatro puzles de lógica nuevos cada día">
+<meta property="og:description" content="Zonas, Camino, Binario y Flota. Con uno, el día cuenta.">
 <meta property="og:url" content="https://mosaicolab.app/tesela/">
-<meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="/assets/estilo.css">
+<meta property="og:image" content="https://mosaicolab.app/tesela/a/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Tesela","operatingSystem":"iOS","applicationCategory":"GameApplication","description":"Cuatro puzles de lógica nuevos cada día: Zonas, Camino, Binario y Flota.","url":"https://mosaicolab.app/tesela/","inLanguage":["es","en"],"author":{"@type":"Organization","name":"Mosaico Lab","url":"https://mosaicolab.app/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<link rel="preload" href="/tesela/a/MosaicoInterfaz-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/tesela/a/tesela.css">
 </head>
 <body>
-<header class="sitio"><div class="caja"><a class="marca" href="/">Mosaico Lab</a><nav><a href="/tesela/soporte/">Soporte</a><a href="/tesela/privacidad/">Privacidad</a></nav></div></header>
-<main class="caja">
-<h1>Juega el reto de hoy en Tesela</h1>
-<p>Tesela es una app de puzles de lógica con un reto nuevo cada día. Cada puzle tiene una sola solución y se resuelve pensando, sin adivinar.</p>
 
-<section class="tarjeta">
-<h2>Cuatro juegos cada día</h2>
-<ul>
-<li><strong>Zonas</strong></li>
-<li><strong>Camino</strong></li>
-<li><strong>Binario</strong></li>
-<li><strong>Flota</strong></li>
-</ul>
-<p>Juega los que quieras, en el orden que quieras: <strong>el día cuenta con resolver uno</strong>. Cada puzle resuelto coloca una tesela en tu mosaico.</p>
-<p><strong>Próximamente en App Store.</strong></p>
+<header class="barra">
+  <div class="marco barra-dentro">
+    <a class="logo" href="/tesela/"><img src="/tesela/a/icono.webp" width="34" height="34" alt=""><span>Tesela</span></a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#juegos">Los cuatro juegos</a>
+      <a href="#mosaicos">Mosaicos</a>
+      <a href="#semana">Tu semana</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="boton boton-peque" href="#avisame">Avísame</a>
+  </div>
+</header>
+
+<main>
+
+<section class="portada" aria-labelledby="titulo">
+  <div class="marco portada-rejilla">
+    <div class="portada-texto">
+      <h1 id="titulo"><span>Puzles de lógica</span> <span>nuevos cada día</span></h1>
+      <p class="entradilla">Zonas, Camino, Binario y Flota. Juega uno o los cuatro: con uno, el día cuenta. Todo se resuelve deduciendo, sin adivinar y sin vidas.</p>
+      <p class="prueba">Prueba un Camino aquí mismo: arrastra desde el 1 y pasa por todas las casillas, por los números en orden.</p>
+      <div class="acciones">
+        <a class="boton" href="#avisame">Avísame cuando salga</a>
+        <a class="enlace" href="#juegos">Ver los cuatro juegos</a>
+      </div>
+    </div>
+    <div class="mesa">
+      <div class="panel">
+        <svg id="camino" class="camino" role="application" aria-label="Tablero de Camino. Arrastra desde el 1." viewBox="0 0 100 100"></svg>
+      </div>
+      <div class="mesa-pie">
+        <p id="estado" class="estado" aria-live="polite">Empieza en el 1 y arrastra.</p>
+        <div class="niveles" role="group" aria-label="Tamaño">
+          <button type="button" class="chip" data-nivel="0" aria-pressed="true">5×5</button>
+          <button type="button" class="chip" data-nivel="1" aria-pressed="false">6×6</button>
+          <button type="button" class="chip" data-nivel="2" aria-pressed="false">7×7</button>
+          <button type="button" id="borrar" class="chip chip-texto">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<p>Sin cuentas ni registro: tu progreso se queda en tu móvil. Gratis, con anuncios y con una compra opcional para quitarlos.</p>
-<p><a class="boton" href="/tesela/soporte/">Ayuda y soporte</a></p>
-<p><a href="/tesela/privacidad/">Política de privacidad</a></p>
+<section id="juegos" class="seccion juegos" aria-labelledby="juegos-titulo">
+  <div class="marco">
+    <h2 id="juegos-titulo" class="aparece">Los cuatro de hoy</h2>
+    <p class="intro aparece">Cada día salen los cuatro, cada uno con su puzle de uno a tres minutos. Lunes suave, domingo con miga.</p>
+    <ul class="cuatro">
+      <li class="aparece">
+        <img src="/tesela/a/03-zonas.webp" width="480" height="1043" loading="lazy" alt="Pantalla de Zonas: tablero de zonas de colores con teselas negras colocadas y casillas marcadas con X">
+        <h3><span class="glifo g-terracota"></span>Zonas</h3>
+        <p>Una tesela en cada zona de color, una por fila y por columna, y que no se toquen, ni en diagonal.</p>
+      </li>
+      <li class="aparece">
+        <img src="/tesela/a/02-camino.webp" width="480" height="1043" loading="lazy" alt="Pantalla de Camino: un camino de teselas naranjas a medio trazar entre números">
+        <h3><span class="glifo g-ocre"></span>Camino</h3>
+        <p>Un solo camino que pase por todas las casillas y por los números en orden, del 1 al último.</p>
+      </li>
+      <li class="aparece">
+        <img src="/tesela/a/04-binario.webp" width="480" height="1043" loading="lazy" alt="Pantalla de Binario: aros azules y barras amarillas en una cuadrícula">
+        <h3><span class="glifo g-cobalto"></span>Binario</h3>
+        <p>Aros y barras: nunca tres iguales seguidos, y en cada fila y columna, tantos aros como barras.</p>
+      </li>
+      <li class="aparece">
+        <img src="/tesela/a/05-flota.webp" width="480" height="1043" loading="lazy" alt="Pantalla de Flota: mar de ondas con barcos de mosaico y números en los bordes">
+        <h3><span class="glifo g-verde"></span>Flota</h3>
+        <p>Encuentra los barcos: los números dicen cuántas casillas de barco hay en cada fila y columna. No se tocan.</p>
+      </li>
+    </ul>
+  </div>
+</section>
 
-<h2 lang="en">In English</h2>
-<p lang="en">Tesela is a daily logic puzzle app: four games every day (Zonas, Camino, Binario and Flota), and solving one makes the day. Coming soon to the App Store. <a href="/tesela/privacy/">Privacy policy</a> · <a href="/tesela/soporte/#english">Support</a></p>
+<section id="mosaicos" class="seccion mosaicos" aria-labelledby="mosaicos-titulo">
+  <div class="marco">
+    <div class="cabeza">
+      <h2 id="mosaicos-titulo" class="aparece">Una tesela por puzle</h2>
+      <p class="intro aparece">Cada puzle que resuelves, con pistas o sin ellas, pone una pieza en tu mosaico. Son ocho, cada uno más rico que el anterior, de un alicatado sencillo al oro de Rávena. Nunca se pierde una pieza.</p>
+    </div>
+    <ol class="serie">
+      <li class="aparece"><img src="/tesela/a/mosaico-1.webp" width="420" height="420" loading="lazy" alt=""><b>Rosetón</b><span>Alicatado sencillo · 30 piezas</span></li>
+      <li class="aparece"><img src="/tesela/a/mosaico-2.webp" width="420" height="420" loading="lazy" alt=""><b>Ola romana</b><span>Opus tessellatum, Itálica y Mérida · 36</span></li>
+      <li class="aparece"><img src="/tesela/a/mosaico-3.webp" width="420" height="420" loading="lazy" alt=""><b>Flor de Talavera</b><span>Azulejo de Talavera de la Reina · 40</span></li>
+      <li class="aparece"><img src="/tesela/a/mosaico-4.webp" width="420" height="420" loading="lazy" alt=""><b>Estrella nazarí</b><span>Lacería de ocho · 48</span></li>
+      <li class="aparece"><img src="/tesela/a/mosaico-5.webp" width="420" height="420" loading="lazy" alt=""><b>Trencadís</b><span>Modernismo, Gaudí y Jujol · 56</span></li>
+      <li class="aparece"><img src="/tesela/a/mosaico-6.webp" width="420" height="420" loading="lazy" alt=""><b>Girasol modernista</b><span>Espiral y latigazo · 64</span></li>
+      <li class="aparece"><img src="/tesela/a/mosaico-7.webp" width="420" height="420" loading="lazy" alt=""><b>Girih de doce</b><span>Estrellas persas anidadas · 72</span></li>
+      <li class="aparece"><img src="/tesela/a/mosaico-8.webp" width="420" height="420" loading="lazy" alt=""><b>Oro bizantino</b><span>Teselas de oro de Rávena · 80</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="semana" class="seccion semana" aria-labelledby="semana-titulo">
+  <div class="marco semana-rejilla">
+    <figure class="pantalla aparece"><img src="/tesela/a/01-inicio-semana.webp" width="480" height="1043" loading="lazy" alt="Pantalla de inicio: el reto de hoy con sus cuatro teselas, la semana con la racha y el mosaico en curso"></figure>
+    <div class="semana-texto">
+      <h2 id="semana-titulo" class="aparece">Tu semana, sin culpa</h2>
+      <p class="aparece">La semana se ve en siete casillas. Un día sin jugar es una casilla vacía, sin rojo y sin reproches, y se puede rellenar desde el archivo.</p>
+      <p class="aparece">Si un día haces los cuatro, la tesela sale dorada y ganas un comodín que cubre un día que no juegues. Hasta dos, y no se compran.</p>
+      <h2 class="aparece">Si te atascas, te dice por qué</h2>
+      <p class="aparece">La pista no te da la casilla sin más: te señala dónde mirar y te explica la deducción. Cada técnica que ves se apunta en tu cuaderno con su dibujo.</p>
+    </div>
+    <figure class="pantalla aparece"><img src="/tesela/a/07-dia-hecho.webp" width="480" height="1043" loading="lazy" alt="Pantalla del día hecho: la tesela dorada con los cuatro juegos y los tiempos de cada uno"></figure>
+  </div>
+</section>
+
+<section class="seccion compartir" aria-labelledby="compartir-titulo">
+  <div class="marco compartir-rejilla">
+    <div>
+      <h2 id="compartir-titulo" class="aparece">Comparte sin destripar</h2>
+      <p class="aparece">El reto es el mismo para todo el mundo. Al acabar, mandas tu tarjeta con los tiempos por WhatsApp y nadie ve la solución.</p>
+    </div>
+    <img class="tarjeta aparece" src="/tesela/a/08-tarjeta-compartir.webp" width="480" height="567" loading="lazy" alt="Tarjeta para compartir con la tesela dorada del día y los cuatro tiempos">
+  </div>
+</section>
+
+<section class="seccion precio" aria-labelledby="precio-titulo">
+  <div class="marco precio-rejilla">
+    <h2 id="precio-titulo" class="aparece">Gratis, con anuncios que no estorban</h2>
+    <div>
+      <p class="aparece">El reto del día no se interrumpe nunca. Los anuncios salen solo en el modo libre, entre puzles, y el vídeo a cambio de una pista solo si tú lo pides.</p>
+      <p class="aparece">Si prefieres jugar sin ellos, se quitan con un plan anual o con un pago único. Sin cuentas ni registro: tu progreso se queda en tu móvil.</p>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas" class="seccion preguntas" aria-labelledby="preguntas-titulo">
+  <div class="marco preguntas-rejilla">
+    <h2 id="preguntas-titulo" class="aparece">Preguntas</h2>
+    <div class="lista-preguntas">
+      <details class="aparece"><summary>¿Cuándo sale?</summary><p>Está casi lista para la App Store. Déjanos tu correo abajo y te avisamos el día que se pueda descargar.</p></details>
+      <details class="aparece"><summary>¿Hay que jugar los cuatro cada día?</summary><p>No. Con resolver uno, el día cuenta. Los demás quedan ahí por si te apetece, en el orden que quieras.</p></details>
+      <details class="aparece"><summary>¿Se puede jugar más de un puzle al día?</summary><p>Sí. Cada juego tiene su modo libre con puzles numerados que van subiendo de dificultad, sin límite.</p></details>
+      <details class="aparece"><summary>¿Funciona sin conexión?</summary><p>Sí. Los puzles van dentro de la app y se juegan sin internet. Los anuncios, cuando los hay, sí necesitan red.</p></details>
+      <details class="aparece"><summary>¿Y si nunca he jugado a esto?</summary><p>Cada juego empieza con un tutorial corto y con puzles fáciles. Ninguno exige adivinar: siempre hay una casilla que se puede deducir.</p></details>
+      <details class="aparece"><summary>¿Está en inglés?</summary><p>Sí, en español y en inglés. La de Android vendrá después.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="avisame" class="seccion avisame" aria-labelledby="avisame-titulo">
+  <div class="marco avisame-rejilla">
+    <img class="avisame-icono aparece" src="/tesela/a/icono.webp" width="160" height="160" alt="Icono de Tesela: una tesela dorada entre teselas azules">
+    <div>
+      <h2 id="avisame-titulo" class="aparece">Te avisamos el primer día</h2>
+      <p class="aparece">Un correo cuando Tesela esté en la App Store. Nada más.</p>
+      <form class="aviso aparece" method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
+        <input type="hidden" name="idea" value="tesela-pronto">
+        <input type="hidden" name="anuncio" value="web-tesela">
+        <input type="hidden" name="acepto" value="si">
+        <p class="trampa" aria-hidden="true"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
+        <label class="oculto" for="correo">Tu correo</label>
+        <input id="correo" type="email" name="correo" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Tu correo">
+        <button class="boton boton-oro" type="submit">Avísame</button>
+      </form>
+      <p class="letra aparece">Al pulsar, aceptas que Mosaico Lab (Valencia, hola@mosaicolab.app) guarde tu correo solo para avisarte de esto. No lo cedemos a nadie y lo borramos cuando nos lo pidas.</p>
+    </div>
+  </div>
+</section>
+
 </main>
-<footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</footer>
+
+<footer class="pie">
+  <div class="marco pie-rejilla">
+    <p>Tesela es una app de <a href="/">Mosaico Lab</a>, un estudio de Valencia.</p>
+    <p class="pie-enlaces"><a href="/tesela/soporte/">Ayuda y soporte</a> <a href="/tesela/privacidad/">Privacidad</a> <a href="/tesela/privacy/" lang="en">Privacy (English)</a> <a href="/aviso-legal/">Aviso legal</a></p>
+    <p class="pie-letra" lang="en">Tesela is a daily logic puzzle app: four games every day, and solving one makes the day. Coming soon to the App Store.</p>
+    <p class="pie-letra">Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</p>
+  </div>
+</footer>
+
+<script src="/tesela/a/tesela.js" defer></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

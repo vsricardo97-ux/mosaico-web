@@ -1,0 +1,183 @@
+/* Tesela · web. Cerámica: estuco, bizcocho mate, esmalte con canto y una sola luz arriba a la izquierda (docs/arte/reto/guia-estilo-reto.md). */
+@font-face { font-family: "Mosaico Interfaz"; src: url("/tesela/a/MosaicoInterfaz-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Mosaico Interfaz"; src: url("/tesela/a/MosaicoInterfaz-ExtraBold.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+
+:root {
+  --estuco: #F3EEE4;
+  --lamina: #FBF8F2;
+  --bizcocho: #EDE4D4;
+  --junta: #827462;
+  --tinta: #1E2230;
+  --tinta-suave: #5C5448;
+  --cobalto: #1F4F8F;
+  --cobalto-canto: #132F57;
+  --cobalto-brillo: #7FA2D3;
+  --oro: #C99A2E;
+  --oro-brillo: #F3DC93;
+  --oro-canto: #8A6716;
+  --ocre: #E2A63A;
+  --terracota: #B85A3A;
+  --verde: #2F6B56;
+  --marfil: #F4EEE2;
+  --letra: "Mosaico Interfaz", "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--estuco); color: var(--tinta); font: 400 18px/1.55 var(--letra); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-weight: 800; letter-spacing: -0.015em; margin: 0 0 18px; }
+h1 { font-size: clamp(40px, 4.6vw, 64px); line-height: 1.04; }
+h1 span { display: block; white-space: nowrap; }
+h2 { font-size: clamp(32px, 3.4vw, 44px); line-height: 1.1; }
+h3 { font-size: 22px; line-height: 1.2; }
+p { margin: 0 0 16px; max-width: 60ch; }
+.marco { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 3px solid var(--oro); outline-offset: 3px; }
+
+/* Botones: pieza esmaltada con su canto, como en la app */
+.boton { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 10px 26px; border: 0; border-bottom: 4px solid var(--cobalto-canto); border-radius: 12px; background: var(--cobalto); color: var(--marfil); font: 800 18px/1 var(--letra); text-decoration: none; cursor: pointer; transition: transform .12s ease, border-bottom-width .12s ease; }
+.boton:hover { background: #24599E; }
+.boton:active { transform: translateY(3px); border-bottom-width: 1px; }
+.boton-peque { min-height: 40px; padding: 6px 16px; font-size: 16px; border-bottom-width: 3px; }
+.boton-oro { background: var(--oro); color: var(--tinta); border-bottom-color: var(--oro-canto); }
+.boton-oro:hover { background: #D4A637; }
+.enlace { font-weight: 800; text-underline-offset: 4px; }
+
+/* Barra */
+.barra { position: sticky; top: 0; z-index: 10; background: var(--estuco); }
+.barra-dentro { display: flex; align-items: center; gap: 28px; min-height: 68px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 22px; }
+.logo img { border-radius: 8px; }
+.menu { display: flex; gap: 24px; margin-left: auto; }
+.menu a { font-size: 16px; text-decoration: none; color: var(--tinta-suave); }
+.menu a:hover { color: var(--tinta); }
+
+/* Portada con el Camino */
+.portada { padding: 56px 0 104px; }
+.portada-rejilla { display: grid; grid-template-columns: 1fr minmax(0, 560px); gap: 64px; align-items: center; }
+.entradilla { font-size: 21px; }
+.prueba { color: var(--tinta-suave); }
+.acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 28px; }
+.mesa { display: grid; gap: 14px; }
+.panel { padding: 14px; background: var(--lamina); border-radius: 18px; }
+.camino { display: block; width: 100%; height: auto; touch-action: none; user-select: none; -webkit-user-select: none; cursor: pointer; font-family: var(--letra); }
+.camino.resuelto { animation: brilla 1.2s ease; }
+@keyframes brilla { 40% { filter: brightness(1.12) saturate(1.1); } }
+.camino.quieto.resuelto { animation: none; }
+.mesa-pie { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+.estado { margin: 0; font-weight: 800; font-size: 16px; min-height: 1.55em; }
+.niveles { display: flex; gap: 8px; }
+.chip { min-height: 40px; padding: 6px 14px; border: 0; border-bottom: 3px solid var(--junta); border-radius: 10px; background: var(--bizcocho); color: var(--tinta); font: 800 16px/1 var(--letra); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--tinta); color: var(--marfil); border-bottom-color: #0D0F13; }
+.chip-texto { background: none; border-bottom-color: transparent; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Secciones */
+.seccion { padding: 104px 0; }
+.intro { font-size: 20px; margin-bottom: 48px; }
+
+/* Los cuatro juegos */
+.juegos { background: var(--lamina); }
+.cuatro { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.cuatro img { border-radius: 22px; background: var(--estuco); padding: 8px; margin-bottom: 20px; aspect-ratio: 480 / 860; object-fit: cover; object-position: top; }
+.cuatro h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.cuatro p { font-size: 16px; margin: 0; }
+.glifo { width: 18px; height: 18px; border-radius: 4px; border-bottom: 3px solid rgba(0, 0, 0, .28); }
+.g-terracota { background: var(--terracota); }
+.g-ocre { background: var(--ocre); }
+.g-cobalto { background: var(--cobalto); }
+.g-verde { background: var(--verde); }
+
+/* Mosaicos */
+.mosaicos { background: var(--cobalto); color: var(--marfil); }
+.cabeza { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start; margin-bottom: 8px; }
+.serie { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: m; }
+.serie li { display: grid; gap: 4px; padding: 20px 20px 22px; background: #FDF7F2; color: var(--tinta); border-radius: 18px; border-bottom: 5px solid var(--cobalto-canto); counter-increment: m; }
+.serie img { width: 100%; margin-bottom: 12px; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.serie li:hover img { transform: rotate(12deg); }
+.serie b { font-size: 18px; }
+.serie b::before { content: counter(m) " · "; color: var(--oro-canto); }
+.serie span { font-size: 14px; color: var(--tinta-suave); }
+
+/* Semana */
+.semana-rejilla { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 56px; align-items: center; }
+.semana-texto h2 + p { margin-top: 0; }
+.semana-texto p + h2 { margin-top: 40px; }
+.pantalla { margin: 0; padding: 8px; background: var(--lamina); border-radius: 26px; }
+.pantalla img { border-radius: 20px; }
+
+/* Compartir */
+.compartir { background: var(--lamina); }
+.compartir-rejilla { display: grid; grid-template-columns: 1fr 360px; gap: 64px; align-items: center; }
+.tarjeta { border-radius: 22px; background: var(--estuco); padding: 8px; }
+
+/* Precio */
+.precio-rejilla { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; }
+
+/* Preguntas */
+.preguntas { padding-top: 0; }
+.preguntas-rejilla { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start; }
+.lista-preguntas { display: grid; gap: 10px; }
+.lista-preguntas details { background: var(--lamina); border-radius: 14px; }
+.lista-preguntas summary { padding: 18px 22px; font-weight: 800; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.lista-preguntas summary::-webkit-details-marker { display: none; }
+.lista-preguntas summary::after { content: "+"; color: var(--cobalto); }
+.lista-preguntas details[open] summary::after { content: "–"; }
+.lista-preguntas p { padding: 0 22px 20px; margin: 0; }
+
+/* Avísame */
+.avisame { background: var(--cobalto-canto); color: var(--marfil); }
+.avisame-rejilla { display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; }
+.avisame-icono { width: 160px; border-radius: 36px; }
+.aviso { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 14px; }
+.aviso input[type="email"] { flex: 1 1 260px; min-height: 52px; padding: 10px 16px; border: 0; border-radius: 12px; background: var(--lamina); color: var(--tinta); font: 400 18px var(--letra); }
+.trampa { position: absolute; left: -9999px; }
+.letra { font-size: 14px; color: #C9D3E3; }
+
+/* Pie */
+.pie { background: var(--tinta); color: var(--marfil); padding: 48px 0 56px; }
+.pie-rejilla { display: grid; gap: 8px; }
+.pie p { margin: 0; font-size: 16px; }
+.pie-enlaces { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.pie .pie-letra { color: #B9B2A6; font-size: 14px; }
+
+/* Entradas */
+.js .aparece { opacity: 0; translate: 0 16px; transition: opacity .55s ease, translate .55s cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--i, 0) * 60ms); }
+.js .aparece.visto { opacity: 1; translate: 0 0; }
+@media (prefers-reduced-motion: reduce) {
+  .js .aparece { opacity: 1; translate: none; transition: none; }
+  .serie li:hover img { transform: none; }
+}
+
+@media (max-width: 1000px) {
+  .menu { display: none; }
+  .barra-dentro { justify-content: space-between; }
+  .portada-rejilla, .cabeza, .precio-rejilla, .preguntas-rejilla { grid-template-columns: 1fr; gap: 40px; }
+  .mesa { max-width: 560px; }
+  .cuatro, .serie { grid-template-columns: repeat(2, 1fr); }
+  .semana-rejilla { grid-template-columns: 1fr 1fr; }
+  .semana-texto { grid-column: 1 / -1; order: -1; }
+  .compartir-rejilla { grid-template-columns: 1fr 280px; gap: 40px; }
+}
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  h1 { font-size: clamp(34px, 9.6vw, 44px); }
+  .portada { padding: 32px 0 72px; }
+  .entradilla { font-size: 19px; }
+  .seccion { padding: 72px 0; }
+  .panel { padding: 8px; }
+  .cuatro { gap: 32px 16px; }
+  .cuatro h3 { font-size: 19px; }
+  .cuatro p { font-size: 15px; }
+  .serie { gap: 12px; }
+  .serie li { padding: 14px 14px 16px; }
+  .serie b { font-size: 16px; }
+  .semana-rejilla { gap: 20px; }
+  .compartir-rejilla { grid-template-columns: 1fr; }
+  .tarjeta { max-width: 300px; }
+  .avisame-rejilla { grid-template-columns: 1fr; gap: 28px; }
+  .avisame-icono { width: 112px; border-radius: 26px; }
+}

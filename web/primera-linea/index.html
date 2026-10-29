@@ -1,39 +1,246 @@
 <!doctype html>
-<!-- Destino del enlace de compartir del reto del día de Primera Línea (apps/sombrillas/game.config.ts, shareUrl). WhatsApp se quedaba solo con el enlace de la App Store y perdía el texto del resultado; con un enlace a esta página se envía el mensaje entero. -->
+<!-- También es el destino del enlace de compartir del reto del día (apps/sombrillas/game.config.ts, shareUrl): quien llega desde WhatsApp ve primero el aviso del reto. -->
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Primera Línea | Mosaico Lab</title>
-<meta name="description" content="Primera Línea: un puzle de playa nuevo cada día. Planta las sombrillas sin que se toquen.">
+<title>Primera Línea: planta tu sombrilla en primera línea</title>
+<meta name="description" content="Primera Línea es un puzle de playa para iPhone: planta las sombrillas sin que se toquen. 240 niveles en 12 playas de España, un reto nuevo cada día y una familia de veraneo que no se calla.">
 <meta name="theme-color" content="#12607A">
 <link rel="canonical" href="https://mosaicolab.app/primera-linea/">
+<link rel="icon" href="/primera-linea/a/favicon.png">
+<link rel="apple-touch-icon" href="/primera-linea/a/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mosaico Lab">
 <meta property="og:locale" content="es_ES">
-<meta property="og:title" content="Primera Línea | Mosaico Lab">
-<meta property="og:description" content="Primera Línea: un puzle de playa nuevo cada día. Planta las sombrillas sin que se toquen.">
+<meta property="og:title" content="Primera Línea: planta tu sombrilla en primera línea">
+<meta property="og:description" content="Un puzle de playa nuevo cada día. Planta las sombrillas sin que se toquen.">
 <meta property="og:url" content="https://mosaicolab.app/primera-linea/">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Primera Línea", "operatingSystem": "iOS", "applicationCategory": "GameApplication", "description": "Primera Línea: un puzle de playa nuevo cada día. Planta las sombrillas sin que se toquen.", "url": "https://mosaicolab.app/primera-linea/", "downloadUrl": "https://apps.apple.com/es/app/id6823426273", "inLanguage": "es", "author": {"@type": "Organization", "name": "Mosaico Lab", "url": "https://mosaicolab.app/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}}</script>
-<link rel="stylesheet" href="/assets/estilo.css">
+<meta property="og:image" content="https://mosaicolab.app/primera-linea/a/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Primera Línea","operatingSystem":"iOS","applicationCategory":"GameApplication","description":"Puzle de playa: planta las sombrillas sin que se toquen. 240 niveles en 12 playas de España y un reto nuevo cada día.","url":"https://mosaicolab.app/primera-linea/","inLanguage":"es","author":{"@type":"Organization","name":"Mosaico Lab","url":"https://mosaicolab.app/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<link rel="preload" href="/primera-linea/a/Bangers-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/primera-linea/a/primera-linea.css">
 </head>
 <body>
-<header class="sitio"><div class="caja"><a class="marca" href="/">Mosaico Lab</a><nav><a href="/primera-linea/soporte/">Soporte</a><a href="/primera-linea/privacidad/">Privacidad</a></nav></div></header>
-<main class="caja">
-<h1>Juega el reto de hoy en Primera Línea</h1>
-<p>Primera Línea es un puzle de lógica de playa: planta una sombrilla en cada fila, columna y parcela, sin que dos se toquen. Cada día hay un reto nuevo, igual para todos.</p>
 
-<section class="tarjeta">
-<h2>Doce playas y un reto diario</h2>
-<p>240 niveles por la costa de España, de la Malvarrosa a las Cíes, con la familia de veraneo y Paco tomando el sol.</p>
-<p><a class="boton" href="https://apps.apple.com/es/app/id6823426273?ct=reto">Descargar en la App Store</a></p>
+<header class="barra">
+  <div class="marco barra-dentro">
+    <a class="logo" href="/primera-linea/"><img src="/primera-linea/a/icono.webp" width="36" height="36" alt=""><span>Primera Línea</span></a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#juega">Juega</a>
+      <a href="#playas">Las playas</a>
+      <a href="#vecinos">Los vecinos</a>
+      <a href="#caseta">La Caseta</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="boton boton-peque" href="#avisame">Avísame</a>
+  </div>
+</header>
+
+<main>
+
+<aside class="reto" aria-label="Reto del día">
+  <div class="marco reto-dentro">
+    <p><strong>¿Te han pasado un reto?</strong> El reto del día se juega en la app y es el mismo para todos. Mientras llega a la App Store, tienes un nivel aquí abajo.</p>
+    <a class="enlace-fuerte" href="#juega">Jugar ahora</a>
+  </div>
+</aside>
+
+<section class="portada" aria-labelledby="titulo">
+  <div class="marco portada-rejilla">
+    <div class="portada-texto">
+      <h1 id="titulo"><span>Planta tu sombrilla</span> <span>en primera línea</span></h1>
+      <p class="entradilla">Un puzle de lógica con la playa de toda la vida. Una sombrilla por fila, por columna y por parcela, y que no se toquen. Parece fácil hasta la tercera playa.</p>
+      <div class="acciones">
+        <a class="boton" href="#juega">Juega un nivel aquí</a>
+        <a class="boton boton-claro" href="#avisame">Avísame cuando salga</a>
+      </div>
+      <p class="nota">Para iPhone. Gratis, sin cuentas y sin vidas.</p>
+    </div>
+    <figure class="cartel">
+      <div class="vineta">
+        <img src="/primera-linea/a/playa-01-benidorm.webp" width="860" height="600" alt="Viñeta de la playa de Levante, en Benidorm: arena, sombrillas de rayas, toallas y los rascacielos al fondo">
+        <figcaption class="cinta">Levante · Benidorm</figcaption>
+      </div>
+      <div class="bocadillo bocadillo-portada">
+        <img src="/primera-linea/a/paco-avatar.svg" width="64" height="64" alt="">
+        <p><b>Paco</b>¿Dónde va la última sombrilla?</p>
+      </div>
+    </figure>
+  </div>
 </section>
 
-<p>Sin cuentas ni registro: tu progreso se queda en tu móvil. Gratis, con anuncios y con una compra opcional para quitarlos.</p>
-<p><a href="/primera-linea/soporte/">Ayuda y soporte</a> · <a href="/primera-linea/privacidad/">Política de privacidad</a></p>
+<section id="juega" class="seccion juega" aria-labelledby="juega-titulo">
+  <div class="marco juega-rejilla">
+    <div class="juega-texto">
+      <h2 id="juega-titulo" class="aparece">Prueba un nivel de verdad</h2>
+      <p class="aparece">Son niveles sacados tal cual del juego. Las cuatro reglas del bando municipal:</p>
+      <ol class="reglas aparece">
+        <li><span>1</span>Una sombrilla por fila.</li>
+        <li><span>2</span>Una por columna.</li>
+        <li><span>3</span>Una por parcela de color.</li>
+        <li><span>4</span>No se tocan, ni en diagonal.</li>
+      </ol>
+      <p class="gesto aparece">Un toque marca una X en la arena. Dos toques, sombrilla. Al plantar, la arena de alrededor se marca sola.</p>
+      <div class="niveles aparece" role="group" aria-label="Nivel">
+        <button type="button" class="chip" data-nivel="0" aria-pressed="true">Fácil<small>Levante, 2</small></button>
+        <button type="button" class="chip" data-nivel="1" aria-pressed="false">Medio<small>Levante, 5</small></button>
+        <button type="button" class="chip" data-nivel="2" aria-pressed="false">Difícil<small>Barceloneta, 31</small></button>
+      </div>
+    </div>
+    <div class="mesa aparece">
+      <div class="bocadillo bocadillo-juego" aria-live="polite">
+        <img id="quien-img" src="/primera-linea/a/paco-avatar.svg" width="64" height="64" alt="">
+        <p><b id="quien">Paco</b><span id="dice">Este tablero tiene más truco que mi bote de crema. Y ese no hay quien lo abra.</span></p>
+      </div>
+      <div class="tablero-marco">
+        <div id="tablero" class="tablero" role="grid" aria-label="Tablero del nivel"></div>
+      </div>
+      <div class="mesa-pie">
+        <p id="cuenta" class="cuenta">0 de 5 sombrillas</p>
+        <button type="button" id="otra-vez" class="boton-texto">Empezar de nuevo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion cifras" aria-label="El juego en números">
+  <div class="marco cifras-rejilla">
+    <p class="aparece"><b>240</b>niveles hechos a mano, del primero facilón al último que pica</p>
+    <p class="aparece"><b>12</b>playas de la costa de España, cada una con su viñeta</p>
+    <p class="aparece"><b>1</b>reto al día, el mismo para todos, para picarte con los tuyos</p>
+  </div>
+</section>
+
+<section id="playas" class="seccion playas" aria-labelledby="playas-titulo">
+  <div class="marco">
+    <h2 id="playas-titulo" class="aparece">De Benidorm a Formentera</h2>
+    <p class="intro aparece">Cada playa son veinte niveles y una viñeta que se va llenando de gente según avanzas. Cuando la acabas, la familia hace la maleta y se va a la siguiente.</p>
+  </div>
+  <ol class="tira">
+    <li class="aparece"><img src="/primera-linea/a/playa-01-benidorm.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de Levante, Benidorm"><span class="cinta">Levante · Benidorm</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-02-barceloneta.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de la Barceloneta, Barcelona"><span class="cinta">La Barceloneta · Barcelona</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-03-malvarrosa.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de la Malvarrosa, Valencia"><span class="cinta">La Malvarrosa · Valencia</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-04-la-concha.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de la Concha, San Sebastián"><span class="cinta">La Concha · San Sebastián</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-05-las-canteras.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de las Canteras, Las Palmas"><span class="cinta">Las Canteras · Las Palmas</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-06-la-caleta.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de la Caleta, Cádiz"><span class="cinta">La Caleta · Cádiz</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-07-es-trenc.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de Es Trenc, Mallorca"><span class="cinta">Es Trenc · Mallorca</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-08-bolonia.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de Bolonia, Tarifa"><span class="cinta">Bolonia · Tarifa</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-09-rodas.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de Rodas, Islas Cíes"><span class="cinta">Rodas · Islas Cíes</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-10-los-genoveses.webp" width="860" height="600" loading="lazy" alt="Viñeta de la playa de los Genoveses, Cabo de Gata"><span class="cinta">Los Genoveses · Cabo de Gata</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-11-cala-mitjana.webp" width="860" height="600" loading="lazy" alt="Viñeta de Cala Mitjana, Menorca"><span class="cinta">Cala Mitjana · Menorca</span></li>
+    <li class="aparece"><img src="/primera-linea/a/playa-12-cala-saona.webp" width="860" height="600" loading="lazy" alt="Viñeta de Cala Saona, Formentera"><span class="cinta">Cala Saona · Formentera</span></li>
+  </ol>
+</section>
+
+<section id="vecinos" class="seccion vecinos" aria-labelledby="vecinos-titulo">
+  <div class="marco">
+    <h2 id="vecinos-titulo" class="aparece">La gente de la playa</h2>
+    <p class="intro aparece">No juegas solo. Los vecinos de toalla comentan cada jugada, te animan cuando te atascas y protestan si plantas donde no toca.</p>
+    <ul class="reparto">
+      <li class="aparece"><img src="/primera-linea/a/madrugadoras-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Las Madrugadoras</b><p>A ver si encuentras sitio, que nosotras ya hemos plantado la nuestra.</p></div></li>
+      <li class="aparece"><img src="/primera-linea/a/paco-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Paco</b><p>Esto es como el crucigrama del periódico. Yo no lo acabo nunca; tú, a ver.</p></div></li>
+      <li class="aparece"><img src="/primera-linea/a/manolo-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Manolo</b><p>Este tablero tiene más espinas que una sardina. Si lo sacas, la primera va por mí.</p></div></li>
+      <li class="aparece"><img src="/primera-linea/a/rocio-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Rocío</b><p>¡Piii! Bandera roja. Hoy el tablero tiene oleaje, así que se entra despacito.</p></div></li>
+      <li class="aparece"><img src="/primera-linea/a/garcia-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Los García</b><p>Toni ya ha sacado la tortilla. Las sombrillas te las dejamos a ti, que tienes buen ojo.</p></div></li>
+      <li class="aparece"><img src="/primera-linea/a/lucas-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Lucas</b><p>Mi cubo dice que este tablero es para ti. Mi cubo no habla, pero bueno.</p></div></li>
+      <li class="aparece"><img src="/primera-linea/a/amparo-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Doña Amparo</b><p>Radio, sombrilla y primera fila desde hace cuarenta veranos.</p></div></li>
+      <li class="aparece"><img src="/primera-linea/a/ramon-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Don Ramón</b><p>Chanclas con calcetines: ni un grano de arena entre los dedos.</p></div></li>
+      <li class="aparece"><img src="/primera-linea/a/vero-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Vero</b><p>Espera, que le hago una foto a tu sombrilla. Y otra. Y otra.</p></div></li>
+      <li class="aparece"><img src="/primera-linea/a/nico-avatar.svg" width="96" height="96" loading="lazy" alt=""><div><b>Nico</b><p>Este tablero es como mi pista de tierra: con baches. ¡Al lío!</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="seccion viajes" aria-labelledby="viajes-titulo">
+  <div class="marco viajes-rejilla">
+    <div class="viajes-texto">
+      <h2 id="viajes-titulo" class="aparece">Y la familia, de viaje</h2>
+      <p class="aparece">Entre playa y playa, la familia carga el coche hasta arriba o coge el barco a las islas. Es tu premio por acabar la costa: una viñeta nueva y otro destino en el mapa.</p>
+    </div>
+    <figure class="vineta vineta-giro-a aparece"><img src="/primera-linea/a/viaje-coche.webp" width="430" height="300" loading="lazy" alt="Viñeta del coche de la familia cargado de sombrillas por la carretera de la costa"></figure>
+    <figure class="vineta vineta-giro-b aparece"><img src="/primera-linea/a/viaje-barco.webp" width="430" height="300" loading="lazy" alt="Viñeta del barco de la familia camino de las islas"></figure>
+  </div>
+</section>
+
+<section id="caseta" class="seccion caseta" aria-labelledby="caseta-titulo">
+  <div class="marco">
+    <h2 id="caseta-titulo" class="aparece">La Caseta</h2>
+    <p class="intro aparece">Diez sombrillas para tu tablero, de las rayas de siempre a la de trencadís. Se ganan con las medallas de cada playa. No se compran.</p>
+    <ul class="estante aparece">
+      <li><img src="/primera-linea/a/sombrilla-01-rayas-clasicas.svg" width="88" height="88" loading="lazy" alt=""><span>Rayas clásicas</span></li>
+      <li><img src="/primera-linea/a/sombrilla-02-de-la-abuela.svg" width="88" height="88" loading="lazy" alt=""><span>De la abuela</span></li>
+      <li><img src="/primera-linea/a/sombrilla-03-paja-de-chiringuito.svg" width="88" height="88" loading="lazy" alt=""><span>Paja de chiringuito</span></li>
+      <li><img src="/primera-linea/a/sombrilla-04-lunares.svg" width="88" height="88" loading="lazy" alt=""><span>Lunares</span></li>
+      <li><img src="/primera-linea/a/sombrilla-05-sandia.svg" width="88" height="88" loading="lazy" alt=""><span>Sandía</span></li>
+      <li><img src="/primera-linea/a/sombrilla-06-azulejo.svg" width="88" height="88" loading="lazy" alt=""><span>Azulejo</span></li>
+      <li><img src="/primera-linea/a/sombrilla-07-marinera.svg" width="88" height="88" loading="lazy" alt=""><span>Marinera</span></li>
+      <li><img src="/primera-linea/a/sombrilla-08-atardecer.svg" width="88" height="88" loading="lazy" alt=""><span>Atardecer</span></li>
+      <li><img src="/primera-linea/a/sombrilla-09-trencadis.svg" width="88" height="88" loading="lazy" alt=""><span>Trencadís</span></li>
+      <li><img src="/primera-linea/a/sombrilla-10-dorada.svg" width="88" height="88" loading="lazy" alt=""><span>Dorada</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="seccion calma" aria-labelledby="calma-titulo">
+  <div class="marco calma-rejilla">
+    <div>
+      <h2 id="calma-titulo" class="aparece">Sin vidas y sin prisas</h2>
+      <p class="aparece">Aquí no se pierde. Si te equivocas, quitas la sombrilla y sigues. El reloj de sol de Paco cuenta lo que tardas solo por si quieres mirarlo, y si te lo tomas con calma te llevas la Medalla de la sombra.</p>
+    </div>
+    <div>
+      <h2 class="aparece">Anuncios, los justos</h2>
+      <p class="aparece">Si te atascas, puedes ver un anuncio a cambio de una pista, solo si tú quieres. A partir del nivel 10 sale alguno corto entre niveles, siempre avisado y nunca a mitad de partida. Con un único pago se quitan para siempre.</p>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas" class="seccion preguntas" aria-labelledby="preguntas-titulo">
+  <div class="marco preguntas-rejilla">
+    <h2 id="preguntas-titulo" class="aparece">Preguntas</h2>
+    <div class="lista-preguntas">
+      <details class="aparece"><summary>¿Cuándo sale?</summary><p>Está en revisión en la App Store. Déjanos tu correo abajo y te avisamos el día que se pueda descargar.</p></details>
+      <details class="aparece"><summary>¿Cuesta algo?</summary><p>Es gratis. Lleva anuncios y tiene un pago único opcional para quitarlos. Las sombrillas de la Caseta no se venden: se ganan jugando.</p></details>
+      <details class="aparece"><summary>¿Necesito conexión o una cuenta?</summary><p>No hace falta cuenta ni registro. Tu progreso se queda en tu móvil. Sin conexión se puede jugar; los anuncios y el reto del día la usan cuando la hay.</p></details>
+      <details class="aparece"><summary>¿Y si me atasco?</summary><p>Tienes pistas que te señalan la casilla clave y te explican por qué. Algunas son gratis y otras se consiguen viendo un anuncio, si quieres.</p></details>
+      <details class="aparece"><summary>¿Hay versión para Android?</summary><p>De momento solo iPhone. La de Android viene después.</p></details>
+      <details class="aparece"><summary>¿Cómo funciona el reto del día?</summary><p>Cada día hay un tablero nuevo, el mismo para todo el mundo. Al acabarlo puedes mandar tu tiempo por WhatsApp, sin destripar la solución.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="avisame" class="seccion avisame" aria-labelledby="avisame-titulo">
+  <div class="marco avisame-rejilla">
+    <img class="avisame-icono aparece" src="/primera-linea/a/icono.webp" width="160" height="160" alt="Icono de Primera Línea">
+    <div>
+      <h2 id="avisame-titulo" class="aparece">Te guardamos el sitio</h2>
+      <p class="aparece">Un correo cuando Primera Línea esté en la App Store. Nada más.</p>
+      <form class="aviso aparece" method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
+        <input type="hidden" name="idea" value="primera-linea-pronto">
+        <input type="hidden" name="anuncio" value="web-primera-linea">
+        <input type="hidden" name="acepto" value="si">
+        <p class="trampa" aria-hidden="true"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
+        <label class="oculto" for="correo">Tu correo</label>
+        <input id="correo" type="email" name="correo" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Tu correo">
+        <button class="boton" type="submit">Avísame</button>
+      </form>
+      <p class="letra aparece">Al pulsar, aceptas que Mosaico Lab (Valencia, hola@mosaicolab.app) guarde tu correo solo para avisarte de esto. No lo cedemos a nadie y lo borramos cuando nos lo pidas.</p>
+    </div>
+  </div>
+</section>
+
 </main>
-<footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</footer>
+
+<footer class="pie">
+  <div class="marco pie-rejilla">
+    <p class="pie-marca">Primera Línea es un juego de <a href="/">Mosaico Lab</a>, un estudio de Valencia.</p>
+    <p class="pie-enlaces"><a href="/primera-linea/soporte/">Ayuda y soporte</a> <a href="/primera-linea/privacidad/">Privacidad</a> <a href="/aviso-legal/">Aviso legal</a></p>
+    <p class="pie-letra">Ilustraciones del propio juego. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</p>
+  </div>
+</footer>
+
+<script src="/primera-linea/a/primera-linea.js" defer></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

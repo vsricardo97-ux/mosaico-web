@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top Dog: ¿quién ha sido? Pásale la Culpa</title>
+<meta name="description" content="Top Dog es un juego de cartas de perros: alguien se ha comido la tarta y el dueño está al llegar. Pásale la Culpa al otro perro, abre un sobre cada día y haz la carta de tu perro. Se juega en el navegador.">
+<meta name="theme-color" content="#ffc83d">
+<link rel="canonical" href="https://mosaicolab.app/topdog/">
+<link rel="icon" href="/topdog/a/favicon.png">
+<link rel="apple-touch-icon" href="/topdog/a/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mosaico Lab">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Top Dog: ¿quién ha sido? Pásale la Culpa">
+<meta property="og:description" content="Cartas, ruido y un dueño que está al llegar. Y un sobre de perros cada día.">
+<meta property="og:url" content="https://mosaicolab.app/topdog/">
+<meta property="og:image" content="https://mosaicolab.app/topdog/a/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Top Dog","gamePlatform":["Web","iOS"],"applicationCategory":"GameApplication","description":"Juego de cartas de perros: pásale la Culpa al otro perro antes de que vuelva el dueño.","url":"https://mosaicolab.app/topdog/","inLanguage":["es","en"],"author":{"@type":"Organization","name":"Mosaico Lab","url":"https://mosaicolab.app/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<link rel="preload" href="/topdog/a/LilitaOne.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/topdog/a/topdog.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="marco barra-dentro">
+    <a class="logo" href="/topdog/"><img src="/topdog/a/icono.webp" width="38" height="38" alt=""><span>Top Dog</span></a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#sobre">Abre un sobre</a>
+      <a href="#trastada">La trastada</a>
+      <a href="#tu-perro">Tu perro</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="boton boton-peque" href="https://topdog.mosaicolab.app/">Jugar</a>
+  </div>
+</header>
+
+<main>
+
+<section class="portada" aria-labelledby="titulo">
+  <div class="marco portada-rejilla">
+    <div>
+      <h1 id="titulo"><span>¿Quién ha sido?</span> <span>Pásale la <em>Culpa</em></span></h1>
+      <p class="entradilla">Alguien se ha comido la tarta y el dueño está al llegar. Juega tus cartas para que la Culpa acabe en el otro perro. Al que pillen, cartel de la vergüenza.</p>
+      <div class="acciones">
+        <a class="boton" href="https://topdog.mosaicolab.app/">Jugar ya en el navegador</a>
+        <a class="boton boton-papel" href="#sobre">Abrir un sobre aquí</a>
+      </div>
+      <p class="nota">Gratis y sin cuenta. La app para iPhone llega pronto.</p>
+    </div>
+    <div class="moviles">
+      <img class="movil movil-a" src="/topdog/a/01-quien-ha-sido.webp" width="420" height="822" alt="Partida de ¿Quién ha sido?: Coco contra Paco sobre la alfombra, el ruido en 8 y el dueño llega con 12">
+      <img class="movil movil-b" src="/topdog/a/02-cartel.webp" width="420" height="822" alt="Has perdido 0-2: Paco con el cartel «Me he zampado la tarta»">
+    </div>
+  </div>
+</section>
+
+<section id="sobre" class="seccion sobre" aria-labelledby="sobre-titulo">
+  <div class="marco">
+    <div class="sobre-cabeza">
+      <h2 id="sobre-titulo" class="aparece">Un sobre cada día</h2>
+      <p class="aparece">Cinco perros dibujados para tu álbum: comunes, raros, épicos, legendarios y alguno único. Prueba con este.</p>
+    </div>
+    <div class="mesa" id="mesa">
+      <button type="button" class="sobre-boton" id="abrir" aria-label="Abrir el sobre">
+        <img src="/topdog/a/sobre.svg" width="300" height="400" alt="">
+        <span>Toca para abrir</span>
+      </button>
+      <ol class="cartas" id="cartas" aria-live="polite"></ol>
+    </div>
+    <p class="otra"><button type="button" class="boton boton-papel" id="otro" hidden>Abrir otro sobre</button></p>
+  </div>
+</section>
+
+<section id="trastada" class="seccion trastada" aria-labelledby="trastada-titulo">
+  <div class="marco trastada-rejilla">
+    <div>
+      <h2 id="trastada-titulo" class="aparece">Cómo va la trastada</h2>
+      <ol class="reglas aparece">
+        <li>En tu turno juegas una carta, o esperas, y robas otra.</li>
+        <li>Cada carta hace ruido. Cuando el ruido llega al límite, secreto, entre 10 y 14, vuelve el dueño.</li>
+        <li>Quien tenga la Culpa en ese momento pierde. Gana quien se lleve 2 de 3.</li>
+      </ol>
+      <p class="aparece">Antes de cada trastada eliges qué perro se queda en casa: cada uno tiene un poder.</p>
+    </div>
+    <ul class="mano aparece" aria-label="Algunas cartas">
+      <li class="c-tomate"><b>¡Ha sido él!</b>Le pasas la Culpa al rival.</li>
+      <li class="c-menta"><b>Ojitos</b>La próxima vez que te echen la Culpa, no cuela.</li>
+      <li class="c-tomate"><b>¡Y tú más!</b>Si te pasan la Culpa, salta sola y se la devuelve.</li>
+      <li class="c-mostaza"><b>¡Guau!</b>Ladras fuerte para que venga el dueño.</li>
+      <li class="c-cielo"><b>Olfatear</b>Hueles cuándo llega el dueño.</li>
+      <li class="c-lavanda"><b>Carita de pena</b>Si el dueño te pilla, te perdona una vez.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="tu-perro" class="seccion tu-perro" aria-labelledby="perro-titulo">
+  <div class="marco dos">
+    <img class="movil aparece" src="/topdog/a/04-tu-perro.webp" width="420" height="822" loading="lazy" alt="La carta de Paco, podenco andaluz, con sus estadísticas: velocidad 72, babas 30, pillería 58, mimos 40 y ladrido 50">
+    <div>
+      <h2 id="perro-titulo" class="aparece">Haz la carta de tu perro</h2>
+      <p class="aparece">Hazle una foto y la IA lo dibuja en el estilo de la casa, con su Velocidad, sus Babas, su Pillería, sus Mimos y su Ladrido. La foto no se guarda.</p>
+      <p class="aparece">Si quieres, lo publicas y sale en los sobres de otros jugadores. Nunca la foto: solo el dibujo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="seccion album" aria-labelledby="album-titulo">
+  <div class="marco dos dos-al-reves">
+    <div>
+      <h2 id="album-titulo" class="aparece">Colecciónalos y reta a los tuyos</h2>
+      <p class="aparece">El álbum guarda todos los perros que te salen. Haz tu equipo con los favoritos, regala los repetidos y reta a un amigo con un enlace.</p>
+      <p class="aparece">Cada día hay una Trastada del día, la misma para todos, y una liga semanal si te apetece, con una cuenta opcional.</p>
+    </div>
+    <img class="movil aparece" src="/topdog/a/05-album.webp" width="420" height="822" loading="lazy" alt="Mi álbum: Mora, Pirri, Ringo, Pipo y Lía">
+  </div>
+</section>
+
+<section class="seccion claro" aria-labelledby="claro-titulo">
+  <div class="marco claro-rejilla">
+    <h2 id="claro-titulo" class="aparece">Gratis, sin compras</h2>
+    <div>
+      <p class="aparece">Puedes ver un vídeo, si quieres, para abrir otro sobre (hasta dos al día), y a veces sale un anuncio al acabar una partida. No hay nada que comprar. A menores de 14 no se les enseñan anuncios.</p>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas" class="seccion preguntas" aria-labelledby="preguntas-titulo">
+  <div class="marco preguntas-rejilla">
+    <h2 id="preguntas-titulo" class="aparece">Preguntas</h2>
+    <div class="lista-preguntas">
+      <details class="aparece"><summary>¿Dónde se juega?</summary><p>En el navegador, en <a href="https://topdog.mosaicolab.app/">topdog.mosaicolab.app</a>, sin instalar nada. La app para iPhone llega pronto.</p></details>
+      <details class="aparece"><summary>¿Necesito cuenta?</summary><p>No. Todo se juega sin cuenta. Con una cuenta opcional (Face ID o un código por correo) entras en la liga semanal y conservas el álbum si cambias de móvil.</p></details>
+      <details class="aparece"><summary>¿Contra quién juego?</summary><p>Contra el ordenador (Novato o Listo), en la Trastada del día o contra un amigo con un enlace.</p></details>
+      <details class="aparece"><summary>¿Qué pasa con la foto de mi perro?</summary><p>La IA la usa para elegir las piezas del dibujo y no se guarda. Si publicas tu perro, los demás ven el dibujo, nunca la foto.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="avisame" class="seccion avisame" aria-labelledby="avisame-titulo">
+  <div class="marco avisame-rejilla">
+    <img class="avisame-icono aparece" src="/topdog/a/icono.webp" width="144" height="144" alt="Icono de Top Dog">
+    <div>
+      <h2 id="avisame-titulo" class="aparece">Te avisamos cuando esté en el iPhone</h2>
+      <p class="aparece">Un correo el día que salga en la App Store. Nada más.</p>
+      <form class="aviso aparece" method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
+        <input type="hidden" name="idea" value="topdog-pronto">
+        <input type="hidden" name="anuncio" value="web-topdog">
+        <input type="hidden" name="acepto" value="si">
+        <p class="trampa" aria-hidden="true"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
+        <label class="oculto" for="correo">Tu correo</label>
+        <input id="correo" type="email" name="correo" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Tu correo">
+        <button class="boton" type="submit">Avísame</button>
+      </form>
+      <p class="letra aparece">Al pulsar, aceptas que Mosaico Lab (Valencia, hola@mosaicolab.app) guarde tu correo solo para avisarte de esto. No lo cedemos a nadie y lo borramos cuando nos lo pidas.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="marco pie-rejilla">
+    <p>Top Dog es un juego de <a href="/">Mosaico Lab</a>, un estudio de Valencia.</p>
+    <p class="pie-enlaces"><a href="https://topdog.mosaicolab.app/">Jugar</a> <a href="https://topdog.mosaicolab.app/soporte">Ayuda y soporte</a> <a href="https://topdog.mosaicolab.app/privacidad">Privacidad</a> <a href="/aviso-legal/">Aviso legal</a></p>
+    <p class="pie-letra">Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</p>
+  </div>
+</footer>
+
+<script src="/topdog/a/serie.js" defer></script>
+<script src="/topdog/a/topdog.js" defer></script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
