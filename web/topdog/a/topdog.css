@@ -239,3 +239,6 @@ p { margin: 0 0 18px; max-width: 54ch; }
   .avisame-icono { width: 104px; border-radius: 24px; }
   .aviso .boton { width: 100%; }
 }
+
+/* Que ninguna columna se ensanche por su contenido en móviles estrechos (320 px). */
+[class*="-rejilla"] > *, .aviso input { min-width: 0; }

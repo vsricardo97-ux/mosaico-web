@@ -246,3 +246,6 @@ p { margin: 0 0 16px; max-width: 60ch; }
   .mesa-pie { flex-wrap: wrap; }
   .tablero-marco { padding: 8px; }
 }
+
+/* Que ninguna columna se ensanche por su contenido en móviles estrechos (320 px). */
+[class*="-rejilla"] > *, .aviso input { min-width: 0; }
