@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
+  <!-- Sobre de Top Dog en «tinta gorda»: papel amarillo, línea negra gruesa, huella en un círculo como los perros. -->
+  <defs>
+    <clipPath id="cuerpo"><rect x="14" y="14" width="272" height="372" rx="22"/></clipPath>
+  </defs>
+  <g clip-path="url(#cuerpo)">
+    <rect x="0" y="0" width="300" height="400" fill="#ffd23f"/>
+    <g stroke="#f0b81c" stroke-width="18">
+      <path d="M-40 150 L120 -10 M-40 250 L220 -10 M-40 350 L320 -10 M-40 450 L340 70 M40 450 L340 150 M140 450 L340 250"/>
+    </g>
+    <rect x="0" y="0" width="300" height="86" fill="#ff8a3d"/>
+    <path d="M0 86 L300 86" stroke="#121826" stroke-width="5" stroke-dasharray="14 10"/>
+    <path d="M0 360 L300 360" stroke="#121826" stroke-width="5"/>
+    <rect x="0" y="360" width="300" height="40" fill="#ff8a3d"/>
+    <!-- dientes del cierre arriba -->
+    <path d="M20 34 l12 -12 12 12 12 -12 12 12 12 -12 12 12 12 -12 12 12 12 -12 12 12 12 -12 12 12 12 -12 12 12 12 -12 12 12 12 -12 12 12 12 -12 12 12 12 -12 12 12 12 -12" fill="none" stroke="#121826" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+  <rect x="14" y="14" width="272" height="372" rx="22" fill="none" stroke="#121826" stroke-width="10"/>
+  <!-- círculo con huella -->
+  <circle cx="150" cy="222" r="92" fill="#fffdf7" stroke="#121826" stroke-width="10"/>
+  <g fill="#121826">
+    <ellipse cx="150" cy="248" rx="38" ry="31"/>
+    <ellipse cx="106" cy="206" rx="15" ry="20" transform="rotate(-22 106 206)"/>
+    <ellipse cx="134" cy="184" rx="15" ry="21" transform="rotate(-6 134 184)"/>
+    <ellipse cx="166" cy="184" rx="15" ry="21" transform="rotate(6 166 184)"/>
+    <ellipse cx="194" cy="206" rx="15" ry="20" transform="rotate(22 194 206)"/>
+  </g>
+  <!-- brillos de tebeo -->
+  <g fill="#fffdf7" stroke="#121826" stroke-width="4" stroke-linejoin="round">
+    <path d="M242 112 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6z"/>
+    <path d="M58 316 l4 11 11 4 -11 4 -4 11 -4 -11 -11 -4 11 -4z"/>
+  </g>
+</svg>
