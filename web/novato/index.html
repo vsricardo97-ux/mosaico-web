@@ -2,51 +2,80 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tu primera clase, sin miedo | Mosaico Lab</title>
-<meta name="description" content="La pizarra del box explicada en español, tu versión escalada y una invitación para traer a quien quieras a su primera clase.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tu primera clase de CrossFit, sin miedo | Mosaico Lab</title>
+<meta name="description" content="Test de 1 minuto, la pizarra del box explicada en español y tu versión fácil de cada ejercicio.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#12607A">
+<meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://mosaicolab.app/novato/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mosaico Lab">
 <meta property="og:title" content="Tu primera clase de CrossFit, sin miedo">
-<meta property="og:description" content="La pizarra del box explicada en español, tu versión escalada y una invitación para traer a quien quieras.">
+<meta property="og:description" content="Haz el test de 1 minuto y llévate el diccionario de la pizarra del box en español.">
 <meta property="og:url" content="https://mosaicolab.app/novato/">
-<link rel="stylesheet" href="/assets/estilo.css">
+<link rel="stylesheet" href="/assets/novato.css">
 </head>
 <body>
-<header class="sitio"><div class="caja"><a class="marca" href="/">Mosaico Lab</a></div></header>
-<main class="caja">
-<h1>Tu primera clase de CrossFit, sin miedo</h1>
-<p><strong>¿Te da corte entrar a un box? ¿Crees que estás demasiado fuera de forma? ¿La pizarra te suena a chino?</strong> Estamos haciendo algo para ti: la pizarra explicada antes de ir, tu versión fácil de cada ejercicio y alguien que te acompañe a la primera clase.</p>
-<section class="tarjeta">
-<p><strong>Déjanos tu correo y te abrimos ahora mismo el diccionario de la pizarra:</strong> 70 siglas y movimientos del box explicados en español, con tu versión para el primer día. Y te avisamos cuando lo demás esté listo.</p>
-<form method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
+<header class="barra"><div class="caja"><a href="/">Mosaico Lab</a><span>para tu primera clase</span></div></header>
+<main>
+<section class="hero caja">
+<p class="etiqueta">Para tu primera clase de CrossFit</p>
+<h1>Tu primera clase, <mark>sin miedo</mark>.</h1>
+<p class="lead">La pizarra del box explicada en español, tu versión fácil de cada ejercicio y un test de 1 minuto para saber por dónde empezar.</p>
+<a class="boton" href="#test" id="ir-test">Hacer el test (1 min)</a>
+
+<div class="pizarra-demo" aria-label="Ejemplo de pizarra de un box">
+<div class="cab"><span>WOD de hoy</span><span>Toca una línea</span></div>
+<ul id="pizarra-lineas"></ul>
+<div class="traduce" id="traduce" aria-live="polite"><b>Esto es lo que ves el primer día.</b>Y esto es lo que significa. Toca cualquier línea.</div>
+<noscript><p class="pista">Activa JavaScript para ver la traducción línea a línea. El diccionario completo está en <a href="/novato/pizarra/">esta página</a>.</p></noscript>
+</div>
+</section>
+
+<section class="seccion caja" id="test">
+<p class="etiqueta">Test</p>
+<h2>¿Qué novato <mark>eres</mark>?</h2>
+<p class="suave" style="margin:.7rem 0 0">5 preguntas, 1 minuto. Al final, tu plan de primera clase y el diccionario de la pizarra.</p>
+<div class="test-caja" id="test-caja" data-visita="novato"><noscript><p>Para hacer el test necesitas JavaScript. Si prefieres, déjanos tu correo abajo y te abrimos el diccionario.</p></noscript></div>
+
+<form class="registro" id="registro" method="post" action="https://avisame.vsricardo97.workers.dev/avisame">
+<h3>Guarda tu plan y abre el diccionario</h3>
+<p>Déjanos tu correo y te abrimos ahora mismo el diccionario de la pizarra: 70 siglas y movimientos explicados, con tu versión para el primer día. Te escribiremos solo cuando lo demás esté listo.</p>
 <input type="hidden" name="idea" value="novato">
 <input type="hidden" name="anuncio" value="">
+<input type="hidden" name="trae" value="">
 <input type="hidden" name="acepto" value="si">
 <p style="display:none"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
-<p><input type="email" name="correo" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Tu correo" aria-label="Tu correo" style="width:100%;padding:.9em;font:inherit;font-size:1.1em;box-sizing:border-box"></p>
-<p><button class="boton" type="submit" style="border:0;font:inherit;font-size:1.1em;width:100%;padding:.9em;cursor:pointer">Abrir el diccionario</button></p>
-<p style="font-size:.8em;margin:.4em 0 0">Al pulsar, aceptas que Mosaico Lab guarde tu correo solo para avisarte de esto. Lo borras cuando quieras.</p>
+<input type="email" name="correo" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Tu correo" aria-label="Tu correo">
+<button class="boton" type="submit">Abrir el diccionario</button>
+<p class="legal">Al pulsar, aceptas que Mosaico Lab guarde tu correo solo para avisarte de esto. Lo borras cuando quieras.</p>
 </form>
+<noscript><style>.oculto{display:block!important}</style></noscript>
 </section>
-<h2>Lo que estamos preparando</h2>
-<ul>
-<li><strong>La pizarra, traducida:</strong> haces una foto y te explica cada sigla y cada movimiento en español llano.</li>
-<li><strong>Tu versión:</strong> cómo hacer cada ejercicio más fácil el primer día, sin que tengas que preguntar. Casi nadie hace el entreno tal cual: se llama escalar y es lo normal.</li>
-<li><strong>Ven conmigo:</strong> invita a tu pareja o a un amigo a una clase concreta, con el entreno explicado para que sepa qué va a hacer.</li>
-<li>Qué llevar, qué esperar y por qué la primera semana es dura (y normal).</li>
-</ul>
-<p>Uno de los nuestros pesaba 100 kg y no entendía ni una sigla. Entró porque un amigo le llevó. Mucha gente no tiene ese amigo. Esto es para ellos, y para quien quiere traer a alguien.</p>
-<p>Una idea de Mosaico Lab, estudio de Valencia (España), los que hacemos <a href="/wodpost/">Wodpost</a>.</p>
-<p style="font-size:.85em"><strong>Privacidad.</strong> Responsable: Mosaico Lab (Valencia), hola@mosaicolab.app. Guardamos tu correo y tu respuesta solo para avisarte de esta idea, con tu consentimiento. No lo cedemos a nadie ni lo usamos para otra cosa, y lo borramos cuando acabe la prueba o cuando nos lo pidas por correo (puedes pedir acceso o borrado en cualquier momento). Esta página cuenta visitas con una imagen de un píxel, sin cookies ni identificadores.</p>
-<noscript><img src="https://avisame.vsricardo97.workers.dev/v/novato.gif" width="1" height="1" alt="" style="position:absolute;left:-9999px"></noscript>
-<script>/* Cuenta la visita con el carrusel que la trajo (utm_content), sin cookies */
-(function(){var c=(new URLSearchParams(location.search).get('utm_content')||'').replace(/[^a-z0-9_-]/gi,'').slice(0,40);new Image().src='https://avisame.vsricardo97.workers.dev/v/novato.gif'+(c?'?c='+c:'');var i=document.querySelector('input[name=anuncio]');if(i)i.value=c;})();</script>
+
+<section class="seccion caja">
+<p class="etiqueta">Lo que te llevas</p>
+<h2>Entras sabiendo de qué <mark>habla</mark></h2>
+<div class="tarjetas">
+<div class="tarjeta"><span class="num">70</span><h3>El diccionario de la pizarra</h3><p>Siglas y movimientos del box en español llano: WOD, AMRAP, EMOM, RX, thruster, dominadas… con buscador.</p></div>
+<div class="tarjeta"><span class="num">Sc</span><h3>Tu versión de cada ejercicio</h3><p>Casi nadie hace el entreno tal cual. Escalar es lo normal, y aquí tienes cómo hacerlo el primer día sin tener que preguntar.</p></div>
+<div class="tarjeta"><span class="num">3</span><h3>Tu plan de primera clase</h3><p>Según lo que más te frena, tres pasos concretos para ir con calma.</p></div>
+<div class="tarjeta pronto"><span class="tag">Lo estamos preparando</span><h3>La pizarra, traducida con una foto</h3><p>Haces una foto en el box y te explica cada sigla y cada movimiento, con tu versión.</p></div>
+<div class="tarjeta pronto"><span class="tag">Lo estamos preparando</span><h3>Ven conmigo</h3><p>Invita a tu pareja o a un amigo a una clase concreta, con el entreno explicado para que sepa qué va a hacer.</p></div>
+</div>
+</section>
+
+<section class="seccion caja">
+<p>Una idea de Mosaico Lab, estudio de Valencia (España), los que hacemos <a href="/wodpost/">Wodpost</a>. Esto es una prueba: todavía no existe la app, y tu respuesta nos ayuda a decidir si merece la pena hacerla.</p>
+<a class="boton sec" href="#test" style="margin-top:1rem">Hacer el test</a>
+</section>
 </main>
-<footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</footer>
+<footer class="pie caja">
+<p><strong>Privacidad.</strong> Responsable: Mosaico Lab (Valencia), hola@mosaicolab.app. Guardamos tu correo, a quién traerías a tu primera clase y el anuncio por el que llegaste solo para avisarte de esta idea, con tu consentimiento. No lo cedemos a nadie ni lo usamos para otra cosa, y lo borramos cuando acabe la prueba o cuando nos lo pidas por correo (puedes pedir acceso o borrado en cualquier momento). Tus respuestas al test se quedan en tu navegador y no se envían. Esta página cuenta visitas con una imagen de un píxel, sin cookies ni identificadores.</p>
+<p><a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</p>
+</footer>
+<noscript><img src="https://avisame.vsricardo97.workers.dev/v/novato.gif" width="1" height="1" alt="" style="position:absolute;left:-9999px"></noscript>
+<script src="/assets/novato.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
