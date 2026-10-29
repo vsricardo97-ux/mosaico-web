@@ -190,8 +190,8 @@
     else host.innerHTML = '<a class="boton sec" href="/novato/#test" id="g-test">Haz el test y te preparo tu plan</a>';
     var c = $('#compartir');
     if (c) c.addEventListener('click', function () {
-      var url = 'https://mosaicolab.app/novato/', txt = 'La pizarra del box explicada y tu primera clase de CrossFit, híbrido o Hyrox, sin miedo:';
-      if (navigator.share) { navigator.share({ title: 'Tu primera clase, sin miedo', text: txt, url: url }).catch(function () {}); return; }
+      var url = 'https://mosaicolab.app/novato/', txt = '¿Te lo has planteado mil veces y no lo logras? Test de 1 minuto para empezar sin miedo:';
+      if (navigator.share) { navigator.share({ title: 'Te lo has planteado mil veces', text: txt, url: url }).catch(function () {}); return; }
       var done = function () { c.textContent = 'Enlace copiado ✓'; };
       if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, function () { c.textContent = url; }); else c.textContent = url;
     });
