@@ -99,3 +99,17 @@ footer.pie { border-top: 1px solid var(--border); padding-top: 1.6rem; padding-b
 footer.pie p { margin: 0 0 .6rem; }
 footer.pie a { color: var(--muted); }
 .resultado h3 { margin-top: 1.2rem; }
+/* Diccionario (/hoy-si/diccionario/): solo definiciones, sin recomendaciones. */
+.nota-dic { background: var(--surface); border-left: 4px solid var(--accent); border-radius: 10px; padding: .8rem 1rem; margin: 1rem 0; font-size: .96rem; }
+.buscador { position: sticky; top: 0; z-index: 5; background: linear-gradient(var(--bg) 80%, transparent); padding: .7rem 0 .9rem; }
+.buscador input { width: 100%; min-height: 52px; padding: .7rem 1rem; border-radius: 14px; border: 2px solid var(--border-strong); background: var(--surface); color: var(--text); font: inherit; font-size: 1.05rem; }
+.indice { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 0 0; scrollbar-width: none; }
+.indice a { flex: none; text-decoration: none; color: var(--text); background: var(--elevated); border: 1px solid var(--border-strong); border-radius: 99px; padding: .35rem .9rem; font-weight: 700; font-size: .88rem; min-height: 36px; }
+.seccion-dic { margin-top: 1.8rem; scroll-margin-top: 9rem; }
+.seccion-dic h2 { font-size: 1.6rem; color: var(--accent); }
+.seccion-dic > .suave { margin: .2rem 0 .7rem; font-size: .95rem; }
+dl.dic { margin: 0; }
+.ent { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: .75rem .95rem; margin-bottom: .5rem; }
+.ent dt { font-weight: 800; font-size: 1.05rem; }
+.ent dd { margin: .2rem 0 0; color: var(--muted); font-size: .97rem; }
+.nada { text-align: center; color: var(--muted); padding: 1.5rem 0; }
