@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- El Faro, escena de la etapa 1 "Faro de arena" (Formentor, cala blanca a mediodía), de Inés (r3, con el visto bueno de Carmen). Va DETRÁS de la torre de Mateo (skin faro-arena) en la ficha de la Caseta y en la tarjeta de compartir; el horizonte está en y=86 y la linterna en (50,31), como en la skin. Sangre de -30 a 130 por los cuatro lados para recortar en vertical con la prop viewBox. Capas de atrás adelante: cielo, lejanía, agua, arena, primer plano. -->
+  <g id="esc1-cielo"><rect x="-30" y="-30" width="160" height="160" fill="#8FD3E8"/><circle cx="18" cy="12" r="9" fill="#FFD23F"/></g>
+  <g id="esc1-lejania"><path d="M62 86L70 66L82 60L96 64L108 54L130 58V86Z" fill="#FFFBF0"/><path d="M82 60L96 64L108 54L130 58V86H96Z" fill="#E8DFCB"/><path d="M-30 86L-30 76L-12 72L4 78L18 74L30 86Z" fill="#E8DFCB"/></g>
+  <g id="esc1-agua"><rect x="-30" y="74" width="160" height="12" fill="#1E8FB3"/><rect x="-30" y="80" width="160" height="6" fill="#2EC4C0"/><path d="M-20 77H-6M28 78H40M88 79H100" fill="none" stroke="#FFFBF0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="esc1-arena"><rect x="-30" y="86" width="160" height="44" fill="#F3D39A"/><path d="M54 90Q78 86 104 94Q80 102 54 98Z" fill="#D9AE6B"/></g>
+  <g id="esc1-primer-plano"><path d="M-30 110Q-10 102 10 110Q-6 118 -30 118Z" fill="#D9AE6B"/></g>
+</svg>

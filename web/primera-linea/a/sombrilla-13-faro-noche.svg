@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Skin "Faro de noche" (abierta), El Faro etapa 3 (maratón). Desbloqueo: 50 niveles en una partida. Torre de Mateo (r3) con los retoques de Carmen: única skin con silueta propia (guía 2.9, excepción). Contorno de tinta (6,41 = 2,5 pt a 39 pt), cuña, pie y caja 100x100 comunes; trazo mínimo 2,6. Sin degradados ni filtros: el halo es un círculo plano al 25 %. -->
+  <defs>
+    <clipPath id="skf13a-torre"><path d="M39 47L61 47L67 86L33 86Z"/></clipPath>
+    <clipPath id="skf13a-torre-sombra"><path d="M58 47L61 47L67 86L59 86Z"/></clipPath>
+    <clipPath id="skf13a-caja"><rect x="0" y="0" width="100" height="100"/></clipPath>
+  </defs>
+  <g id="skf13a-luz" clip-path="url(#skf13a-caja)"><circle cx="50" cy="31" r="31" fill="#FFD23F" fill-opacity="0.25"/></g>
+  <path id="skf13a-contorno" d="M32 21C32 14 41 10 50 10C59 10 68 14 68 21L66 21L66 41L76 41L76 47L61 47L67 86L33 86L39 47L24 47L24 41L34 41L34 21Z" fill="#2B1D14" stroke="#2B1D14" stroke-width="6.41" stroke-linejoin="round"/>
+  <g id="skf13a-torre" clip-path="url(#skf13a-torre)"><path d="M39 47L61 47L67 86L33 86Z" fill="#FFFBF0"/><path d="M26 44L74 30L74 36L26 50Z" fill="#22406E"/><path d="M26 57L74 43L74 49L26 63Z" fill="#22406E"/><path d="M26 70L74 56L74 62L26 76Z" fill="#22406E"/><path d="M26 83L74 69L74 75L26 89Z" fill="#22406E"/><path d="M26 96L74 82L74 88L26 102Z" fill="#22406E"/></g>
+  <g id="skf13a-torre-sombra-g" clip-path="url(#skf13a-torre-sombra)"><path d="M39 47L61 47L67 86L33 86Z" fill="#E8DFCB"/><path d="M26 44L74 30L74 36L26 50Z" fill="#152A4A"/><path d="M26 57L74 43L74 49L26 63Z" fill="#152A4A"/><path d="M26 70L74 56L74 62L26 76Z" fill="#152A4A"/><path d="M26 83L74 69L74 75L26 89Z" fill="#152A4A"/><path d="M26 96L74 82L74 88L26 102Z" fill="#152A4A"/></g>
+  <rect x="24" y="41" width="52" height="6" fill="#152A4A" id="skf13a-galeria"/>
+  <path id="skf13a-barandilla" d="M24.5 34H33.5M66.5 34H75.5M27 34V41M31 34V41M69 34V41M73 34V41" fill="none" stroke="#2B1D14" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g id="skf13a-linterna"><rect x="34" y="21" width="32" height="20" fill="#FFD23F"/><rect x="34" y="21" width="7" height="20" fill="#E0A800"/><rect x="59" y="21" width="7" height="20" fill="#E0A800"/><path d="M41 21V41M59 21V41" fill="none" stroke="#2B1D14" stroke-width="2.6" stroke-linecap="butt" stroke-linejoin="round"/><rect x="43.5" y="23.5" width="2.8" height="7" fill="#FFFBF0"/></g>
+  <g id="skf13a-cupula"><path d="M32 21C32 14 41 10 50 10C59 10 68 14 68 21Z" fill="#22406E"/><path d="M58 11.5C64 13 68 16 68 21L63 21C63 17 61 14 58 11.5Z" fill="#152A4A"/><path d="M41 12.5Q41.6 14.9 44 15.5Q41.6 16.1 41 18.5Q40.4 16.1 38 15.5Q40.4 14.9 41 12.5Z" fill="#FFFBF0"/><path d="M50 10.9Q50.52 12.98 52.6 13.5Q50.52 14.02 50 16.1Q49.48 14.02 47.4 13.5Q49.48 12.98 50 10.9Z" fill="#FFFBF0"/><path d="M46 15.9Q46.52 17.98 48.6 18.5Q46.52 19.02 46 21.1Q45.48 19.02 43.4 18.5Q45.48 17.98 46 15.9Z" fill="#FFFBF0"/><path d="M32 21H68" fill="none" stroke="#2B1D14" stroke-width="2.6" stroke-linecap="butt" stroke-linejoin="round"/></g>
+  <path d="M61 47L67 86L63.5 86L59 52Z" fill="#2B1D14" id="skf13a-cuna"/>
+  <path id="skf13a-pie" d="M30 89H70" fill="none" stroke="#2B1D14" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g id="skf13a-delante"><circle cx="50" cy="9" r="3.4" fill="#FFFBF0" stroke="#2B1D14" stroke-width="2.4"/><path d="M50 16Q53.3 29.5 83 31Q53.3 32.5 50 46Q46.7 32.5 17 31Q46.7 29.5 50 16Z" fill="#FFFBF0" stroke="#2B1D14" stroke-width="2.2" stroke-linejoin="round"/><path d="M50 27Q50.8 30.2 54 31Q50.8 31.8 50 35Q49.2 31.8 46 31Q49.2 30.2 50 27Z" fill="#FFD23F"/></g>
+</svg>

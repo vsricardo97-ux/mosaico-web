@@ -151,6 +151,19 @@ p { margin: 0 0 16px; max-width: 60ch; }
 .vineta-giro-b { transform: rotate(1.5deg); margin-top: 48px; }
 
 /* Caseta */
+/* El maratón y El Faro: escena de Inés detrás y torre de Mateo delante, como en la ficha de la Caseta */
+.maraton { background: var(--amarillo); }
+.maraton-rejilla { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }
+.faros { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.faros li { display: grid; gap: 4px; text-align: center; }
+.faros li:nth-child(odd) { transform: rotate(-1.5deg); }
+.faros li:nth-child(even) { transform: rotate(1.5deg) translateY(10px); }
+.faro-escena { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border: var(--borde); border-radius: 6px; box-shadow: var(--golpe); margin-bottom: 8px; }
+.faro-escena img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.faro-escena .faro-torre { inset: 8% 8% 0; width: 84%; height: 84%; }
+.faros b { font: 400 21px/1 var(--titulo); letter-spacing: .04em; text-transform: uppercase; }
+.faros small { font-size: 15px; color: var(--tinta-suave); }
+
 .caseta { background: #0D4A5E; color: var(--blanco); }
 .estante { list-style: none; margin: 0; padding: 28px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px 16px; background: var(--papel); border: var(--borde); border-radius: 10px; box-shadow: var(--golpe); color: var(--tinta); }
 .estante li { display: grid; justify-items: center; gap: 8px; text-align: center; }
@@ -202,7 +215,7 @@ p { margin: 0 0 16px; max-width: 60ch; }
 @media (max-width: 1000px) {
   .menu { display: none; }
   .barra-dentro { justify-content: space-between; }
-  .portada-rejilla, .juega-rejilla, .calma-rejilla, .preguntas-rejilla { grid-template-columns: 1fr; }
+  .portada-rejilla, .juega-rejilla, .calma-rejilla, .preguntas-rejilla, .maraton-rejilla { grid-template-columns: 1fr; }
   .tira { grid-template-columns: repeat(3, 1fr); }
   .tira .cinta { font-size: 15px; }
   .viajes-rejilla { grid-template-columns: 1fr 1fr; }
@@ -225,6 +238,7 @@ p { margin: 0 0 16px; max-width: 60ch; }
   .viajes-rejilla { grid-template-columns: 1fr; }
   .vineta-giro-b { margin-top: 0; }
   .estante { grid-template-columns: repeat(2, 1fr); padding: 20px; }
+  .faros { grid-template-columns: repeat(2, 1fr); gap: 20px 14px; }
   .cifras-rejilla { grid-template-columns: 1fr; gap: 28px; }
   .cifras b { font-size: 88px; }
   .avisame-rejilla { grid-template-columns: 1fr; gap: 28px; }

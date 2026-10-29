@@ -24,7 +24,7 @@
   if (movil && window.matchMedia('(min-width: 900px)').matches) {
     var marco = document.createElement('iframe');
     marco.src = '/tenminutemind/jugar/';
-    marco.title = 'Ten Minute Mind, jugable';
+    marco.title = 'Diez Minutos, jugable';
     marco.className = 'movil-app';
     marco.setAttribute('loading', 'lazy');
     marco.addEventListener('load', function () { movil.classList.add('en-marcha'); });
