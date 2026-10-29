@@ -37,6 +37,11 @@
   // Cada pregunta con campo (f) viaja con el correo al Worker (s_e, s_b…): es lo que necesitamos para decidir
   // si Novato vale, si convive con Wodpost y qué pedir a los boxes. Las de siglas solo enseñan y puntúan.
   var PREGUNTAS = [
+    { id: 'd', f: 's_d', t: '¿Qué te llama más?', op: [
+      ['crossfit', 'CrossFit'],
+      ['hibrido', 'Entreno híbrido (fuerza y correr)'],
+      ['hyrox', 'Preparar un Hyrox'],
+      ['nose', 'Aún no lo sé']] },
     { id: 'e', f: 's_e', t: '¿Ya entrenas en un box?', op: [
       ['nunca', 'Nunca he ido'],
       ['probe', 'Fui alguna vez y lo dejé'],
@@ -185,7 +190,7 @@
     else host.innerHTML = '<a class="boton sec" href="/novato/#test" id="g-test">Haz el test y te preparo tu plan</a>';
     var c = $('#compartir');
     if (c) c.addEventListener('click', function () {
-      var url = 'https://mosaicolab.app/novato/', txt = 'La pizarra del box explicada y tu primera clase de CrossFit, sin miedo:';
+      var url = 'https://mosaicolab.app/novato/', txt = 'La pizarra del box explicada y tu primera clase de CrossFit, híbrido o Hyrox, sin miedo:';
       if (navigator.share) { navigator.share({ title: 'Tu primera clase, sin miedo', text: txt, url: url }).catch(function () {}); return; }
       var done = function () { c.textContent = 'Enlace copiado ✓'; };
       if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, function () { c.textContent = url; }); else c.textContent = url;

@@ -83,6 +83,13 @@ mark { background: var(--accent); color: var(--ink); padding: 0 .18em; border-ra
 .tarjeta.pronto { border-style: dashed; background: transparent; }
 .tag { display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--border-strong); color: var(--muted); border-radius: 99px; padding: .1rem .6rem; margin-bottom: .45rem; }
 
+/* Recorrido de Hyrox */
+ol.hyrox { list-style: none; counter-reset: h; margin: .9rem 0 0; padding: 0; display: grid; gap: .35rem; }
+ol.hyrox li { counter-increment: h; display: grid; grid-template-columns: 1.7rem 1fr; column-gap: .6rem; font-size: .92rem; }
+ol.hyrox li::before { content: counter(h); grid-row: span 2; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--accent); color: var(--ink); font-weight: 900; display: grid; place-items: center; font-size: .85rem; }
+ol.hyrox li span { color: var(--muted); font-size: .8rem; }
+ol.hyrox li b { font-weight: 700; }
+
 /* Test */
 #test { scroll-margin-top: 1rem; }
 .test-caja { margin-top: 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 1.2rem 1.1rem 1.3rem; }
