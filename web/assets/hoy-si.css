@@ -1,0 +1,95 @@
+/* Landing «Hoy Sí» de Mosaico Lab: marca propia, distinta de Wodpost. Cálida y tranquila: crema, azul tinta
+   y un solo color señal (terracota) para lo que se toca. Sin fuentes externas, sin cookies. */
+:root {
+  --bg: #FBF6EE;
+  --surface: #FFFFFF;
+  --elevated: #F3ECE1;
+  --text: #1F2A44;
+  --muted: #5E6578;
+  --border: #E6DCCD;
+  --border-strong: #C9BBA6;
+  --accent: #C8461F;
+  --accent-pressed: #A93A19;
+  --on-accent: #FFFFFF;
+  --soft: #FBE1D5;
+  --ok: #2F7D5B;
+  --bad: #B3261E;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.caja { max-width: 40rem; margin: 0 auto; padding: 0 1rem; }
+.barra { padding: .9rem 0; }
+.barra .caja { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.marca { display: flex; align-items: center; gap: .5rem; color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.05rem; letter-spacing: -.01em; }
+.marca img { width: 32px; height: 32px; }
+.barra span { color: var(--muted); font-size: .8rem; }
+h1, h2, h3 { line-height: 1.12; letter-spacing: -.02em; margin: 0; }
+h1 { font-size: clamp(2.2rem, 10vw, 3.3rem); font-weight: 850; }
+h2 { font-size: clamp(1.6rem, 7vw, 2.1rem); font-weight: 800; }
+h3 { font-size: 1.12rem; font-weight: 750; }
+mark { background: var(--soft); color: var(--text); padding: 0 .15em; border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.etiqueta { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .06em; color: var(--accent); margin: 0 0 .8rem; }
+.suave { color: var(--muted); }
+.seccion { padding-top: 2.6rem; padding-bottom: 2.6rem; }
+.seccion + .seccion { border-top: 1px solid var(--border); }
+
+.hero { padding-top: 1.6rem; padding-bottom: 2.4rem; }
+.hero h1 { margin-bottom: 1rem; }
+.hero p.lead { font-size: 1.15rem; margin: 0 0 1.5rem; max-width: 34rem; }
+.boton { display: block; width: 100%; min-height: 56px; padding: .95rem 1.2rem; border: 0; border-radius: 99px; background: var(--accent); color: var(--on-accent); font: inherit; font-size: 1.08rem; font-weight: 750; text-align: center; text-decoration: none; cursor: pointer; transition: transform .08s, background .15s; }
+.boton:hover { background: var(--accent-pressed); }
+.boton:active { transform: scale(.98); }
+.boton.sec { background: transparent; color: var(--text); border: 2px solid var(--border-strong); }
+.boton.sec:hover { background: var(--elevated); }
+@media (min-width: 30rem) { .hero .boton { width: auto; display: inline-block; padding-left: 2rem; padding-right: 2rem; } }
+.firma { margin-top: 1.6rem; display: flex; gap: .8rem; align-items: center; color: var(--muted); font-size: .95rem; }
+.firma::before { content: ""; flex: none; width: 3px; align-self: stretch; background: var(--accent); border-radius: 3px; }
+
+.tarjetas { display: grid; gap: .8rem; margin-top: 1.4rem; }
+.tarjeta { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 1.1rem 1.1rem 1.15rem; }
+.tarjeta h3 { margin-bottom: .3rem; }
+.tarjeta p { margin: 0; color: var(--muted); font-size: .98rem; }
+.tarjeta .num { float: right; width: 2rem; height: 2rem; border-radius: 50%; background: var(--soft); color: var(--accent); font-weight: 800; display: grid; place-items: center; margin-left: .6rem; }
+
+#test { scroll-margin-top: 1rem; }
+.test-caja { margin-top: 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 1.2rem 1.1rem 1.3rem; }
+.progreso { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.1rem; font-size: .85rem; color: var(--muted); }
+.progreso .pista-barra { flex: 1; height: 8px; border-radius: 99px; background: var(--elevated); overflow: hidden; }
+.progreso .pista-barra i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .3s ease; }
+.pregunta h3 { font-size: 1.35rem; line-height: 1.25; margin-bottom: 1rem; }
+.opciones { display: grid; gap: .6rem; }
+.opcion { text-align: left; width: 100%; min-height: 56px; padding: .8rem 1rem; border-radius: 16px; border: 2px solid var(--border); background: var(--bg); color: var(--text); font: inherit; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: .8rem; transition: border-color .15s, background .15s, transform .08s; }
+.opcion:hover { border-color: var(--accent); }
+.opcion:active { transform: scale(.985); }
+.opcion .letra { flex: none; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--surface); border: 1px solid var(--border-strong); color: var(--muted); font-weight: 700; display: grid; place-items: center; font-size: .85rem; }
+.opcion[disabled] { cursor: default; opacity: .55; }
+.atras { margin-top: 1rem; background: none; border: 0; color: var(--muted); font: inherit; font-size: .9rem; cursor: pointer; padding: .5rem 0; min-height: 44px; text-decoration: underline; text-underline-offset: 3px; }
+
+.resultado .perfil { font-size: clamp(1.6rem, 7.5vw, 2.1rem); font-weight: 850; line-height: 1.12; letter-spacing: -.02em; margin: 0 0 .7rem; }
+.pasos { counter-reset: p; list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: .7rem; }
+.pasos li { counter-increment: p; position: relative; padding-left: 2.6rem; }
+.pasos li::before { content: counter(p); position: absolute; left: 0; top: .1rem; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 800; display: grid; place-items: center; }
+.semanas { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: .55rem; }
+.semanas li { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: .7rem .9rem; }
+.semanas b { color: var(--accent); }
+
+.registro { margin-top: 1.4rem; padding: 1.2rem 1.1rem 1.3rem; border-radius: 22px; background: var(--surface); border: 2px solid var(--accent); }
+.registro h3 { font-size: 1.3rem; margin-bottom: .4rem; }
+.registro p { margin: 0 0 .9rem; color: var(--muted); }
+.registro input[type=email], .registro input[type=text] { width: 100%; min-height: 56px; padding: .8rem 1rem; border-radius: 14px; border: 2px solid var(--border-strong); background: var(--bg); color: var(--text); font: inherit; font-size: 1.08rem; margin-bottom: .7rem; }
+.registro .dos { display: grid; grid-template-columns: 8.5rem 1fr; gap: .6rem; }
+.registro input::placeholder { color: var(--muted); }
+.registro .legal { font-size: .78rem; color: var(--muted); margin: .7rem 0 0; }
+.oculto { display: none !important; }
+
+.gracias h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
+.gracias .acciones { display: grid; gap: .7rem; margin: 1.4rem 0; }
+
+footer.pie { border-top: 1px solid var(--border); padding-top: 1.6rem; padding-bottom: 2.4rem; color: var(--muted); font-size: .82rem; }
+footer.pie p { margin: 0 0 .6rem; }
+footer.pie a { color: var(--muted); }
+.resultado h3 { margin-top: 1.2rem; }
