@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- El Faro, escena de la etapa 2 "Faro clásico" (Cabo de Gata, atardecer), de Inés (r3, con el visto bueno de Carmen). Va DETRÁS de la torre de Mateo (skin faro-clasico) en la ficha de la Caseta y en la tarjeta de compartir; el horizonte está en y=86 y la linterna en (50,31), como en la skin. Sangre de -30 a 130 por los cuatro lados para recortar en vertical con la prop viewBox. Capas de atrás adelante: cielo, lejanía, agua, arena, primer plano. -->
+  <g id="esc2-cielo"><rect x="-30" y="-30" width="160" height="160" fill="#F28C28"/><rect x="-30" y="44" width="160" height="10" fill="#FFD23F"/><rect x="-30" y="54" width="160" height="18" fill="#F28C28"/><rect x="-30" y="36" width="160" height="8" fill="#C2641A"/></g>
+  <g id="esc2-lejania"><circle cx="78" cy="72" r="10" fill="#FFD23F"/><path d="M-30 72L-30 58L-16 50L-2 56L10 46L24 54L36 60L44 72Z" fill="#152A4A"/><path d="M96 72L104 62L116 64L130 56V72Z" fill="#152A4A"/></g>
+  <g id="esc2-agua"><rect x="-30" y="72" width="160" height="14" fill="#12607A"/><rect x="-30" y="72" width="160" height="3" fill="#C2641A"/><path d="M-14 78H2M58 80H72M100 77H114" fill="none" stroke="#FFFBF0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="esc2-arena"><rect x="-30" y="86" width="160" height="44" fill="#D9AE6B"/><path d="M30 86L40 80H60L70 86Z" fill="#152A4A"/></g>
+  <g id="esc2-primer-plano"><path d="M90 130L100 112L112 118L124 108L130 112V130Z" fill="#152A4A"/></g>
+</svg>

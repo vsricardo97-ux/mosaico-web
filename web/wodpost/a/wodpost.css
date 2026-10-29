@@ -173,9 +173,13 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   font: 700 76px/.8 var(--condensada); color: var(--linea-fuerte);
 }
 .pasos p { color: var(--suave); max-width: 36em; margin: 0; }
+.como-video { margin: 0; position: relative; justify-self: center; width: min(100%, 360px); }
+.como-video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 24px; background: #000; box-shadow: inset 0 0 0 1.5px #3A3A3E; }
+.sonido { position: absolute; right: 12px; top: 12px; min-height: 40px; padding: 8px 14px; border: 0; border-radius: 999px; background: rgba(10, 10, 10, .72); color: var(--texto); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; backdrop-filter: blur(6px); }
+.sonido[aria-pressed="true"] { background: var(--amarillo); color: var(--negro); }
 .como-foto { margin: 0; }
 .como-foto img { border-radius: 20px; aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
-.como-foto figcaption, .prueba-movil figcaption { color: var(--suave); font-size: 15px; margin-top: 14px; }
+.como-foto figcaption, .como-video figcaption, .prueba-movil figcaption { color: var(--suave); font-size: 15px; margin-top: 14px; }
 
 /* Pruébalo */
 .prueba-rejilla { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
@@ -350,7 +354,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   .tarjeta-poster .t-nombre { font-size: 32px; }
   .pasos li { grid-template-columns: 52px 1fr; column-gap: 14px; }
   .pasos li::before { font-size: 56px; }
-  .como-foto { order: -1; }
+  .como-foto, .como-video { order: -1; }
   .tira { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-padding: 0 var(--margen); }
   .estilo { flex: 0 0 58vw; scroll-snap-align: start; }
   .captura { width: 260px; }

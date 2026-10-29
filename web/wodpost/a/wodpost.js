@@ -83,3 +83,26 @@
   });
   campo.addEventListener('input', function () { pintar(false); });
 })();
+
+// El anuncio de «Cómo va»: se reproduce en silencio solo mientras se ve (y nunca solo si se piden menos animaciones).
+(function () {
+  var video = document.getElementById('anuncio');
+  var boton = document.getElementById('sonido');
+  if (!video || !boton) return;
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (quieto) video.controls = true;
+  else if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { var p = video.play(); if (p && p.catch) p.catch(function () { video.controls = true; }); }
+        else video.pause();
+      });
+    }, { threshold: 0.4 }).observe(video);
+  }
+  boton.addEventListener('click', function () {
+    video.muted = !video.muted;
+    boton.setAttribute('aria-pressed', String(!video.muted));
+    boton.textContent = video.muted ? 'Activar sonido' : 'Quitar sonido';
+    if (!video.muted) { video.currentTime = 0; var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+  });
+})();
