@@ -113,3 +113,7 @@ dl.dic { margin: 0; }
 .ent dt { font-weight: 800; font-size: 1.05rem; }
 .ent dd { margin: .2rem 0 0; color: var(--muted); font-size: .97rem; }
 .nada { text-align: center; color: var(--muted); padding: 1.5rem 0; }
+/* La primera pregunta del test, a la vista nada más abrir (30/10: nadie bajaba hasta el test) */
+#test.hero { padding-top: 1rem; }
+#test.hero h1 { font-size: clamp(1.9rem, 8.5vw, 3rem); margin-bottom: .6rem; }
+#test.hero p.lead { font-size: 1.02rem; margin-bottom: 1rem; }
