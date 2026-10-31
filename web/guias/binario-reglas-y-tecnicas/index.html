@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo resolver un puzle Binario: reglas y técnicas | Mosaico Lab</title>
+<meta name="description" content="Las tres reglas del Binario (Takuzu) y las técnicas para resolverlo sin adivinar: parejas, sándwiches, recuento y filas repetidas.">
+<meta name="theme-color" content="#12607A">
+<meta name="google-adsense-account" content="ca-pub-4488435659395641">
+<link rel="canonical" href="https://mosaicolab.app/guias/binario-reglas-y-tecnicas">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Mosaico Lab">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Cómo resolver un puzle Binario: reglas y técnicas | Mosaico Lab">
+<meta property="og:description" content="Las tres reglas del Binario (Takuzu) y las técnicas para resolverlo sin adivinar: parejas, sándwiches, recuento y filas repetidas.">
+<meta property="og:url" content="https://mosaicolab.app/guias/binario-reglas-y-tecnicas">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/assets/estilo.css">
+</head>
+<body>
+<header class="sitio"><div class="caja"><a class="marca" href="/">Mosaico Lab</a><nav><a href="/guias/">Guías</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a></nav></div></header>
+<main class="caja">
+<p><a href="/guias/">← Todas las guías</a></p><article><h1>Cómo resolver un puzle Binario: reglas y técnicas</h1><p><small>Por el equipo de Mosaico Lab · octubre de 2026</small></p>
+<p>El Binario, conocido también como Takuzu, es uno de esos puzles que se explican en diez segundos y enganchan durante años. Se juega en una cuadrícula cuadrada de lado par (6×6, 8×8, 10×10…) en la que hay que escribir ceros y unos, o dos colores si lo prefieres, hasta llenarla. Casi todas las casillas empiezan vacías y unas pocas vienen dadas. No hace falta ninguna operación: solo mirar, comparar y descartar.</p>
+<h2>Las tres reglas</h2>
+<ol>
+<li><strong>Nada de tres iguales seguidos.</strong> En ninguna fila ni columna puede haber tres ceros o tres unos juntos.</li>
+<li><strong>Mitad y mitad.</strong> Cada fila y cada columna tiene el mismo número de ceros que de unos. En una fila de seis casillas, tres y tres.</li>
+<li><strong>Ni filas ni columnas repetidas.</strong> No puede haber dos filas idénticas, ni dos columnas idénticas.</li>
+</ol>
+<p>Todo el puzle sale de combinar estas reglas. Un buen Binario tiene una única solución y siempre se puede llegar a ella razonando, sin probar a ciegas.</p>
+<h2>Técnica 1: la pareja</h2>
+<p>Si ves dos casillas iguales juntas, las que las rodean por los lados tienen que ser distintas. Dos unos seguidos obligan a poner un cero antes y otro después. Es lo primero que conviene buscar al empezar, porque desbloquea casillas sin esfuerzo.</p>
+<h2>Técnica 2: el sándwich</h2>
+<p>Si hay dos casillas iguales con un hueco entre ellas (por ejemplo 1 _ 1), el hueco no puede ser otro 1, porque formarían tres seguidos. Tiene que ser un 0. Con la práctica el ojo detecta estos sándwiches de un vistazo.</p>
+<h2>Técnica 3: contar</h2>
+<p>Cuando una fila ya tiene todos los ceros que le corresponden (tres en una de seis), todas las casillas vacías que queden son unos, y al revés. Repasa las filas y columnas casi completas: son las que antes se resuelven. Un buen hábito es mirar primero las que tienen más casillas rellenas.</p>
+<h2>Técnica 4: evitar el tres escondido</h2>
+<p>A veces una casilla parece libre, pero uno de los dos valores crearía tres seguidos más adelante en la fila. Imagina que pones un 0 en un hueco y compruebas qué pasa: si te obliga a romper una regla, la casilla es un 1. Esta pequeña hipótesis de un solo paso no es adivinar, es una demostración corta.</p>
+<h2>Técnica 5: la fila gemela</h2>
+<p>Cuando una fila está casi terminada y solo le faltan dos casillas, puede que el único modo de rellenarla las deje idéntica a otra fila ya completa. Entonces hay que hacerlo al revés. Esta regla es la que suele resolver los últimos huecos de los puzles difíciles.</p>
+<h2>Un método ordenado</h2>
+<p>Haz primero una pasada completa buscando parejas y sándwiches, luego otra contando por filas y columnas, y deja las hipótesis para el final. Si te atascas, cambia de zona: lo que resuelves en una esquina suele destapar la pista que necesitabas en otra. Y si te equivocas, no pasa nada: el error casi siempre aparece enseguida, porque tarde o temprano una fila no cuadra.</p>
+<p>En <a href="/tesela/">Tesela</a> el Binario es uno de los cuatro puzles diarios, junto a Zonas, Camino y Flota, y se puede probar desde la web.</p>
+</article><p><a href="/guias/">← Más guías</a></p>
+</main>
+<footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/guias/">Guías</a> · <a href="/sobre-nosotros/">Sobre nosotros</a> · <a href="/contacto/">Contacto</a> · <a href="/privacidad/">Privacidad</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</footer>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
