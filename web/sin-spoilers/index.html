@@ -66,6 +66,19 @@ header.top a{color:var(--gris);text-decoration:none}
 .serie b{font:700 clamp(1.35rem,5vw,1.75rem)/1 var(--d);text-transform:uppercase;letter-spacing:.01em}
 .serie b span{color:var(--gris);font-size:1.1rem;padding-inline:6px}
 .serie small{color:var(--gris);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase}
+.serie.vista{opacity:.55}
+.serie .huecos{gap:5px}
+.serie .hueco{flex:1;width:auto;max-width:36px}
+.evento{border-top:1px solid var(--linea);padding-top:14px;margin-top:14px}
+.evento>summary{cursor:pointer;list-style:none;font:700 1.35rem/1.1 var(--d);text-transform:uppercase;letter-spacing:.02em}
+.evento>summary::-webkit-details-marker{display:none}
+.evento>summary::after{content:" +";color:var(--gris)}
+.evento[open]>summary::after{content:" −"}
+.cat h3{font:700 1.05rem/1 var(--d);text-transform:uppercase;letter-spacing:.06em;color:var(--oro-claro);margin:18px 0 10px}
+.cerrada{all:unset;box-sizing:border-box;display:grid;gap:6px;width:100%;padding:16px;border:1px dashed var(--linea);border-radius:6px;cursor:pointer;color:var(--gris)}
+.cerrada b{color:var(--texto);font-weight:600}
+.cerrada:hover{border-color:var(--oro)}
+.cerrada:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
 
 /* Visor */
 .visor{padding-block:20px 8px}
@@ -176,9 +189,9 @@ footer p{margin:0 0 6px;max-width:70ch}
 </section>
 
 <section class="cat" id="catalogo">
-  <h2>Worlds 2026 · fase suiza</h2>
-  <p class="sub">Casteos de Ibai, del canal LoL Esports VODs Español. Solo verás los equipos.</p>
-  <ul class="series" id="series"></ul>
+  <h2>Las series</h2>
+  <p class="sub">Casteos de Ibai, del canal LoL Esports VODs Español. Se actualiza solo. Solo verás los equipos, y las eliminatorias están cerradas hasta que digas que ya vas por ahí.</p>
+  <div id="eventos"><p class="sub">Cargando las series…</p></div>
   <details class="otra">
     <summary>Ver otra serie pegando sus enlaces</summary>
     <label for="nombre">Nombre de la serie</label>
@@ -265,21 +278,22 @@ footer p{margin:0 0 6px;max-width:70ch}
 
 <script>
 (function(){
-  // Datos del canal @LoLEsports_IBAI a 1/11/2026, en orden de game.
-  var SERIES=[
-    {a:"BLG",b:"HLE",v:["amN4tLyxXSc","TyWwhzVfolE"]},
-    {a:"LYON",b:"LOS",v:["F5dLvtgh6cQ","YUGcNrCTQA4","kRXTH-_hiOs"]},
-    {a:"KC",b:"KOI",v:["-U9h8-MpYzo","W0NxLKxz6IQ"]},
-    {a:"G2",b:"HLE",v:["js3bQTEyOy0","945gK-prdj4"]},
-    {a:"LOS",b:"TL",v:["fArGqh5vGUU","FiTl_dtEHeU","yZtA2NKgq74"]},
-    {a:"BLG",b:"TES",v:["8TtkoUNQ4HM","vhZGd5gi_WQ","0haH3v8smm0"]},
-    {a:"KC",b:"CFO",v:["ZFyYroH1pFs","y36Zl9MA3nA"]},
-    {a:"T1",b:"KOI",v:["u7bSyhtlpB8","iiUCzqA439o"]},
-    {a:"AL",b:"TL",v:["GsV8ipKqlJ0","3n-S8kVq7pk"]},
-    {a:"TSW",b:"LOS",v:["x6CTf3YV5ng","bVUHnWUcAyY"]},
-    {a:"LYON",b:"GEN",v:["r090ZYAuLY4","t3QXPqK7LpA","tc2K3Yogfa4"]},
-    {a:"KOI",b:"DK",v:["vAWxvDE0fjk","XAtGtWPt5eg"]}
-  ];
+  // Respaldo si el Worker no responde: fase suiza del Mundial 2026 a 1/11.
+  var RESPALDO={eventos:[{id:'mundial-2026',nombre:'Mundial 2026',fases:[{id:'suizo',nombre:'Fase suiza',eliminatoria:false,series:[
+    {a:"BLG",b:"HLE",v:["amN4tLyxXSc","TyWwhzVfolE"],bo:3,seguro:true},
+    {a:"LYON",b:"LOS",v:["F5dLvtgh6cQ","YUGcNrCTQA4","kRXTH-_hiOs"],bo:3,seguro:true},
+    {a:"KC",b:"KOI",v:["-U9h8-MpYzo","W0NxLKxz6IQ"],bo:3,seguro:true},
+    {a:"G2",b:"HLE",v:["js3bQTEyOy0","945gK-prdj4"],bo:3,seguro:true},
+    {a:"LOS",b:"TL",v:["fArGqh5vGUU","FiTl_dtEHeU","yZtA2NKgq74"],bo:3,seguro:true},
+    {a:"BLG",b:"TES",v:["8TtkoUNQ4HM","vhZGd5gi_WQ","0haH3v8smm0"],bo:3,seguro:true},
+    {a:"KC",b:"CFO",v:["ZFyYroH1pFs","y36Zl9MA3nA"],bo:3,seguro:true},
+    {a:"T1",b:"KOI",v:["u7bSyhtlpB8","iiUCzqA439o"],bo:3,seguro:true},
+    {a:"AL",b:"TL",v:["GsV8ipKqlJ0","3n-S8kVq7pk"],bo:3,seguro:true},
+    {a:"TSW",b:"LOS",v:["x6CTf3YV5ng","bVUHnWUcAyY"],bo:3,seguro:true},
+    {a:"LYON",b:"GEN",v:["r090ZYAuLY4","t3QXPqK7LpA","tc2K3Yogfa4"],bo:3,seguro:true},
+    {a:"KOI",b:"DK",v:["vAWxvDE0fjk","XAtGtWPt5eg"],bo:3,seguro:true}
+  ]}]}]};
+  var CATALOGO='https://avisame.vsricardo97.workers.dev/series';
   var $=function(id){return document.getElementById(id)};
   var subs=false,subsAplicado=false,serie=null,idx=0,bo=3,player=null,listo=false,apiLista=false,pendiente=null,vigia=null;
   var ICO={
@@ -291,14 +305,51 @@ footer p{margin:0 0 6px;max-width:70ch}
     cerrar:'<svg viewBox="0 0 24 24"><path d="M8 4h2v6H4V8h4zm6 0h2v4h4v2h-6zM4 14h6v6H8v-4H4zm10 0h6v2h-4v4h-2z"/></svg>'
   };
 
-  SERIES.forEach(function(s){
-    var li=document.createElement('li'),bt=document.createElement('button');
-    bt.className='serie';bt.type='button';
-    bt.innerHTML='<small>Al mejor de 3</small><b>'+s.a+'<span>vs</span>'+s.b+'</b><span class="huecos" aria-hidden="true"><span class="hueco"></span><span class="hueco"></span><span class="hueco"></span></span>';
+  function leer(k){try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return {}}}
+  function guardar(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  var abiertas=leer('ss-fases'),vistas=leer('ss-vistas');
+  function etiqueta(s){return s.bo===1?'Un game':(s.seguro?'Al mejor de '+s.bo:'Serie')}
+  function tarjetaSerie(ev,f,s){
+    var li=document.createElement('li'),bt=document.createElement('button'),clave=s.v[0];
+    bt.className='serie'+(vistas[clave]?' vista':'');bt.type='button';
+    var h='';for(var i=0;i<s.bo;i++)h+='<span class="hueco"></span>';
+    bt.innerHTML='<small>'+(vistas[clave]?'Vista · ':'')+etiqueta(s)+'</small><b></b><span class="huecos" aria-hidden="true">'+h+'</span>';
+    var b=bt.querySelector('b');b.append(s.a);var vs=document.createElement('span');vs.textContent='vs';b.append(vs,s.b);
     bt.setAttribute('aria-label',s.a+' contra '+s.b);
-    bt.onclick=function(){abrir({titulo:s.a+' vs '+s.b,fase:'Worlds 2026 · fase suiza · al mejor de 3',v:s.v,bo:3})};
-    li.appendChild(bt);$('series').appendChild(li);
-  });
+    bt.onclick=function(){
+      vistas[clave]=1;guardar('ss-vistas',vistas);bt.classList.add('vista');
+      abrir({titulo:s.a+' vs '+s.b,fase:ev.nombre+' · '+f.nombre+' · '+etiqueta(s).toLowerCase(),v:s.v,bo:s.bo,reciente:s.reciente});
+    };
+    li.appendChild(bt);return li;
+  }
+  function pintarCatalogo(c){
+    var cont=$('eventos');cont.innerHTML='';
+    c.eventos.forEach(function(ev,n){
+      var d=document.createElement('details');d.className='evento';d.open=n===0;
+      var sm=document.createElement('summary');sm.textContent=ev.nombre;d.appendChild(sm);
+      ev.fases.forEach(function(f){
+        var h3=document.createElement('h3');h3.textContent=f.nombre;d.appendChild(h3);
+        var ul=document.createElement('ul');ul.className='series';d.appendChild(ul);
+        var clave=ev.id+'/'+f.id;
+        if(f.eliminatoria&&!abiertas[clave]){
+          // Ni equipos ni cuántas series: solo la fase. Se abre a mano y queda recordado en este móvil.
+          var li=document.createElement('li'),bt=document.createElement('button');
+          bt.className='cerrada';bt.type='button';
+          bt.innerHTML='<b>Cerrada para no destripar los cruces</b><span>Toca cuando ya vayas por aquí</span>';
+          bt.onclick=function(){
+            if(!confirm('¿Ya vas por '+f.nombre.toLowerCase()+' de '+ev.nombre+'? Verás quién juega contra quién.'))return;
+            abiertas[clave]=1;guardar('ss-fases',abiertas);
+            ul.innerHTML='';f.series.forEach(function(s){ul.appendChild(tarjetaSerie(ev,f,s))});
+          };
+          li.appendChild(bt);ul.appendChild(li);
+        }else f.series.forEach(function(s){ul.appendChild(tarjetaSerie(ev,f,s))});
+      });
+      cont.appendChild(d);
+    });
+  }
+  fetch(CATALOGO).then(function(r){if(!r.ok)throw 0;return r.json()})
+    .then(function(c){if(!c||!c.eventos||!c.eventos.length)throw 0;pintarCatalogo(c)})
+    .catch(function(){pintarCatalogo(RESPALDO)});
 
   window.onYouTubeIframeAPIReady=function(){apiLista=true;if(pendiente){var f=pendiente;pendiente=null;f()}};
   var sc=document.createElement('script');sc.src='https://www.youtube.com/iframe_api';sc.async=true;document.head.appendChild(sc);
@@ -402,11 +453,13 @@ footer p{margin:0 0 6px;max-width:70ch}
   });
   function terminado(){
     quitar();huecos(idx+1);
+    if(idx+1>=bo){tarjeta('Fin de la serie','Game '+(idx+1)+' visto. La serie terminó aquí.');$('siguiente').hidden=true;pintarMandos();return}
     tarjeta('Game '+(idx+1)+' visto','¿Hay otro game? Toca aquí o en «Siguiente game» y lo sabrás, como en directo.');
     $('siguiente').hidden=false;pintarMandos();
   }
   function siguiente(){
     if(idx+1<serie.v.length){idx++;prepararGame();return}
+    if(serie.reciente){tarjeta('Game '+(idx+2),'Si hubo game '+(idx+2)+', todavía no está subido. Vuelve en un rato.');$('siguiente').hidden=true;return}
     tarjeta('Fin de la serie','No hubo game '+(idx+2)+'. La serie terminó aquí.');
     $('siguiente').hidden=true;
   }
