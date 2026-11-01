@@ -68,7 +68,8 @@ header.top a{color:var(--gris);text-decoration:none}
 .vcab h2{font:700 clamp(2rem,7vw,3.4rem)/.9 var(--d);text-transform:uppercase;margin:0}
 .vcab .fase{color:var(--gris);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase}
 .pantalla{position:relative;aspect-ratio:16/9;max-width:100%;background:#000;border-radius:6px;overflow:hidden;border:1px solid var(--linea)}
-.pantalla .reproductor{position:absolute;inset:0}
+.pantalla .reproductor{position:fixed;left:-10000px;top:0;width:640px;height:360px}
+.pantalla .reproductor.en-marcha{position:absolute;inset:0;left:0;width:auto;height:auto}
 .pantalla .reproductor iframe{width:100%;height:100%;border:0;pointer-events:none}
 .tarjeta{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:14px;text-align:center;padding:20px;background:radial-gradient(120% 90% at 50% 110%,#16324a 0%,#000 70%)}
 .tarjeta[hidden]{display:none}
@@ -144,7 +145,7 @@ footer p{margin:0 0 6px;max-width:70ch}
     <button class="b sec" id="sonido" hidden>Activar sonido</button>
     <button class="b sec" id="volver">Otras series</button>
   </div>
-  <p class="nota">Mientras ves un game no hay título, duración ni barra de tiempo. Al pausar o terminar, el reproductor se quita para que YouTube no enseñe sugerencias de otros vídeos del canal.</p>
+  <p class="nota">Mientras ves un game no hay título, duración ni barra de tiempo. Antes de empezar, al pausar y al terminar, el reproductor se aparta para que no se vean la miniatura, el título ni otros vídeos del canal. El vídeo empieza sin sonido: pulsa «Activar sonido».</p>
 </section>
 
 <section class="canal">
@@ -182,12 +183,10 @@ footer p{margin:0 0 6px;max-width:70ch}
     {a:"KOI",b:"DK",v:["vAWxvDE0fjk","XAtGtWPt5eg"]}
   ];
   var $=function(id){return document.getElementById(id)};
-  var serie=null,idx=0,player=null,apiLista=false,pendiente=null,bo=3;
+  var serie=null,idx=0,bo=3,player=null,listo=false,apiLista=false,pendiente=null,vigia=null,empezado=false;
 
-  // Catálogo: solo equipos, nunca cuántos vídeos hay.
-  SERIES.forEach(function(s,i){
-    var li=document.createElement('li');
-    var bt=document.createElement('button');
+  SERIES.forEach(function(s){
+    var li=document.createElement('li'),bt=document.createElement('button');
     bt.className='serie';bt.type='button';
     bt.innerHTML='<small>Al mejor de 3</small><b>'+s.a+'<span>vs</span>'+s.b+'</b><span class="huecos" aria-hidden="true"><span class="hueco"></span><span class="hueco"></span><span class="hueco"></span></span>';
     bt.setAttribute('aria-label',s.a+' contra '+s.b);
@@ -195,104 +194,96 @@ footer p{margin:0 0 6px;max-width:70ch}
     li.appendChild(bt);$('series').appendChild(li);
   });
 
-  // API de YouTube (dominio sin cookies).
   window.onYouTubeIframeAPIReady=function(){apiLista=true;if(pendiente){var f=pendiente;pendiente=null;f()}};
-  var s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';s.async=true;document.head.appendChild(s);
+  var sc=document.createElement('script');sc.src='https://www.youtube.com/iframe_api';sc.async=true;document.head.appendChild(sc);
 
-  function huecos(){
-    var h='';for(var i=0;i<bo;i++){h+='<span class="hueco'+(i<idx?' visto':(i===idx?' ahora':''))+'"></span>'}
-    $('vhuecos').innerHTML=h;
-  }
+  function huecos(n){var h='';for(var i=0;i<bo;i++){h+='<span class="hueco'+(i<n?' visto':(i===n?' ahora':''))+'"></span>'}$('vhuecos').innerHTML=h}
   function tarjeta(num,msg){$('tnum').textContent=num;$('tmsg').textContent=msg;$('tarjeta').hidden=false}
-  function quitarReproductor(){
+  // El reproductor nunca se tapa: mientras no está en marcha vive fuera de la pantalla
+  // (así no se ven la miniatura ni el título) y la tarjeta ocupa su sitio.
+  function esconder(){$('reproductor').classList.remove('en-marcha')}
+  function mostrar(){$('tarjeta').hidden=true;$('reproductor').classList.add('en-marcha')}
+  function quitar(){
+    clearTimeout(vigia);
     if(player){try{player.destroy()}catch(e){}player=null}
-    $('reproductor').innerHTML='';
-    $('sonido').hidden=true;
+    listo=false;empezado=false;
+    $('reproductor').innerHTML='';esconder();$('sonido').hidden=true;
   }
-  function prepararGame(){
-    quitarReproductor();
-    huecos();
-    tarjeta('Game '+(idx+1),'Pulsa para empezar.');
-    $('play').hidden=false;$('play').disabled=false;$('play').textContent='Ver game '+(idx+1);
-    $('siguiente').hidden=true;
-  }
-  function abrir(conf){
-    serie=conf;idx=0;bo=conf.bo||Math.max(3,conf.v.length);
-    $('vtitulo').textContent=conf.titulo;$('vfase').textContent=conf.fase;
-    $('visor').hidden=false;
-    prepararGame();
-    $('visor').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
-  }
-  function nuevo(t){
-    $('tarjeta').hidden=true;
+  function crear(){
     var d=document.createElement('div');d.id='yt';$('reproductor').appendChild(d);
     player=new YT.Player('yt',{
-      host:'https://www.youtube-nocookie.com',
-      videoId:serie.v[idx],
-      // Arranca en silencio para que el móvil permita empezar sin tocar el vídeo de YouTube.
-      playerVars:{autoplay:1,mute:1,start:Math.floor(t||0),controls:0,disablekb:1,rel:0,iv_load_policy:3,fs:0,playsinline:1,modestbranding:1},
+      host:'https://www.youtube-nocookie.com',videoId:serie.v[idx],
+      playerVars:{autoplay:0,mute:1,controls:0,disablekb:1,rel:0,iv_load_policy:3,fs:0,playsinline:1,modestbranding:1},
       events:{
-        onReady:function(e){try{e.target.playVideo();e.target.unMute()}catch(x){}},
+        onReady:function(){listo=true;$('play').disabled=false;$('tmsg').textContent='Pulsa para empezar.'},
         onStateChange:function(e){
           if(e.data===1){
+            clearTimeout(vigia);empezado=true;mostrar();
             $('play').textContent='Pausa';$('play').disabled=false;
             var mudo=false;try{mudo=player.isMuted()}catch(x){}
             $('sonido').hidden=!mudo;
-          }
-          else if(e.data===0){terminado()}
+          } else if(e.data===0){terminado()}
         }
       }
     });
   }
-  function crear(){nuevo(0)}
+  function prepararGame(){
+    quitar();huecos(idx);
+    tarjeta('Game '+(idx+1),'Preparando el vídeo…');
+    $('play').hidden=false;$('play').disabled=true;$('play').textContent='Ver game '+(idx+1);
+    $('siguiente').hidden=true;
+    apiLista?crear():(pendiente=crear);
+  }
+  function abrir(conf){
+    serie=conf;idx=0;bo=conf.bo||3;
+    $('vtitulo').textContent=conf.titulo;$('vfase').textContent=conf.fase;
+    $('visor').hidden=false;prepararGame();
+    $('visor').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  }
   function play(){
-    if(player&&player.getPlayerState){
-      var st=player.getPlayerState();
-      if(st===1){pausar();return}
+    if(!player||!listo)return;
+    var st=-1;try{st=player.getPlayerState()}catch(e){}
+    if(st===1){ // pausa: se esconde el reproductor, no se tapa
+      try{player.pauseVideo()}catch(e){}
+      esconder();tarjeta('Pausa','Pulsa para seguir viendo el game '+(idx+1)+'.');
+      $('play').textContent='Seguir';return;
     }
-    $('play').disabled=true;
-    if(player&&player.playVideo&&!pausado){return}
-    if(pausado){ // se reanuda donde estaba
-      var t=pausado;pausado=null;
-      apiLista?reanudar(t):(pendiente=function(){reanudar(t)});
-      return;
-    }
-    apiLista?crear():(pendiente=crear,tarjeta('Game '+(idx+1),'Cargando el reproductor…'));
+    $('play').disabled=true;$('tmsg').textContent='Empezando…';
+    try{player.playVideo()}catch(e){}
+    clearTimeout(vigia);
+    vigia=setTimeout(function(){
+      var s=-1;try{s=player.getPlayerState()}catch(e){}
+      if(s!==1){
+        $('play').disabled=false;
+        tarjeta('Game '+(idx+1),'Este navegador no deja empezar el vídeo. Vuelve a pulsar o abre la página en Safari o Chrome.');
+      }
+    },4000);
   }
-  var pausado=null;
-  function pausar(){
-    // Al pausar, YouTube muestra otros vídeos: quitamos el reproductor y guardamos el segundo.
-    var t=0;try{t=player.getCurrentTime()}catch(e){}
-    quitarReproductor();pausado=t;
-    tarjeta('Pausa','Pulsa para seguir viendo el game '+(idx+1)+'.');
-    $('play').textContent='Seguir';$('play').disabled=false;
-  }
-  function reanudar(t){nuevo(t)}
+  function sonido(){try{player.unMute();player.setVolume(100)}catch(e){}$('sonido').hidden=true}
   function terminado(){
-    quitarReproductor();pausado=null;
-    idx++;huecos();idx--;
+    quitar();huecos(idx+1);
     tarjeta('Game '+(idx+1)+' visto','¿Hay otro game? Pulsa siguiente y lo sabrás, como en directo.');
     $('play').hidden=true;$('siguiente').hidden=false;
   }
   function siguiente(){
     if(idx+1<serie.v.length){idx++;prepararGame();return}
-    idx++;huecos();
-    tarjeta('Fin de la serie','No hubo game '+(idx+1)+'. La serie terminó aquí.');
+    tarjeta('Fin de la serie','No hubo game '+(idx+2)+'. La serie terminó aquí.');
     $('siguiente').hidden=true;
   }
   function parseId(x){x=x.trim();if(!x)return null;var m=x.match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);if(m)return m[1];return /^[A-Za-z0-9_-]{11}$/.test(x)?x:null}
 
   $('play').onclick=play;
+  $('sonido').onclick=sonido;
   $('siguiente').onclick=siguiente;
-  $('sonido').onclick=function(){try{player.unMute();player.setVolume(100)}catch(e){}$('sonido').hidden=true};
-  $('volver').onclick=function(){quitarReproductor();pausado=null;$('visor').hidden=true;$('catalogo').scrollIntoView()};
+  $('volver').onclick=function(){quitar();$('visor').hidden=true;$('catalogo').scrollIntoView()};
   $('pegar').onclick=function(){
     var l=$('enlaces').value.split(/\n/).filter(function(x){return x.trim()});
     if(!l.length){$('error').textContent='Pega al menos un enlace.';return}
     var ids=l.map(parseId),mal=ids.indexOf(null);
     if(mal>-1){$('error').textContent='No reconozco el enlace de la línea '+(mal+1)+'.';return}
     $('error').textContent='';
-    abrir({titulo:$('nombre').value.trim()||'Tu serie',fase:'Serie propia',v:ids,bo:Math.max(3,ids.length%2?ids.length:ids.length+1)});
+    var n=Math.max(3,ids.length);if(n%2===0)n++;
+    abrir({titulo:$('nombre').value.trim()||'Tu serie',fase:'Serie propia',v:ids,bo:n});
   };
 })();
 </script>
