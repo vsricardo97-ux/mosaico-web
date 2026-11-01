@@ -87,6 +87,7 @@ header.top a{color:var(--gris);text-decoration:none}
 .m:hover{background:#ffffff12}
 .m:focus-visible{outline:2px solid var(--azul);outline-offset:-2px}
 .m svg{width:24px;height:24px;fill:currentColor}
+.m[aria-pressed="false"] svg{opacity:.45}
 .m.aviso{color:#1a1205;background:var(--oro)}
 .m small{font-size:.7rem;color:var(--gris)}
 /* Grande: ocupa toda la pantalla (pantalla completa real si el navegador la da) */
@@ -100,6 +101,7 @@ header.top a{color:var(--gris);text-decoration:none}
   .marco.grande .mandos .m small,.marco.grande .mandos .m span{display:none}
 }
 body.sin-scroll{overflow:hidden}
+@media (max-width:440px){.mandos .m span{display:none}.m{min-width:42px;padding:0 6px}}
 .girar{display:none;color:var(--gris);font-size:.85rem;margin-top:14px}
 @media (orientation:portrait){.marco.grande .girar{display:block}}
 .botones{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
@@ -172,6 +174,7 @@ footer p{margin:0 0 6px;max-width:70ch}
       <button class="m" id="atras" type="button" aria-label="Atrás 10 segundos"><svg viewBox="0 0 24 24"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg><small>10</small></button>
       <button class="m" id="adelante" type="button" aria-label="Adelante 10 segundos"><small>10</small><svg viewBox="0 0 24 24"><path d="M12 5V2l5 4-5 4V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z"/></svg></button>
       <span class="hueco-flex"></span>
+      <button class="m" id="subs" type="button" aria-label="Subtítulos" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zm2 2v10h14V7zm2 3h4v1.5H8.5v1h2.5V14H7zm6 0h4v1.5h-2.5v1H17V14h-4z"/></svg></button>
       <button class="m" id="sonido" type="button" aria-label="Sonido"></button>
       <button class="m" id="grande" type="button" aria-label="Pantalla completa"></button>
     </div>
@@ -219,7 +222,7 @@ footer p{margin:0 0 6px;max-width:70ch}
     {a:"KOI",b:"DK",v:["vAWxvDE0fjk","XAtGtWPt5eg"]}
   ];
   var $=function(id){return document.getElementById(id)};
-  var serie=null,idx=0,bo=3,player=null,listo=false,apiLista=false,pendiente=null,vigia=null;
+  var subs=false,subsAplicado=false,serie=null,idx=0,bo=3,player=null,listo=false,apiLista=false,pendiente=null,vigia=null;
   var ICO={
     play:'<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
     pausa:'<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>',
@@ -262,17 +265,17 @@ footer p{margin:0 0 6px;max-width:70ch}
   function quitar(){
     clearTimeout(vigia);
     if(player){try{player.destroy()}catch(e){}player=null}
-    listo=false;$('reproductor').innerHTML='';esconder();
+    listo=false;subsAplicado=false;$('reproductor').innerHTML='';esconder();
   }
   function crear(){
     var d=document.createElement('div');d.id='yt';$('reproductor').appendChild(d);
     player=new YT.Player('yt',{
       host:'https://www.youtube-nocookie.com',videoId:serie.v[idx],
-      playerVars:{autoplay:0,mute:1,controls:0,disablekb:1,rel:0,iv_load_policy:3,fs:0,playsinline:1,modestbranding:1},
+      playerVars:{autoplay:0,mute:1,cc_load_policy:0,controls:0,disablekb:1,rel:0,iv_load_policy:3,fs:0,playsinline:1,modestbranding:1},
       events:{
         onReady:function(){listo=true;$('tmsg').textContent='Pulsa para empezar.';pintarMandos()},
         onStateChange:function(e){
-          if(e.data===1){clearTimeout(vigia);mostrar()}
+          if(e.data===1){clearTimeout(vigia);mostrar();if(!subsAplicado){subsAplicado=true;aplicarSubs()}}
           else if(e.data===0){terminado();return}
           pintarMandos();
         }
@@ -304,6 +307,11 @@ footer p{margin:0 0 6px;max-width:70ch}
     vigia=setTimeout(function(){
       if(estado()!==1)tarjeta('Game '+(idx+1),'Este navegador no deja empezar el vídeo. Vuelve a pulsar o abre la página en Safari o Chrome.');
     },4000);
+  }
+  function aplicarSubs(){
+    if(!player)return;
+    try{if(subs){player.loadModule('captions')}else{player.unloadModule('captions');player.unloadModule('cc')}}catch(e){}
+    $('subs').setAttribute('aria-pressed',subs?'true':'false');
   }
   function saltar(n){if(!player)return;try{player.seekTo(Math.max(0,player.getCurrentTime()+n),true)}catch(e){}}
   function sonido(){
@@ -346,6 +354,7 @@ footer p{margin:0 0 6px;max-width:70ch}
   $('atras').onclick=function(){saltar(-10)};
   $('adelante').onclick=function(){saltar(10)};
   $('sonido').onclick=sonido;
+  $('subs').onclick=function(){subs=!subs;aplicarSubs()};
   $('grande').onclick=grande;
   $('siguiente').onclick=siguiente;
   $('volver').onclick=function(){if($('marco').classList.contains('grande'))grande();quitar();$('visor').hidden=true;$('catalogo').scrollIntoView()};
