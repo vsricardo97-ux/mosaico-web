@@ -110,18 +110,14 @@ header.top a{color:var(--gris);text-decoration:none}
 .m.aviso{color:#1a1205;background:var(--oro)}
 .m small{font-size:.7rem;color:var(--gris)}
 /* Grande: ocupa toda la pantalla (pantalla completa real si el navegador la da) */
-.marco.grande{position:fixed;inset:0;z-index:50;border:0;border-radius:0;justify-content:center;align-items:center;--sa-t:env(safe-area-inset-top,0px);--sa-b:env(safe-area-inset-bottom,0px);--sa-l:env(safe-area-inset-left,0px);--sa-r:env(safe-area-inset-right,0px);--reserva:0px}
-/* El vídeo usa todo el espacio; los mandos van en la franja negra que sobra (nunca encima del vídeo)
-   y se esconden solos mientras se reproduce. Si no hay franja suficiente, el vídeo cede ese hueco solo mientras se ven. */
-.marco.grande .pantalla{width:min(100%,calc((100dvh - var(--sa-t) - var(--sa-b) - var(--reserva))*16/9));aspect-ratio:16/9}
-.marco.grande:not(.ocultos){--reserva:150px}
+.marco.grande{position:fixed;inset:0;z-index:50;border:0;border-radius:0;justify-content:center;align-items:center;--sa-t:env(safe-area-inset-top,0px);--sa-b:env(safe-area-inset-bottom,0px);--sa-l:env(safe-area-inset-left,0px);--sa-r:env(safe-area-inset-right,0px);}
+/* El vídeo cabe entero siempre (ancho y alto fijos a 16:9, sin recortar) y no cambia de tamaño al esconder los mandos.
+   Los mandos van en la franja negra que sobra, nunca encima del vídeo, y se esconden solos mientras se reproduce. */
+.marco.grande .pantalla{--w:min(100vw,calc((100dvh - var(--sa-t) - var(--sa-b) - 150px)*16/9));width:var(--w);height:calc(var(--w)*9/16);flex:none;aspect-ratio:auto;cursor:pointer}
 .marco.grande .mandos{position:absolute;left:0;right:0;bottom:calc(var(--sa-b) + 12px);margin-inline:auto;width:min(100% - 24px,560px);border-top:0;background:transparent;transition:opacity .25s}
 .marco.grande.ocultos .mandos,.marco.grande.ocultos .girar{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,visibility 0s .25s}
-.marco.grande .pantalla{cursor:pointer;transition:width .25s}
 @media (orientation:landscape){
-  .marco.grande:not(.ocultos){--reserva:0px}
-  .marco.grande .pantalla{width:min(calc(100% - var(--sa-l) - var(--sa-r) - var(--lado,0px)),calc((100dvh - var(--sa-t) - var(--sa-b))*16/9))}
-  .marco.grande:not(.ocultos) .pantalla{--lado:120px}
+  .marco.grande .pantalla{--w:min(calc(100vw - var(--sa-l) - var(--sa-r) - 128px),calc((100dvh - var(--sa-t) - var(--sa-b))*16/9))}
   .marco.grande .mandos{flex-direction:column;justify-content:center;left:auto;right:calc(var(--sa-r) + 4px);top:0;bottom:0;width:56px;padding:6px 0;margin:0}
   .marco.grande .mandos .hueco-flex{flex:0 0 12px}
   .marco.grande .mandos .m small,.marco.grande .mandos .m span{display:none}
