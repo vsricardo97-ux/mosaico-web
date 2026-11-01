@@ -14,6 +14,12 @@
 <meta property="og:description" content="Ve la serie como si fuera en directo: game a game, sin títulos, sin duración y sin contar vídeos.">
 <meta property="og:url" content="https://mosaicolab.app/sin-spoilers/">
 <link rel="icon" href="/assets/mosaico/favicon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="/assets/mosaico/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sin spoilers">
 <style>
 @font-face{font-family:"Barlow Condensed";src:url(a/BarlowCondensed-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
 @font-face{font-family:"Barlow";src:url(a/Barlow-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
@@ -102,6 +108,7 @@ header.top a{color:var(--gris);text-decoration:none}
 }
 body.sin-scroll{overflow:hidden}
 @media (max-width:440px){.mandos .m span{display:none}.m{min-width:42px;padding:0 6px}}
+@media (display-mode:standalone),(display-mode:fullscreen){.sinbarras{display:none}}
 .girar{display:none;color:var(--gris);font-size:.85rem;margin-top:14px}
 @media (orientation:portrait){.marco.grande .girar{display:block}}
 .botones{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
@@ -187,7 +194,7 @@ footer p{margin:0 0 6px;max-width:70ch}
       <button class="m" id="sonido" type="button" aria-label="Sonido"></button>
       <button class="m" id="grande" type="button" aria-label="Pantalla completa"></button>
     </div>
-    <div class="girar">Gira el móvil para verlo más grande.</div>
+    <div class="girar">Gira el móvil para verlo más grande.<span class="sinbarras"> Para quitar las barras del navegador: Compartir → «Añadir a pantalla de inicio» y ábrela desde ahí.</span></div>
   </div>
   <div class="botones">
     <button class="b" id="siguiente" hidden>Siguiente game</button>
@@ -210,11 +217,14 @@ footer p{margin:0 0 6px;max-width:70ch}
 <section class="opina" id="opina">
   <h2>¿Qué te parece?</h2>
   <p>Es un prototipo y lo estamos probando. Cuéntanos qué cambiarías, qué serie o canal te gustaría ver aquí o si algo no funciona.</p>
-  <label for="opinaTexto">Tu opinión</label>
-  <textarea id="opinaTexto" placeholder="Me gustaría que…"></textarea>
-  <div class="botones" style="margin-top:0"><button class="b" id="opinaEnviar" type="button">Enviar por correo</button><button class="b sec" id="opinaCopiar" type="button">Copiar dirección</button></div>
+  <form id="opinaForm" novalidate>
+    <label for="opinaTexto">Tu opinión</label>
+    <textarea id="opinaTexto" name="texto" maxlength="2000" required placeholder="Me gustaría que…"></textarea>
+    <input type="text" name="web" id="opinaWeb" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+    <div class="botones"><button class="b" id="opinaEnviar" type="submit">Enviar</button></div>
+  </form>
   <p id="opinaEstado" role="status"></p>
-  <p>Se abre tu app de correo con el mensaje listo para mandarlo a <span class="correo">hola@mosaicolab.app</span>. No guardamos nada en esta página.</p>
+  <p>La leemos en Mosaico Lab. No hace falta dejar datos personales; si quieres respuesta, escríbenos a <span class="correo">hola@mosaicolab.app</span>.</p>
 </section>
 
 <footer>
@@ -367,16 +377,21 @@ footer p{margin:0 0 6px;max-width:70ch}
   }
   function parseId(x){x=x.trim();if(!x)return null;var m=x.match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);if(m)return m[1];return /^[A-Za-z0-9_-]{11}$/.test(x)?x:null}
 
-  $('opinaEnviar').onclick=function(){
+  $('opinaForm').addEventListener('submit',function(e){
+    e.preventDefault();
     var t=$('opinaTexto').value.trim();
-    var url='mailto:hola@mosaicolab.app?subject='+encodeURIComponent('Opinión sobre Sin spoilers')+'&body='+encodeURIComponent(t||'');
-    location.href=url;
-    $('opinaEstado').textContent='Si no se ha abierto tu correo, copia la dirección y escríbenos desde donde quieras.';
-  };
-  $('opinaCopiar').onclick=function(){
-    var ok=function(){$('opinaEstado').textContent='Dirección copiada: hola@mosaicolab.app'};
-    try{navigator.clipboard.writeText('hola@mosaicolab.app').then(ok,function(){$('opinaEstado').textContent='Mantén pulsada la dirección de abajo para copiarla.'})}catch(e){$('opinaEstado').textContent='Mantén pulsada la dirección de abajo para copiarla.'}
-  };
+    if(!t){$('opinaEstado').textContent='Escribe algo antes de enviar.';return}
+    $('opinaEnviar').disabled=true;$('opinaEstado').textContent='Enviando…';
+    var datos=new URLSearchParams({idea:'sin-spoilers',texto:t,web:$('opinaWeb').value});
+    fetch('https://avisame.vsricardo97.workers.dev/opinion',{method:'POST',body:datos})
+      .then(function(r){return r.ok?r.json():{ok:false}})
+      .then(function(j){
+        if(j&&j.ok){$('opinaTexto').value='';$('opinaEstado').textContent='¡Gracias! Lo hemos recibido.'}
+        else{$('opinaEstado').textContent='No se ha podido enviar. Prueba otra vez o escríbenos a hola@mosaicolab.app.'}
+      })
+      .catch(function(){$('opinaEstado').textContent='No se ha podido enviar. Prueba otra vez o escríbenos a hola@mosaicolab.app.'})
+      .then(function(){$('opinaEnviar').disabled=false});
+  });
   $('play').onclick=play;
   $('tarjeta').onclick=function(){if(!$('siguiente').hidden){siguiente()}else{play()}};
   $('tarjeta').onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();$('tarjeta').onclick()}};
