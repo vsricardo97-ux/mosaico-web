@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sin spoilers | Mosaico Lab</title>
 <meta name="description" content="Ve los recaps de LoL game a game sin saber cuántos vídeos quedan, cuánto duran ni cómo acaba la serie.">
 <meta name="robots" content="noindex">
@@ -112,13 +112,17 @@ header.top a{color:var(--gris);text-decoration:none}
 .m small{font-size:.7rem;color:var(--gris)}
 /* Grande: ocupa toda la pantalla (pantalla completa real si el navegador la da) */
 .marco.grande{position:fixed;inset:0;z-index:50;border:0;border-radius:0;justify-content:center;align-items:center;--sa-t:env(safe-area-inset-top,0px);--sa-b:env(safe-area-inset-bottom,0px);--sa-l:env(safe-area-inset-left,0px);--sa-r:env(safe-area-inset-right,0px);}
-/* El vídeo cabe entero siempre (ancho y alto fijos a 16:9, sin recortar) y no cambia de tamaño al esconder los mandos.
+/* El vídeo cabe entero siempre (ancho y alto fijos a 16:9, sin recortar). Sin viewport-fit=cover: en iPhone el iframe de YouTube
+   hereda los márgenes del notch y desplazaba el vídeo dentro de su caja (se cortaba por la derecha).
    Los mandos van en la franja negra que sobra, nunca encima del vídeo, y se esconden solos mientras se reproduce. */
 .marco.grande .pantalla{--w:min(100vw,calc((100dvh - var(--sa-t) - var(--sa-b) - 150px)*16/9));width:var(--w);height:calc(var(--w)*9/16);flex:none;aspect-ratio:auto;cursor:pointer}
 .marco.grande .mandos{position:absolute;left:0;right:0;bottom:calc(var(--sa-b) + 12px);margin-inline:auto;width:min(100% - 24px,560px);border-top:0;background:transparent;transition:opacity .25s}
 .marco.grande.ocultos .mandos,.marco.grande.ocultos .girar{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,visibility 0s .25s}
 @media (orientation:landscape){
-  .marco.grande .pantalla{--w:min(calc(100vw - var(--sa-l) - var(--sa-r) - 128px),calc((100dvh - var(--sa-t) - var(--sa-b))*16/9))}
+  /* Mandos a la derecha: mientras se ven, el vídeo deja 64px a ese lado; al esconderse, ocupa todo. */
+  .marco.grande{--der:64px;padding-right:var(--der);box-sizing:border-box}
+  .marco.grande.ocultos{--der:0px}
+  .marco.grande .pantalla{--w:min(calc(100vw - var(--sa-l) - var(--sa-r) - var(--der)),calc((100dvh - var(--sa-t) - var(--sa-b))*16/9))}
   .marco.grande .mandos{flex-direction:column;justify-content:center;left:auto;right:calc(var(--sa-r) + 4px);top:0;bottom:0;width:56px;padding:6px 0;margin:0}
   .marco.grande .mandos .hueco-flex{flex:0 0 12px}
   .marco.grande .mandos .m small,.marco.grande .mandos .m span{display:none}
@@ -295,7 +299,7 @@ footer p{margin:0 0 6px;max-width:70ch}
   var $=function(id){return document.getElementById(id)};
   // GitHub Pages deja la página 10 min en caché y el icono de la pantalla de inicio no recarga solo.
   // Al abrir o volver a la app se mira si hay versión nueva (sin caché) y, si la hay, se recarga una vez.
-  var VERSION='2026-11-01-4';
+  var VERSION='2026-11-01-5';
   function mirarVersion(){
     fetch(location.pathname+'?c='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
       var m=/var VERSION='([^']+)'/.exec(t);if(!m||m[1]===VERSION)return;
