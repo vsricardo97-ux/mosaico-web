@@ -299,7 +299,7 @@ footer p{margin:0 0 6px;max-width:70ch}
   var $=function(id){return document.getElementById(id)};
   // GitHub Pages deja la página 10 min en caché y el icono de la pantalla de inicio no recarga solo.
   // Al abrir o volver a la app se mira si hay versión nueva (sin caché) y, si la hay, se recarga una vez.
-  var VERSION='2026-11-01-5';
+  var VERSION='2026-11-01-6';
   function mirarVersion(){
     fetch(location.pathname+'?c='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
       var m=/var VERSION='([^']+)'/.exec(t);if(!m||m[1]===VERSION)return;
@@ -401,7 +401,7 @@ footer p{margin:0 0 6px;max-width:70ch}
       events:{
         onReady:function(){listo=true;$('tmsg').textContent='Pulsa para empezar.';pintarMandos()},
         onStateChange:function(e){
-          if(e.data===1){clearTimeout(vigia);mostrar();if(!subsAplicado){subsAplicado=true;aplicarSubs()}}
+          if(e.data===1){clearTimeout(vigia);mostrar();if(!subsAplicado){subsAplicado=true;aplicarSubs();if(!subs)[400,1200,2500,5000].forEach(function(t){setTimeout(function(){if(!subs)quitarSubs()},t)})}}
           else if(e.data===0){terminado();return}
           pintarMandos();programarOcultar();
         }
@@ -435,9 +435,14 @@ footer p{margin:0 0 6px;max-width:70ch}
       if(estado()!==1)tarjeta('Game '+(idx+1),'Este navegador no deja empezar el vídeo. Vuelve a pulsar o abre la página en Safari o Chrome.');
     },4000);
   }
+  // Quitar de verdad: YouTube solo los apaga si el módulo ya está cargado (por eso antes había que tocar dos veces).
+  function quitarSubs(){
+    if(!player)return;
+    try{player.loadModule('captions');player.setOption('captions','track',{});player.unloadModule('captions');player.unloadModule('cc')}catch(e){}
+  }
   function aplicarSubs(){
     if(!player)return;
-    try{if(subs){player.loadModule('captions')}else{player.unloadModule('captions');player.unloadModule('cc')}}catch(e){}
+    if(subs){try{player.loadModule('captions')}catch(e){}}else quitarSubs();
     $('subs').setAttribute('aria-pressed',subs?'true':'false');
   }
   function saltar(n){if(!player)return;try{player.seekTo(Math.max(0,player.getCurrentTime()+n),true)}catch(e){}}
