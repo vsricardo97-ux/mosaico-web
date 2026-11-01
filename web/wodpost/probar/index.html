@@ -37,6 +37,8 @@ img.prev{width:100%;border-radius:12px;margin:12px 0;display:block}
 #zona{position:relative;margin:12px 0;touch-action:none;user-select:none;-webkit-user-select:none}
 #zona img{width:100%;display:block;border-radius:12px;pointer-events:none}
 #caja{position:absolute;border:2px solid var(--acento);background:rgba(217,255,58,.12);box-shadow:0 0 0 9999px rgba(0,0,0,.55);border-radius:4px;pointer-events:none}
+#marco{border-radius:14px;overflow:hidden;background:repeating-conic-gradient(#2b2b2b 0 25%,#1c1c1c 0 50%) 0 0/24px 24px;margin-top:12px}
+#marco img{width:100%;display:block}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -63,6 +65,17 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
 <p id="estado" style="margin-top:14px"></p>
 <img id="prev" class="prev" alt="" hidden>
 <div id="resultado"></div>
+
+<div id="tarjeta" hidden>
+  <p style="margin-top:14px">Haz la tarjeta para tu historia, con el mismo estilo que la app:</p>
+  <input id="fondoarchivo" type="file" accept="image/*" hidden>
+  <div class="fila"><button id="conFoto">Con mi foto de fondo</button><button class="sec" id="sinFoto">Solo la pegatina</button></div>
+  <p id="estadoTarjeta"></p>
+  <div id="vistaTarjeta" hidden>
+    <div id="marco"><img id="imgTarjeta" alt="Tu tarjeta"></div>
+    <div class="fila"><button id="guardarTarjeta">Guardar imagen</button></div>
+  </div>
+</div>
 
 <div id="valorar" hidden>
   <div class="fila">
@@ -201,7 +214,7 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
   }
 
   async function leer(file, rec) {
-    ver("paso1", false); ver("recorte", false); ver("valorar", false); ver("reporte", false); ver("otra", false); $("resultado").innerHTML = "";
+    ver("paso1", false); ver("recorte", false); ver("tarjeta", false); ver("valorar", false); ver("reporte", false); ver("otra", false); $("resultado").innerHTML = "";
     msg("Preparando la foto…");
     try {
       var limpia = limpiarJpeg(await preparar(file, rec));
@@ -215,11 +228,46 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
         body: JSON.stringify({ v: 1, imagen: imagen, web: codigo, idioma: "es", unidad: "kg", anuncio: false }) });
       var j = await r.json().catch(function () { return {}; });
       if (!r.ok) { msg((ERRORES[j.error] || "No se ha podido leer (error " + r.status + ").") + " [" + (j.error || r.status) + " · " + marcas + " · " + Math.round(imagen.length / 1000) + " KB]", "error"); ver("paso1", true); return; }
-      lectura = j.lectura; msg(""); pintar(lectura); ver("valorar", true); ver("otra", true);
+      lectura = j.lectura; msg(""); pintar(lectura); ver("tarjeta", (lectura.partes || []).length > 0); ver("vistaTarjeta", false); ver("valorar", true); ver("otra", true);
     } catch (e) {
       msg(e && e.name === "AbortError" ? ERRORES.tiempo : "Sin conexión con la lectura. Revisa tu internet.", "error"); ver("paso1", true);
     } finally { clearTimeout(t); }
   }
+
+  // Tarjeta: el pintor de la app (Skia/CanvasKit) empaquetado para el navegador, cargado solo cuando se pide.
+  var BASE = "/wodpost/probar/a/", motor = null, pngTarjeta = null;
+  function cargarMotor() {
+    if (motor) return motor;
+    motor = new Promise(function (ok, ko) {
+      var sc = document.createElement("script"); sc.src = BASE + "tarjeta.js";
+      sc.onload = function () { window.WodpostTarjeta.iniciar(BASE).then(ok, ko); };
+      sc.onerror = function () { ko(new Error("script")); };
+      document.head.appendChild(sc);
+    });
+    motor.catch(function () { motor = null; });
+    return motor;
+  }
+  async function hacerTarjeta(fotoFile) {
+    $("estadoTarjeta").textContent = "Pintando la tarjeta…"; $("estadoTarjeta").className = "";
+    try {
+      await cargarMotor();
+      var bytes = fotoFile ? new Uint8Array(await fotoFile.arrayBuffer()) : null;
+      var png = await window.WodpostTarjeta.tarjeta(lectura, { foto: bytes, tema: bytes ? "blanco" : "blanco" });
+      pngTarjeta = new Blob([png], { type: "image/png" });
+      $("imgTarjeta").src = URL.createObjectURL(pngTarjeta); ver("vistaTarjeta", true); $("estadoTarjeta").textContent = "";
+    } catch (e) {
+      $("estadoTarjeta").textContent = "No he podido pintar la tarjeta (" + (e && e.message || e) + ")."; $("estadoTarjeta").className = "error";
+    }
+  }
+  $("sinFoto").onclick = function () { hacerTarjeta(null); };
+  $("conFoto").onclick = function () { $("fondoarchivo").click(); };
+  $("fondoarchivo").onchange = function () { var f = this.files && this.files[0]; this.value = ""; if (f) hacerTarjeta(f); };
+  $("guardarTarjeta").onclick = async function () {
+    if (!pngTarjeta) return;
+    var f = new File([pngTarjeta], "wodpost.png", { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [f] })) { try { await navigator.share({ files: [f] }); return; } catch (e) { if (e && e.name === "AbortError") return; } }
+    var a = document.createElement("a"); a.href = URL.createObjectURL(pngTarjeta); a.download = "wodpost.png"; a.click();
+  };
 
   $("elegir").onclick = function () { $("archivo").click(); };
   // Recorte: se arrastra un rectángulo sobre la foto (en fracciones 0-1 de la imagen).
@@ -264,7 +312,7 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
     } catch (e) { msg("Sin conexión. Prueba otra vez.", "error"); }
     btn.disabled = false;
   };
-  $("repetir").onclick = function () { ver("recorte", false); $("resultado").innerHTML = ""; ver("prev", false); ver("valorar", false); ver("reporte", false); ver("otra", false); ver("paso1", true); msg(""); };
+  $("repetir").onclick = function () { ver("recorte", false); ver("tarjeta", false); $("resultado").innerHTML = ""; ver("prev", false); ver("valorar", false); ver("reporte", false); ver("otra", false); ver("paso1", true); msg(""); };
 })();
 </script>
 </body>
