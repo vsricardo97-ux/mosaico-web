@@ -1,0 +1,12 @@
+{
+  "name": "Sin spoilers",
+  "short_name": "Sin spoilers",
+  "start_url": "/sin-spoilers/",
+  "scope": "/sin-spoilers/",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#0b1622",
+  "theme_color": "#0b1622",
+  "lang": "es",
+  "icons": [{ "src": "/assets/mosaico/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }]
+}
