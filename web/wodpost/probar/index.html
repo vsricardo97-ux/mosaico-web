@@ -36,7 +36,12 @@ img.prev{width:100%;border-radius:12px;margin:12px 0;display:block}
 .ok{color:var(--acento)}
 #zona{position:relative;margin:12px 0;touch-action:none;user-select:none;-webkit-user-select:none}
 #zona img{width:100%;display:block;border-radius:12px;pointer-events:none}
-#caja{position:absolute;border:2px solid var(--acento);background:rgba(217,255,58,.12);box-shadow:0 0 0 9999px rgba(0,0,0,.55);border-radius:4px;pointer-events:none}
+#zona{-webkit-touch-callout:none;-webkit-user-drag:none}
+#zona img{-webkit-user-drag:none}
+#caja{position:absolute;border:2px solid var(--acento);box-shadow:0 0 0 9999px rgba(0,0,0,.55);border-radius:2px;pointer-events:none}
+.asa{position:absolute;width:30px;height:30px;border:4px solid var(--acento);pointer-events:none}
+.asa.a{left:-4px;top:-4px;border-right:0;border-bottom:0}.asa.b{right:-4px;top:-4px;border-left:0;border-bottom:0}
+.asa.c{left:-4px;bottom:-4px;border-right:0;border-top:0}.asa.d{right:-4px;bottom:-4px;border-left:0;border-top:0}
 #marco{border-radius:14px;overflow:hidden;background:repeating-conic-gradient(#2b2b2b 0 25%,#1c1c1c 0 50%) 0 0/24px 24px;margin-top:12px}
 #marco img{width:100%;display:block}
 [hidden]{display:none!important}
@@ -57,9 +62,9 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
 </div>
 
 <div id="recorte" hidden>
-  <p style="margin-top:14px">Arrastra con el dedo sobre la foto para <b>recortar</b> solo el entreno (así quedan fuera nombres y caras).</p>
-  <div id="zona"><img id="foto" alt=""><div id="caja" hidden></div></div>
-  <div class="fila"><button class="sec" id="quitar">Quitar recorte</button><button id="leer">Leer</button></div>
+  <p style="margin-top:14px">Ajusta el marco: arrastra una <b>esquina</b> para cambiar el tamaño o el <b>centro</b> para moverlo. Deja solo el entreno (así quedan fuera nombres y caras).</p>
+  <div id="zona"><img id="foto" alt=""><div id="caja"><i class="asa a"></i><i class="asa b"></i><i class="asa c"></i><i class="asa d"></i></div></div>
+  <div class="fila"><button class="sec" id="quitar">Foto entera</button><button id="leer">Leer</button></div>
 </div>
 
 <p id="estado" style="margin-top:14px"></p>
@@ -270,30 +275,54 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
   };
 
   $("elegir").onclick = function () { $("archivo").click(); };
-  // Recorte: se arrastra un rectángulo sobre la foto (en fracciones 0-1 de la imagen).
-  var fotoFile = null, urlFoto = null, rect = null, ini = null;
+  // Recorte: marco con esquinas (en fracciones 0-1 de la imagen). Esquina = cambiar tamaño; dentro = mover; fuera = marco nuevo.
+  var fotoFile = null, urlFoto = null, rect = { x0: 0.04, y0: 0.04, x1: 0.96, y1: 0.96 }, modo = null, ref = null, MIN = 0.1;
   function pintarCaja() {
     var c = $("caja");
-    if (!rect) { c.hidden = true; return; }
-    c.hidden = false; c.style.left = rect.x0 * 100 + "%"; c.style.top = rect.y0 * 100 + "%";
+    c.style.left = rect.x0 * 100 + "%"; c.style.top = rect.y0 * 100 + "%";
     c.style.width = (rect.x1 - rect.x0) * 100 + "%"; c.style.height = (rect.y1 - rect.y0) * 100 + "%";
   }
+  function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
   function punto(e) {
     var r = $("zona").getBoundingClientRect();
-    return { x: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)) };
+    return { x: clamp((e.clientX - r.left) / r.width, 0, 1), y: clamp((e.clientY - r.top) / r.height, 0, 1), w: r.width, h: r.height };
   }
-  $("zona").addEventListener("pointerdown", function (e) { ini = punto(e); rect = null; pintarCaja(); this.setPointerCapture(e.pointerId); });
-  $("zona").addEventListener("pointermove", function (e) {
-    if (!ini) return;
-    var p = punto(e); rect = { x0: Math.min(ini.x, p.x), y0: Math.min(ini.y, p.y), x1: Math.max(ini.x, p.x), y1: Math.max(ini.y, p.y) }; pintarCaja();
+  $("zona").addEventListener("pointerdown", function (e) {
+    e.preventDefault();
+    var p = punto(e), T = 34; // zona táctil de cada esquina, en px
+    var tx = T / p.w, ty = T / p.h, cerca = function (x, y) { return Math.abs(p.x - x) < tx && Math.abs(p.y - y) < ty; };
+    ref = { x: p.x, y: p.y, r: { x0: rect.x0, y0: rect.y0, x1: rect.x1, y1: rect.y1 } };
+    if (cerca(rect.x0, rect.y0)) modo = "a";
+    else if (cerca(rect.x1, rect.y0)) modo = "b";
+    else if (cerca(rect.x0, rect.y1)) modo = "c";
+    else if (cerca(rect.x1, rect.y1)) modo = "d";
+    else if (p.x > rect.x0 && p.x < rect.x1 && p.y > rect.y0 && p.y < rect.y1) modo = "mover";
+    else { modo = "nuevo"; }
+    this.setPointerCapture(e.pointerId);
   });
-  function soltar() { ini = null; if (rect && (rect.x1 - rect.x0 < 0.08 || rect.y1 - rect.y0 < 0.08)) { rect = null; pintarCaja(); } }
+  $("zona").addEventListener("pointermove", function (e) {
+    if (!modo) return;
+    e.preventDefault();
+    var p = punto(e), r = ref.r, n = { x0: r.x0, y0: r.y0, x1: r.x1, y1: r.y1 };
+    if (modo === "mover") {
+      var dx = clamp(p.x - ref.x, -r.x0, 1 - r.x1), dy = clamp(p.y - ref.y, -r.y0, 1 - r.y1);
+      n = { x0: r.x0 + dx, y0: r.y0 + dy, x1: r.x1 + dx, y1: r.y1 + dy };
+    } else if (modo === "nuevo") {
+      n = { x0: Math.min(ref.x, p.x), y0: Math.min(ref.y, p.y), x1: Math.max(ref.x, p.x), y1: Math.max(ref.y, p.y) };
+    } else {
+      if (modo === "a" || modo === "c") n.x0 = clamp(p.x, 0, r.x1 - MIN); else n.x1 = clamp(p.x, r.x0 + MIN, 1);
+      if (modo === "a" || modo === "b") n.y0 = clamp(p.y, 0, r.y1 - MIN); else n.y1 = clamp(p.y, r.y0 + MIN, 1);
+    }
+    if (n.x1 - n.x0 >= MIN && n.y1 - n.y0 >= MIN) { rect = n; pintarCaja(); }
+  });
+  function soltar() { modo = null; }
   $("zona").addEventListener("pointerup", soltar); $("zona").addEventListener("pointercancel", soltar);
-  $("quitar").onclick = function () { rect = null; pintarCaja(); };
-  $("leer").onclick = function () { if (fotoFile) { var f = fotoFile, r = rect; fotoFile = null; if (urlFoto) URL.revokeObjectURL(urlFoto); leer(f, r); } };
+  $("zona").addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  $("quitar").onclick = function () { rect = { x0: 0, y0: 0, x1: 1, y1: 1 }; pintarCaja(); };
+  $("leer").onclick = function () { if (fotoFile) { var f = fotoFile, r = (rect.x1 - rect.x0 > 0.97 && rect.y1 - rect.y0 > 0.97) ? null : rect; fotoFile = null; if (urlFoto) URL.revokeObjectURL(urlFoto); leer(f, r); } };
   $("archivo").onchange = function () {
     var f = this.files && this.files[0]; this.value = ""; if (!f) return;
-    fotoFile = f; rect = null; pintarCaja(); if (urlFoto) URL.revokeObjectURL(urlFoto);
+    fotoFile = f; rect = { x0: 0.04, y0: 0.04, x1: 0.96, y1: 0.96 }; pintarCaja(); if (urlFoto) URL.revokeObjectURL(urlFoto);
     urlFoto = URL.createObjectURL(f); $("foto").src = urlFoto;
     ver("paso1", false); ver("prev", false); ver("valorar", false); ver("reporte", false); ver("otra", false); $("resultado").innerHTML = ""; msg("");
     ver("recorte", true);
