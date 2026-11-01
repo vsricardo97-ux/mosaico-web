@@ -34,6 +34,9 @@ textarea{width:100%;min-height:90px;border-radius:12px;border:1px solid var(--li
 img.prev{width:100%;border-radius:12px;margin:12px 0;display:block}
 .error{color:#ff8a7a}
 .ok{color:var(--acento)}
+#zona{position:relative;margin:12px 0;touch-action:none;user-select:none;-webkit-user-select:none}
+#zona img{width:100%;display:block;border-radius:12px;pointer-events:none}
+#caja{position:absolute;border:2px solid var(--acento);background:rgba(217,255,58,.12);box-shadow:0 0 0 9999px rgba(0,0,0,.55);border-radius:4px;pointer-events:none}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -49,6 +52,12 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
 <div id="paso1" style="margin-top:14px">
   <input id="archivo" type="file" accept="image/*" hidden>
   <button id="elegir">Foto de la pizarra</button>
+</div>
+
+<div id="recorte" hidden>
+  <p style="margin-top:14px">Arrastra con el dedo sobre la foto para <b>recortar</b> solo el entreno (así quedan fuera nombres y caras).</p>
+  <div id="zona"><img id="foto" alt=""><div id="caja" hidden></div></div>
+  <div class="fila"><button class="sec" id="quitar">Quitar recorte</button><button id="leer">Leer</button></div>
 </div>
 
 <p id="estado" style="margin-top:14px"></p>
@@ -102,13 +111,16 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
   function ver(id, si) { $(id).hidden = !si; }
 
   // JPEG reducido y sin metadatos: al dibujarlo en un canvas y volver a codificarlo no se copia el Exif.
-  function preparar(file) {
+  function preparar(file, rec) {
     return new Promise(function (ok, ko) {
       var url = URL.createObjectURL(file), im = new Image();
       im.onload = function () {
-        var w = im.naturalWidth, h = im.naturalHeight, k = Math.min(1, LADO / Math.max(w, h));
-        var c = document.createElement("canvas"); c.width = Math.round(w * k); c.height = Math.round(h * k);
-        c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+        var W = im.naturalWidth, H = im.naturalHeight;
+        var sx = rec ? Math.round(rec.x0 * W) : 0, sy = rec ? Math.round(rec.y0 * H) : 0;
+        var w = rec ? Math.max(1, Math.round((rec.x1 - rec.x0) * W)) : W, h = rec ? Math.max(1, Math.round((rec.y1 - rec.y0) * H)) : H;
+        var k = Math.min(1, LADO / Math.max(w, h));
+        var c = document.createElement("canvas"); c.width = Math.max(1, Math.round(w * k)); c.height = Math.max(1, Math.round(h * k));
+        c.getContext("2d").drawImage(im, sx, sy, w, h, 0, 0, c.width, c.height);
         URL.revokeObjectURL(url);
         var calidades = [0.8, 0.65, 0.5], i = 0;
         (function probar() {
@@ -188,11 +200,11 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
     $("resultado").innerHTML = html;
   }
 
-  async function leer(file) {
-    ver("paso1", false); ver("valorar", false); ver("reporte", false); ver("otra", false); $("resultado").innerHTML = "";
+  async function leer(file, rec) {
+    ver("paso1", false); ver("recorte", false); ver("valorar", false); ver("reporte", false); ver("otra", false); $("resultado").innerHTML = "";
     msg("Preparando la foto…");
     try {
-      var limpia = limpiarJpeg(await preparar(file));
+      var limpia = limpiarJpeg(await preparar(file, rec));
       imagen = limpia.b64; marcas = limpia.marcas;
     } catch (e) { msg("No he podido abrir esa imagen.", "error"); ver("paso1", true); return; }
     $("prev").src = "data:image/jpeg;base64," + imagen; ver("prev", true);
@@ -210,7 +222,34 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
   }
 
   $("elegir").onclick = function () { $("archivo").click(); };
-  $("archivo").onchange = function () { var f = this.files && this.files[0]; this.value = ""; if (f) leer(f); };
+  // Recorte: se arrastra un rectángulo sobre la foto (en fracciones 0-1 de la imagen).
+  var fotoFile = null, urlFoto = null, rect = null, ini = null;
+  function pintarCaja() {
+    var c = $("caja");
+    if (!rect) { c.hidden = true; return; }
+    c.hidden = false; c.style.left = rect.x0 * 100 + "%"; c.style.top = rect.y0 * 100 + "%";
+    c.style.width = (rect.x1 - rect.x0) * 100 + "%"; c.style.height = (rect.y1 - rect.y0) * 100 + "%";
+  }
+  function punto(e) {
+    var r = $("zona").getBoundingClientRect();
+    return { x: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)) };
+  }
+  $("zona").addEventListener("pointerdown", function (e) { ini = punto(e); rect = null; pintarCaja(); this.setPointerCapture(e.pointerId); });
+  $("zona").addEventListener("pointermove", function (e) {
+    if (!ini) return;
+    var p = punto(e); rect = { x0: Math.min(ini.x, p.x), y0: Math.min(ini.y, p.y), x1: Math.max(ini.x, p.x), y1: Math.max(ini.y, p.y) }; pintarCaja();
+  });
+  function soltar() { ini = null; if (rect && (rect.x1 - rect.x0 < 0.08 || rect.y1 - rect.y0 < 0.08)) { rect = null; pintarCaja(); } }
+  $("zona").addEventListener("pointerup", soltar); $("zona").addEventListener("pointercancel", soltar);
+  $("quitar").onclick = function () { rect = null; pintarCaja(); };
+  $("leer").onclick = function () { if (fotoFile) { var f = fotoFile, r = rect; fotoFile = null; if (urlFoto) URL.revokeObjectURL(urlFoto); leer(f, r); } };
+  $("archivo").onchange = function () {
+    var f = this.files && this.files[0]; this.value = ""; if (!f) return;
+    fotoFile = f; rect = null; pintarCaja(); if (urlFoto) URL.revokeObjectURL(urlFoto);
+    urlFoto = URL.createObjectURL(f); $("foto").src = urlFoto;
+    ver("paso1", false); ver("prev", false); ver("valorar", false); ver("reporte", false); ver("otra", false); $("resultado").innerHTML = ""; msg("");
+    ver("recorte", true);
+  };
   $("bien").onclick = function () { ver("valorar", false); msg("Gracias. Anotado: está bien.", "ok"); };
   $("mal").onclick = function () { valoracion = "mal"; ver("valorar", false); ver("reporte", true); $("comentario").focus(); };
   $("muymal").onclick = function () { valoracion = valoracion === "muy_mal" ? "mal" : "muy_mal"; this.textContent = valoracion === "muy_mal" ? "Muy mal (marcado)" : "Muy mal"; };
@@ -225,7 +264,7 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
     } catch (e) { msg("Sin conexión. Prueba otra vez.", "error"); }
     btn.disabled = false;
   };
-  $("repetir").onclick = function () { $("resultado").innerHTML = ""; ver("prev", false); ver("valorar", false); ver("reporte", false); ver("otra", false); ver("paso1", true); msg(""); };
+  $("repetir").onclick = function () { ver("recorte", false); $("resultado").innerHTML = ""; ver("prev", false); ver("valorar", false); ver("reporte", false); ver("otra", false); ver("paso1", true); msg(""); };
 })();
 </script>
 </body>
