@@ -75,6 +75,33 @@ header.top a{color:var(--gris);text-decoration:none}
 .tarjeta[hidden]{display:none}
 .tarjeta .num{font:700 clamp(3.4rem,14vw,7rem)/.85 var(--d);text-transform:uppercase;color:var(--oro-claro)}
 .tarjeta .msg{color:var(--gris);max-width:36ch}
+
+/* Marco del vídeo + mandos propios (fuera del reproductor: YouTube no permite nada encima) */
+.marco{display:flex;flex-direction:column;background:#000;border:1px solid var(--linea);border-radius:6px;overflow:hidden}
+.marco .pantalla{border:0;border-radius:0}
+.tarjeta{cursor:pointer}
+.mandos{display:flex;align-items:center;gap:4px;padding:6px 8px;background:#05090e;border-top:1px solid var(--linea)}
+.mandos[hidden]{display:none}
+.mandos .hueco-flex{flex:1}
+.m{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:46px;height:46px;padding:0 10px;border-radius:4px;color:var(--oro-claro);cursor:pointer;font:700 .95rem var(--d);text-transform:uppercase;letter-spacing:.04em}
+.m:hover{background:#ffffff12}
+.m:focus-visible{outline:2px solid var(--azul);outline-offset:-2px}
+.m svg{width:24px;height:24px;fill:currentColor}
+.m.aviso{color:#1a1205;background:var(--oro)}
+.m small{font-size:.7rem;color:var(--gris)}
+/* Grande: ocupa toda la pantalla (pantalla completa real si el navegador la da) */
+.marco.grande{position:fixed;inset:0;z-index:50;border:0;border-radius:0;justify-content:center;align-items:center;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.marco.grande .pantalla{width:min(100%,calc((100dvh - 70px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))*16/9));aspect-ratio:16/9}
+.marco.grande .mandos{width:min(100%,calc((100dvh - 70px)*16/9));border-top:0;background:transparent}
+@media (orientation:landscape){
+  .marco.grande{flex-direction:row}
+  .marco.grande .pantalla{width:min(calc(100% - 64px),calc((100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))*16/9))}
+  .marco.grande .mandos{flex-direction:column;width:auto;height:min(100%,calc((100vw - 64px)*9/16));padding:6px 4px}
+  .marco.grande .mandos .m small,.marco.grande .mandos .m span{display:none}
+}
+body.sin-scroll{overflow:hidden}
+.girar{display:none;color:var(--gris);font-size:.85rem;margin-top:14px}
+@media (orientation:portrait){.marco.grande .girar{display:block}}
 .botones{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
 button.b{font:700 1.15rem/1 var(--d);text-transform:uppercase;letter-spacing:.04em;border-radius:4px;padding:14px 22px;min-height:50px;cursor:pointer;border:1px solid var(--oro);background:var(--oro);color:#1a1205}
 button.b.sec{background:transparent;color:var(--oro-claro);border-color:var(--linea)}
@@ -132,20 +159,29 @@ footer p{margin:0 0 6px;max-width:70ch}
     <div><div class="fase" id="vfase"></div><h2 id="vtitulo"></h2></div>
     <div class="huecos" id="vhuecos" aria-label="Progreso de la serie"></div>
   </div>
-  <div class="pantalla">
-    <div class="reproductor" id="reproductor"></div>
-    <div class="tarjeta" id="tarjeta">
-      <div class="num" id="tnum">Game 1</div>
-      <div class="msg" id="tmsg">Pulsa para empezar.</div>
+  <div class="marco" id="marco">
+    <div class="pantalla">
+      <div class="reproductor" id="reproductor"></div>
+      <div class="tarjeta" id="tarjeta" role="button" tabindex="0">
+        <div class="num" id="tnum">Game 1</div>
+        <div class="msg" id="tmsg">Pulsa para empezar.</div>
+      </div>
     </div>
+    <div class="mandos" id="mandos">
+      <button class="m" id="play" type="button" aria-label="Reproducir"></button>
+      <button class="m" id="atras" type="button" aria-label="Atrás 10 segundos"><svg viewBox="0 0 24 24"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg><small>10</small></button>
+      <button class="m" id="adelante" type="button" aria-label="Adelante 10 segundos"><small>10</small><svg viewBox="0 0 24 24"><path d="M12 5V2l5 4-5 4V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z"/></svg></button>
+      <span class="hueco-flex"></span>
+      <button class="m" id="sonido" type="button" aria-label="Sonido"></button>
+      <button class="m" id="grande" type="button" aria-label="Pantalla completa"></button>
+    </div>
+    <div class="girar">Gira el móvil para verlo más grande.</div>
   </div>
   <div class="botones">
-    <button class="b" id="play">Ver game 1</button>
-    <button class="b sec" id="siguiente" hidden>Siguiente game</button>
-    <button class="b sec" id="sonido" hidden>Activar sonido</button>
+    <button class="b" id="siguiente" hidden>Siguiente game</button>
     <button class="b sec" id="volver">Otras series</button>
   </div>
-  <p class="nota">Mientras ves un game no hay título, duración ni barra de tiempo. Antes de empezar, al pausar y al terminar, el reproductor se aparta para que no se vean la miniatura, el título ni otros vídeos del canal. El vídeo empieza sin sonido: pulsa «Activar sonido».</p>
+  <p class="nota">Mientras ves un game no hay título, duración ni barra de tiempo. Antes de empezar, al pausar y al terminar, el reproductor se aparta para que no se vean la miniatura, el título ni otros vídeos del canal. El vídeo empieza sin sonido: toca el altavoz para oírlo.</p>
 </section>
 
 <section class="canal">
@@ -183,7 +219,15 @@ footer p{margin:0 0 6px;max-width:70ch}
     {a:"KOI",b:"DK",v:["vAWxvDE0fjk","XAtGtWPt5eg"]}
   ];
   var $=function(id){return document.getElementById(id)};
-  var serie=null,idx=0,bo=3,player=null,listo=false,apiLista=false,pendiente=null,vigia=null,empezado=false;
+  var serie=null,idx=0,bo=3,player=null,listo=false,apiLista=false,pendiente=null,vigia=null;
+  var ICO={
+    play:'<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
+    pausa:'<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>',
+    mudo:'<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 5V4L8 9H4zm12.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z"/></svg>',
+    voz:'<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 5V4L8 9H4zm12.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>',
+    abrir:'<svg viewBox="0 0 24 24"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg>',
+    cerrar:'<svg viewBox="0 0 24 24"><path d="M8 4h2v6H4V8h4zm6 0h2v4h4v2h-6zM4 14h6v6H8v-4H4zm10 0h6v2h-4v4h-2z"/></svg>'
+  };
 
   SERIES.forEach(function(s){
     var li=document.createElement('li'),bt=document.createElement('button');
@@ -199,6 +243,18 @@ footer p{margin:0 0 6px;max-width:70ch}
 
   function huecos(n){var h='';for(var i=0;i<bo;i++){h+='<span class="hueco'+(i<n?' visto':(i===n?' ahora':''))+'"></span>'}$('vhuecos').innerHTML=h}
   function tarjeta(num,msg){$('tnum').textContent=num;$('tmsg').textContent=msg;$('tarjeta').hidden=false}
+  function estado(){try{return player.getPlayerState()}catch(e){return -1}}
+  function pintarMandos(){
+    var juega=estado()===1;
+    $('play').innerHTML=juega?ICO.pausa:ICO.play;$('play').setAttribute('aria-label',juega?'Pausa':'Reproducir');
+    var mudo=true;try{mudo=player?player.isMuted():true}catch(e){}
+    $('sonido').innerHTML=mudo?ICO.mudo+'<span>Activar sonido</span>':ICO.voz;
+    $('sonido').classList.toggle('aviso',mudo&&juega);
+    $('sonido').setAttribute('aria-label',mudo?'Activar sonido':'Silenciar');
+    var g=$('marco').classList.contains('grande');
+    $('grande').innerHTML=g?ICO.cerrar:ICO.abrir;$('grande').setAttribute('aria-label',g?'Salir de pantalla completa':'Pantalla completa');
+    ['atras','adelante'].forEach(function(id){$(id).disabled=!juega});
+  }
   // El reproductor nunca se tapa: mientras no está en marcha vive fuera de la pantalla
   // (así no se ven la miniatura ni el título) y la tarjeta ocupa su sitio.
   function esconder(){$('reproductor').classList.remove('en-marcha')}
@@ -206,8 +262,7 @@ footer p{margin:0 0 6px;max-width:70ch}
   function quitar(){
     clearTimeout(vigia);
     if(player){try{player.destroy()}catch(e){}player=null}
-    listo=false;empezado=false;
-    $('reproductor').innerHTML='';esconder();$('sonido').hidden=true;
+    listo=false;$('reproductor').innerHTML='';esconder();
   }
   function crear(){
     var d=document.createElement('div');d.id='yt';$('reproductor').appendChild(d);
@@ -215,14 +270,11 @@ footer p{margin:0 0 6px;max-width:70ch}
       host:'https://www.youtube-nocookie.com',videoId:serie.v[idx],
       playerVars:{autoplay:0,mute:1,controls:0,disablekb:1,rel:0,iv_load_policy:3,fs:0,playsinline:1,modestbranding:1},
       events:{
-        onReady:function(){listo=true;$('play').disabled=false;$('tmsg').textContent='Pulsa para empezar.'},
+        onReady:function(){listo=true;$('tmsg').textContent='Pulsa para empezar.';pintarMandos()},
         onStateChange:function(e){
-          if(e.data===1){
-            clearTimeout(vigia);empezado=true;mostrar();
-            $('play').textContent='Pausa';$('play').disabled=false;
-            var mudo=false;try{mudo=player.isMuted()}catch(x){}
-            $('sonido').hidden=!mudo;
-          } else if(e.data===0){terminado()}
+          if(e.data===1){clearTimeout(vigia);mostrar()}
+          else if(e.data===0){terminado();return}
+          pintarMandos();
         }
       }
     });
@@ -230,8 +282,7 @@ footer p{margin:0 0 6px;max-width:70ch}
   function prepararGame(){
     quitar();huecos(idx);
     tarjeta('Game '+(idx+1),'Preparando el vídeo…');
-    $('play').hidden=false;$('play').disabled=true;$('play').textContent='Ver game '+(idx+1);
-    $('siguiente').hidden=true;
+    $('mandos').hidden=false;$('siguiente').hidden=true;pintarMandos();
     apiLista?crear():(pendiente=crear);
   }
   function abrir(conf){
@@ -242,28 +293,45 @@ footer p{margin:0 0 6px;max-width:70ch}
   }
   function play(){
     if(!player||!listo)return;
-    var st=-1;try{st=player.getPlayerState()}catch(e){}
-    if(st===1){ // pausa: se esconde el reproductor, no se tapa
+    if(estado()===1){ // pausa: se aparta el reproductor, no se tapa
       try{player.pauseVideo()}catch(e){}
       esconder();tarjeta('Pausa','Pulsa para seguir viendo el game '+(idx+1)+'.');
-      $('play').textContent='Seguir';return;
+      setTimeout(pintarMandos,50);return;
     }
-    $('play').disabled=true;$('tmsg').textContent='Empezando…';
+    $('tmsg').textContent='Empezando…';
     try{player.playVideo()}catch(e){}
     clearTimeout(vigia);
     vigia=setTimeout(function(){
-      var s=-1;try{s=player.getPlayerState()}catch(e){}
-      if(s!==1){
-        $('play').disabled=false;
-        tarjeta('Game '+(idx+1),'Este navegador no deja empezar el vídeo. Vuelve a pulsar o abre la página en Safari o Chrome.');
-      }
+      if(estado()!==1)tarjeta('Game '+(idx+1),'Este navegador no deja empezar el vídeo. Vuelve a pulsar o abre la página en Safari o Chrome.');
     },4000);
   }
-  function sonido(){try{player.unMute();player.setVolume(100)}catch(e){}$('sonido').hidden=true}
+  function saltar(n){if(!player)return;try{player.seekTo(Math.max(0,player.getCurrentTime()+n),true)}catch(e){}}
+  function sonido(){
+    if(!player)return;
+    try{if(player.isMuted()){player.unMute();player.setVolume(100)}else{player.mute()}}catch(e){}
+    setTimeout(pintarMandos,80);
+  }
+  function grande(){
+    var m=$('marco'),dentro=m.classList.contains('grande');
+    var fsEl=document.fullscreenElement||document.webkitFullscreenElement;
+    if(dentro){
+      if(fsEl){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}
+      salirGrande();return;
+    }
+    m.classList.add('grande');document.body.classList.add('sin-scroll');
+    var req=m.requestFullscreen||m.webkitRequestFullscreen;
+    if(req){try{var r=req.call(m);if(r&&r.catch)r.catch(function(){})}catch(e){}}
+    try{screen.orientation&&screen.orientation.lock&&screen.orientation.lock('landscape').catch(function(){})}catch(e){}
+    pintarMandos();
+  }
+  function salirGrande(){$('marco').classList.remove('grande');document.body.classList.remove('sin-scroll');pintarMandos()}
+  ['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){
+    document.addEventListener(ev,function(){if(!(document.fullscreenElement||document.webkitFullscreenElement))salirGrande()});
+  });
   function terminado(){
     quitar();huecos(idx+1);
-    tarjeta('Game '+(idx+1)+' visto','¿Hay otro game? Pulsa siguiente y lo sabrás, como en directo.');
-    $('play').hidden=true;$('siguiente').hidden=false;
+    tarjeta('Game '+(idx+1)+' visto','¿Hay otro game? Toca aquí o en «Siguiente game» y lo sabrás, como en directo.');
+    $('siguiente').hidden=false;pintarMandos();
   }
   function siguiente(){
     if(idx+1<serie.v.length){idx++;prepararGame();return}
@@ -273,9 +341,15 @@ footer p{margin:0 0 6px;max-width:70ch}
   function parseId(x){x=x.trim();if(!x)return null;var m=x.match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);if(m)return m[1];return /^[A-Za-z0-9_-]{11}$/.test(x)?x:null}
 
   $('play').onclick=play;
+  $('tarjeta').onclick=function(){if(!$('siguiente').hidden){siguiente()}else{play()}};
+  $('tarjeta').onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();$('tarjeta').onclick()}};
+  $('atras').onclick=function(){saltar(-10)};
+  $('adelante').onclick=function(){saltar(10)};
   $('sonido').onclick=sonido;
+  $('grande').onclick=grande;
   $('siguiente').onclick=siguiente;
-  $('volver').onclick=function(){quitar();$('visor').hidden=true;$('catalogo').scrollIntoView()};
+  $('volver').onclick=function(){if($('marco').classList.contains('grande'))grande();quitar();$('visor').hidden=true;$('catalogo').scrollIntoView()};
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&$('marco').classList.contains('grande'))salirGrande()});
   $('pegar').onclick=function(){
     var l=$('enlaces').value.split(/\n/).filter(function(x){return x.trim()});
     if(!l.length){$('error').textContent='Pega al menos un enlace.';return}
