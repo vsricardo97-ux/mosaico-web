@@ -293,6 +293,18 @@ footer p{margin:0 0 6px;max-width:70ch}
   ]}]}]};
   var CATALOGO='https://avisame.vsricardo97.workers.dev/series';
   var $=function(id){return document.getElementById(id)};
+  // GitHub Pages deja la página 10 min en caché y el icono de la pantalla de inicio no recarga solo.
+  // Al abrir o volver a la app se mira si hay versión nueva (sin caché) y, si la hay, se recarga una vez.
+  var VERSION='2026-11-01-4';
+  function mirarVersion(){
+    fetch(location.pathname+'?c='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
+      var m=/var VERSION='([^']+)'/.exec(t);if(!m||m[1]===VERSION)return;
+      try{if(sessionStorage.getItem('ss-recarga')===m[1])return;sessionStorage.setItem('ss-recarga',m[1])}catch(e){}
+      if(document.getElementById('visor').hidden)location.replace(location.pathname+'?v='+encodeURIComponent(m[1]));
+    }).catch(function(){});
+  }
+  mirarVersion();
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')mirarVersion()});
   var fin=false,subs=false,subsAplicado=false,serie=null,idx=0,bo=3,player=null,listo=false,apiLista=false,pendiente=null,vigia=null;
   var ICO={
     play:'<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
