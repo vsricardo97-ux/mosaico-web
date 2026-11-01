@@ -96,7 +96,7 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
     ls.set("wp.inst", inst);
   }
 
-  var imagen = null, lectura = null, valoracion = "mal";
+  var imagen = null, marcas = "", lectura = null, valoracion = "mal";
 
   function msg(t, clase) { $("estado").textContent = t; $("estado").className = clase || ""; }
   function ver(id, si) { $(id).hidden = !si; }
@@ -127,6 +127,31 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
       im.onerror = function () { ko(new Error("imagen")); };
       im.src = url;
     });
+  }
+
+  // Quita Exif/XMP (APP1) e IPTC (APP13) del JPEG antes de enviarlo: el Worker rechaza la foto si los lleva, y algunos
+  // navegadores (Safari del iPhone) los escriben al re-codificar. Devuelve también la lista de marcadores (para depurar).
+  function limpiarJpeg(b64) {
+    var bin = atob(b64), n = bin.length, u = new Uint8Array(n);
+    for (var k = 0; k < n; k++) u[k] = bin.charCodeAt(k);
+    if (u[0] !== 0xff || u[1] !== 0xd8) return { b64: b64, marcas: "no-jpeg" };
+    var partes = [u.subarray(0, 2)], marcas = [], i = 2;
+    while (i + 4 <= n && u[i] === 0xff) {
+      var m = u[i + 1];
+      if (m === 0xff) { i++; continue; }
+      if (m === 0xda) break;
+      if (m === 0x01 || (m >= 0xd0 && m <= 0xd7)) { partes.push(u.subarray(i, i + 2)); i += 2; continue; }
+      var largo = (u[i + 2] << 8) | u[i + 3], fin = Math.min(n, i + 2 + largo);
+      marcas.push(m.toString(16));
+      if (m !== 0xe1 && m !== 0xed) partes.push(u.subarray(i, fin));
+      i = fin;
+    }
+    partes.push(u.subarray(i));
+    var total = partes.reduce(function (a, p) { return a + p.length; }, 0), out = new Uint8Array(total), o = 0;
+    partes.forEach(function (p) { out.set(p, o); o += p.length; });
+    var s = "", T = 0x8000;
+    for (var j = 0; j < out.length; j += T) s += String.fromCharCode.apply(null, out.subarray(j, j + T));
+    return { b64: btoa(s), marcas: marcas.join(",") };
   }
 
   var ERRORES = {
@@ -167,7 +192,8 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
     ver("paso1", false); ver("valorar", false); ver("reporte", false); ver("otra", false); $("resultado").innerHTML = "";
     msg("Preparando la foto…");
     try {
-      imagen = await preparar(file);
+      var limpia = limpiarJpeg(await preparar(file));
+      imagen = limpia.b64; marcas = limpia.marcas;
     } catch (e) { msg("No he podido abrir esa imagen.", "error"); ver("paso1", true); return; }
     $("prev").src = "data:image/jpeg;base64," + imagen; ver("prev", true);
     msg("Leyendo la pizarra… (unos segundos)");
@@ -176,7 +202,7 @@ La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a A
       var r = await fetch(URL_NUBE + "/v1/leer", { method: "POST", headers: { "content-type": "application/json" }, signal: ctl.signal,
         body: JSON.stringify({ v: 1, imagen: imagen, web: codigo, idioma: "es", unidad: "kg", anuncio: false }) });
       var j = await r.json().catch(function () { return {}; });
-      if (!r.ok) { msg(ERRORES[j.error] || "No se ha podido leer (error " + r.status + ").", "error"); ver("paso1", true); return; }
+      if (!r.ok) { msg((ERRORES[j.error] || "No se ha podido leer (error " + r.status + ").") + " [" + (j.error || r.status) + " · " + marcas + " · " + Math.round(imagen.length / 1000) + " KB]", "error"); ver("paso1", true); return; }
       lectura = j.lectura; msg(""); pintar(lectura); ver("valorar", true); ver("otra", true);
     } catch (e) {
       msg(e && e.name === "AbortError" ? ERRORES.tiempo : "Sin conexión con la lectura. Revisa tu internet.", "error"); ver("paso1", true);
