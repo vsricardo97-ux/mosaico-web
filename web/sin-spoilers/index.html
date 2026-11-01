@@ -104,6 +104,7 @@ header.top a{color:var(--gris);text-decoration:none}
 .mandos .hueco-flex{flex:1}
 .m{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:46px;height:46px;padding:0 10px;border-radius:4px;color:var(--oro-claro);cursor:pointer;font:700 .95rem var(--d);text-transform:uppercase;letter-spacing:.04em}
 .m:hover{background:#ffffff12}
+.m:disabled{opacity:.35;cursor:default;background:none}
 .m:focus-visible{outline:2px solid var(--azul);outline-offset:-2px}
 .m svg{width:24px;height:24px;fill:currentColor}
 .m[aria-pressed="false"] svg{opacity:.45}
@@ -123,7 +124,7 @@ header.top a{color:var(--gris);text-decoration:none}
   .marco.grande .mandos .m small,.marco.grande .mandos .m span{display:none}
 }
 body.sin-scroll{overflow:hidden}
-@media (max-width:440px){.mandos .m span{display:none}.m{min-width:42px;padding:0 6px}}
+@media (max-width:440px){.mandos .m span{display:none}.m{min-width:40px;padding:0 5px}.mandos{gap:2px;padding-inline:4px}}
 @media (display-mode:standalone),(display-mode:fullscreen){.sinbarras{display:none}}
 .girar{display:none;color:var(--gris);font-size:.85rem;position:absolute;top:calc(env(safe-area-inset-top,0px) + 16px);left:16px;right:16px;text-align:center;transition:opacity .25s}
 @media (orientation:portrait){.marco.grande .girar{display:block}}
@@ -216,6 +217,7 @@ footer p{margin:0 0 6px;max-width:70ch}
       <button class="m" id="play" type="button" aria-label="Reproducir"></button>
       <button class="m" id="atras" type="button" aria-label="Atrás 10 segundos"><svg viewBox="0 0 24 24"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg><small>10</small></button>
       <button class="m" id="adelante" type="button" aria-label="Adelante 10 segundos"><small>10</small><svg viewBox="0 0 24 24"><path d="M12 5V2l5 4-5 4V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z"/></svg></button>
+      <button class="m" id="pasar" type="button" aria-label="Pasar al siguiente game"><svg viewBox="0 0 24 24"><path d="M5 5v14l10-7zm11 0h3v14h-3z"/></svg></button>
       <span class="hueco-flex"></span>
       <button class="m" id="subs" type="button" aria-label="Subtítulos" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zm2 2v10h14V7zm2 3h4v1.5H8.5v1h2.5V14H7zm6 0h4v1.5h-2.5v1H17V14h-4z"/></svg></button>
       <button class="m" id="sonido" type="button" aria-label="Sonido"></button>
@@ -291,7 +293,7 @@ footer p{margin:0 0 6px;max-width:70ch}
   ]}]}]};
   var CATALOGO='https://avisame.vsricardo97.workers.dev/series';
   var $=function(id){return document.getElementById(id)};
-  var subs=false,subsAplicado=false,serie=null,idx=0,bo=3,player=null,listo=false,apiLista=false,pendiente=null,vigia=null;
+  var fin=false,subs=false,subsAplicado=false,serie=null,idx=0,bo=3,player=null,listo=false,apiLista=false,pendiente=null,vigia=null;
   var ICO={
     play:'<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
     pausa:'<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>',
@@ -363,6 +365,8 @@ footer p{margin:0 0 6px;max-width:70ch}
     var g=$('marco').classList.contains('grande');
     $('grande').innerHTML=g?ICO.cerrar:ICO.abrir;$('grande').setAttribute('aria-label',g?'Salir de pantalla completa':'Pantalla completa');
     ['atras','adelante'].forEach(function(id){$(id).disabled=!juega});
+    // Siempre se puede pasar de game, salvo en el último posible del formato (eso ya se sabe, no delata nada).
+    $('pasar').disabled=!serie||idx+1>=bo||fin;
   }
   // El reproductor nunca se tapa: mientras no está en marcha vive fuera de la pantalla
   // (así no se ven la miniatura ni el título) y la tarjeta ocupa su sitio.
@@ -389,6 +393,7 @@ footer p{margin:0 0 6px;max-width:70ch}
     });
   }
   function prepararGame(){
+    fin=false;
     quitar();huecos(idx);
     tarjeta('Game '+(idx+1),'Preparando el vídeo…');
     $('mandos').hidden=false;$('siguiente').hidden=true;pintarMandos();
@@ -455,6 +460,7 @@ footer p{margin:0 0 6px;max-width:70ch}
   }
   function siguiente(){
     if(idx+1<serie.v.length){idx++;prepararGame();return}
+    fin=true;pintarMandos();
     if(serie.reciente){tarjeta('Game '+(idx+2),'Si hubo game '+(idx+2)+', todavía no está subido. Vuelve en un rato.');$('siguiente').hidden=true;return}
     tarjeta('Fin de la serie','No hubo game '+(idx+2)+'. La serie terminó aquí.');
     $('siguiente').hidden=true;
@@ -491,6 +497,8 @@ footer p{margin:0 0 6px;max-width:70ch}
   $('subs').onclick=function(){subs=!subs;aplicarSubs()};
   $('grande').onclick=grande;
   $('siguiente').onclick=siguiente;
+  // Pasar sin acabar el game: igual que si hubiera terminado (mismo mensaje haya o no otro game).
+  $('pasar').onclick=function(){if(!serie||idx+1>=bo)return;quitar();huecos(idx+1);siguiente();pintarMandos()};
   $('volver').onclick=function(){if($('marco').classList.contains('grande'))grande();quitar();$('visor').hidden=true;$('catalogo').scrollIntoView()};
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&$('marco').classList.contains('grande'))salirGrande()});
   $('pegar').onclick=function(){
