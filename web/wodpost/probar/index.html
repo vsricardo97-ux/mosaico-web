@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0a0a">
+<title>Probar la lectura de Wodpost</title>
+<link rel="icon" href="/wodpost/a/favicon.png">
+<style>
+@font-face{font-family:"Barlow";src:url(/wodpost/a/Barlow-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow";src:url(/wodpost/a/Barlow-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url(/wodpost/a/BarlowCondensed-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{--fondo:#0a0a0a;--panel:#171717;--linea:#2a2a2a;--texto:#f2f2f2;--tenue:#a3a3a3;--acento:#d9ff3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--texto);font:400 17px/1.45 "Barlow",system-ui,sans-serif}
+main{max-width:560px;margin:0 auto;padding:20px 16px 56px}
+h1{font:700 34px/1.05 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:8px 0 6px}
+h1 span{color:var(--acento)}
+p{margin:0 0 12px;color:var(--tenue)}
+.aviso{font-size:14px;border:1px solid var(--linea);border-radius:12px;padding:12px 14px;background:var(--panel)}
+button,.boton{font:600 18px "Barlow",sans-serif;border:0;border-radius:14px;padding:15px 18px;width:100%;cursor:pointer;background:var(--acento);color:#0a0a0a;display:block;text-align:center}
+button.sec{background:var(--panel);color:var(--texto);border:1px solid var(--linea)}
+button:disabled{opacity:.5}
+.fila{display:flex;gap:10px;margin-top:12px}
+.parte{background:var(--panel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px;margin:12px 0}
+.parte h2{font:700 24px/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 2px}
+.parte .meta{color:var(--acento);font-weight:600;font-size:15px;margin-bottom:8px}
+.parte ul{margin:0;padding:0;list-style:none}
+.parte li{padding:4px 0;border-top:1px solid var(--linea)}
+.parte li b{font-weight:600}
+.dudoso{color:var(--tenue);font-size:14px}
+textarea{width:100%;min-height:90px;border-radius:12px;border:1px solid var(--linea);background:var(--panel);color:var(--texto);font:400 17px "Barlow",sans-serif;padding:12px;margin-top:10px}
+img.prev{width:100%;border-radius:12px;margin:12px 0;display:block}
+.error{color:#ff8a7a}
+.ok{color:var(--acento)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<h1>Wodpost · <span>prueba de lectura</span></h1>
+<p>Haz una foto a la pizarra (o sube una captura) y mira cómo la lee Wodpost. Si algo sale mal, dínoslo con un toque: así lo arreglamos.</p>
+
+<div class="aviso" id="aviso">
+La foto se reduce en tu móvil, se envía sin ubicación ni datos del móvil a Anthropic (su IA, Claude) a través de nuestro servicio en Cloudflare, y no la guardamos. Solo si pulsas «Leída mal» nos mandas la foto y la lectura para mejorar Wodpost; se borran a los 30 días. Recorta o tapa nombres y caras antes de subirla. Este es un enlace de prueba privado: no lo compartas.
+</div>
+
+<div id="paso1" style="margin-top:14px">
+  <input id="archivo" type="file" accept="image/*" hidden>
+  <button id="elegir">Foto de la pizarra</button>
+</div>
+
+<p id="estado" style="margin-top:14px"></p>
+<img id="prev" class="prev" alt="" hidden>
+<div id="resultado"></div>
+
+<div id="valorar" hidden>
+  <div class="fila">
+    <button class="sec" id="bien">Está bien</button>
+    <button class="sec" id="mal">Leída mal</button>
+  </div>
+</div>
+
+<div id="reporte" hidden>
+  <p style="margin-top:14px">¿Qué ha fallado? Por ejemplo: «los down-ups salen como flexiones» o «falta el peso de la barra».</p>
+  <textarea id="comentario" maxlength="500" placeholder="Qué ha salido mal (opcional)"></textarea>
+  <div class="fila">
+    <button class="sec" id="muymal">Muy mal</button>
+    <button id="enviar">Enviar la foto y la lectura</button>
+  </div>
+</div>
+
+<div class="fila" id="otra" hidden><button class="sec" id="repetir">Probar otra pizarra</button></div>
+</main>
+
+<script>
+(function () {
+  var URL_NUBE = "https://lectura-pizarra.vsricardo97.workers.dev";
+  var LADO = 2048, MAX_B64 = 1450000;
+  var $ = function (id) { return document.getElementById(id); };
+  var ls = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+
+  // El código de acceso viaja en el enlace (?c=...) la primera vez y se queda en el navegador.
+  var codigo = null;
+  var q = new URLSearchParams(location.search).get("c");
+  if (q && /^[A-Za-z0-9_-]{8,64}$/.test(q)) { ls.set("wp.codigo", q); history.replaceState(null, "", location.pathname); }
+  codigo = ls.get("wp.codigo");
+  if (!codigo) { $("estado").textContent = "Este enlace no tiene código de acceso. Pide el enlace completo."; $("estado").className = "error"; $("elegir").disabled = true; }
+
+  // Id aleatorio de este navegador, solo para el tope de reportes (3 al día).
+  var inst = ls.get("wp.inst");
+  if (!inst || !/^[0-9a-f]{32}$/.test(inst)) {
+    var b = new Uint8Array(16); crypto.getRandomValues(b);
+    inst = Array.prototype.map.call(b, function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+    ls.set("wp.inst", inst);
+  }
+
+  var imagen = null, lectura = null, valoracion = "mal";
+
+  function msg(t, clase) { $("estado").textContent = t; $("estado").className = clase || ""; }
+  function ver(id, si) { $(id).hidden = !si; }
+
+  // JPEG reducido y sin metadatos: al dibujarlo en un canvas y volver a codificarlo no se copia el Exif.
+  function preparar(file) {
+    return new Promise(function (ok, ko) {
+      var url = URL.createObjectURL(file), im = new Image();
+      im.onload = function () {
+        var w = im.naturalWidth, h = im.naturalHeight, k = Math.min(1, LADO / Math.max(w, h));
+        var c = document.createElement("canvas"); c.width = Math.round(w * k); c.height = Math.round(h * k);
+        c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        var calidades = [0.8, 0.65, 0.5], i = 0;
+        (function probar() {
+          c.toBlob(function (blob) {
+            if (!blob) return ko(new Error("jpeg"));
+            var r = new FileReader();
+            r.onload = function () {
+              var b64 = String(r.result).split(",")[1];
+              if (b64.length <= MAX_B64 || i >= calidades.length - 1) return b64.length <= MAX_B64 ? ok(b64) : ko(new Error("grande"));
+              i++; probar();
+            };
+            r.readAsDataURL(blob);
+          }, "image/jpeg", calidades[i]);
+        })();
+      };
+      im.onerror = function () { ko(new Error("imagen")); };
+      im.src = url;
+    });
+  }
+
+  var ERRORES = {
+    dispositivo: "El enlace no es válido o ha caducado. Pide uno nuevo.",
+    limite: "Vas muy rápido. Espera un minuto y vuelve a probar.",
+    cupo_global: "Hoy ya se han usado todas las lecturas de prueba. Mañana vuelve a funcionar.",
+    gratis_agotado: "Hoy ya se han usado todas las lecturas de prueba. Mañana vuelve a funcionar.",
+    imagen_grande: "La foto pesa demasiado. Prueba con una captura más pequeña.",
+    peticion: "No se ha podido leer esa foto. Prueba con otra.",
+    respuesta_invalida: "La IA no ha dado una lectura válida. Prueba otra vez.",
+    proveedor: "La lectura no está disponible ahora mismo. Prueba en unos minutos.",
+    tiempo: "Ha tardado demasiado. Prueba otra vez."
+  };
+
+  function nombreMov(m) {
+    var cant = m.cantidad ? m.cantidad + (m.medida && m.medida !== "reps" ? " " + m.medida : "") + " " : "";
+    return "<b>" + esc(cant + m.nombre) + "</b>" + (m.carga ? " · " + esc(m.carga) : "");
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  function pintar(l) {
+    var html = "";
+    if (l.titulo) html += "<h2 style='font:700 26px \"Barlow Condensed\";text-transform:uppercase;margin:6px 0'>" + esc(l.titulo) + "</h2>";
+    (l.partes || []).forEach(function (p) {
+      var meta = [p.tipo, p.minutos && p.minutos + " min", p.cap && "cap " + p.cap, p.rondas && p.rondas + " rondas", p.cada && "cada " + p.cada, p.tiempo].filter(Boolean).join(" · ");
+      html += "<div class='parte'><h2>" + esc(p.etiqueta || p.tipo || "Parte") + "</h2><div class='meta'>" + esc(meta) + "</div><ul>";
+      if (p.ejercicio) html += "<li><b>" + esc(p.ejercicio) + "</b></li>";
+      (p.series || []).forEach(function (s, i) { html += "<li>Serie " + (i + 1) + ": " + esc(s.reps || "") + (s.carga ? " · " + esc(s.carga) : "") + "</li>"; });
+      (p.movimientos || []).forEach(function (m) { html += "<li>" + nombreMov(m) + "</li>"; });
+      html += "</ul></div>";
+    });
+    if (!(l.partes || []).length) html += "<p class='error'>No he encontrado ningún entreno en la foto.</p>";
+    if ((l.dudas || []).length) html += "<p class='dudoso'>Hay " + l.dudas.length + " cosa(s) de las que Wodpost no está seguro.</p>";
+    $("resultado").innerHTML = html;
+  }
+
+  async function leer(file) {
+    ver("paso1", false); ver("valorar", false); ver("reporte", false); ver("otra", false); $("resultado").innerHTML = "";
+    msg("Preparando la foto…");
+    try {
+      imagen = await preparar(file);
+    } catch (e) { msg("No he podido abrir esa imagen.", "error"); ver("paso1", true); return; }
+    $("prev").src = "data:image/jpeg;base64," + imagen; ver("prev", true);
+    msg("Leyendo la pizarra… (unos segundos)");
+    var ctl = new AbortController(), t = setTimeout(function () { ctl.abort(); }, 35000);
+    try {
+      var r = await fetch(URL_NUBE + "/v1/leer", { method: "POST", headers: { "content-type": "application/json" }, signal: ctl.signal,
+        body: JSON.stringify({ v: 1, imagen: imagen, web: codigo, idioma: "es", unidad: "kg", anuncio: false }) });
+      var j = await r.json().catch(function () { return {}; });
+      if (!r.ok) { msg(ERRORES[j.error] || "No se ha podido leer (error " + r.status + ").", "error"); ver("paso1", true); return; }
+      lectura = j.lectura; msg(""); pintar(lectura); ver("valorar", true); ver("otra", true);
+    } catch (e) {
+      msg(e && e.name === "AbortError" ? ERRORES.tiempo : "Sin conexión con la lectura. Revisa tu internet.", "error"); ver("paso1", true);
+    } finally { clearTimeout(t); }
+  }
+
+  $("elegir").onclick = function () { $("archivo").click(); };
+  $("archivo").onchange = function () { var f = this.files && this.files[0]; this.value = ""; if (f) leer(f); };
+  $("bien").onclick = function () { ver("valorar", false); msg("Gracias. Anotado: está bien.", "ok"); };
+  $("mal").onclick = function () { valoracion = "mal"; ver("valorar", false); ver("reporte", true); $("comentario").focus(); };
+  $("muymal").onclick = function () { valoracion = valoracion === "muy_mal" ? "mal" : "muy_mal"; this.textContent = valoracion === "muy_mal" ? "Muy mal (marcado)" : "Muy mal"; };
+  $("enviar").onclick = async function () {
+    var btn = this; btn.disabled = true; msg("Enviando…");
+    try {
+      var r = await fetch(URL_NUBE + "/v1/reporte", { method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ v: 1, consentimiento: true, instalacion: inst, imagen: imagen, lectura: lectura, valoracion: valoracion,
+          comentario: $("comentario").value, idioma: "es", unidad: "kg", version: "web-1" }) });
+      if (r.ok) { ver("reporte", false); msg("Enviado, gracias. Lo miramos y lo arreglamos.", "ok"); $("comentario").value = ""; }
+      else { var j = await r.json().catch(function () { return {}; }); msg(j.error === "limite" ? "Hoy ya has enviado 3 avisos. Mañana más." : "No se ha podido enviar (error " + r.status + ").", "error"); }
+    } catch (e) { msg("Sin conexión. Prueba otra vez.", "error"); }
+    btn.disabled = false;
+  };
+  $("repetir").onclick = function () { $("resultado").innerHTML = ""; ver("prev", false); ver("valorar", false); ver("reporte", false); ver("otra", false); ver("paso1", true); msg(""); };
+})();
+</script>
+</body>
+</html>
