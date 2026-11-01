@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sin spoilers | Mosaico Lab</title>
+<meta name="description" content="Ve los recaps de LoL game a game sin saber cuántos vídeos quedan, cuánto duran ni cómo acaba la serie.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b1622">
+<link rel="canonical" href="https://mosaicolab.app/sin-spoilers/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mosaico Lab">
+<meta property="og:title" content="Sin spoilers">
+<meta property="og:description" content="Ve la serie como si fuera en directo: game a game, sin títulos, sin duración y sin contar vídeos.">
+<meta property="og:url" content="https://mosaicolab.app/sin-spoilers/">
+<link rel="icon" href="/assets/mosaico/favicon.png">
+<style>
+@font-face{font-family:"Barlow Condensed";src:url(a/BarlowCondensed-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Barlow";src:url(a/Barlow-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow";src:url(a/Barlow-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+/* Idea: la serie es una fila de huecos que nunca delata cuántos se llenan.
+   Paleta del mundo LoL: azul de la Grieta de noche y oro hextech. */
+:root{
+  --noche:#0b1622; --panel:#122233; --linea:#23394f; --texto:#eef2f6; --gris:#93a4b6;
+  --oro:#c8aa6e; --oro-claro:#f0e6d2; --azul:#0ac8b9;
+  --d:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --b:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--noche);color:var(--texto);font:400 17px/1.55 var(--b);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.caja{max-width:1040px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+a{color:var(--oro-claro)}
+:focus-visible{outline:2px solid var(--azul);outline-offset:3px}
+header.top{padding-block:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font:600 .9rem var(--b);color:var(--gris)}
+header.top a{color:var(--gris);text-decoration:none}
+.proto{border:1px solid var(--linea);border-radius:99px;padding:4px 10px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+
+/* Portada */
+.hero{padding-block:28px 12px;display:grid;gap:18px}
+.hero h1{font:700 clamp(2.9rem,11vw,6.4rem)/.88 var(--d);text-transform:uppercase;letter-spacing:-.01em;margin:0;text-wrap:balance;max-width:12ch}
+.hero h1 em{font-style:normal;color:var(--oro)}
+.hero p{margin:0;max-width:56ch;color:var(--gris);font-size:1.1rem}
+
+/* Huecos de la serie */
+.huecos{display:flex;gap:8px;align-items:center}
+.hueco{width:clamp(28px,8vw,44px);height:10px;border-radius:2px;background:var(--linea)}
+.hueco.visto{background:var(--oro)}
+.hueco.ahora{background:var(--azul)}
+
+/* Catálogo */
+.cat{padding-block:20px 8px}
+.cat h2,.canal h2{font:700 1.6rem/1 var(--d);text-transform:uppercase;letter-spacing:.02em;margin:0 0 6px}
+.cat .sub{color:var(--gris);margin:0 0 16px;font-size:.95rem}
+.series{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.serie{all:unset;box-sizing:border-box;display:grid;gap:10px;width:100%;padding:16px;border:1px solid var(--linea);border-radius:6px;background:var(--panel);cursor:pointer;transition:border-color .15s,transform .15s}
+.serie:hover{border-color:var(--oro)}
+.serie:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+.serie b{font:700 clamp(1.35rem,5vw,1.75rem)/1 var(--d);text-transform:uppercase;letter-spacing:.01em}
+.serie b span{color:var(--gris);font-size:1.1rem;padding-inline:6px}
+.serie small{color:var(--gris);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase}
+
+/* Visor */
+.visor{padding-block:20px 8px}
+.visor[hidden]{display:none}
+.vcab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px;margin-bottom:12px}
+.vcab h2{font:700 clamp(2rem,7vw,3.4rem)/.9 var(--d);text-transform:uppercase;margin:0}
+.vcab .fase{color:var(--gris);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase}
+.pantalla{position:relative;aspect-ratio:16/9;max-width:100%;background:#000;border-radius:6px;overflow:hidden;border:1px solid var(--linea)}
+.pantalla .reproductor{position:absolute;inset:0}
+.pantalla .reproductor iframe{width:100%;height:100%;border:0;pointer-events:none}
+.tarjeta{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:14px;text-align:center;padding:20px;background:radial-gradient(120% 90% at 50% 110%,#16324a 0%,#000 70%)}
+.tarjeta[hidden]{display:none}
+.tarjeta .num{font:700 clamp(3.4rem,14vw,7rem)/.85 var(--d);text-transform:uppercase;color:var(--oro-claro)}
+.tarjeta .msg{color:var(--gris);max-width:36ch}
+.botones{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+button.b{font:700 1.15rem/1 var(--d);text-transform:uppercase;letter-spacing:.04em;border-radius:4px;padding:14px 22px;min-height:50px;cursor:pointer;border:1px solid var(--oro);background:var(--oro);color:#1a1205}
+button.b.sec{background:transparent;color:var(--oro-claro);border-color:var(--linea)}
+button.b:disabled{opacity:.5;cursor:default}
+.nota{color:var(--gris);font-size:.85rem;margin:12px 0 0;max-width:70ch}
+
+/* Pegar enlaces */
+details.otra{margin-top:18px;border-top:1px solid var(--linea);padding-top:14px}
+details.otra summary{cursor:pointer;color:var(--oro-claro);font-weight:600}
+details.otra label{display:block;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);margin:14px 0 6px}
+details.otra input,details.otra textarea{width:100%;background:var(--panel);border:1px solid var(--linea);border-radius:4px;color:var(--texto);padding:12px;font:inherit;font-size:.95rem}
+details.otra textarea{min-height:110px}
+#error{color:#ffb4a8;font-size:.9rem;min-height:1.2em;margin:8px 0 0}
+
+/* Para el canal */
+.canal{padding-block:44px 24px;border-top:1px solid var(--linea);margin-top:36px}
+.canal>p{color:var(--gris);max-width:60ch;margin:0 0 22px}
+.claims{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px 36px}
+.claim h3{font:700 1.35rem/1.05 var(--d);text-transform:uppercase;margin:10px 0 6px;letter-spacing:.01em}
+.claim p{margin:0;color:var(--gris);font-size:.98rem}
+.claim .dato{font:700 3.4rem/.9 var(--d);color:var(--oro)}
+.claim q{color:var(--oro-claro);quotes:"«" "»"}
+footer{padding-block:28px 40px;color:var(--gris);font-size:.85rem;border-top:1px solid var(--linea)}
+footer p{margin:0 0 6px;max-width:70ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="caja">
+<header class="top"><a href="/">Mosaico Lab</a><span class="proto">Prototipo</span></header>
+
+<section class="hero">
+  <h1>La serie, <em>como en directo</em></h1>
+  <p>En un canal de recaps, si una serie al mejor de 3 solo tiene dos vídeos, ya sabes quién ha ganado. Aquí eliges la serie y ves los games de uno en uno, sin títulos, sin duración y sin saber cuántos quedan.</p>
+  <div class="huecos" aria-hidden="true"><span class="hueco visto"></span><span class="hueco ahora"></span><span class="hueco"></span></div>
+</section>
+
+<section class="cat" id="catalogo">
+  <h2>Worlds 2026 · fase suiza</h2>
+  <p class="sub">Casteos de Ibai, del canal LoL Esports VODs Español. Solo verás los equipos.</p>
+  <ul class="series" id="series"></ul>
+  <details class="otra">
+    <summary>Ver otra serie pegando sus enlaces</summary>
+    <label for="nombre">Nombre de la serie</label>
+    <input id="nombre" placeholder="T1 vs GEN" autocomplete="off">
+    <label for="enlaces">Enlaces de YouTube, uno por línea y en orden</label>
+    <textarea id="enlaces" placeholder="https://youtu.be/…"></textarea>
+    <div class="botones"><button class="b sec" id="pegar">Ver esta serie</button></div>
+    <p id="error" role="status"></p>
+  </details>
+</section>
+
+<section class="visor" id="visor" hidden>
+  <div class="vcab">
+    <div><div class="fase" id="vfase"></div><h2 id="vtitulo"></h2></div>
+    <div class="huecos" id="vhuecos" aria-label="Progreso de la serie"></div>
+  </div>
+  <div class="pantalla">
+    <div class="reproductor" id="reproductor"></div>
+    <div class="tarjeta" id="tarjeta">
+      <div class="num" id="tnum">Game 1</div>
+      <div class="msg" id="tmsg">Pulsa para empezar.</div>
+    </div>
+  </div>
+  <div class="botones">
+    <button class="b" id="play">Ver game 1</button>
+    <button class="b sec" id="siguiente" hidden>Siguiente game</button>
+    <button class="b sec" id="sonido" hidden>Activar sonido</button>
+    <button class="b sec" id="volver">Otras series</button>
+  </div>
+  <p class="nota">Mientras ves un game no hay título, duración ni barra de tiempo. Al pausar o terminar, el reproductor se quita para que YouTube no enseñe sugerencias de otros vídeos del canal.</p>
+</section>
+
+<section class="canal">
+  <h2>Para el canal</h2>
+  <p>Lo que hemos visto en los últimos 40 vídeos del canal (1 de noviembre de 2026) y lo que cambia con este visor.</p>
+  <div class="claims">
+    <div class="claim"><div class="dato">8 de 12</div><h3>Series que se resuelven contando vídeos</h3><p>En 8 de las 12 series al mejor de 3, solo hay dos vídeos: quien gana el game 1 gana la serie, y se sabe antes de darle al play.</p></div>
+    <div class="claim"><div class="dato">16–30 min</div><h3>La duración también habla</h3><p>Un game corto suele ser una paliza. Aquí no se ve la duración ni el tiempo que queda.</p></div>
+    <div class="claim"><div class="dato">«¿Es el final?»</div><h3>Y los títulos</h3><p>Títulos como <q>la partida decisiva</q> o <q>¿primer equipo eliminado?</q> cuentan el resultado. En el visor solo se lee «Game 1, Game 2…».</p></div>
+    <div class="claim"><div class="dato">0 cambios</div><h3>Sin tocar cómo subís</h3><p>Nada de vídeos en negro ni de alargar games. Se reproduce el vídeo original con el reproductor oficial de YouTube, en el propio canal.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Prototipo de <a href="/">Mosaico Lab</a>. No es oficial ni está afiliado al canal, a Ibai ni a Riot Games; los vídeos son suyos y se reproducen desde YouTube.</p>
+  <p>Contacto: hola@mosaicolab.app</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  // Datos del canal @LoLEsports_IBAI a 1/11/2026, en orden de game.
+  var SERIES=[
+    {a:"BLG",b:"HLE",v:["amN4tLyxXSc","TyWwhzVfolE"]},
+    {a:"LYON",b:"LOS",v:["F5dLvtgh6cQ","YUGcNrCTQA4","kRXTH-_hiOs"]},
+    {a:"KC",b:"KOI",v:["-U9h8-MpYzo","W0NxLKxz6IQ"]},
+    {a:"G2",b:"HLE",v:["js3bQTEyOy0","945gK-prdj4"]},
+    {a:"LOS",b:"TL",v:["fArGqh5vGUU","FiTl_dtEHeU","yZtA2NKgq74"]},
+    {a:"BLG",b:"TES",v:["8TtkoUNQ4HM","vhZGd5gi_WQ","0haH3v8smm0"]},
+    {a:"KC",b:"CFO",v:["ZFyYroH1pFs","y36Zl9MA3nA"]},
+    {a:"T1",b:"KOI",v:["u7bSyhtlpB8","iiUCzqA439o"]},
+    {a:"AL",b:"TL",v:["GsV8ipKqlJ0","3n-S8kVq7pk"]},
+    {a:"TSW",b:"LOS",v:["x6CTf3YV5ng","bVUHnWUcAyY"]},
+    {a:"LYON",b:"GEN",v:["r090ZYAuLY4","t3QXPqK7LpA","tc2K3Yogfa4"]},
+    {a:"KOI",b:"DK",v:["vAWxvDE0fjk","XAtGtWPt5eg"]}
+  ];
+  var $=function(id){return document.getElementById(id)};
+  var serie=null,idx=0,player=null,apiLista=false,pendiente=null,bo=3;
+
+  // Catálogo: solo equipos, nunca cuántos vídeos hay.
+  SERIES.forEach(function(s,i){
+    var li=document.createElement('li');
+    var bt=document.createElement('button');
+    bt.className='serie';bt.type='button';
+    bt.innerHTML='<small>Al mejor de 3</small><b>'+s.a+'<span>vs</span>'+s.b+'</b><span class="huecos" aria-hidden="true"><span class="hueco"></span><span class="hueco"></span><span class="hueco"></span></span>';
+    bt.setAttribute('aria-label',s.a+' contra '+s.b);
+    bt.onclick=function(){abrir({titulo:s.a+' vs '+s.b,fase:'Worlds 2026 · fase suiza · al mejor de 3',v:s.v,bo:3})};
+    li.appendChild(bt);$('series').appendChild(li);
+  });
+
+  // API de YouTube (dominio sin cookies).
+  window.onYouTubeIframeAPIReady=function(){apiLista=true;if(pendiente){var f=pendiente;pendiente=null;f()}};
+  var s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';s.async=true;document.head.appendChild(s);
+
+  function huecos(){
+    var h='';for(var i=0;i<bo;i++){h+='<span class="hueco'+(i<idx?' visto':(i===idx?' ahora':''))+'"></span>'}
+    $('vhuecos').innerHTML=h;
+  }
+  function tarjeta(num,msg){$('tnum').textContent=num;$('tmsg').textContent=msg;$('tarjeta').hidden=false}
+  function quitarReproductor(){
+    if(player){try{player.destroy()}catch(e){}player=null}
+    $('reproductor').innerHTML='';
+    $('sonido').hidden=true;
+  }
+  function prepararGame(){
+    quitarReproductor();
+    huecos();
+    tarjeta('Game '+(idx+1),'Pulsa para empezar.');
+    $('play').hidden=false;$('play').disabled=false;$('play').textContent='Ver game '+(idx+1);
+    $('siguiente').hidden=true;
+  }
+  function abrir(conf){
+    serie=conf;idx=0;bo=conf.bo||Math.max(3,conf.v.length);
+    $('vtitulo').textContent=conf.titulo;$('vfase').textContent=conf.fase;
+    $('visor').hidden=false;
+    prepararGame();
+    $('visor').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  }
+  function nuevo(t){
+    $('tarjeta').hidden=true;
+    var d=document.createElement('div');d.id='yt';$('reproductor').appendChild(d);
+    player=new YT.Player('yt',{
+      host:'https://www.youtube-nocookie.com',
+      videoId:serie.v[idx],
+      // Arranca en silencio para que el móvil permita empezar sin tocar el vídeo de YouTube.
+      playerVars:{autoplay:1,mute:1,start:Math.floor(t||0),controls:0,disablekb:1,rel:0,iv_load_policy:3,fs:0,playsinline:1,modestbranding:1},
+      events:{
+        onReady:function(e){try{e.target.playVideo();e.target.unMute()}catch(x){}},
+        onStateChange:function(e){
+          if(e.data===1){
+            $('play').textContent='Pausa';$('play').disabled=false;
+            var mudo=false;try{mudo=player.isMuted()}catch(x){}
+            $('sonido').hidden=!mudo;
+          }
+          else if(e.data===0){terminado()}
+        }
+      }
+    });
+  }
+  function crear(){nuevo(0)}
+  function play(){
+    if(player&&player.getPlayerState){
+      var st=player.getPlayerState();
+      if(st===1){pausar();return}
+    }
+    $('play').disabled=true;
+    if(player&&player.playVideo&&!pausado){return}
+    if(pausado){ // se reanuda donde estaba
+      var t=pausado;pausado=null;
+      apiLista?reanudar(t):(pendiente=function(){reanudar(t)});
+      return;
+    }
+    apiLista?crear():(pendiente=crear,tarjeta('Game '+(idx+1),'Cargando el reproductor…'));
+  }
+  var pausado=null;
+  function pausar(){
+    // Al pausar, YouTube muestra otros vídeos: quitamos el reproductor y guardamos el segundo.
+    var t=0;try{t=player.getCurrentTime()}catch(e){}
+    quitarReproductor();pausado=t;
+    tarjeta('Pausa','Pulsa para seguir viendo el game '+(idx+1)+'.');
+    $('play').textContent='Seguir';$('play').disabled=false;
+  }
+  function reanudar(t){nuevo(t)}
+  function terminado(){
+    quitarReproductor();pausado=null;
+    idx++;huecos();idx--;
+    tarjeta('Game '+(idx+1)+' visto','¿Hay otro game? Pulsa siguiente y lo sabrás, como en directo.');
+    $('play').hidden=true;$('siguiente').hidden=false;
+  }
+  function siguiente(){
+    if(idx+1<serie.v.length){idx++;prepararGame();return}
+    idx++;huecos();
+    tarjeta('Fin de la serie','No hubo game '+(idx+1)+'. La serie terminó aquí.');
+    $('siguiente').hidden=true;
+  }
+  function parseId(x){x=x.trim();if(!x)return null;var m=x.match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);if(m)return m[1];return /^[A-Za-z0-9_-]{11}$/.test(x)?x:null}
+
+  $('play').onclick=play;
+  $('siguiente').onclick=siguiente;
+  $('sonido').onclick=function(){try{player.unMute();player.setVolume(100)}catch(e){}$('sonido').hidden=true};
+  $('volver').onclick=function(){quitarReproductor();pausado=null;$('visor').hidden=true;$('catalogo').scrollIntoView()};
+  $('pegar').onclick=function(){
+    var l=$('enlaces').value.split(/\n/).filter(function(x){return x.trim()});
+    if(!l.length){$('error').textContent='Pega al menos un enlace.';return}
+    var ids=l.map(parseId),mal=ids.indexOf(null);
+    if(mal>-1){$('error').textContent='No reconozco el enlace de la línea '+(mal+1)+'.';return}
+    $('error').textContent='';
+    abrir({titulo:$('nombre').value.trim()||'Tu serie',fase:'Serie propia',v:ids,bo:Math.max(3,ids.length%2?ids.length:ids.length+1)});
+  };
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
