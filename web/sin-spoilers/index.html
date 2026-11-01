@@ -126,6 +126,15 @@ details.otra textarea{min-height:110px}
 .claim p{margin:0;color:var(--gris);font-size:.98rem}
 .claim .dato{font:700 3.4rem/.9 var(--d);color:var(--oro)}
 .claim q{color:var(--oro-claro);quotes:"«" "»"}
+
+/* Opinión */
+.opina{padding-block:40px 28px;border-top:1px solid var(--linea);display:grid;gap:14px;max-width:640px}
+.opina h2{font:700 1.6rem/1 var(--d);text-transform:uppercase;letter-spacing:.02em;margin:0}
+.opina p{margin:0;color:var(--gris)}
+.opina label{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
+.opina textarea{width:100%;min-height:120px;background:var(--panel);border:1px solid var(--linea);border-radius:4px;color:var(--texto);padding:12px;font:inherit;font-size:1rem}
+.opina .correo{font-weight:600;color:var(--oro-claro);user-select:all}
+#opinaEstado{font-size:.9rem;color:var(--gris);min-height:1.2em}
 footer{padding-block:28px 40px;color:var(--gris);font-size:.85rem;border-top:1px solid var(--linea)}
 footer p{margin:0 0 6px;max-width:70ch}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -133,7 +142,7 @@ footer p{margin:0 0 6px;max-width:70ch}
 </head>
 <body>
 <div class="caja">
-<header class="top"><a href="/">Mosaico Lab</a><span class="proto">Prototipo</span></header>
+<header class="top"><a href="/">Mosaico Lab</a><a class="proto" href="#opina">Prototipo · Opina</a></header>
 
 <section class="hero">
   <h1>La serie, <em>como en directo</em></h1>
@@ -198,9 +207,19 @@ footer p{margin:0 0 6px;max-width:70ch}
   </div>
 </section>
 
+<section class="opina" id="opina">
+  <h2>¿Qué te parece?</h2>
+  <p>Es un prototipo y lo estamos probando. Cuéntanos qué cambiarías, qué serie o canal te gustaría ver aquí o si algo no funciona.</p>
+  <label for="opinaTexto">Tu opinión</label>
+  <textarea id="opinaTexto" placeholder="Me gustaría que…"></textarea>
+  <div class="botones" style="margin-top:0"><button class="b" id="opinaEnviar" type="button">Enviar por correo</button><button class="b sec" id="opinaCopiar" type="button">Copiar dirección</button></div>
+  <p id="opinaEstado" role="status"></p>
+  <p>Se abre tu app de correo con el mensaje listo para mandarlo a <span class="correo">hola@mosaicolab.app</span>. No guardamos nada en esta página.</p>
+</section>
+
 <footer>
   <p>Prototipo de <a href="/">Mosaico Lab</a>. No es oficial ni está afiliado al canal, a Ibai ni a Riot Games; los vídeos son suyos y se reproducen desde YouTube.</p>
-  <p>Contacto: hola@mosaicolab.app</p>
+  <p>Contacto: hola@mosaicolab.app · <a href="#opina">Danos tu opinión</a></p>
 </footer>
 </div>
 
@@ -348,6 +367,16 @@ footer p{margin:0 0 6px;max-width:70ch}
   }
   function parseId(x){x=x.trim();if(!x)return null;var m=x.match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);if(m)return m[1];return /^[A-Za-z0-9_-]{11}$/.test(x)?x:null}
 
+  $('opinaEnviar').onclick=function(){
+    var t=$('opinaTexto').value.trim();
+    var url='mailto:hola@mosaicolab.app?subject='+encodeURIComponent('Opinión sobre Sin spoilers')+'&body='+encodeURIComponent(t||'');
+    location.href=url;
+    $('opinaEstado').textContent='Si no se ha abierto tu correo, copia la dirección y escríbenos desde donde quieras.';
+  };
+  $('opinaCopiar').onclick=function(){
+    var ok=function(){$('opinaEstado').textContent='Dirección copiada: hola@mosaicolab.app'};
+    try{navigator.clipboard.writeText('hola@mosaicolab.app').then(ok,function(){$('opinaEstado').textContent='Mantén pulsada la dirección de abajo para copiarla.'})}catch(e){$('opinaEstado').textContent='Mantén pulsada la dirección de abajo para copiarla.'}
+  };
   $('play').onclick=play;
   $('tarjeta').onclick=function(){if(!$('siguiente').hidden){siguiente()}else{play()}};
   $('tarjeta').onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();$('tarjeta').onclick()}};
