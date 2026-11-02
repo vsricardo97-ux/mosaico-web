@@ -54,7 +54,7 @@
         <tr><td>Tu franja de edad</td><td>Solo en tu móvil</td><td>No</td></tr>
         <tr><td>La foto de la pizarra, al leerla</td><td>Pasa por nuestro servicio en Cloudflare hasta Anthropic</td><td>No la guardamos (sección 4)</td></tr>
         <tr><td>Un identificador aleatorio de la instalación, para contar las lecturas gratis</td><td>En tu iPhone; nuestro servicio lo usa y no lo guarda</td><td>Solo cifrado y solo durante el día (sección 4.3)</td></tr>
-        <tr><td>Tus compras de Premium</td><td>En tu móvil y en Apple</td><td>Solo el justificante de Apple al leer en la nube (sección 6)</td></tr>
+        <tr><td>Tus compras de Premium</td><td>En tu móvil y en Apple o Google Play</td><td>Solo el justificante de Apple o el identificador de compra de Google Play al leer en la nube (sección 6)</td></tr>
         <tr><td>Datos técnicos y de publicidad cuando hay anuncios</td><td>Los recoge Google</td><td>No los vemos de forma individual</td></tr>
         <tr><td>Datos técnicos al buscar actualizaciones de la app</td><td>Los recibe Expo</td><td>No los vemos de forma individual</td></tr>
       </tbody>
@@ -90,7 +90,7 @@
   <ul>
     <li><strong>Sin Premium:</strong> tienes <strong>1 lectura gratis al día</strong> y otra por cada vídeo con recompensa que veas (con un máximo diario). Para contarlas, la app crea un <strong>identificador aleatorio de la instalación</strong> (no es tu Apple ID, ni el identificador de publicidad, ni nada tuyo) y lo guarda en el Llavero del iPhone. Nuestro servicio lo convierte en un código cifrado con una clave que cambia cada día y <strong>lo borra todo a medianoche (UTC)</strong>, clave incluida: no podemos saber quién eres ni relacionar un día con otro.</li>
     <li><strong>Para evitar abusos</strong> usamos <strong>DeviceCheck</strong> de Apple, que comprueba que la petición viene de un iPhone real sin identificarte.</li>
-    <li><strong>Con Premium:</strong> la app envía el justificante de compra firmado por Apple, nuestro servicio lo comprueba y cuenta tus lecturas del día con el mismo código cifrado que se borra a medianoche.</li>
+    <li><strong>Con Premium:</strong> en iPhone la app envía el justificante de compra firmado por Apple; en Android, el identificador de tu compra de Google Play (el «token de compra»). Nuestro servicio lo comprueba con Apple o con Google Play y cuenta tus lecturas del día con el mismo código cifrado que se borra a medianoche.</li>
     <li><strong>Base legal:</strong> la prestación del servicio (artículo 6.1.b del RGPD); crear el identificador y guardarlo en el iPhone es necesario para el servicio que pides (artículo 22.2 de la LSSI).</li>
   </ul>
   <p>Si no quieres usar la nube, puedes escribir el entreno a mano.</p>
@@ -127,9 +127,9 @@
   <h2>6. Premium: compras y suscripciones</h2>
   <p>Premium quita los anuncios y la marca de Wodpost de tus tarjetas y da hasta 10 lecturas al día en la nube. Puede ser una suscripción anual, una mensual o un pago único, a los precios que te muestra la tienda.</p>
   <ul>
-    <li><strong>El pago lo gestiona Apple.</strong> Nosotros <strong>no vemos</strong> tu nombre, tu Apple ID ni tus datos de pago (<a href="https://www.apple.com/es/legal/privacy/">apple.com/es/legal/privacy</a>).</li>
-    <li>La app guarda en tu móvil el estado de tu compra y su justificante firmado por Apple, y lo comprueba con la tienda, también al pulsar «Restaurar compras». No usamos ningún servicio de compras de terceros.</li>
-    <li><strong>Cancelar y reembolsos:</strong> en los ajustes de tu cuenta de Apple. Los reembolsos los gestiona Apple en <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</li>
+    <li><strong>El pago lo gestiona Apple (iPhone) o Google Play (Android).</strong> Nosotros <strong>no vemos</strong> tu nombre, tu cuenta ni tus datos de pago (<a href="https://www.apple.com/es/legal/privacy/">apple.com/es/legal/privacy</a>, <a href="https://policies.google.com/privacy?hl=es">policies.google.com/privacy</a>).</li>
+    <li>La app guarda en tu móvil el estado de tu compra y su justificante (el firmado por Apple o el token de compra de Google Play), y lo comprueba con la tienda, también al pulsar «Restaurar compras». En Android, el token solo se envía a nuestro servicio de lectura, que se lo pregunta a Google Play únicamente para comprobar que tu Premium está activo; no lo registramos, no lo usamos para nada más y no lo compartimos con nadie salvo con Google Play, que lo emitió. Para limitar el uso diario guardamos, como máximo 24 horas, una huella irreversible del token (no el token). No usamos ningún servicio de compras de terceros.</li>
+    <li><strong>Cancelar y reembolsos:</strong> en los ajustes de tu cuenta de Apple o en Google Play &gt; Pagos y suscripciones &gt; Suscripciones. Los reembolsos los gestiona la tienda: Apple en <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>; Google Play desde su historial de pedidos.</li>
     <li><strong>Base legal:</strong> cumplir lo que has comprado (artículo 6.1.b del RGPD).</li>
   </ul>
 
