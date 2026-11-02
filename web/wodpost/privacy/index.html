@@ -54,7 +54,7 @@
         <tr><td>Your age band</td><td>Only on your phone</td><td>No</td></tr>
         <tr><td>The whiteboard photo, when it's read</td><td>Passes through our service on Cloudflare to Anthropic</td><td>We don't keep it (section 4)</td></tr>
         <tr><td>A random installation ID, to count free readings</td><td>On your iPhone; our service uses it and doesn't keep it</td><td>Only hashed and only for the day (section 4.3)</td></tr>
-        <tr><td>Your Premium purchases</td><td>On your phone and at Apple</td><td>Only Apple's receipt when reading in the cloud (section 6)</td></tr>
+        <tr><td>Your Premium purchases</td><td>On your phone and at Apple or Google Play</td><td>Only Apple's receipt or the Google Play purchase identifier when reading in the cloud (section 6)</td></tr>
         <tr><td>Technical and advertising data when there are ads</td><td>Collected by Google</td><td>We don't see it individually</td></tr>
         <tr><td>Technical data when checking for app updates</td><td>Received by Expo</td><td>We don't see it individually</td></tr>
       </tbody>
@@ -90,7 +90,7 @@
   <ul>
     <li><strong>Without Premium:</strong> you get <strong>1 free reading a day</strong> and another for each rewarded video you watch (up to a daily maximum). To count them, the app creates a <strong>random installation ID</strong> (not your Apple ID, not the advertising ID, nothing about you) and keeps it in the iPhone's Keychain. Our service turns it into a hashed code with a key that changes every day and <strong>deletes everything at midnight (UTC)</strong>, key included: we can't tell who you are or link one day to another.</li>
     <li><strong>To prevent abuse</strong> we use Apple's <strong>DeviceCheck</strong>, which checks that the request comes from a real iPhone without identifying you.</li>
-    <li><strong>With Premium:</strong> the app sends Apple's signed purchase receipt; our service checks it and counts your readings for the day with the same hashed code, deleted at midnight.</li>
+    <li><strong>With Premium:</strong> on iPhone the app sends Apple's signed purchase receipt; on Android, the identifier of your Google Play purchase (the "purchase token"). Our service checks it with Apple or Google Play and counts your readings for the day with the same hashed code, deleted at midnight.</li>
     <li><strong>Legal basis:</strong> providing the service (Art. 6(1)(b) GDPR); creating the ID and storing it on the iPhone is necessary for the service you ask for.</li>
   </ul>
   <p>If you don't want to use the cloud, you can type your workout in yourself.</p>
@@ -127,9 +127,9 @@
   <h2>6. Premium: purchases and subscriptions</h2>
   <p>Premium removes ads and the Wodpost mark from your cards and gives up to 10 cloud readings a day. It can be an annual subscription, a monthly one or a one-time purchase, at the prices shown by the store.</p>
   <ul>
-    <li><strong>Apple handles payment.</strong> We <strong>don't see</strong> your name, Apple ID or payment details (<a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a>).</li>
-    <li>The app stores your purchase status and Apple's signed receipt on your phone and checks it with the store, including when you tap "Restore purchases". We don't use any third-party purchase service.</li>
-    <li><strong>Cancelling and refunds:</strong> in your Apple account settings. Apple handles refunds at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</li>
+    <li><strong>Apple (iPhone) or Google Play (Android) handles payment.</strong> We <strong>don't see</strong> your name, account or payment details (<a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a>, <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>).</li>
+    <li>The app stores your purchase status and its proof (Apple's signed receipt or the Google Play purchase token) on your phone and checks it with the store, including when you tap "Restore purchases". On Android, the token is sent only to our reading service, which asks Google Play only to confirm your Premium is active; we don't log it, don't use it for anything else and share it with no one except Google Play, which issued it. To limit daily usage we keep, for 24 hours at most, an irreversible fingerprint of the token (not the token). We don't use any third-party purchase service.</li>
+    <li><strong>Cancelling and refunds:</strong> in your Apple account settings or in Google Play &gt; Payments &amp; subscriptions &gt; Subscriptions. The store handles refunds: Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>; Google Play from its order history.</li>
     <li><strong>Legal basis:</strong> performing what you bought (Art. 6(1)(b) GDPR).</li>
   </ul>
 
