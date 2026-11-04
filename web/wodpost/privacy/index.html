@@ -30,7 +30,7 @@
 
 <main class="caja">
   <h1>Wodpost privacy policy</h1>
-  <p><strong>Last updated:</strong> 23 October 2026</p>
+  <p><strong>Last updated:</strong> 4 November 2026</p>
 
   <p>Wodpost reads the photo of your box's whiteboard, builds a workout card for your stories and keeps your WODs. There are no accounts and no sign-up: your workouts stay on your phone. We fund it with ads served by Google and with Premium, an optional purchase. This page explains what data is used, why, and how you decide.</p>
 
@@ -52,7 +52,7 @@
         <tr><td>Your workouts, results, notes, settings and card styles</td><td>Only on your phone</td><td>No</td></tr>
         <tr><td>Your weight (optional, to estimate calories)</td><td>Only in your iPhone's Keychain</td><td>No</td></tr>
         <tr><td>Your age band</td><td>Only on your phone</td><td>No</td></tr>
-        <tr><td>The whiteboard photo, when it's read</td><td>Passes through our service on Cloudflare to Anthropic</td><td>We don't keep it (section 4)</td></tr>
+        <tr><td>The whiteboard photo, when it's read</td><td>Passes through our service on Cloudflare to Anthropic</td><td>Yes: the photo, what was read and your rating, with nothing that identifies you (section 4.4)</td></tr>
         <tr><td>A random installation ID, to count free readings</td><td>On your iPhone; our service uses it and doesn't keep it</td><td>Only hashed and only for the day (section 4.3)</td></tr>
         <tr><td>Your Premium purchases</td><td>On your phone and at Apple or Google Play</td><td>Only Apple's receipt or the Google Play purchase identifier when reading in the cloud (section 6)</td></tr>
         <tr><td>Technical and advertising data when there are ads</td><td>Collected by Google</td><td>We don't see it individually</td></tr>
@@ -76,13 +76,13 @@
 
   <h2>4. Reading the whiteboard in the cloud</h2>
   <h3>4.1 What happens to the photo</h3>
-  <p>Before the first reading we explain this and ask for your permission. When reading, Wodpost sends the whiteboard photo, <strong>downsized and without location or device data</strong>, to our service on <strong>Cloudflare</strong> (Cloudflare, Inc.), which forwards it to <strong>Anthropic</strong> (Anthropic, PBC) so its Claude AI model can read the workout. <strong>Our service does not store the photo or the result.</strong> Anthropic does not train its models on it and deletes it <strong>within 30 days</strong>, unless it needs it longer to investigate a breach of its usage policy or the law requires it. We only receive the workout (sections, movements and numbers): <strong>never other people's names or scores</strong>.</p>
+  <p>Before the first reading we explain this and ask for your permission. When reading, Wodpost sends the whiteboard photo, <strong>downsized and without location or device data</strong>, to our service on <strong>Cloudflare</strong> (Cloudflare, Inc.), which forwards it to <strong>Anthropic</strong> (Anthropic, PBC) so its Claude AI model can read the workout. <strong>Our service keeps the photo, what was read and your rating to improve reading, with nothing that identifies you</strong> (section 4.4). Anthropic does not train its models on it and deletes it <strong>within 30 days</strong>, unless it needs it longer to investigate a breach of its usage policy or the law requires it. Only the workout (sections, movements and numbers) becomes data: <strong>never other people's names or scores</strong>.</p>
   <p>The board may show other people's names: that's why we ask you to crop to your workout. If your name is in a photo and you want to exercise your rights, write to us.</p>
 
   <h3>4.2 Legal basis and processors</h3>
   <ul>
     <li><strong>Your photo:</strong> providing the service you ask for (Art. 6(1)(b) GDPR).</li>
-    <li><strong>Other people's names that may appear on the board:</strong> our legitimate interest in reading your workout with as little data as possible (Art. 6(1)(f)). They are not extracted or kept.</li>
+    <li><strong>Other people's names that may appear on the board:</strong> our legitimate interest in reading your workout and improving reading with as little data as possible (Art. 6(1)(f)). They are never extracted or turned into data; they may still be visible in the kept photo (section 4.4).</li>
     <li><strong>Anthropic and Cloudflare</strong> act as processors under contract (Art. 28) and European Commission Standard Contractual Clauses (and, for Cloudflare, the EU-U.S. Data Privacy Framework) for the transfer to the United States. Policies: <a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a> and <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a>.</li>
   </ul>
 
@@ -94,6 +94,18 @@
     <li><strong>Legal basis:</strong> providing the service (Art. 6(1)(b) GDPR); creating the ID and storing it on the iPhone is necessary for the service you ask for.</li>
   </ul>
   <p>If you don't want to use the cloud, you can type your workout in yourself.</p>
+
+  <h3>4.4 We keep your boards to improve reading</h3>
+  <p>When you read a board in the cloud, we keep on our service (Cloudflare) <strong>the photo that was read</strong> (cropped, without location), <strong>what the app understood</strong> and the <strong>1-5 rating</strong> you give the reading. We tell you in the app before keeping the first one.</p>
+  <ul>
+    <li><strong>Nothing that identifies you:</strong> we don't keep your name, account, IP or any identifier, so we can't tell which photos are yours.</li>
+    <li><strong>Why:</strong> to measure and improve reading. Only our team sees it. We may run some photos through Anthropic again to test improvements.</li>
+    <li><strong>How long:</strong> for as long as it helps us improve reading. If we ever wanted to use it for something else, we'll say so here and in the app first.</li>
+    <li><strong>Minors:</strong> we don't keep photos from under-18s, only what was read (no people).</li>
+    <li><strong>Legal basis:</strong> our legitimate interest in improving reading (Article 6(1)(f) GDPR), balanced against your rights: no identifiers, cropped photo without location, and nobody outside the team sees it.</li>
+    <li><strong>If you don't want it kept:</strong> type the workout in instead of taking a photo. To ask us to delete a photo (for example, if your name is on it), write to us with the approximate date and time.</li>
+    <li><strong>Reports and reviewed names:</strong> if you give 1 or 2 stars and tap «Send», we also get your corrections and comment (30 days). If you confirm or change the name of an uncertain movement, we only get that name (30 days).</li>
+  </ul>
 
   <h2>5. Ads</h2>
   <h3>5.1 When there are ads</h3>
@@ -152,7 +164,7 @@
   <p>You have the right to access, rectify, erase and port your data, to restrict or object to processing and to withdraw consent (Arts. 15 to 22 GDPR).</p>
   <ul>
     <li><strong>Data on your phone:</strong> you control it, and it's deleted when you delete it in the app or uninstall. Since it doesn't reach us, we can't access or delete it for you.</li>
-    <li><strong>Photos read in the cloud:</strong> we don't keep them; for what Anthropic keeps up to 30 days, write to us and we'll handle it.</li>
+    <li><strong>Photos read in the cloud:</strong> they carry nothing that identifies you, so to delete one we need the approximate date and time; for what Anthropic keeps up to 30 days, write to us and we'll handle it.</li>
     <li><strong>Ad data:</strong> turn off tracking in iOS settings and, for data already collected, contact Google.</li>
     <li><strong>How:</strong> write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. We reply within one month.</li>
     <li><strong>Complaints:</strong> to the Spanish Data Protection Agency (<a href="https://www.aepd.es">www.aepd.es</a>) or your country's authority. In the UK, the ICO (<a href="https://ico.org.uk">ico.org.uk</a>).</li>
@@ -160,7 +172,7 @@
   </ul>
 
   <h2>11. Security</h2>
-  <p>We have no servers holding your workouts. The photo travels encrypted (HTTPS) and our service doesn't log its content or your IP. App data is protected by your phone's security.</p>
+  <p>We have no servers holding workouts linked to you. The photo travels encrypted (HTTPS), our service doesn't keep your IP and what we keep (section 4.4) is only visible to our team. App data is protected by your phone's security.</p>
 
   <h2>12. Changes to this policy</h2>
   <p>If we change something important, we'll update this page, change the date above and, if your consent is needed, ask again in the app.</p>

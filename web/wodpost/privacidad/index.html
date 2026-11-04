@@ -30,7 +30,7 @@
 
 <main class="caja">
   <h1>Política de privacidad de Wodpost</h1>
-  <p><strong>Última actualización:</strong> 23 de octubre de 2026</p>
+  <p><strong>Última actualización:</strong> 4 de noviembre de 2026</p>
 
   <p>Wodpost lee la foto de la pizarra de tu box, te prepara la tarjeta del entreno para tus historias y guarda tus WODs. No hay cuentas ni registro: tus entrenos se quedan en tu móvil. La financiamos con anuncios que sirve Google y con Premium, una compra opcional. Aquí te contamos qué datos se usan, para qué y cómo decides tú.</p>
 
@@ -52,7 +52,7 @@
         <tr><td>Tus entrenos, resultados, notas, ajustes y estilos de tarjeta</td><td>Solo en tu móvil</td><td>No</td></tr>
         <tr><td>Tu peso (opcional, para estimar calorías)</td><td>Solo en el Llavero de tu iPhone</td><td>No</td></tr>
         <tr><td>Tu franja de edad</td><td>Solo en tu móvil</td><td>No</td></tr>
-        <tr><td>La foto de la pizarra, al leerla</td><td>Pasa por nuestro servicio en Cloudflare hasta Anthropic</td><td>No la guardamos (sección 4)</td></tr>
+        <tr><td>La foto de la pizarra, al leerla</td><td>Pasa por nuestro servicio en Cloudflare hasta Anthropic</td><td>Sí: la foto, lo leído y tu nota, sin ningún dato tuyo (sección 4.4)</td></tr>
         <tr><td>Un identificador aleatorio de la instalación, para contar las lecturas gratis</td><td>En tu iPhone; nuestro servicio lo usa y no lo guarda</td><td>Solo cifrado y solo durante el día (sección 4.3)</td></tr>
         <tr><td>Tus compras de Premium</td><td>En tu móvil y en Apple o Google Play</td><td>Solo el justificante de Apple o el identificador de compra de Google Play al leer en la nube (sección 6)</td></tr>
         <tr><td>Datos técnicos y de publicidad cuando hay anuncios</td><td>Los recoge Google</td><td>No los vemos de forma individual</td></tr>
@@ -76,13 +76,13 @@
 
   <h2>4. Lectura de la pizarra en la nube</h2>
   <h3>4.1 Qué pasa con la foto</h3>
-  <p>Antes de la primera lectura te lo explicamos y te pedimos permiso. Al leer, Wodpost envía la foto de la pizarra, <strong>reducida y sin ubicación ni datos del dispositivo</strong>, a nuestro servicio en <strong>Cloudflare</strong> (Cloudflare, Inc.), que la reenvía a <strong>Anthropic</strong> (Anthropic, PBC) para que su modelo de IA Claude lea el entreno. <strong>Nuestro servicio no guarda la foto ni el resultado.</strong> Anthropic no entrena sus modelos con ella y la borra en <strong>30 días como mucho</strong>, salvo que la necesite más tiempo para investigar un abuso de su política de uso o lo exija la ley. Solo recibimos el entreno (secciones, movimientos y cifras): <strong>nunca nombres ni resultados de otras personas</strong>.</p>
+  <p>Antes de la primera lectura te lo explicamos y te pedimos permiso. Al leer, Wodpost envía la foto de la pizarra, <strong>reducida y sin ubicación ni datos del dispositivo</strong>, a nuestro servicio en <strong>Cloudflare</strong> (Cloudflare, Inc.), que la reenvía a <strong>Anthropic</strong> (Anthropic, PBC) para que su modelo de IA Claude lea el entreno. <strong>Nuestro servicio guarda la foto, lo leído y tu nota para mejorar la lectura, sin ningún dato tuyo</strong> (sección 4.4). Anthropic no entrena sus modelos con ella y la borra en <strong>30 días como mucho</strong>, salvo que la necesite más tiempo para investigar un abuso de su política de uso o lo exija la ley. Del resultado solo pasa a datos el entreno (secciones, movimientos y cifras): <strong>nunca nombres ni resultados de otras personas</strong>.</p>
   <p>En la pizarra puede haber nombres de otras personas: por eso te pedimos que recortes la zona de tu entreno. Si en una foto sale tu nombre y quieres ejercer tus derechos, escríbenos.</p>
 
   <h3>4.2 Base legal y encargados</h3>
   <ul>
     <li><strong>Tu foto:</strong> la prestación del servicio que pides (artículo 6.1.b del RGPD).</li>
-    <li><strong>Nombres de otras personas que puedan salir en la pizarra:</strong> nuestro interés legítimo en leer tu entreno con el mínimo de datos (artículo 6.1.f). No se extraen ni se guardan.</li>
+    <li><strong>Nombres de otras personas que puedan salir en la pizarra:</strong> nuestro interés legítimo en leer tu entreno y mejorar la lectura con el mínimo de datos (artículo 6.1.f). Nunca se extraen ni pasan a ningún dato; pueden seguir visibles en la foto guardada (sección 4.4).</li>
     <li><strong>Anthropic y Cloudflare</strong> actúan como encargados del tratamiento, con contrato (artículo 28) y cláusulas contractuales tipo de la Comisión Europea (y, en Cloudflare, el Marco de Privacidad de Datos UE-EE. UU.) para la transferencia a Estados Unidos. Políticas: <a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a> y <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a>.</li>
   </ul>
 
@@ -94,6 +94,18 @@
     <li><strong>Base legal:</strong> la prestación del servicio (artículo 6.1.b del RGPD); crear el identificador y guardarlo en el iPhone es necesario para el servicio que pides (artículo 22.2 de la LSSI).</li>
   </ul>
   <p>Si no quieres usar la nube, puedes escribir el entreno a mano.</p>
+
+  <h3>4.4 Guardamos tus pizarras para mejorar la lectura</h3>
+  <p>Cuando lees una pizarra en la nube, guardamos en nuestro servicio (Cloudflare) <strong>la foto que se leyó</strong> (recortada y sin ubicación), <strong>lo que entendió la app</strong> y la <strong>nota de 1 a 5</strong> que le pongas a la lectura. Te lo decimos en la app antes de guardar la primera.</p>
+  <ul>
+    <li><strong>Sin ningún dato tuyo:</strong> no guardamos tu nombre, cuenta, IP ni ningún identificador, así que no podemos saber qué fotos son tuyas.</li>
+    <li><strong>Para qué:</strong> medir y mejorar la lectura. Solo lo ve nuestro equipo. Podemos volver a pasar alguna foto por Anthropic para probar mejoras.</li>
+    <li><strong>Cuánto tiempo:</strong> mientras nos sirva para mejorar la lectura. Si algún día quisiéramos usarlo para otra cosa, lo diremos antes aquí y en la app.</li>
+    <li><strong>Menores:</strong> de menores de 18 no guardamos la foto, solo lo leído (sin personas).</li>
+    <li><strong>Base legal:</strong> nuestro interés legítimo en mejorar la lectura (artículo 6.1.f del RGPD). Lo hemos ponderado con tus derechos: no hay identificadores, la foto va recortada y sin ubicación, y nadie fuera del equipo la ve.</li>
+    <li><strong>Si no quieres que se guarde:</strong> escribe el entreno a mano en vez de hacer la foto. Para pedir que borremos una foto (por ejemplo, si sale tu nombre), escríbenos con el día y la hora aproximada.</li>
+    <li><strong>Reportes y nombres revisados:</strong> si pones 1 o 2 estrellas y pulsas «Enviar», nos llega además lo que corregiste y tu comentario (30 días). Si confirmas o cambias el nombre de un ejercicio en duda, nos llega solo ese nombre (30 días).</li>
+  </ul>
 
   <h2>5. Anuncios</h2>
   <h3>5.1 Cuándo hay anuncios</h3>
@@ -152,7 +164,7 @@
   <p>Tienes derecho a acceder a tus datos, rectificarlos, suprimirlos y portarlos, a limitar su tratamiento, a oponerte a él y a retirar tu consentimiento (artículos 15 a 22 del RGPD).</p>
   <ul>
     <li><strong>Datos de tu móvil:</strong> los controlas tú y se borran al borrarlos en la app o al desinstalarla. Como no nos llegan, no podemos consultarlos ni borrarlos por ti.</li>
-    <li><strong>Fotos leídas en la nube:</strong> nosotros no las guardamos; para lo que guarda Anthropic hasta 30 días, escríbenos y lo gestionamos.</li>
+    <li><strong>Fotos leídas en la nube:</strong> no llevan ningún dato tuyo, así que para borrar una necesitamos que nos digas el día y la hora aproximada; para lo que guarda Anthropic hasta 30 días, escríbenos y lo gestionamos.</li>
     <li><strong>Datos de anuncios:</strong> desactiva el rastreo en los ajustes de iOS y, para lo ya recogido, dirígete a Google.</li>
     <li><strong>Cómo ejercerlos:</strong> escribe a <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. Respondemos en un mes como máximo.</li>
     <li><strong>Reclamación:</strong> ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es">www.aepd.es</a>) o la autoridad de tu país. En el Reino Unido, ante la ICO (<a href="https://ico.org.uk">ico.org.uk</a>).</li>
@@ -160,7 +172,7 @@
   </ul>
 
   <h2>11. Seguridad</h2>
-  <p>No tenemos servidores con tus entrenos. La foto viaja cifrada (HTTPS) y nuestro servicio no guarda registros de su contenido ni de tu IP. Los datos de la app están protegidos por la seguridad de tu móvil.</p>
+  <p>No tenemos servidores con tus entrenos ligados a ti. La foto viaja cifrada (HTTPS), nuestro servicio no guarda tu IP y lo guardado (sección 4.4) solo lo puede ver nuestro equipo. Los datos de la app están protegidos por la seguridad de tu móvil.</p>
 
   <h2>12. Cambios en esta política</h2>
   <p>Si cambiamos algo importante, actualizaremos esta página, cambiaremos la fecha de arriba y, si hace falta tu consentimiento, te lo volveremos a pedir en la app.</p>
