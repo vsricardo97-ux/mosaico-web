@@ -55,7 +55,7 @@
       </thead>
       <tbody>
         <tr><td>Your workouts, results, notes, settings and card styles</td><td>Only on your phone</td><td>No</td></tr>
-        <tr><td>Your weight (optional, to estimate calories)</td><td>Only in your iPhone's Keychain</td><td>No</td></tr>
+        <tr><td>Your weight (optional, to estimate calories)</td><td>In your iPhone's Keychain and, if you're 18 or over, with your saved boards (§4.5)</td><td>Yes, if you're 18 or over</td></tr>
         <tr><td>Your age band</td><td>Only on your phone</td><td>No</td></tr>
         <tr><td>The whiteboard photo, when it's read</td><td>Passes through our service on Cloudflare to Anthropic</td><td>Yes: the photo, what was read and your rating, without your name or account (sections 4.4 and 4.5)</td></tr>
         <tr><td>A random installation ID, to count free readings</td><td>On your iPhone; our service uses it and doesn't keep it</td><td>Only hashed and only for the day (section 4.3)</td></tr>
@@ -69,7 +69,7 @@
   <h2>3. Data that stays on your phone</h2>
   <ul>
     <li><strong>Your workouts:</strong> WODs read or typed in, the ones you save "for another day", your results (times, rounds, loads), your notes and the date.</li>
-    <li><strong>Weight (optional):</strong> only if you enter it to see an estimated calorie range. It's stored in the <strong>Keychain of this iPhone only</strong>: it doesn't go to iCloud backup or other devices. You can delete it in Settings.</li>
+    <li><strong>Weight (optional):</strong> only if you enter it to see an estimated calorie range. It's stored in the <strong>Keychain of this iPhone only</strong>: it doesn't go to iCloud backup or other devices. If you're 18 or over, it's also sent with your saved boards (see §4.5). You can delete it in Settings.</li>
     <li><strong>Settings and preferences:</strong> units, card style, the background you chose last time, the numbers you usually pick and similar.</li>
     <li><strong>Age:</strong> the band you choose (under 14, 14 to 17, or 18 or over). Only the band, never your date of birth.</li>
     <li><strong>Free readings:</strong> how many you have left today, in the iPhone's Keychain, so they're not lost if you reinstall.</li>
@@ -117,11 +117,11 @@
   <ul>
     <li><strong>The random installation identifier</strong> (the one in section 4.3): it isn't your Apple ID, your Google account or the advertising identifier. It links your boards together and lets us delete them if you ask.</li>
     <li><strong>Your approximate area:</strong> the country and region our provider (Cloudflare) works out from the connection. Never GPS, the city or the IP.</li>
-    <li><strong>If you fill them in for calories:</strong> sex, birth year and how you train (starting out, often or competing). They're optional: if you don't fill them in, they aren't sent. Your weight never leaves the phone.</li>
+    <li><strong>If you fill them in for calories:</strong> weight, sex, birth year and how you train (starting out, often or competing). They're optional: if you don't fill them in or turn calories off, they aren't sent.</li>
   </ul>
   <ul>
     <li><strong>Why:</strong> to improve reading and Wodpost (for example, which workouts and formats are most common by country, age or level) and to fine-tune calories. Only our team sees it; we don't sell or share it. If we ever wanted to use it for something else, we'll say so here and in the app first.</li>
-    <li><strong>Legal basis:</strong> the identifier and area, our legitimate interest in improving the service (Article 6(1)(f) GDPR), with the right to object and delete them any time. Sex, birth year and level, your consent when you fill them in, with the notice next to them (Articles 6(1)(a) and 9(2)(a)), which you withdraw by deleting them.</li>
+    <li><strong>Legal basis:</strong> the identifier and area, our legitimate interest in improving the service (Article 6(1)(f) GDPR), with the right to object and delete them any time. Weight, sex, birth year and level, your consent when you fill them in, with the notice next to them (Articles 6(1)(a) and 9(2)(a)), which you withdraw by deleting them.</li>
     <li><strong>How long:</strong> for as long as it serves the purposes above, or until you delete it.</li>
     <li><strong>Delete my data:</strong> in Settings, «Delete my data». It removes the identifier, area and those details from all your boards; the board stays as in section 4.4, with nothing linking it to you. One tap, no questions.</li>
     <li><strong>Under 18:</strong> none of this is sent.</li>
