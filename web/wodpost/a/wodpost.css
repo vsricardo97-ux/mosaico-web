@@ -1,5 +1,5 @@
 /* Wodpost · web. Colores y letras de la app (docs/arte/pizarra-estilo.md §5 y §15, mosaico-games).
-   Negro del icono, texto hueso y el amarillo del disco de 15 solo para la acción. */
+   Negro del icono, texto hueso y el lima del logo solo para la acción. */
 
 @font-face { font-family: "Barlow Condensed"; font-weight: 700; font-display: swap; src: url("BarlowCondensed-Bold.woff2") format("woff2"); }
 @font-face { font-family: "Barlow Condensed"; font-weight: 600; font-display: swap; src: url("BarlowCondensed-SemiBold.woff2") format("woff2"); }
@@ -16,8 +16,8 @@
   --suave: #A6A6A1;
   --linea: #3A3A3E;
   --linea-fuerte: #6E6E69;
-  --amarillo: #F2FF1A;
-  --amarillo-pulsado: #C8D400;
+  --lima: #D4FF3A;
+  --lima-pulsado: #B2DB1E;
   --tinta: #15171A;
   --papel: #F3F0E8;
   --rojo-marcador: #FF3B2F;
@@ -47,23 +47,23 @@ p { margin: 0 0 1em; }
 h1, h2, h3 { margin: 0; font-family: var(--condensada); font-weight: 700; text-transform: uppercase; letter-spacing: -.005em; text-wrap: balance; }
 h2 { font-size: clamp(42px, 5.6vw, 84px); line-height: .92; margin-bottom: 28px; }
 h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
-::selection { background: var(--amarillo); color: var(--negro); }
-:focus-visible { outline: 3px solid var(--amarillo); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--lima); color: var(--negro); }
+:focus-visible { outline: 3px solid var(--lima); outline-offset: 3px; border-radius: 4px; }
 .oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .marco { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 var(--margen); }
 .seccion { padding: var(--hueco) 0 0; }
 
-/* Botones: el amarillo es la acción */
+/* Botones: el lima es la acción */
 .boton {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 52px; padding: 0 26px; border: 0; border-radius: 999px;
-  background: var(--amarillo); color: var(--negro);
+  background: var(--lima); color: var(--negro);
   font: 600 18px/1 var(--texto-fuente); text-decoration: none; cursor: pointer;
   transition: transform .18s var(--curva), background-color .18s;
 }
 .boton:hover { background: #F7FF66; }
-.boton:active { transform: scale(.97); background: var(--amarillo-pulsado); }
+.boton:active { transform: scale(.97); background: var(--lima-pulsado); }
 .boton-linea { background: transparent; color: var(--texto); box-shadow: inset 0 0 0 1.5px var(--linea-fuerte); }
 .boton-linea:hover { background: rgba(245,245,242,.08); }
 .boton-linea:active { background: rgba(245,245,242,.14); }
@@ -122,7 +122,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .t-gancho {
   display: inline-block; margin-top: 18px !important; padding: 7px 12px;
   font: 600 16px/1 var(--condensada); letter-spacing: .2em; text-transform: uppercase;
-  color: #fff; background: rgba(10,10,10,.82); box-shadow: inset 0 0 0 2px var(--amarillo); border-radius: 6px; text-shadow: none;
+  color: #fff; background: rgba(10,10,10,.82); box-shadow: inset 0 0 0 2px var(--lima); border-radius: 6px; text-shadow: none;
 }
 
 .tarjeta-ticket {
@@ -151,7 +151,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .tarjeta-marcador { display: flex; flex-direction: column; }
 .tarjeta-marcador .t-movs { order: 4; margin-top: 12px; font-size: 12px; opacity: .9; }
 
-/* El momento de la portada: la pizarra «se lee» línea a línea, con la barra amarilla de progreso de la app */
+/* El momento de la portada: la pizarra «se lee» línea a línea, con la barra lima de progreso de la app */
 .lectura > * { animation: linea .5s var(--curva) both; }
 .lectura > :nth-child(1) { animation-delay: .5s; }
 .lectura > :nth-child(2) { animation-delay: .65s; }
@@ -161,7 +161,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .lectura > :nth-child(6) { animation-delay: 1.6s; }
 .lectura::after {
   content: ""; position: absolute; left: -6%; right: -6%; top: 0; height: 3px; border-radius: 2px;
-  background: var(--amarillo); animation: escanear 1.2s .4s var(--curva) both;
+  background: var(--lima); animation: escanear 1.2s .4s var(--curva) both;
 }
 
 /* Cómo va */
@@ -176,7 +176,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .como-video { margin: 0; position: relative; justify-self: center; width: min(100%, 360px); }
 .como-video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 24px; background: #000; box-shadow: inset 0 0 0 1.5px #3A3A3E; }
 .sonido { position: absolute; right: 12px; top: 12px; min-height: 40px; padding: 8px 14px; border: 0; border-radius: 999px; background: rgba(10, 10, 10, .72); color: var(--texto); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; backdrop-filter: blur(6px); }
-.sonido[aria-pressed="true"] { background: var(--amarillo); color: var(--negro); }
+.sonido[aria-pressed="true"] { background: var(--lima); color: var(--negro); }
 .como-foto { margin: 0; }
 .como-foto img { border-radius: 20px; aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
 .como-foto figcaption, .como-video figcaption, .prueba-movil figcaption { color: var(--suave); font-size: 15px; margin-top: 14px; }
@@ -196,15 +196,15 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 }
 .chips label:hover span { background: rgba(245,245,242,.07); }
 .chips label:active span { transform: scale(.96); }
-.chips input:checked + span { background: var(--amarillo); color: var(--negro); box-shadow: none; }
-.chips input:focus-visible + span { outline: 3px solid var(--amarillo); outline-offset: 3px; }
+.chips input:checked + span { background: var(--lima); color: var(--negro); box-shadow: none; }
+.chips input:focus-visible + span { outline: 3px solid var(--lima); outline-offset: 3px; }
 .campo { display: block; max-width: 280px; }
 .campo input {
   width: 100%; min-height: 64px; padding: 0 18px; border: 0; border-radius: 14px;
   background: var(--superficie); box-shadow: inset 0 0 0 1.5px var(--linea-fuerte);
-  color: var(--texto); font: 700 40px/1 var(--condensada); letter-spacing: .02em; caret-color: var(--amarillo);
+  color: var(--texto); font: 700 40px/1 var(--condensada); letter-spacing: .02em; caret-color: var(--lima);
 }
-.campo input:focus { outline: none; box-shadow: inset 0 0 0 2px var(--amarillo); }
+.campo input:focus { outline: none; box-shadow: inset 0 0 0 2px var(--lima); }
 .campo small { display: block; color: var(--suave); font-size: 14px; margin-top: 8px; }
 .prueba-movil { margin: 0; justify-self: center; text-align: center; }
 .cambia { animation: cambia .35s var(--curva); }
@@ -260,7 +260,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .privado-texto p { font-size: 19px; }
 .privado-texto p:not(:last-child) { color: #D6D6D1; }
 .privado-texto a { color: var(--texto); text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
-.privado-texto a:hover { color: var(--amarillo); }
+.privado-texto a:hover { color: var(--lima); }
 
 /* Preguntas */
 .preguntas-rejilla { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(32px, 5vw, 80px); }
@@ -281,9 +281,9 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .acordeon summary:hover { color: #fff; }
 .acordeon details p { color: var(--suave); max-width: 40em; padding-bottom: 24px; margin: 0; }
 
-/* Avísame: el único campo amarillo de la página, porque es la acción */
+/* Avísame: el único campo lima de la página, porque es la acción */
 .avisame { padding-bottom: var(--hueco); }
-.avisame-rejilla { background: var(--amarillo); color: var(--negro); border-radius: 36px; padding: clamp(40px, 6vw, 88px); display: grid; grid-template-columns: auto 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.avisame-rejilla { background: var(--lima); color: var(--negro); border-radius: 36px; padding: clamp(40px, 6vw, 88px); display: grid; grid-template-columns: auto 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .avisame-icono { width: clamp(120px, 14vw, 192px); border-radius: 36px; }
 .avisame h2 { margin-bottom: 14px; }
 .avisame p { font-size: 20px; }
@@ -294,7 +294,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 }
 .aviso input[type=email]::placeholder { color: #8A8A85; }
 .aviso input[type=email]:focus { outline: 3px solid var(--negro); outline-offset: 3px; }
-.aviso .boton { min-height: 58px; background: var(--negro); color: var(--amarillo); padding: 0 32px; }
+.aviso .boton { min-height: 58px; background: var(--negro); color: var(--lima); padding: 0 32px; }
 .aviso .boton:hover { background: #222; }
 .aviso .boton:focus-visible { outline-color: var(--negro); }
 .avisame .letra { font-size: 14px; max-width: 46em; margin: 0; color: #2B2E00; }
@@ -306,7 +306,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .pie-marca { color: var(--texto); font-size: 18px; }
 .pie a { color: var(--texto); text-underline-offset: 3px; }
 .pie-enlaces { display: flex; flex-wrap: wrap; gap: 8px 20px; }
-.pie a:hover { color: var(--amarillo); }
+.pie a:hover { color: var(--lima); }
 .pie-letra p { margin-bottom: .8em; }
 
 /* Entradas al hacer scroll (solo con JS; sin JS todo se ve) */
