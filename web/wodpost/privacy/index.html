@@ -61,6 +61,7 @@
         <tr><td>A random installation ID, to count free readings</td><td>On your iPhone; our service uses it and doesn't keep it</td><td>Only hashed and only for the day (section 4.3)</td></tr>
         <tr><td>Your Premium purchases</td><td>On your phone and at Apple or Google Play</td><td>Only Apple's receipt or the Google Play purchase identifier when reading in the cloud (section 6)</td></tr>
         <tr><td>Technical and advertising data when there are ads</td><td>Collected by Google</td><td>We don't see it individually</td></tr>
+        <tr><td>Ad install measurement (Android only, 18 or over, with your consent)</td><td>Received by AppsFlyer and, through it, TikTok and Meta</td><td>We don't see your individual data, only total installs (section 5.5)</td></tr>
         <tr><td>Technical data when checking for app updates</td><td>Received by Expo</td><td>We don't see it individually</td></tr>
       </tbody>
     </table>
@@ -137,7 +138,7 @@
   </ul>
 
   <h3>5.2 Who serves them and what they collect</h3>
-  <p><strong>Google</strong> (Google Ireland Ltd. and Google LLC) serves the ads with AdMob and provides the consent form (UMP). Policies: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a> and <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>. We don't use other ad networks.</p>
+  <p><strong>Google</strong> (Google Ireland Ltd. and Google LLC) serves the ads with AdMob and provides the consent form (UMP). Policies: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a> and <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>. Inside the app we don't use other ad networks. Measuring our own ads outside the app (TikTok and Meta) is explained in section 5.5.</p>
   <p>Google's SDK inside the app, <strong>not our code</strong>, may collect: Apple's advertising identifier (IDFA), <strong>only if you're 18 or over and allow it</strong>; the identifier for vendors (IDFV); approximate location derived from your IP (never GPS); technical device data; which ads you saw or tapped; and SDK diagnostics.</p>
   <p><strong>What our code never sends to Google:</strong> your workouts, your photos, your weight, your age or whether you've bought anything. We only tell it the maximum ad content rating (PG) and whether ads must be non-personalized.</p>
 
@@ -156,6 +157,19 @@
     <li>You can change tracking permission in <strong>iOS Settings &gt; Privacy &amp; Security &gt; Tracking</strong>. Withdrawing consent doesn't affect what was done before.</li>
   </ul>
 
+  <h3>5.5 Measuring installs from our ads (Android only, 18 or over)</h3>
+  <p>If you use Wodpost on <strong>Android</strong>, have said you are <strong>18 or over</strong> and have accepted personalized ads in the consent form, the app uses the measurement service <strong>AppsFlyer</strong> (AppsFlyer Ltd. and affiliates). It tells us whether you installed Wodpost from one of our ads on <strong>TikTok</strong> or <strong>Meta</strong> (Instagram and Facebook), so we can stop spending on ads that don't work. If any of that isn't true, the SDK isn't even loaded.</p>
+  <ul>
+    <li><strong>What AppsFlyer receives:</strong> the Android advertising ID, the Google Play install referrer, IP address, device model and OS version, language, country, app version and an identifier AppsFlyer assigns itself. Only when you install or open the app.</li>
+    <li><strong>What it doesn't receive:</strong> your photos, boards, readings, workouts, notes, weight, sex, year of birth, calories, purchases or your age band. We send no events about what you do in the app.</li>
+    <li><strong>Who it's shared with:</strong> AppsFlyer acts on our behalf. TikTok and Meta receive or match that data to tell whether the install came from their ad and may process it as independent controllers under their own policies: <a href="https://www.appsflyer.com/privacy-policy/">appsflyer.com/privacy-policy</a>, <a href="https://www.tiktok.com/legal/page/global/privacy-policy/en">tiktok.com/legal</a> and <a href="https://www.facebook.com/privacy/policy/">facebook.com/privacy/policy</a>. We don't use any of it inside the app (not for ads, offers or difficulty) and we don't sell it.</li>
+    <li><strong>Legal basis:</strong> your consent (Art. 6(1)(a) GDPR and Art. 22.2 LSSI).</li>
+    <li><strong>Transfers:</strong> AppsFlyer, TikTok and Meta may process data outside the European Economic Area, with the safeguards described in their policies.</li>
+    <li><strong>How long:</strong> as set by AppsFlyer's policy; in our configuration nothing is kept beyond what is needed to measure.</li>
+    <li><strong>Withdrawing:</strong> in Settings &gt; "Ad privacy options" (change what you accepted) or by changing your age band. Measurement stops immediately, but what was already sent can't be recalled: to have it deleted, write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a> with your advertising ID (on Android, Settings &gt; Google &gt; Ads) and we'll pass the request on to AppsFlyer. You can also reset that ID on Android.</li>
+    <li><strong>Under 18 and iPhone:</strong> not activated. This service isn't used on iPhone.</li>
+  </ul>
+
   <h2>6. Premium: purchases and subscriptions</h2>
   <p>Premium removes ads and the Wodpost mark from your cards and gives up to 10 cloud readings a day. It can be an annual subscription, a monthly one or a one-time purchase, at the prices shown by the store.</p>
   <ul>
@@ -166,7 +180,7 @@
   </ul>
 
   <h2>7. Analytics</h2>
-  <p><strong>We don't use third-party analytics</strong>: the app doesn't send usage statistics to anyone. If we ever do, we'll say so here first and change the date above.</p>
+  <p><strong>We don't use third-party analytics</strong>: the app doesn't send usage statistics to anyone. The only exception is the ad-install measurement in section 5.5 (Android only, 18 or over, with consent), which includes nothing about what you do in the app. If we ever send more, we'll say so here first and change the date above.</p>
 
   <h2>8. App updates</h2>
   <p>When it opens, the app may check for a small update on <strong>Expo</strong>'s servers (650 Industries, Inc., United States). That request carries technical data: IP address, platform, app version and a random installation ID. It's used only to download the update. <strong>Legal basis:</strong> our legitimate interest in the app working and being secure (Art. 6(1)(f) GDPR). Policy: <a href="https://expo.dev/privacy">expo.dev/privacy</a>.</p>
@@ -174,8 +188,8 @@
   <h2>9. Children and age</h2>
   <p>Wodpost is <strong>not directed at children</strong>. When you start, we ask for your age band; the answer is required and is stored only on your phone.</p>
   <ul>
-    <li><strong>Under 14:</strong> the cloud is not used and no ad SDK is started: no consent form, no tracking prompt, no ads. You can type your workouts in yourself.</li>
-    <li><strong>14 to 17:</strong> cloud reading, always non-personalized ads and no Apple tracking prompt. For purchases, only the one-time purchase.</li>
+    <li><strong>Under 14:</strong> the cloud is not used and no ad or measurement SDK is started: no consent form, no tracking prompt, no ads. You can type your workouts in yourself.</li>
+    <li><strong>14 to 17:</strong> cloud reading, always non-personalized ads, no Apple tracking prompt and no install measurement (section 5.5). For purchases, only the one-time purchase.</li>
     <li><strong>Ad content:</strong> we ask Google for PG at most (may need parental guidance): these are not "for all ages" ads, and Google's filter isn't perfect. If you see something inappropriate, write to us with a screenshot.</li>
     <li>We comply with applicable child-protection and data-protection laws. If you're a parent or guardian and believe a child's data was processed, write to us.</li>
   </ul>
@@ -185,10 +199,10 @@
   <ul>
     <li><strong>Data on your phone:</strong> you control it, and it's deleted when you delete it in the app or uninstall. Since it doesn't reach us, we can't access or delete it for you.</li>
     <li><strong>Photos read in the cloud:</strong> if you're 18 or over, «Delete my data» in Settings removes the identifier, the area and your details from all of them (section 4.5). To delete a specific photo, tell us the approximate date and time; for what Anthropic keeps up to 30 days, write to us and we'll handle it.</li>
-    <li><strong>Ad data:</strong> turn off tracking in iOS settings and, for data already collected, contact Google.</li>
+    <li><strong>Ad data:</strong> turn off tracking in iOS settings and, for data already collected, contact Google. For install measurement on Android, see section 5.5.</li>
     <li><strong>How:</strong> write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. We reply within one month.</li>
     <li><strong>Complaints:</strong> to the Spanish Data Protection Agency (<a href="https://www.aepd.es">www.aepd.es</a>) or your country's authority. In the UK, the ICO (<a href="https://ico.org.uk">ico.org.uk</a>).</li>
-    <li><strong>United States:</strong> we don't sell your data. Users under 18 never see personalized ads, and the app does not knowingly collect data from children under 13.</li>
+    <li><strong>United States:</strong> we don't sell your data for money. On Android, for users 18 or over, sharing your advertising ID with AppsFlyer, TikTok and Meta to measure ads may count as "sharing" for advertising under some state laws; it only happens with your consent and you stop it as section 5.5 says. Users under 18 never see personalized ads, and the app does not knowingly collect data from children under 13.</li>
   </ul>
 
   <h2>11. Security</h2>
