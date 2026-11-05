@@ -309,6 +309,92 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .pie a:hover { color: var(--lima); }
 .pie-letra p { margin-bottom: .8em; }
 
+
+/* Selector de idioma */
+.idioma { display: flex; margin-left: 8px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--linea-fuerte); overflow: hidden; }
+.idioma a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 40px; padding: 0 10px; text-decoration: none; font: 600 14px/1 var(--texto-fuente); letter-spacing: .06em; color: var(--suave); }
+.idioma a[aria-current] { background: var(--texto); color: var(--negro); }
+.idioma a:not([aria-current]):hover { color: var(--texto); }
+.menu + .idioma { margin-left: 0; }
+
+/* Formulario «Avísame» en la portada */
+.aviso-portada { max-width: 560px; margin-top: 4px; padding-top: 22px; border-top: 1.5px solid rgba(245,245,242,.22); }
+.aviso-etiqueta { font-size: 17px; margin-bottom: 12px; }
+.aviso-etiqueta strong { font-weight: 600; }
+.aviso-fila { display: flex; gap: 8px; }
+.aviso-fila input[type=email] { flex: 1 1 0; min-width: 0; min-height: 52px; padding: 0 20px; border: 0; border-radius: 999px; background: rgba(245,245,242,.1); box-shadow: inset 0 0 0 1.5px var(--linea-fuerte); color: var(--texto); font: 500 17px/1 var(--texto-fuente); }
+.aviso-fila input[type=email]::placeholder { color: #9A9A95; }
+.aviso-fila input[type=email]:focus { outline: none; box-shadow: inset 0 0 0 2px var(--lima); }
+.aviso-fila .boton { flex: 0 0 auto; padding: 0 24px; }
+.aviso-portada .letra { color: var(--suave); font-size: 13px; line-height: 1.45; margin: 12px 0 0; }
+.contador { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font-size: 15px; color: var(--texto); }
+.contador[hidden] { display: none; }
+.contador strong { font-variant-numeric: tabular-nums; }
+.punto { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--lima); flex: none; }
+
+/* Fichas flotantes sobre el móvil */
+.ficha { position: absolute; z-index: 3; display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 9px 14px; border-radius: 999px; white-space: nowrap;
+  background: rgba(10,10,10,.82); box-shadow: inset 0 0 0 1.5px rgba(245,245,242,.22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  font: 600 14px/1 var(--texto-fuente); animation: ficha-flota 5s ease-in-out infinite; }
+.ficha b { color: var(--lima); font-weight: 700; }
+.ficha-leido { top: 17%; right: -14%; animation-delay: -1s; }
+.ficha-record { bottom: 24%; right: -10%; animation-delay: -3s; }
+@keyframes ficha-flota { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+/* Cinta de formatos */
+.cinta { overflow: hidden; background: var(--lima); color: var(--negro); padding: 14px 0; }
+.cinta-pista { display: flex; width: max-content; margin: 0; padding: 0; list-style: none; animation: cinta 38s linear infinite; }
+.cinta-pista li { flex: none; padding: 0 22px; font: 700 clamp(22px, 2.4vw, 30px)/1 var(--condensada); text-transform: uppercase; letter-spacing: .02em; }
+.cinta-pista li::after { content: "/"; margin-left: 44px; opacity: .45; }
+@keyframes cinta { to { transform: translateX(-50%); } }
+
+/* Por qué */
+.porque-entrada { color: var(--suave); font-size: 20px; max-width: 32em; }
+.porque-lista { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px clamp(24px, 3vw, 48px); counter-reset: q; }
+.porque-lista li { counter-increment: q; padding-top: 18px; border-top: 1.5px solid var(--linea-fuerte); }
+.porque-lista li::before { content: counter(q, decimal-leading-zero); display: block; margin-bottom: 14px; font: 600 15px/1 var(--texto-fuente); letter-spacing: .1em; color: var(--lima); }
+.porque-lista h3 { font-size: clamp(30px, 2.6vw, 38px); line-height: .98; }
+.porque-lista p { margin: 0; color: var(--suave); }
+
+/* Planes: tarjetas en el móvil, tabla en pantallas anchas */
+.planes { display: none; }
+.plan { background: var(--superficie); border-radius: 24px; padding: 26px 24px; }
+.plan h3 { margin-bottom: 14px; color: var(--suave); }
+.plan-precio { margin: 0; font-size: 16px; color: var(--suave); }
+.plan-precio strong { font: 700 56px/.9 var(--condensada); color: var(--texto); font-variant-numeric: tabular-nums; }
+.plan-alt { margin: 6px 0 0; color: var(--suave); font-size: 16px; }
+.plan ul { list-style: none; margin: 20px 0 0; padding: 18px 0 0; border-top: 1px solid var(--linea); display: grid; gap: 10px; font-size: 16px; }
+.plan li { padding-left: 26px; position: relative; }
+.plan li::before { content: ""; position: absolute; left: 0; top: .5em; width: 12px; height: 7px; border-left: 2.5px solid var(--lima); border-bottom: 2.5px solid var(--lima); transform: rotate(-45deg) translateY(-3px); }
+.plan-destacado { background: var(--lima); color: var(--negro); }
+.plan-destacado h3 { color: var(--negro); }
+.plan-destacado .plan-precio strong { color: var(--negro); }
+.plan-destacado .plan-precio, .plan-destacado .plan-alt { color: #2B2E00; }
+.plan-destacado ul { border-top-color: rgba(10,10,10,.25); }
+.plan-destacado li::before { border-color: var(--negro); }
+
+/* Guías en el pie y páginas de guía */
+.pie-guias-titulo { margin: 22px 0 8px; color: var(--texto); font-weight: 600; }
+.guia { padding: 56px 0 0; }
+.guia-cuerpo { max-width: 720px; }
+.guia .migas { color: var(--suave); font-size: 15px; margin-bottom: 28px; }
+.guia h1 { font-size: clamp(44px, 7vw, 84px); line-height: .92; margin-bottom: 28px; }
+.guia h2 { font-size: clamp(30px, 4vw, 44px); line-height: .98; margin: 48px 0 14px; }
+.guia p, .guia li { font-size: 19px; }
+.guia li { margin-bottom: 8px; }
+.guia ul, .guia ol { padding-left: 1.2em; }
+.guia dl { margin: 0; }
+.guia dt { font: 700 clamp(26px, 3vw, 32px)/1 var(--condensada); text-transform: uppercase; margin-top: 28px; color: var(--lima); }
+.guia dd { margin: 6px 0 0; color: #D6D6D1; }
+.guia .entrada { color: var(--suave); }
+.guia-cta { margin: 56px 0 0; padding: 28px; border-radius: 24px; background: var(--superficie); }
+.guia-cta p { margin-bottom: 18px; }
+.guia-hecho { padding-bottom: var(--hueco); }
+.guia a:not(.boton) { text-underline-offset: 3px; }
+.guias-lista { list-style: none; padding: 0 !important; display: grid; gap: 12px; }
+.guias-lista a { display: block; padding: 20px 22px; border-radius: 18px; background: var(--superficie); text-decoration: none; font: 600 24px/1.1 var(--condensada); text-transform: uppercase; }
+.guias-lista a:hover { background: var(--elevado); }
+
 /* Entradas al hacer scroll (solo con JS; sin JS todo se ve) */
 .js .aparece { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--curva), transform .7s var(--curva); transition-delay: calc(var(--i, 0) * 80ms); }
 .js .aparece.visto { opacity: 1; transform: none; }
@@ -325,6 +411,8 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .aparece { opacity: 1; transform: none; }
   .lectura::after { display: none; }
+  .cinta-pista { animation: none; width: auto; flex-wrap: wrap; justify-content: center; row-gap: 8px; }
+  .cinta-pista li[aria-hidden] { display: none; }
 }
 
 /* Tableta */
@@ -334,6 +422,8 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   .barra-dentro { justify-content: space-between; }
   .marcas-rejilla { grid-template-columns: 1fr; }
   .preguntas-rejilla, .pie-rejilla, .privado-rejilla { grid-template-columns: 1fr; }
+  .porque-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .barra-dentro .idioma { margin-left: auto; }
 }
 
 /* Móvil: cada sección es su propia composición */
@@ -367,7 +457,31 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   .privado-rejilla { border-radius: 28px; }
   .aviso .boton { flex: 1 1 100%; }
   .acordeon summary { font-size: 22px; }
+  .barra-dentro { gap: 10px; }
+  .logo { font-size: 24px; }
+  .idioma a { min-width: 40px; }
+  .aviso-fila { flex-direction: column; }
+  .aviso-fila .boton { width: 100%; }
+  .aviso-portada { padding-top: 18px; }
+  .ficha { font-size: 13px; padding: 8px 12px; }
+  .ficha-leido { right: auto; left: -14%; top: 9%; }
+  .ficha-record { right: -2%; bottom: 20%; }
+  .cinta { padding: 11px 0; }
+  .porque-lista { grid-template-columns: 1fr; gap: 32px; margin-top: 36px; }
+  .porque-lista h3 { font-size: 32px; }
+  .planes { display: grid; gap: 14px; margin-top: 28px; }
+  .tabla-caja, .precios { display: none; }
 }
 
 /* Que ninguna columna se ensanche por su contenido en móviles estrechos (320 px). */
 [class*="-rejilla"] > *, .aviso input { min-width: 0; }
+
+/* Cabecera en móviles muy estrechos (320 px) */
+@media (max-width: 380px) {
+  .barra-dentro { gap: 6px; }
+  .logo { font-size: 20px; gap: 6px; }
+  .logo img { width: 28px; height: 28px; }
+  .idioma { margin-left: auto; }
+  .idioma a { min-width: 36px; padding: 0 6px; }
+  .barra .boton-peque { padding: 0 12px; font-size: 15px; }
+}
