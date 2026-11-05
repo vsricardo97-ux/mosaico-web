@@ -485,3 +485,15 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   .idioma a { min-width: 36px; padding: 0 6px; }
   .barra .boton-peque { padding: 0 12px; font-size: 15px; }
 }
+
+/* Pruébala en iPhone (TestFlight) */
+.iphone-rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 80px); align-items: center; background: var(--superficie); border-radius: 36px; padding: clamp(32px, 6vw, 88px); box-shadow: inset 0 0 0 1.5px var(--linea); }
+.iphone h2 { margin-bottom: 14px; color: var(--lima); }
+.iphone-texto > p { color: var(--suave); font-size: 20px; max-width: 30em; }
+.iphone-texto .boton { margin: 12px 0 16px; }
+.iphone .letra { font-size: 14px; color: var(--suave); margin: 0; }
+.iphone-pasos { margin: 0; }
+.iphone-pasos h3 { font-size: 28px; margin-bottom: 4px; }
+.iphone-pasos p { font-size: 17px; }
+.iphone-rejilla { width: calc(100% - 2 * var(--margen)); }
+@media (max-width: 800px) { .iphone-rejilla { grid-template-columns: 1fr; border-radius: 28px; } .iphone .boton { width: 100%; text-align: center; } }
