@@ -12,6 +12,9 @@
 <meta name="description" content="Haz foto a la pizarra de tu box y Wodpost lee el WOD y te deja la tarjeta para tu historia, encima de tu foto del entreno. Para Android.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://mosaicolab.app/wodpost/">
+<link rel="alternate" hreflang="es" href="https://mosaicolab.app/wodpost/">
+<link rel="alternate" hreflang="en" href="https://mosaicolab.app/wodpost/en/">
+<link rel="alternate" hreflang="x-default" href="https://mosaicolab.app/wodpost/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mosaico Lab">
 <meta property="og:locale" content="es_ES">
@@ -30,12 +33,14 @@
   <div class="marco barra-dentro">
     <a class="logo" href="/wodpost/"><img src="/wodpost/a/icono.webp" width="32" height="32" alt=""><span>Wodpost</span></a>
     <nav class="menu" aria-label="Secciones">
+      <a href="#porque">Por qué</a>
       <a href="#como-va">Cómo va</a>
       <a href="#pruebalo">Pruébalo</a>
       <a href="#estilos">Estilos</a>
       <a href="#premium">Precio</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
+    <nav class="idioma" aria-label="Idioma"><a href="/wodpost/" aria-current="true" lang="es">ES</a><a href="/wodpost/en/" hreflang="en" lang="en">EN</a></nav>
     <a class="boton boton-peque" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Android</a>
   </div>
 </header>
@@ -52,9 +57,24 @@
         <a class="boton" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Descárgala en Google Play</a>
         <a class="boton boton-linea" href="#como-va">Ver cómo va</a>
       </div>
-      <p class="nota aparece">Ya en Android. Pronto en iPhone: <a href="#avisame">avísame</a>. Gratis, con Premium opcional.</p>
+      <form class="aviso-portada aparece" method="post" action="https://avisame.vsricardo97.workers.dev/avisame" aria-labelledby="portada-aviso">
+        <p id="portada-aviso" class="aviso-etiqueta"><strong>¿iPhone?</strong> Te avisamos el día que salga en la App Store.</p>
+        <input type="hidden" name="idea" value="wodpost-pronto">
+        <input type="hidden" name="anuncio" value="web-wodpost-portada">
+        <input type="hidden" name="acepto" value="si">
+        <p class="trampa" aria-hidden="true"><input type="text" name="web" tabindex="-1" autocomplete="off"></p>
+        <div class="aviso-fila">
+          <label class="oculto" for="correo-portada">Tu correo</label>
+          <input id="correo-portada" type="email" name="correo" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Tu correo">
+          <button class="boton" type="submit">Avísame</button>
+        </div>
+        <p class="contador" data-contador hidden><span class="punto" aria-hidden="true"></span>Ya somos <strong></strong> esperándola</p>
+        <p class="letra">Al pulsar, aceptas que Mosaico Lab guarde tu correo solo para avisarte de esto. Sin más correos y lo borramos cuando nos lo pidas. Gratis, con Premium opcional.</p>
+      </form>
     </div>
     <figure class="portada-movil" aria-label="Tarjeta de Wodpost sobre la foto del entreno">
+      <p class="ficha ficha-leido" aria-hidden="true"><span class="punto"></span>Leído por la IA</p>
+      <p class="ficha ficha-record" aria-hidden="true">Récord <b>+5 kg</b></p>
       <div class="movil">
         <div class="pantalla pantalla-foto">
           <div class="tarjeta tarjeta-poster lectura" data-tarjeta="portada">
@@ -69,6 +89,28 @@
       </div>
       <img class="portada-polaroid" src="/wodpost/a/pizarra-fran.webp" width="300" height="343" alt="Foto de una pizarra blanca con el WOD Fran escrito a rotulador: 21-15-9, thruster 43/30, pull-ups, TC 10">
     </figure>
+  </div>
+</section>
+
+<div class="cinta" aria-label="Formatos de entreno que lee Wodpost">
+  <ul class="cinta-pista">
+    <li>AMRAP</li><li>EMOM</li><li>For time</li><li>Rondas</li><li>Chipper</li><li>Tabata</li><li>Fuerza y RM</li><li>Hyrox</li><li>DEKA</li>
+    <li aria-hidden="true">AMRAP</li><li aria-hidden="true">EMOM</li><li aria-hidden="true">For time</li><li aria-hidden="true">Rondas</li><li aria-hidden="true">Chipper</li><li aria-hidden="true">Tabata</li><li aria-hidden="true">Fuerza y RM</li><li aria-hidden="true">Hyrox</li><li aria-hidden="true">DEKA</li>
+  </ul>
+</div>
+
+<section id="porque" class="seccion porque" aria-labelledby="porque-titulo">
+  <div class="marco">
+    <h2 id="porque-titulo" class="aparece">Entrenas cada día. ¿Y te acuerdas?</h2>
+    <p class="porque-entrada aparece">Tu cabeza no guarda la pizarra. Wodpost sí, y te lo contesta sin que apuntes nada.</p>
+    <ol class="porque-lista">
+      <li class="aparece"><h3>¿Cuándo fue tu último PR?</h3><p>Tus marcas salen ordenadas, con la fecha.</p></li>
+      <li class="aparece"><h3>¿Qué tocaba el martes?</h3><p>Cada pizarra que lees queda en tu biblioteca.</p></li>
+      <li class="aparece"><h3>¿Cuánto levantabas hace tres meses?</h3><p>Compara tu serie de hoy con la de entonces.</p></li>
+      <li class="aparece"><h3>¿Mejoraste desde el último Fran?</h3><p>La tarjeta te dice cuánto más rápido, o cuánto más lento.</p></li>
+      <li class="aparece"><h3>¿Con qué peso hiciste aquel thruster?</h3><p>Busca por movimiento y lo encuentras al momento.</p></li>
+      <li class="aparece"><h3>¿Qué hiciste cuando no pudiste ir?</h3><p>Guarda el WOD de otro día y hazlo cuando puedas.</p></li>
+    </ol>
   </div>
 </section>
 
@@ -93,7 +135,7 @@
     </div>
     <figure class="como-video aparece">
       <video id="anuncio" src="/wodpost/a/anuncio-wodpost.mp4" poster="/wodpost/a/anuncio-wodpost.webp" width="720" height="1280" muted loop playsinline preload="none" aria-label="Vídeo de 9 segundos: dejas de apuntar el WOD a mano, haces una foto a la pizarra y Wodpost te deja la tarjeta lista con tu tiempo"></video>
-      <button type="button" class="sonido" id="sonido" aria-pressed="false">Activar sonido</button>
+      <button type="button" class="sonido" id="sonido" aria-pressed="false" data-on="Activar sonido" data-off="Quitar sonido">Activar sonido</button>
       <figcaption>Así va, en 9 segundos.</figcaption>
     </figure>
   </div>
@@ -219,6 +261,25 @@
       </ul>
       <p class="nota aparece">Precios en España. Las suscripciones se cancelan cuando quieras desde los ajustes de tu cuenta de Apple. Con el pago único, la lectura en la nube va incluida al menos 3 años.</p>
     </div>
+
+    <div class="planes aparece" aria-label="Planes">
+      <article class="plan">
+        <h3>Gratis</h3>
+        <p class="plan-precio"><strong>0 €</strong></p>
+        <ul><li>5 estilos para siempre</li><li>1 lectura al día, y más con vídeo</li><li>Biblioteca y récords</li><li>Marca «Made with Wodpost» grande</li><li>Vídeos opcionales y uno al día como mucho</li></ul>
+      </article>
+      <article class="plan plan-destacado">
+        <h3>Premium</h3>
+        <p class="plan-precio"><strong>2,99 €</strong> <span>al mes</span></p>
+        <p class="plan-alt">o 12,99 € al año</p>
+        <ul><li>Todos los estilos, y los nuevos</li><li>Hasta 10 lecturas al día</li><li>Marca pequeña o ninguna</li><li>Sin anuncios</li></ul>
+      </article>
+      <article class="plan">
+        <h3>Pago único</h3>
+        <p class="plan-precio"><strong>24,99 €</strong></p>
+        <ul><li>Todo lo de Premium</li><li>Sin cuotas</li><li>Lectura en la nube incluida al menos 3 años</li></ul>
+      </article>
+    </div>
     <div class="tabla-caja aparece">
       <table class="tabla">
         <caption class="oculto">Qué incluye la versión gratis y qué incluye Premium</caption>
@@ -286,9 +347,12 @@
   <div class="marco pie-rejilla">
     <div>
       <p class="pie-marca">Wodpost es una app de <a href="/">Mosaico Lab</a>, un pequeño estudio de Valencia, España.</p>
-      <p class="pie-enlaces"><a href="/wodpost/soporte/">Ayuda y soporte</a> <a href="/wodpost/privacidad/">Privacidad</a> <a href="/wodpost/privacy/">Privacy (English)</a> <a href="/aviso-legal/">Aviso legal</a></p>
+      <p class="pie-enlaces"><a href="/wodpost/en/" hreflang="en" lang="en">English</a> <a href="/wodpost/soporte/">Ayuda y soporte</a> <a href="/wodpost/privacidad/">Privacidad</a> <a href="/wodpost/privacy/">Privacy (English)</a> <a href="/aviso-legal/">Aviso legal</a></p>
+      <p class="pie-guias-titulo">Guías</p>
+      <p class="pie-enlaces"><a href="/wodpost/guias/escaner-pizarra-wod/">Escáner de pizarra de WOD</a> <a href="/wodpost/guias/glosario-formatos-wod/">Glosario: AMRAP, EMOM, For Time</a> <a href="/wodpost/guias/hyrox/">Hyrox: estaciones y cómo anotarlo</a></p>
     </div>
     <div class="pie-letra">
+      <p>CrossFit®, HYROX® y DEKA® son marcas de sus respectivos titulares. Wodpost es independiente y no está afiliada a ellos ni cuenta con su respaldo; las citamos solo para describir los formatos que lee.</p>
       <p>Instagram es una marca de Meta Platforms, Inc. Wodpost no está afiliada a Meta ni cuenta con su respaldo, y funciona sin Instagram.</p>
       <p>Fotos de la pizarra: «Hand on black chalk board in the gym» y «Hand writing on black chalk board in the gym», de Shixart1985 (CC BY 2.0), vía Wikimedia Commons. Pesa rusa: «12 KG kettlebell at Results Gym», de Ser Amantio di Nicolao (CC BY-SA 4.0), vía Wikimedia Commons, desenfocada.</p>
       <p>Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</p>
