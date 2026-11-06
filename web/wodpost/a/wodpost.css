@@ -91,8 +91,8 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 
 .portada-movil { position: relative; margin: 0; justify-self: center; }
 .portada-polaroid {
-  position: absolute; left: -26%; bottom: 6%; width: 52%;
-  transform: rotate(-6deg); border-radius: 6px;
+  position: absolute; right: -4%; bottom: -3%; width: 44%;
+  transform: rotate(-6deg); border-radius: 22%; height: auto; box-shadow: 0 10px 30px rgba(0,0,0,.55);
   animation: soltar 1s .9s var(--curva) both;
 }
 
@@ -196,7 +196,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 }
 .chips label:hover span { background: rgba(245,245,242,.07); }
 .chips label:active span { transform: scale(.96); }
-.chips input:checked + span { background: var(--lima); color: var(--negro); box-shadow: none; }
+.chips input:checked + span { background: #F4F4F1; color: var(--negro); box-shadow: none; }
 .chips input:focus-visible + span { outline: 3px solid var(--lima); outline-offset: 3px; }
 .campo { display: block; max-width: 280px; }
 .campo input {
@@ -342,11 +342,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 @keyframes ficha-flota { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
 /* Cinta de formatos */
-.cinta { overflow: hidden; background: var(--lima); color: var(--negro); padding: 14px 0; }
-.cinta-pista { display: flex; width: max-content; margin: 0; padding: 0; list-style: none; animation: cinta 38s linear infinite; }
-.cinta-pista li { flex: none; padding: 0 22px; font: 700 clamp(22px, 2.4vw, 30px)/1 var(--condensada); text-transform: uppercase; letter-spacing: .02em; }
-.cinta-pista li::after { content: "/"; margin-left: 44px; opacity: .45; }
-@keyframes cinta { to { transform: translateX(-50%); } }
+.formatos { margin: 0; padding: 18px 16px; text-align: center; color: rgba(244,244,241,.7); font-size: 15px; border-bottom: 1px solid rgba(244,244,241,.12); }
 
 /* Por qué */
 .porque-entrada { color: var(--suave); font-size: 20px; max-width: 32em; }
@@ -411,8 +407,6 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .aparece { opacity: 1; transform: none; }
   .lectura::after { display: none; }
-  .cinta-pista { animation: none; width: auto; flex-wrap: wrap; justify-content: center; row-gap: 8px; }
-  .cinta-pista li[aria-hidden] { display: none; }
 }
 
 /* Tableta */
@@ -436,7 +430,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   .entrada { margin-bottom: 28px; }
   .acciones .boton { flex: 1 1 auto; }
   .portada-movil { margin-top: 24px; justify-self: end; margin-right: 6%; }
-  .portada-polaroid { left: -46%; width: 60%; bottom: 10%; }
+  .portada-polaroid { right: -4%; width: 44%; bottom: -3%; }
   .movil { width: 230px; border-radius: 44px; padding: 8px; }
   .pantalla { border-radius: 36px; }
   .movil-grande { width: min(300px, 80vw); }
@@ -466,7 +460,6 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   .ficha { font-size: 13px; padding: 8px 12px; }
   .ficha-leido { right: auto; left: -14%; top: 9%; }
   .ficha-record { right: -2%; bottom: 20%; }
-  .cinta { padding: 11px 0; }
   .porque-lista { grid-template-columns: 1fr; gap: 32px; margin-top: 36px; }
   .porque-lista h3 { font-size: 32px; }
   .planes { display: grid; gap: 14px; margin-top: 28px; }
