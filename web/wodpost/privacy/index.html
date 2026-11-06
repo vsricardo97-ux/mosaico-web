@@ -35,7 +35,7 @@
 
 <main class="caja">
   <h1>Wodpost privacy policy</h1>
-  <p><strong>Last updated:</strong> 4 November 2026</p>
+  <p><strong>Last updated:</strong> 6 November 2026</p>
 
   <p>Wodpost reads the photo of your box's whiteboard, builds a workout card for your stories and keeps your WODs. There are no accounts and no sign-up: your history stays on your phone (for each board read in the cloud we keep the photo, the reading and your rating; if you're 18 or over, also a random app identifier and your approximate area, which you can delete in Settings; sections 4.4 and 4.5). We fund it with ads served by Google and with Premium, an optional purchase. This page explains what data is used, why, and how you decide.</p>
 
@@ -58,6 +58,7 @@
         <tr><td>Your weight (optional, to estimate calories)</td><td>In your iPhone's Keychain and, if you're 18 or over, with your saved boards (§4.5)</td><td>Yes, if you're 18 or over</td></tr>
         <tr><td>Your age band</td><td>Only on your phone</td><td>No</td></tr>
         <tr><td>The whiteboard photo, when it's read</td><td>Passes through our service on Cloudflare to Anthropic</td><td>Yes: the photo, what was read and your rating, without your name or account (sections 4.4 and 4.5)</td></tr>
+        <tr><td>Your voice or the workout text, if you choose "By voice or text"</td><td>Your voice is turned into text on our service on Cloudflare; the text goes on to Anthropic</td><td>We keep neither the audio nor the text; we do keep the resulting workout, without your name or account (section 4.6)</td></tr>
         <tr><td>A random installation ID, to count free readings</td><td>On your iPhone; our service uses it and doesn't keep it</td><td>Only hashed and only for the day (section 4.3)</td></tr>
         <tr><td>Your Premium purchases</td><td>On your phone and at Apple or Google Play</td><td>Only Apple's receipt or the Google Play purchase identifier when reading in the cloud (section 6)</td></tr>
         <tr><td>Technical and advertising data when there are ads</td><td>Collected by Google</td><td>We don't see it individually</td></tr>
@@ -125,6 +126,15 @@
     <li><strong>How long:</strong> for as long as it serves the purposes above, or until you delete it.</li>
     <li><strong>Delete my data:</strong> in Settings, «Delete my data». It removes the identifier, area and those details from all your boards; the board stays as in section 4.4, with nothing linking it to you. One tap, no questions.</li>
     <li><strong>Under 18:</strong> none of this is sent.</li>
+  </ul>
+
+  <h3>4.6 Dictating your workout by voice or text (optional)</h3>
+  <p>If you choose "By voice or text", you can record up to 90 seconds with the microphone or type the workout. The recording is sent to our service on <strong>Cloudflare</strong> (Cloudflare, Inc.), which turns it into text with a speech recognition model run by Cloudflare itself (Workers AI). <strong>We don't keep the audio:</strong> it's deleted from your phone once sent and our service doesn't store it. The text appears in the app for you to correct and, when you tap "Fill in the workout", it's sent to <strong>Anthropic</strong> (Anthropic, PBC), whose Claude AI turns it into a workout; Anthropic doesn't train its models on it and deletes it <strong>within 30 days</strong>, unless it needs it to investigate abuse or the law requires it.</p>
+  <ul>
+    <li><strong>What we keep:</strong> we don't keep the text you dictate or type; we do keep the resulting workout (format, movements and numbers), without your name, account or any identifier, to improve reading and for as long as it helps with that.</li>
+    <li><strong>Daily limit:</strong> to limit recordings per day we use the app's random identifier in hashed form, only for that day, and it isn't stored with the audio or the text. We don't use your voice to identify you.</li>
+    <li><strong>Legal basis:</strong> providing the service you ask for (Art. 6(1)(b) GDPR) and, for the stored workout, our legitimate interest in improving reading (Art. 6(1)(f)). Cloudflare and Anthropic act as processors, as in section 4.2.</li>
+    <li><strong>Under 14:</strong> not available.</li>
   </ul>
 
   <h2>5. Ads</h2>
