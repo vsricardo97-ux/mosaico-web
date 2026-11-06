@@ -58,7 +58,7 @@
         <tr><td>Your weight (optional, to estimate calories)</td><td>In your iPhone's Keychain and, if you're 18 or over, with your saved boards (§4.5)</td><td>Yes, if you're 18 or over</td></tr>
         <tr><td>Your age band</td><td>Only on your phone</td><td>No</td></tr>
         <tr><td>The whiteboard photo, when it's read</td><td>Passes through our service on Cloudflare to Anthropic</td><td>Yes: the photo, what was read and your rating, without your name or account (sections 4.4 and 4.5)</td></tr>
-        <tr><td>Your voice or the workout text, if you choose "By voice or text"</td><td>Your voice is turned into text on our service on Cloudflare; the text goes on to Anthropic</td><td>We keep neither the audio nor the text; we do keep the resulting workout, without your name or account (section 4.6)</td></tr>
+        <tr><td>Your voice or the workout text, if you choose "By voice or text"</td><td>Your voice is turned into text on our service on Cloudflare; the text goes on to Anthropic</td><td>We don't keep the audio; we do keep the text (typed or transcribed) and the resulting workout, without your name or account (section 4.6)</td></tr>
         <tr><td>A random installation ID, to count free readings</td><td>On your iPhone; our service uses it and doesn't keep it</td><td>Only hashed and only for the day (section 4.3)</td></tr>
         <tr><td>Your Premium purchases</td><td>On your phone and at Apple or Google Play</td><td>Only Apple's receipt or the Google Play purchase identifier when reading in the cloud (section 6)</td></tr>
         <tr><td>Technical and advertising data when there are ads</td><td>Collected by Google</td><td>We don't see it individually</td></tr>
@@ -105,23 +105,23 @@
   <p>When you read a board in the cloud, we keep on our service (Cloudflare) <strong>the photo that was read</strong> (cropped, without location), <strong>what the app understood</strong> and the <strong>1-5 rating</strong> you give the reading. We also note whether you took that board's card to Instagram, Share or Save (only the button, the background type and the platform; never the image or who you send it to). We tell you in the app.</p>
   <ul>
     <li><strong>Without your name or account:</strong> we don't keep your name, account or IP. From under-18s, no identifier at all. If you're 18 or over, each board also carries what section 4.5 describes.</li>
-    <li><strong>Why:</strong> to measure and improve reading. Only our team sees it. We may run some photos through Anthropic again to test improvements.</li>
-    <li><strong>How long:</strong> for as long as it helps us improve reading. If we ever wanted to use it for something else, we'll say so here and in the app first.</li>
+    <li><strong>Why:</strong> to measure and improve reading and our products, and to produce aggregated, anonymous statistics (section 4.7). The stored data itself is only seen by our team. We may run some photos through Anthropic again to test improvements.</li>
+    <li><strong>How long:</strong> for as long as it serves those purposes. If we ever wanted to use your data in another way, we'll ask you first.</li>
     <li><strong>Minors:</strong> we don't keep photos from under-18s, only what was read (no people).</li>
     <li><strong>Legal basis:</strong> our legitimate interest in improving reading (Article 6(1)(f) GDPR), balanced against your rights: no name or account, cropped photo without location, nobody outside the team sees it and, if you're 18 or over, you can delete what links it to you (section 4.5).</li>
     <li><strong>If you don't want it kept:</strong> type the workout in instead of taking a photo. To ask us to delete a photo (for example, if your name is on it), write to us with the approximate date and time.</li>
-    <li><strong>Reports and reviewed names:</strong> if you give 1 or 2 stars and tap «Send», we also get your corrections and comment (30 days). If you confirm or change the name of an uncertain movement, we only get that name (30 days).</li>
+    <li><strong>Reports and reviewed names:</strong> if you give 1 or 2 stars and tap «Send», we also get your corrections and comment. If you confirm or change the name of an uncertain movement, we only get that name. We keep them for as long as they help us improve reading; since they carry no identifier, to delete one write to us with the approximate date and time.</li>
   </ul>
 
   <h3>4.5 Identifier, area and calorie details (18 or over)</h3>
   <p>From the November 2026 version, if you're <strong>18 or over</strong>, each board we keep (section 4.4) also carries:</p>
   <ul>
     <li><strong>The random installation identifier</strong> (the one in section 4.3): it isn't your Apple ID, your Google account or the advertising identifier. It links your boards together and lets us delete them if you ask.</li>
-    <li><strong>Your approximate area:</strong> the country and region our provider (Cloudflare) works out from the connection. Never GPS, the city or the IP.</li>
+    <li><strong>Your approximate area:</strong> the country, region and city our provider (Cloudflare) works out from the connection (it may not be exact). Never GPS or the IP.</li>
     <li><strong>If you fill them in for calories:</strong> weight, sex, birth year and how you train (starting out, often or competing). They're optional: if you don't fill them in or turn calories off, they aren't sent.</li>
   </ul>
   <ul>
-    <li><strong>Why:</strong> to improve reading and Wodpost (for example, which workouts and formats are most common by country, age or level) and to fine-tune calories. Only our team sees it; we don't sell or share it. If we ever wanted to use it for something else, we'll say so here and in the app first.</li>
+    <li><strong>Why:</strong> to improve reading and Wodpost (for example, which workouts and formats are most common by country, age or level) and to fine-tune calories. Individually, only our team sees this data: we don't sell or share it. It may be part of the aggregated, anonymous statistics in section 4.7. If we ever wanted to use your data in another way, we'll ask you first.</li>
     <li><strong>Legal basis:</strong> the identifier and area, our legitimate interest in improving the service (Article 6(1)(f) GDPR), with the right to object and delete them any time. Weight, sex, birth year and level, your consent when you fill them in, with the notice next to them (Articles 6(1)(a) and 9(2)(a)), which you withdraw by deleting them.</li>
     <li><strong>How long:</strong> for as long as it serves the purposes above, or until you delete it.</li>
     <li><strong>Delete my data:</strong> in Settings, «Delete my data». It removes the identifier, area and those details from all your boards; the board stays as in section 4.4, with nothing linking it to you. One tap, no questions.</li>
@@ -131,11 +131,14 @@
   <h3>4.6 Dictating your workout by voice or text (optional)</h3>
   <p>If you choose "By voice or text", you can record up to 90 seconds with the microphone or type the workout. The recording is sent to our service on <strong>Cloudflare</strong> (Cloudflare, Inc.), which turns it into text with a speech recognition model run by Cloudflare itself (Workers AI). <strong>We don't keep the audio:</strong> it's deleted from your phone once sent and our service doesn't store it. The text appears in the app for you to correct and, when you tap "Fill in the workout", it's sent to <strong>Anthropic</strong> (Anthropic, PBC), whose Claude AI turns it into a workout; Anthropic doesn't train its models on it and deletes it <strong>within 30 days</strong>, unless it needs it to investigate abuse or the law requires it.</p>
   <ul>
-    <li><strong>What we keep:</strong> we don't keep the text you dictate or type; we do keep the resulting workout (format, movements and numbers), without your name, account or any identifier, to improve reading and for as long as it helps with that.</li>
+    <li><strong>What we keep:</strong> never the audio. We do keep the text (what you type or what the voice was transcribed to), whether it came from voice or text, and the resulting workout (format, movements and numbers), without your name or account, for the same purposes and period as section 4.4. If you're 18 or over, also what section 4.5 describes. Don't dictate other people's names or details.</li>
     <li><strong>Daily limit:</strong> to limit recordings per day we use the app's random identifier in hashed form, only for that day, and it isn't stored with the audio or the text. We don't use your voice to identify you.</li>
     <li><strong>Legal basis:</strong> providing the service you ask for (Art. 6(1)(b) GDPR) and, for the stored workout, our legitimate interest in improving reading (Art. 6(1)(f)). Cloudflare and Anthropic act as processors, as in section 4.2.</li>
     <li><strong>Under 14:</strong> not available.</li>
   </ul>
+
+  <h3>4.7 Aggregated, anonymous statistics</h3>
+  <p>We keep your readings, your ratings and app usage data to improve reading and our products. We also use them to produce <strong>aggregated, anonymous training statistics</strong> (for example, what people train by country or region, and when). <strong>Now or in the future, we may share or sell those statistics to third parties</strong>, such as brands, gyms or research centres. Those statistics don't identify you and can't be linked to you: we only release figures that group 10 or more people, with no photos, texts or identifiers. If we ever wanted to use your data in another way, we'll ask you first.</p>
 
   <h2>5. Ads</h2>
   <h3>5.1 When there are ads</h3>
@@ -198,7 +201,7 @@
     <li><strong>Ad data:</strong> turn off tracking in iOS settings and, for data already collected, contact Google.</li>
     <li><strong>How:</strong> write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. We reply within one month.</li>
     <li><strong>Complaints:</strong> to the Spanish Data Protection Agency (<a href="https://www.aepd.es">www.aepd.es</a>) or your country's authority. In the UK, the ICO (<a href="https://ico.org.uk">ico.org.uk</a>).</li>
-    <li><strong>United States:</strong> we don't sell your data. Users under 18 never see personalized ads, and the app does not knowingly collect data from children under 13.</li>
+    <li><strong>United States:</strong> we don't sell your personal data (only aggregated, anonymous statistics, section 4.7). Users under 18 never see personalized ads, and the app does not knowingly collect data from children under 13.</li>
   </ul>
 
   <h2>11. Security</h2>
