@@ -91,8 +91,8 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 
 .portada-movil { position: relative; margin: 0; justify-self: center; }
 .portada-polaroid {
-  position: absolute; left: -26%; bottom: 6%; width: 52%;
-  transform: rotate(-6deg); border-radius: 6px;
+  position: absolute; right: -4%; bottom: -3%; width: 44%;
+  transform: rotate(-6deg); border-radius: 22%; height: auto; box-shadow: 0 10px 30px rgba(0,0,0,.55);
   animation: soltar 1s .9s var(--curva) both;
 }
 
@@ -430,7 +430,7 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
   .entrada { margin-bottom: 28px; }
   .acciones .boton { flex: 1 1 auto; }
   .portada-movil { margin-top: 24px; justify-self: end; margin-right: 6%; }
-  .portada-polaroid { left: -46%; width: 60%; bottom: 10%; }
+  .portada-polaroid { right: -4%; width: 44%; bottom: -3%; }
   .movil { width: 230px; border-radius: 44px; padding: 8px; }
   .pantalla { border-radius: 36px; }
   .movil-grande { width: min(300px, 80vw); }
