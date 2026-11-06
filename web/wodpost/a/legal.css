@@ -1,0 +1,47 @@
+/* Wodpost · páginas legales y de ayuda (política, soporte). Se carga después de /assets/estilo.css.
+   Carbón y lima: fondo oscuro, texto hueso, sin lima en enlaces (el lima es solo del botón principal). */
+@font-face { font-family: "Barlow Condensed"; font-weight: 700; font-display: swap; src: url("BarlowCondensed-Bold.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-weight: 400; font-display: swap; src: url("Barlow-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-weight: 600; font-display: swap; src: url("Barlow-SemiBold.woff2") format("woff2"); }
+
+:root { --w-fondo: #0B0B0C; --w-sup: #161618; --w-linea: #2E2E32; --w-texto: #F4F4F1; --w-suave: #B4B4AE; }
+body { background: var(--w-fondo); color: var(--w-texto); font-family: "Barlow", system-ui, -apple-system, sans-serif; font-size: 18px; line-height: 1.65; }
+header.sitio { background: var(--w-fondo); border-bottom: 1px solid var(--w-linea); color: var(--w-texto); }
+header.sitio .caja { align-items: center; }
+header.sitio a { color: var(--w-texto); }
+header.sitio a.marca { display: inline-flex; align-items: center; gap: .55rem; font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-size: 1.5rem; letter-spacing: .04em; text-transform: uppercase; }
+header.sitio a.marca img { width: 30px; height: 30px; border-radius: 8px; display: block; }
+header.sitio nav a { font-weight: 600; }
+h1, h2, h3 { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: .01em; color: var(--w-texto); }
+h1 { font-size: 2.3rem; }
+h2 { font-size: 1.6rem; border-top: 1px solid var(--w-linea); }
+h3 { font-size: 1.25rem; }
+a { color: var(--w-texto); text-decoration-color: var(--w-suave); }
+a:hover { text-decoration-color: var(--w-texto); }
+a:focus-visible { outline: 3px solid var(--w-texto); outline-offset: 2px; }
+blockquote { background: var(--w-sup); border-left: 4px solid var(--w-suave); }
+table { background: var(--w-sup); font-size: .88rem; line-height: 1.45; }
+th, td { border-color: var(--w-linea); }
+th { background: #222226; }
+.tarjeta, details { background: var(--w-sup); border: 1px solid var(--w-linea); }
+.tarjeta h2 { border: 0; }
+.boton { background: #CCF52E; color: #0B0B0C; }
+.boton:active { background: #A9CC1F; }
+.boton:focus-visible { outline-color: var(--w-texto); }
+footer.sitio { border-top: 1px solid var(--w-linea); color: var(--w-suave); }
+footer.sitio a { color: var(--w-suave); }
+footer.sitio strong { color: var(--w-texto); }
+
+/* Tablas en móvil: cada fila pasa a tarjeta, sin desplazamiento lateral. */
+@media (max-width: 640px) {
+  .tabla { overflow-x: visible; }
+  table { min-width: 0; background: none; display: block; }
+  thead { position: absolute; left: -9999px; }
+  tbody, tr, td { display: block; }
+  tr { background: var(--w-sup); border: 1px solid var(--w-linea); border-radius: 12px; padding: .6rem .9rem; margin: .8rem 0; }
+  td { border: 0; padding: .35rem 0; }
+  td + td { border-top: 1px solid var(--w-linea); }
+  td::before { content: attr(data-label); display: block; font-family: "Barlow Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: .85rem; color: var(--w-suave); }
+  td[data-label=""]::before { display: none; }
+  table { font-size: .95rem; }
+}
