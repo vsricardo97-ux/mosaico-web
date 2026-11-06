@@ -34,6 +34,10 @@
 .m-fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .m-marco{border:2px dashed var(--lima);border-radius:10px;padding:18px 14px;color:var(--suave);font-size:15px;line-height:1.5}
 .m-duda{border-bottom:2px solid #FF8A1F;color:var(--texto)}
+.ejemplo{position:relative;max-width:300px;line-height:0}.ejemplo img{width:100%;max-width:none;height:auto;border-radius:12px}.ejemplo .m-recuadro{position:absolute;left:0;top:0;width:77%;height:96%;border:3px dashed var(--lima);border-radius:6px}
+.ejemplo .m-recuadro::after{content:"";position:absolute;right:-9px;bottom:-9px;width:16px;height:16px;border-radius:50%;background:var(--lima)}
+.leido{background:var(--negro);border:1px solid var(--linea);border-radius:18px;padding:16px;max-width:360px;font:600 17px/1.6 var(--texto-fuente)}
+.leido b{display:block;font:700 22px/1.2 var(--condensada);letter-spacing:.02em;text-transform:uppercase;color:var(--lima);margin:8px 0 2px}.leido b:first-child{margin-top:0}
 .m-aviso{font-size:14px;color:var(--suave)}
 .tuto-p img{width:100%;max-width:260px;height:auto;border-radius:18px}
 </style>
@@ -57,10 +61,10 @@
 <div class="maqueta" aria-hidden="true"><div class="m-btn on">Photo of the board</div><div class="m-fila"><div class="m-btn">From gallery</div><div class="m-btn">By hand</div></div></div></li>
 <li class="tuto-p"><h2>Crop the board</h2>
 <p>Move the frame and drag the corners until only your workout is inside. If other people's names show up, keep them outside the frame.</p>
-<div class="maqueta" aria-hidden="true"><div class="m-marco">AMRAP 12 MIN<br>10 kettlebell swing 24 kg<br>5 burpee</div><div class="m-aviso">Drag to resize the frame</div></div></li>
+<div class="ejemplo"><img src="/wodpost/a/tuto-pizarra-foto.webp" width="900" height="1200" loading="lazy" alt="Photo of a box whiteboard with strength and WOD"><span class="m-recuadro"></span></div><div class="m-aviso">Drag to resize the frame</div></li>
 <li class="tuto-p"><h2>Check what is flagged</h2>
 <p>Wodpost reads the board and flags in orange anything it was unsure about. Double-tap the text to fix it. A misread weight changes the workout, so it is worth five seconds.</p>
-<div class="maqueta" aria-hidden="true"><div class="m-marco">AMRAP 12 MIN<br>10 kettlebell swing · <span class="m-duda">24 kg</span><br>5 burpee</div><div class="m-aviso">I flagged 1 thing I could not read clearly</div></div></li>
+<div class="ejemplo"><img src="/wodpost/a/tuto-pizarra-recorte.webp" width="696" height="1176" loading="lazy" alt="Cropped whiteboard"></div><div class="leido" aria-hidden="true"><b>Strength</b>Pause back squat · 5×5 @ 55%<br>DB deadlift · 15×5<b>WOD · EMOM 16</b>6 strict reverse grip pull-up<br>10 one arm DB thruster · <span class="m-duda">50/35</span><br>12 V-up<br>14 box jump over</div><div class="m-aviso">I flagged 1 thing I could not read clearly</div></li>
 <li class="tuto-p"><h2>Save or share your card</h2>
 <p>Tap to pick a style, change the background (your photo, a colour or a video), then <strong>Save</strong> to keep it in your history or <strong>Share</strong> to send it to your Instagram story or Photos.</p>
 <img src="/wodpost/a/pantalla-editor.webp" width="260" height="550" loading="lazy" alt="Wodpost card editor showing a 12-minute AMRAP"></li>

@@ -34,6 +34,10 @@
 .m-fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .m-marco{border:2px dashed var(--lima);border-radius:10px;padding:18px 14px;color:var(--suave);font-size:15px;line-height:1.5}
 .m-duda{border-bottom:2px solid #FF8A1F;color:var(--texto)}
+.ejemplo{position:relative;max-width:300px;line-height:0}.ejemplo img{width:100%;max-width:none;height:auto;border-radius:12px}.ejemplo .m-recuadro{position:absolute;left:0;top:0;width:77%;height:96%;border:3px dashed var(--lima);border-radius:6px}
+.ejemplo .m-recuadro::after{content:"";position:absolute;right:-9px;bottom:-9px;width:16px;height:16px;border-radius:50%;background:var(--lima)}
+.leido{background:var(--negro);border:1px solid var(--linea);border-radius:18px;padding:16px;max-width:360px;font:600 17px/1.6 var(--texto-fuente)}
+.leido b{display:block;font:700 22px/1.2 var(--condensada);letter-spacing:.02em;text-transform:uppercase;color:var(--lima);margin:8px 0 2px}.leido b:first-child{margin-top:0}
 .m-aviso{font-size:14px;color:var(--suave)}
 .tuto-p img{width:100%;max-width:260px;height:auto;border-radius:18px}
 </style>
@@ -57,10 +61,10 @@
 <div class="maqueta" aria-hidden="true"><div class="m-btn on">Foto de la pizarra</div><div class="m-fila"><div class="m-btn">De la galería</div><div class="m-btn">A mano</div></div></div></li>
 <li class="tuto-p"><h2>Recorta la pizarra</h2>
 <p>Mueve el marco y arrastra las esquinas hasta que solo quede tu entreno. Si salen nombres de otras personas, déjalos fuera del marco.</p>
-<div class="maqueta" aria-hidden="true"><div class="m-marco">AMRAP 12 MIN<br>10 kettlebell swing 24 kg<br>5 burpee</div><div class="m-aviso">Arrastra para cambiar el tamaño del marco</div></div></li>
+<div class="ejemplo"><img src="/wodpost/a/tuto-pizarra-foto.webp" width="900" height="1200" loading="lazy" alt="Foto de la pizarra de un box con fuerza y WOD"><span class="m-recuadro"></span></div><div class="m-aviso">Arrastra para cambiar el tamaño del marco</div></li>
 <li class="tuto-p"><h2>Revisa lo que está marcado</h2>
 <p>Wodpost lee la pizarra y marca en naranja lo que no ha visto claro. Toca el texto dos veces para corregirlo (o <strong>Texto → Corregir</strong> para cambiar el WOD entero). Una carga mal leída cambia el entreno: merece 5 segundos.</p>
-<div class="maqueta" aria-hidden="true"><div class="m-marco">AMRAP 12 MIN<br>10 kettlebell swing · <span class="m-duda">24 kg</span><br>5 burpee</div><div class="m-aviso">He marcado 1 cosa que no he leído claro</div></div></li>
+<div class="ejemplo"><img src="/wodpost/a/tuto-pizarra-recorte.webp" width="696" height="1176" loading="lazy" alt="Pizarra recortada"></div><div class="leido" aria-hidden="true"><b>Fuerza</b>Pause back squat · 5×5 @ 55 %<br>DB deadlift · 15×5<b>WOD · EMOM 16</b>6 strict reverse grip pull-up<br>10 one arm DB thruster · <span class="m-duda">50/35</span><br>12 V-up<br>14 box jump over</div><div class="m-aviso">He marcado 1 cosa que no he leído claro</div></li>
 <li class="tuto-p"><h2>Guarda o comparte tu tarjeta</h2>
 <p>Elige el estilo con un toque, cambia el fondo (tu foto, un color o un vídeo) y pulsa <strong>Guardar</strong> para tenerlo en tu historial, o <strong>Compartir</strong> para llevarlo a tu historia de Instagram o a Fotos.</p>
 <img src="/wodpost/a/pantalla-editor.webp" width="260" height="550" loading="lazy" alt="Editor de la tarjeta de Wodpost con un AMRAP de 12 minutos"></li>
