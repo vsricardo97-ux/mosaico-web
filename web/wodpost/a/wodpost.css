@@ -236,6 +236,8 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .marca-bloque { display: grid; grid-template-columns: minmax(0, 220px) 1fr; gap: 36px; align-items: center; background: var(--superficie); border-radius: 28px; padding: 40px; }
 .marca-bloque img { background: #0A0A0A; border-radius: 30px; padding: 7px; }
 .marca-bloque p { color: var(--suave); margin: 0; }
+.marca-bloque.sin-imagen { grid-template-columns: 1fr; align-items: start; gap: 12px; }
+.marca-bloque.sin-imagen h3 { margin: 0 0 10px; }
 
 /* Precio */
 .precio-rejilla { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
