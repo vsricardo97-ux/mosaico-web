@@ -35,7 +35,7 @@
 
 <main class="caja">
   <h1>Política de privacidad de Wodpost</h1>
-  <p><strong>Última actualización:</strong> 4 de noviembre de 2026</p>
+  <p><strong>Última actualización:</strong> 6 de noviembre de 2026</p>
 
   <p>Wodpost lee la foto de la pizarra de tu box, te prepara la tarjeta del entreno para tus historias y guarda tus WODs. No hay cuentas ni registro: tu historial se queda en tu móvil (de cada pizarra leída en la nube guardamos la foto, la lectura y tu nota; si tienes 18 o más, también un identificador aleatorio de la app y tu zona aproximada, y lo puedes borrar en Ajustes; secciones 4.4 y 4.5). La financiamos con anuncios que sirve Google y con Premium, una compra opcional. Aquí te contamos qué datos se usan, para qué y cómo decides tú.</p>
 
@@ -58,6 +58,7 @@
         <tr><td>Tu peso (opcional, para estimar calorías)</td><td>En el Llavero de tu iPhone y, con 18 o más, con tus pizarras guardadas (§4.5)</td><td>Sí, con 18 o más</td></tr>
         <tr><td>Tu franja de edad</td><td>Solo en tu móvil</td><td>No</td></tr>
         <tr><td>La foto de la pizarra, al leerla</td><td>Pasa por nuestro servicio en Cloudflare hasta Anthropic</td><td>Sí: la foto, lo leído y tu nota, sin tu nombre ni tu cuenta (secciones 4.4 y 4.5)</td></tr>
+        <tr><td>Tu voz o el texto del entreno, si eliges «Por voz o texto»</td><td>La voz pasa a texto en nuestro servicio en Cloudflare; el texto va hasta Anthropic</td><td>No guardamos ni el audio ni el texto; sí el entreno que sale, sin tu nombre ni tu cuenta (sección 4.6)</td></tr>
         <tr><td>Un identificador aleatorio de la instalación, para contar las lecturas gratis</td><td>En tu iPhone; nuestro servicio lo usa para contar</td><td>Para contar, solo cifrado y durante el día (sección 4.3). Con 18 o más, también junto a tus pizarras, con tu zona aproximada y, si los rellenas, sexo, año de nacimiento y nivel; lo borras en Ajustes (sección 4.5)</td></tr>
         <tr><td>Tus compras de Premium</td><td>En tu móvil y en Apple o Google Play</td><td>Solo el justificante de Apple o el identificador de compra de Google Play al leer en la nube (sección 6)</td></tr>
         <tr><td>Datos técnicos y de publicidad cuando hay anuncios</td><td>Los recoge Google</td><td>No los vemos de forma individual</td></tr>
@@ -125,6 +126,15 @@
     <li><strong>Cuánto tiempo:</strong> mientras nos sirva para lo de arriba, o hasta que lo borres.</li>
     <li><strong>Borrar mis datos:</strong> en Ajustes, «Borrar mis datos». Quita de todas tus pizarras el identificador, la zona y esos datos; la pizarra queda como en la sección 4.4, sin nada que la una a ti. Un toque, sin preguntas.</li>
     <li><strong>Menores de 18:</strong> nada de esto se envía.</li>
+  </ul>
+
+  <h3>4.6 Dictar el entreno por voz o texto (opcional)</h3>
+  <p>Si eliges «Por voz o texto», puedes grabar hasta 90 segundos con el micrófono o escribir el entreno. La grabación se envía a nuestro servicio en <strong>Cloudflare</strong> (Cloudflare, Inc.), que la pasa a texto con un modelo de reconocimiento de voz que ejecuta la propia Cloudflare (Workers AI). <strong>No guardamos el audio:</strong> se borra del móvil al enviarlo y nuestro servicio no lo almacena. El texto aparece en la app para que lo corrijas y, cuando pulsas «Rellenar el entreno», se envía a <strong>Anthropic</strong> (Anthropic, PBC), que con su IA Claude lo convierte en un entreno; Anthropic no entrena sus modelos con él y lo borra en <strong>30 días como mucho</strong>, salvo que lo necesite para investigar un abuso o lo exija la ley.</p>
+  <ul>
+    <li><strong>Qué guardamos:</strong> no guardamos el texto que dictas o escribes; sí el entreno que sale (formato, movimientos y cifras), sin tu nombre, tu cuenta ni ningún identificador, para mejorar la lectura y mientras nos sirva para eso.</li>
+    <li><strong>Tope diario:</strong> para limitar las grabaciones por día usamos el identificador aleatorio de la app de forma cifrada, solo durante ese día, y no se guarda con el audio ni con el texto. No usamos tu voz para identificarte.</li>
+    <li><strong>Base legal:</strong> la prestación del servicio que pides (artículo 6.1.b del RGPD) y, para el entreno guardado, nuestro interés legítimo en mejorar la lectura (artículo 6.1.f). Cloudflare y Anthropic actúan como encargados, igual que en la sección 4.2.</li>
+    <li><strong>Menores de 14 años:</strong> no está disponible.</li>
   </ul>
 
   <h2>5. Anuncios</h2>
