@@ -31,3 +31,17 @@ th { background: #222226; }
 footer.sitio { border-top: 1px solid var(--w-linea); color: var(--w-suave); }
 footer.sitio a { color: var(--w-suave); }
 footer.sitio strong { color: var(--w-texto); }
+
+/* Tablas en móvil: cada fila pasa a tarjeta, sin desplazamiento lateral. */
+@media (max-width: 640px) {
+  .tabla { overflow-x: visible; }
+  table { min-width: 0; background: none; display: block; }
+  thead { position: absolute; left: -9999px; }
+  tbody, tr, td { display: block; }
+  tr { background: var(--w-sup); border: 1px solid var(--w-linea); border-radius: 12px; padding: .6rem .9rem; margin: .8rem 0; }
+  td { border: 0; padding: .35rem 0; }
+  td + td { border-top: 1px solid var(--w-linea); }
+  td::before { content: attr(data-label); display: block; font-family: "Barlow Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: .85rem; color: var(--w-suave); }
+  td[data-label=""]::before { display: none; }
+  table { font-size: .95rem; }
+}
