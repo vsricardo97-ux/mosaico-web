@@ -102,7 +102,21 @@
   boton.addEventListener('click', function () {
     video.muted = !video.muted;
     boton.setAttribute('aria-pressed', String(!video.muted));
-    boton.textContent = video.muted ? 'Activar sonido' : 'Quitar sonido';
+    boton.textContent = video.muted ? (boton.dataset.on || 'Activar sonido') : (boton.dataset.off || 'Quitar sonido');
     if (!video.muted) { video.currentTime = 0; var p = video.play(); if (p && p.catch) p.catch(function () {}); }
   });
+})();
+
+// Contador de apuntados al aviso de iPhone: solo se enseña si el Worker lo da y ya es un número que dice algo.
+(function () {
+  var cajas = document.querySelectorAll('[data-contador]');
+  if (!cajas.length || !window.fetch) return;
+  fetch('https://avisame.vsricardo97.workers.dev/contador/wodpost-pronto', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || typeof d.n !== 'number' || d.n < 50) return;
+      var txt = d.n.toLocaleString(document.documentElement.lang === 'en' ? 'en' : 'es');
+      cajas.forEach(function (c) { c.querySelector('strong').textContent = txt; c.hidden = false; });
+    })
+    .catch(function () {});
 })();
