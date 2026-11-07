@@ -32,9 +32,9 @@
 <main class="caja">
   <h1>Política de privacidad de Primera Línea</h1>
   <!-- Cambiar la fecha si se publica otro día. -->
-  <p><strong>Última actualización:</strong> 2 de noviembre de 2026</p>
+  <p><strong>Última actualización:</strong> 7 de noviembre de 2026</p>
 
-  <p>Primera Línea es un puzle de lógica para iPhone y Android. Puedes jugarlo sin darnos ningún dato: no hay cuentas ni registro, y tu progreso se queda en tu dispositivo. Lo financiamos con anuncios que sirve Google y con una compra opcional para quitarlos. Aquí te contamos qué datos se recogen, para qué y cómo decides tú. Donde el texto dice «iPhone», en Android es igual con tu móvil Android y Google Play; solo la sección 6 (medición de instalaciones de anuncios) es exclusiva de Android.</p>
+  <p>Primera Línea es un puzle de lógica para iPhone y Android. Puedes jugarlo sin darnos ningún dato: no hay cuentas ni registro, y tu progreso se queda en tu dispositivo. Solo si te apuntas a la clasificación semanal del maratón, que es opcional, nos llega tu alias y tu mejor partida de la semana (sección 3.2). Lo financiamos con anuncios que sirve Google y con una compra opcional para quitarlos. Aquí te contamos qué datos se recogen, para qué y cómo decides tú. Donde el texto dice «iPhone», en Android es igual con tu móvil Android y Google Play; solo la sección 6 (medición de instalaciones de anuncios) es exclusiva de Android.</p>
 
   <h2>1. Quién es el responsable</h2>
   <ul>
@@ -57,6 +57,7 @@
         <tr><td>Tu tramo de edad (18 o más, 14 a 17, menos de 14) y tus elecciones de consentimiento</td><td>En tu iPhone</td><td>No</td></tr>
         <!-- Quitar esta fila si la versión publicada no tiene la compra «Quitar anuncios». -->
         <tr><td>Si has comprado «Quitar anuncios»</td><td>En tu iPhone y en Apple</td><td>No</td></tr>
+        <tr><td>Si te apuntas a la clasificación semanal del maratón (14 años o más): un identificador aleatorio, tu alias (público), tu mejor partida de la semana y la chapa que elijas enseñar</td><td>En nuestro servidor (Cloudflare) hasta 8 semanas</td><td>Sí, solo si te apuntas (sección 3.2)</td></tr>
         <tr><td>Datos técnicos y de publicidad cuando hay anuncios</td><td>Los recoge Google</td><td>No los vemos de forma individual</td></tr>
         <tr><td>Solo en Android, mayores de 18 y con tu consentimiento: ID de publicidad, referrer de Google Play, IP, modelo del dispositivo, idioma y país, para medir instalaciones que vienen de anuncios</td><td>Los recibe AppsFlyer y, a través de él, TikTok y Meta (sección 6)</td><td>No los vemos de forma individual</td></tr>
         <tr><td>Datos del último anuncio, si nos informas de él</td><td>En tu iPhone</td><td>Solo si tú envías el correo</td></tr>
@@ -80,6 +81,21 @@
 
   <h3>3.1 Actualizaciones de la app (Expo)</h3>
   <p>Al abrir la app, el juego consulta a <strong>Expo (EAS Update)</strong> si hay una actualización de contenido y la descarga. En esa consulta Expo recibe un <strong>identificador aleatorio de instalación</strong> (no es tu identificador de publicidad ni tu nombre), la versión de la app y del sistema, y tu dirección IP como cualquier servidor web. No lo usamos para saber quién eres ni para publicidad. <strong>Base legal:</strong> es necesario para que la app funcione y se mantenga al día (artículo 6.1.b y 6.1.f del RGPD). Proveedor: Expo (EE. UU.); su política está en <a href="https://expo.dev/privacy">expo.dev/privacy</a>.</p>
+
+  <h3>3.2 Clasificación semanal del maratón</h3>
+  <p>La clasificación semanal es <strong>opcional</strong> y está <strong>apagada de serie</strong>. Solo es para quien ha indicado que tiene <strong>14 años o más</strong> (sección 8). Si no pulsas «Apuntarme», no se envía nada tuyo; puedes mirar la lista sin apuntarte. Si te apuntas, la app envía a nuestro servidor (un servicio de Cloudflare):</p>
+  <ul>
+    <li>Un <strong>identificador aleatorio</strong> creado solo para la clasificación (no es tu identificador de publicidad, ni el de proveedor, ni tu nombre, ni tu Apple ID).</li>
+    <li>Tu <strong>alias</strong>, que <strong>verá cualquiera que mire la clasificación</strong>. La app te propone uno y puedes cambiarlo una vez por hora. No uses tu nombre real: no lo pedimos. Comprobamos que no lo tenga otra persona y que no lleve ciertas palabras ofensivas.</li>
+    <li>Tu <strong>mejor partida del maratón de cada semana</strong>: los tableros superados y su solución (para comprobar que son reales), el número de intento, el tiempo jugado, el tiempo de reserva al acabar y los helados que usaste y en qué tablero. En la lista se ven, junto a tu alias, los tableros, el tiempo y los helados.</li>
+    <li>Si la eliges, la <strong>chapa</strong> que quieres enseñar junto a tu alias.</li>
+    <li>Al empezar cada partida, la app pide un <strong>sello</strong>: lo firmamos nosotros con la hora de inicio, tu identificador, la semana y el intento, y sirve para comprobar que el resultado es posible.</li>
+  </ul>
+  <p>En el servidor guardamos tu identificador, tu alias y la hora en que lo pusiste, la chapa, cuántas semanas has sido la 1.ª (la corona), y por cada semana tu mejor marca con la hora en que llegó. No enviamos tu edad, tu ubicación, tu identificador de publicidad, tu progreso de la campaña ni nada de tu compra. Cloudflare ve tu dirección IP para atender la petición; nosotros no la guardamos: solo un resumen cifrado y recortado de ella, para limitar abusos (cuántas peticiones por hora), que se borra como tarde a la semana. El servidor no guarda registros de acceso.</p>
+  <p><strong>Para qué y base legal:</strong> para mostrar la clasificación, tu puesto y la corona de la semana, y para evitar trampas y abusos. Base: es el servicio que pides al apuntarte (artículo 6.1.b del RGPD); frenar trampas y abusos, nuestro interés legítimo en que la lista sea justa y el servicio aguante (artículo 6.1.f).</p>
+  <p><strong>Cuánto tiempo:</strong> cada lunes se borran de forma automática las marcas y coronas de <strong>más de 8 semanas</strong>, y con ellas tu alias si ya no te queda ninguna marca. Si dejas de jugar o borras la app sin borrar tus datos, desaparecen así, como mucho unas 9 semanas después de tu última marca.</p>
+  <p><strong>Dónde:</strong> Cloudflare (Cloudflare, Inc., EE. UU.) aloja el servidor como encargado del tratamiento. Los datos pueden tratarse fuera del Espacio Económico Europeo; Cloudflare se apoya en el Marco de Privacidad de Datos UE-EE. UU. y en cláusulas contractuales tipo. Su política está en <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a>.</p>
+  <p><strong>Tus derechos:</strong> en <strong>Clasificación &gt; Mi alias y ajustes</strong> puedes cambiar el alias, pulsar <strong>«Dejar de enviar mis marcas»</strong> (lo ya enviado se queda hasta que caduca o lo borras) o pulsar <strong>«Borrar mis datos»</strong>: se borran al momento tu alias, tus marcas, tus coronas y tu chapa del servidor. También puedes escribirnos a <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>; como no hay cuenta, para encontrar tus datos te pediremos tu alias.</p>
 
   <h2>4. Anuncios</h2>
 
@@ -122,7 +138,7 @@
     <li><strong>Datos de los anuncios:</strong> qué anuncios has visto, si los has cerrado y si los has tocado.</li>
     <li><strong>Datos de diagnóstico:</strong> fallos y rendimiento del propio SDK.</li>
   </ul>
-  <p><strong>Lo que nuestro código nunca envía:</strong> tu progreso, tus tiempos, tu racha, la hora a la que juegas, la señal de atasco, tu edad ni si has comprado. A Google solo le indicamos, en cada petición, la clasificación máxima de contenido de los anuncios y si deben ser no personalizados (sección 8).</p>
+  <p><strong>Lo que nuestro código nunca envía a Google:</strong> tu progreso, tus tiempos, tu racha, la hora a la que juegas, la señal de atasco, tu edad ni si has comprado. (A nuestro servidor solo llega tu mejor partida del maratón si te apuntas a la clasificación; sección 3.2.) A Google solo le indicamos, en cada petición, la clasificación máxima de contenido de los anuncios y si deben ser no personalizados (sección 8).</p>
 
   <h3>4.4 Para qué y con qué base legal</h3>
   <div class="tabla">
@@ -205,6 +221,7 @@
     <li><strong>Cambiar la respuesta:</strong> en <strong>Ajustes &gt; Privacidad</strong> puedes contestar si aún no lo has hecho o, si ya contestaste, usar <strong>«Cambiar mi respuesta de edad»</strong>. Si tienes algún problema, escríbenos y te ayudamos.</li>
     <li><strong>Contenido de los anuncios:</strong> pedimos a Google un techo de contenido según tu edad, con su propia escala: de 14 a 17, como mucho <strong>PG</strong> (puede requerir la orientación de los padres); a partir de 18, como mucho <strong>T</strong> (para adolescentes). <strong>No son anuncios «para todos los públicos»</strong>: esa sería la categoría G de Google, que no usamos como techo. Además, bloqueamos categorías como apuestas, alcohol, citas o préstamos. El filtro de Google no es perfecto: si ves algo inapropiado, avísanos (sección 4.1).</li>
     <li><strong>Compras:</strong> las de menores pueden necesitar la aprobación de sus padres con <strong>«Solicitar la compra»</strong> de En Familia de Apple.</li>
+    <li><strong>Clasificación semanal:</strong> solo se ofrece y solo envía datos si has indicado que tienes 14 años o más. Con menos de 14, «Prefiero no decirlo» o sin respuesta, no se envía nada. Si cambias tu año a menos de 14 después de apuntarte, la app deja de enviar; para borrar lo ya enviado, escríbenos (o espera a que caduque a las 8 semanas). Tu alias es público: no pongas tu nombre real (sección 3.2).</li>
     <li>Si eres padre, madre o tutor y crees que se han tratado datos de un menor, escríbenos al correo de la sección 1.</li>
   </ul>
 
@@ -214,13 +231,14 @@
     <li><strong>Datos de tu iPhone:</strong> los controlas tú y se borran al desinstalar la app. Como no nos llegan, no podemos consultarlos ni borrarlos por ti.</li>
     <li><strong>Datos de anuncios:</strong> retira el consentimiento en <strong>Ajustes del juego &gt; Privacidad</strong>, desactiva el rastreo en los ajustes de iOS y, para lo ya recogido, dirígete a Google (enlaces de la sección 4.2). Si nos escribes, te ayudamos.</li>
     <li><strong>Medición de instalaciones (Android):</strong> retira el consentimiento como se explica en la sección 6 y, para lo ya enviado, dirígete a AppsFlyer, TikTok o Meta. Si nos escribes, te ayudamos.</li>
+    <li><strong>Datos de la clasificación:</strong> bórralos al momento con <strong>Clasificación &gt; Mi alias y ajustes &gt; «Borrar mis datos»</strong> o escríbenos con tu alias (sección 3.2).</li>
     <li><strong>Datos de la compra:</strong> los tiene Apple; puedes ejercer tus derechos ante Apple.</li>
     <li><strong>Cómo ejercerlos:</strong> escribe a <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. Respondemos en un mes como máximo.</li>
     <li><strong>Reclamación:</strong> si crees que no lo hemos hecho bien, puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es">www.aepd.es</a>).</li>
   </ul>
 
   <h2>10. Seguridad</h2>
-  <p>No tenemos servidores con datos de jugadores. Los datos del juego están protegidos por la seguridad de tu iPhone. Los programas de anuncios y de medición envían sus datos cifrados (HTTPS).</p>
+  <p>Solo guardamos en nuestro servidor los datos de la clasificación de quien se apunta (sección 3.2), sin cuentas ni datos de contacto, y viajan cifrados (HTTPS). El resto de datos del juego no salen de tu dispositivo y están protegidos por su seguridad. Los programas de anuncios y de medición envían sus datos cifrados (HTTPS).</p>
 
   <h2>11. Cambios en esta política</h2>
   <p>Si cambiamos algo importante (por ejemplo, una red de anuncios nueva o analítica), actualizaremos esta página, cambiaremos la fecha de arriba y, si hace falta tu consentimiento, te lo volveremos a pedir en el juego.</p>
