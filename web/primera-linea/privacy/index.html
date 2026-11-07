@@ -31,9 +31,9 @@
 
 <main class="caja">
   <h1>Primera Línea privacy policy</h1>
-  <p><strong>Last updated:</strong> 2 November 2026</p>
+  <p><strong>Last updated:</strong> 7 November 2026</p>
 
-  <p>Primera Línea is a logic puzzle for iPhone and Android. You can play without giving us any data: there are no accounts or sign-up, and your progress stays on your device. We fund it with ads served by Google and with an optional purchase to remove them. This page explains what data is collected, why, and how you decide. Where the text says "iPhone", Android works the same way with your Android phone and Google Play; only section 6 (measuring installs from ads) is Android-only.</p>
+  <p>Primera Línea is a logic puzzle for iPhone and Android. You can play without giving us any data: there are no accounts or sign-up, and your progress stays on your device. Only if you join the optional weekly marathon leaderboard, your alias and your best run of the week reach us (section 3.2). We fund it with ads served by Google and with an optional purchase to remove them. This page explains what data is collected, why, and how you decide. Where the text says "iPhone", Android works the same way with your Android phone and Google Play; only section 6 (measuring installs from ads) is Android-only.</p>
 
   <h2>1. Who is responsible</h2>
   <ul>
@@ -54,6 +54,8 @@
         <tr><td>The time you usually play (only if you turn on that reminder)</td><td>Only on your device</td><td>No</td></tr>
         <tr><td>Your age group (18 or over, 14 to 17, under 14) and your consent choices</td><td>On your device</td><td>No</td></tr>
         <tr><td>Whether you bought "Remove ads"</td><td>On your device and with Apple / Google</td><td>No</td></tr>
+        <tr><td>If you join the weekly marathon leaderboard (age 14 or over): a random identifier, your alias (public), your best run of the week and the badge you choose to show</td><td>On our server (Cloudflare) for up to 8 weeks</td><td>Yes, only if you join (section 3.2)</td></tr>
+        <tr><td>If you join the weekly marathon leaderboard (age 14 or over): a random identifier, your alias (public), your best run of the week and the badge you choose to show</td><td>On our server (Cloudflare) for up to 8 weeks</td><td>Yes, only if you join (section 3.2)</td></tr>
         <tr><td>Technical and advertising data when ads are shown</td><td>Collected by Google</td><td>We do not see it individually</td></tr>
         <tr><td>Android only, 18+ and with your consent: advertising ID, Google Play referrer, IP address, device model, language and country, to measure installs that come from ads</td><td>Received by AppsFlyer and, through it, TikTok and Meta (section 6)</td><td>We do not see it individually</td></tr>
         <tr><td>Data about the last ad, if you report it</td><td>On your device</td><td>Only if you send the email</td></tr>
@@ -77,6 +79,21 @@
 
   <h3>3.1 App updates (Expo)</h3>
   <p>When the app opens, the game asks <strong>Expo (EAS Update)</strong> whether there is a content update and downloads it. In that request Expo receives a <strong>random installation identifier</strong> (it is not your advertising ID or your name), the app and system version, and your IP address like any web server. We do not use it to know who you are or for advertising. <strong>Legal basis:</strong> it is necessary for the app to work and stay up to date (GDPR Article 6.1.b and 6.1.f). Provider: Expo (USA); its policy is at <a href="https://expo.dev/privacy">expo.dev/privacy</a>.</p>
+
+  <h3>3.2 Weekly marathon leaderboard</h3>
+  <p>The weekly leaderboard is <strong>optional</strong> and <strong>off by default</strong>. It is only for people who have said they are <strong>14 or over</strong> (section 8). If you do not tap "Join", nothing of yours is sent; you can look at the list without joining. If you join, the app sends to our server (a Cloudflare service):</p>
+  <ul>
+    <li>A <strong>random identifier</strong> created only for the leaderboard (it is not your advertising ID, your vendor ID, your name or your Apple ID).</li>
+    <li>Your <strong>alias</strong>, which <strong>anyone looking at the leaderboard will see</strong>. The app suggests one and you can change it once an hour. Do not use your real name: we never ask for it. We check that nobody else has it and that it does not contain certain offensive words.</li>
+    <li>Your <strong>best marathon run of each week</strong>: the boards solved and their solution (to check they are real), the attempt number, the time played, the spare time at the end and the ice creams you used and on which board. The list shows, next to your alias, the boards, the time and the ice creams.</li>
+    <li>If you choose one, the <strong>badge</strong> you want to show next to your alias.</li>
+    <li>When each run starts, the app asks for a <strong>seal</strong>: we sign it with the start time, your identifier, the week and the attempt, and it is used to check that the result is possible.</li>
+  </ul>
+  <p>On the server we keep your identifier, your alias and when you set it, the badge, how many weeks you have been first (the crown), and for each week your best result with the time it arrived. We do not send your age, your location, your advertising ID, your campaign progress or anything about your purchases. Cloudflare sees your IP address to serve the request; we do not store it: only a hashed, shortened summary of it, to limit abuse (requests per hour), which is deleted within a week at most. The server keeps no access logs.</p>
+  <p><strong>Why and legal basis:</strong> to show the leaderboard, your rank and the week's crown, and to prevent cheating and abuse. Basis: it is the service you ask for when you join (GDPR article 6.1.b); preventing cheating and abuse is our legitimate interest in a fair list and a service that holds up (article 6.1.f).</p>
+  <p><strong>How long:</strong> every Monday, results and crowns <strong>older than 8 weeks</strong> are deleted automatically, and with them your alias if you have no results left. If you stop playing or delete the app without deleting your data, it disappears this way, at most about 9 weeks after your last result.</p>
+  <p><strong>Where:</strong> Cloudflare (Cloudflare, Inc., USA) hosts the server as a processor. The data may be processed outside the European Economic Area; Cloudflare relies on the EU-US Data Privacy Framework and standard contractual clauses. Its policy is at <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a>.</p>
+  <p><strong>Your rights:</strong> in <strong>Leaderboard &gt; My alias and settings</strong> you can change your alias, tap <strong>"Stop sending my results"</strong> (what was already sent stays until it expires or you delete it) or tap <strong>"Delete my data"</strong>: your alias, results, crowns and badge are removed from the server at once. You can also write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>; since there is no account, we will ask for your alias to find your data.</p>
 
   <h2>4. Ads</h2>
 
@@ -118,7 +135,7 @@
     <li><strong>Ad data:</strong> which ads you have seen, whether you closed them and whether you tapped them.</li>
     <li><strong>Diagnostic data:</strong> crashes and performance of the SDK itself.</li>
   </ul>
-  <p><strong>What our code never sends:</strong> your progress, your times, your streak, the time you play, the stuck signal, your age or whether you have bought anything. To Google we only tell, with each request, the maximum content rating of the ads and whether they must be non-personalised (section 8).</p>
+  <p><strong>What our code never sends to Google:</strong> your progress, your times, your streak, the time you play, the stuck signal, your age or whether you have bought anything. (Our own server only receives your best marathon run if you join the leaderboard; section 3.2.) To Google we only tell, with each request, the maximum content rating of the ads and whether they must be non-personalised (section 8).</p>
 
   <h3>4.4 Why and on what legal basis</h3>
   <div class="tabla">
@@ -200,6 +217,7 @@
     <li><strong>Changing your answer:</strong> in <strong>Settings &gt; Privacy</strong> you can answer if you have not yet or, if you already did, use <strong>"Change my age answer"</strong>. If you have any problem, write to us and we will help.</li>
     <li><strong>Ad content:</strong> we ask Google for a content ceiling by age, on its own scale: for 14 to 17, at most <strong>PG</strong> (may require parental guidance); from 18, at most <strong>T</strong> (for teens). <strong>They are not "all audiences" ads</strong>: that would be Google's G category, which we do not use as a ceiling. We also block categories such as gambling, alcohol, dating or loans. Google's filter is not perfect: if you see something inappropriate, tell us (section 4.1).</li>
     <li><strong>Purchases:</strong> minors' purchases may need parental approval through Apple Family Sharing's <strong>"Ask to Buy"</strong> or Google Play's family controls.</li>
+    <li><strong>Weekly leaderboard:</strong> only offered, and only sends data, if you have said you are 14 or over. With under 14, "Prefer not to say" or no answer, nothing is sent. If you change your year to under 14 after joining, the app stops sending; to delete what was already sent, write to us (or wait for it to expire after 8 weeks). Your alias is public: do not use your real name (section 3.2).</li>
     <li>If you are a parent or guardian and believe a child's data has been processed, write to the email in section 1.</li>
   </ul>
 
@@ -209,13 +227,14 @@
     <li><strong>Data on your device:</strong> you control it and it is deleted when you uninstall the app. Since it does not reach us, we cannot view or delete it for you.</li>
     <li><strong>Ads data:</strong> withdraw consent in <strong>game Settings &gt; Privacy</strong>, turn off tracking in your system settings and, for what was already collected, contact Google (links in section 4.2). If you write to us, we will help.</li>
     <li><strong>Install measurement (Android):</strong> withdraw consent as explained in section 6 and, for what was already sent, contact AppsFlyer, TikTok or Meta. If you write to us, we will help.</li>
+    <li><strong>Leaderboard data:</strong> delete it at once with <strong>Leaderboard &gt; My alias and settings &gt; "Delete my data"</strong> or write to us with your alias (section 3.2).</li>
     <li><strong>Purchase data:</strong> held by the store; you can exercise your rights with them.</li>
     <li><strong>How to exercise them:</strong> write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. We reply within one month at most.</li>
     <li><strong>Complaints:</strong> if you think we have not handled this properly, you can complain to the Spanish Data Protection Agency (<a href="https://www.aepd.es">www.aepd.es</a>) or to your local data protection authority.</li>
   </ul>
 
   <h2>10. Security</h2>
-  <p>We have no servers with player data. The game's data is protected by your device's security. The ads and measurement programs send their data encrypted (HTTPS).</p>
+  <p>We only keep on our server the leaderboard data of people who join (section 3.2), with no accounts or contact details, and it travels encrypted (HTTPS). The rest of the game's data never leaves your device and is protected by its security. The ads and measurement programs send their data encrypted (HTTPS).</p>
 
   <h2>11. Changes to this policy</h2>
   <p>If we change something important (for example, a new ad network or analytics), we will update this page, change the date above and, if your consent is needed, ask for it again in the game.</p>
