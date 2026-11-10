@@ -404,6 +404,24 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 @keyframes escanear { 0% { opacity: 0; transform: translateY(-10px); } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateY(var(--alto, 300px)); } }
 @keyframes cambia { from { opacity: .2; transform: translateY(-50%) scale(.96); } to { opacity: 1; transform: translateY(-50%); } }
 
+/* Animaciones guiadas por el scroll, en CSS puro (10/11). Mejora progresiva: solo donde el navegador las entiende
+   (Chrome y Edge 115+, Safari 26+, Firefox reciente); en los demás sigue el JS de arriba. Solo transform, translate y
+   opacity (van por la tarjeta gráfica), y «reducir movimiento» las apaga (regla de abajo). */
+@supports (animation-timeline: view()) {
+  /* Barra fina de progreso de lectura arriba del todo */
+  .progreso { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--lima); transform: scaleX(0); transform-origin: 0 50%; z-index: 40; pointer-events: none;
+    animation: progreso linear both; animation-timeline: scroll(root); }
+  @keyframes progreso { to { transform: scaleX(1); } }
+
+  /* La foto de la portada se queda atrás un poco al bajar (propiedad `translate`, aparte del zoom de entrada) */
+  .portada-foto { animation: acercar 2.4s var(--curva) both, paralaje linear both; animation-timeline: auto, scroll(root); animation-range: normal, 0 90vh; }
+  @keyframes paralaje { to { translate: 0 12vh; } }
+
+  /* Cada bloque entra mientras sube a la pantalla, en vez de a un tiempo fijo (la portada mantiene su entrada con JS) */
+  .js main > section:not(.portada) .aparece { opacity: 1; transform: none; transition: none; animation: revelar linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+  @keyframes revelar { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
