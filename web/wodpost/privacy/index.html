@@ -56,7 +56,7 @@
       </thead>
       <tbody>
         <tr><td data-label="What">Your workouts, results, notes, settings and card styles</td><td data-label="Where it's stored">Only on your phone</td><td data-label="Does it reach us?">No</td></tr>
-        <tr><td data-label="What">Your weight (optional, to estimate calories)</td><td data-label="Where it's stored">In your iPhone's Keychain and, if you're 18 or over, with your saved boards (§4.5)</td><td data-label="Does it reach us?">Yes, if you're 18 or over</td></tr>
+        <tr><td data-label="What">Your weight (optional, to estimate calories)</td><td data-label="Where it's stored">In your iPhone's Keychain and, if you're 18 or over, with your saved boards only if you turn on "Send this data" (§4.5)</td><td data-label="Does it reach us?">Only if you turn on "Send this data" (18 or over)</td></tr>
         <tr><td data-label="What">Your age band</td><td data-label="Where it's stored">Only on your phone</td><td data-label="Does it reach us?">No</td></tr>
         <tr><td data-label="What">The whiteboard photo, when it's read</td><td data-label="Where it's stored">Passes through our service on Cloudflare to Anthropic</td><td data-label="Does it reach us?">Yes: the photo, what was read and your rating, without your name or account (sections 4.4 and 4.5)</td></tr>
         <tr><td data-label="What">Your voice or the workout text, if you choose "By voice or text"</td><td data-label="Where it's stored">Your voice is turned into text on our service on Cloudflare; the text goes on to Anthropic</td><td data-label="Does it reach us?">We don't keep the audio; we do keep the resulting workout and, if you're 18 or over, the text (typed or transcribed), without your name or account (section 4.6)</td></tr>
@@ -126,11 +126,11 @@
   <ul>
     <li><strong>The random installation identifier</strong> (the one in section 4.3): it isn't your Apple ID, your Google account or the advertising identifier. It links your boards together and lets us delete them if you ask.</li>
     <li><strong>Your approximate area:</strong> the country, region and city our provider (Cloudflare) works out from the connection (it may not be exact). Never GPS or the IP.</li>
-    <li><strong>If you fill them in for calories:</strong> weight, sex, birth year and how you train (starting out, often or competing). They're optional: if you don't fill them in or turn calories off, they aren't sent.</li>
+    <li><strong>If you fill them in for calories and turn on "Send this data":</strong> weight, sex, birth year and how you train (starting out, often or competing). They're optional and, to estimate calories, they stay on your phone. Sending is a separate permission, off by default: if you don't turn it on or you turn calories off, they aren't sent.</li>
   </ul>
   <ul>
     <li><strong>Why:</strong> to improve reading and Wodpost (for example, which workouts and formats are most common by country, age or level) and to fine-tune calories. Individually, only our team sees this data: we don't sell or share it. It may be part of the aggregated, anonymous statistics in section 4.7. If we ever wanted to use your data in another way, we'll ask you first.</li>
-    <li><strong>Legal basis:</strong> the identifier and area, our legitimate interest in improving the service (Article 6(1)(f) GDPR), with the right to object and delete them any time. Weight, sex, birth year and level, your consent when you fill them in, with the notice next to them (Articles 6(1)(a) and 9(2)(a)), which you withdraw by deleting them.</li>
+    <li><strong>Legal basis:</strong> the identifier and area, our legitimate interest in improving the service (Article 6(1)(f) GDPR), with the right to object and delete them any time. Weight, sex, birth year and level, your consent when you turn on "Send this data", with the notice next to it (Articles 6(1)(a) and 9(2)(a)), which you withdraw by turning it off or deleting them.</li>
     <li><strong>How long:</strong> for as long as it serves the purposes above, or until you delete it.</li>
     <li><strong>Delete my data:</strong> in Settings, «Delete my data». It removes the identifier, area and those details from all your boards; the board stays as in section 4.4, with nothing linking it to you. One tap, no questions.</li>
     <li><strong>Under 18:</strong> none of this is sent.</li>
