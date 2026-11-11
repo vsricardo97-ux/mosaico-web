@@ -20,25 +20,72 @@
 <body>
 <header class="sitio"><div class="caja"><a class="marca" href="/">Mosaico Lab</a><nav><a href="/guias/">Guías</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a></nav></div></header>
 <main class="caja">
-<p><a href="/guias/">← Todas las guías</a></p><article><h1>Puzles de colocar piezas sin que se toquen: cómo pensar</h1><p><small>Por el equipo de Mosaico Lab · octubre de 2026</small></p>
+<p><a href="/guias/">← Todas las guías</a></p><article><h1>Puzles de colocar piezas sin que se toquen: cómo pensar</h1><p><small>Por el equipo de Mosaico Lab · noviembre de 2026</small></p>
 <p>Hay una familia de puzles de lógica con una idea común: tienes que colocar un número de piezas en un tablero y ninguna puede tocar a otra. Cambian las reglas de detalle (a veces se cuentan las diagonales, a veces cada fila o zona debe tener exactamente una pieza), pero el modo de razonar es muy parecido. <a href="/primera-linea/">Primera Línea</a>, el juego de las sombrillas en la playa, es uno de ellos.</p>
+<p>La guía describe un método general y lo aplica a un tablero pequeño paso a paso. Supone la versión más habitual: una pieza por fila, una por columna y una por zona de color, sin que dos piezas se toquen, ni siquiera en diagonal. Si tu juego tiene otras reglas, las ideas se adaptan casi igual.</p>
 <h2>1. Empieza por lo más restringido</h2>
 <p>En lugar de recorrer el tablero casilla por casilla, busca la fila, la columna o la zona con menos sitios posibles. Si una zona solo tiene dos casillas libres, tienes casi una decisión hecha. Cuanto menos margen tiene una línea, más información te da.</p>
+<p>Un caso extremo es la zona que cabe entera en una sola fila o en una sola columna. Esa pieza ya sabes en qué línea está, solo falta saber en qué casilla. Y las demás zonas pierden todas sus casillas de esa línea.</p>
 <h2>2. Una pieza tacha a sus vecinas</h2>
 <p>Cada vez que colocas una pieza, marca como imposibles todas las casillas contiguas. Esas marcas son la mitad del trabajo: la mayor parte de las deducciones llegan porque una casilla que parecía buena ha quedado tachada. Si el juego permite poner marcas, úsalas sin miedo; aligeran la memoria.</p>
+<p>Además de las ocho vecinas, tacha el resto de la fila y de la columna cuando solo se permite una pieza por línea, y las casillas de su zona. Todo eso es información gratis que no cuesta ninguna deducción.</p>
 <h2>3. Zonas que se solapan</h2>
 <p>Si todas las casillas posibles de una zona están en la misma fila, entonces la pieza de esa zona ocupará esa fila, y el resto de casillas de la fila (de otras zonas) quedan descartadas. Es la técnica más potente y la que más cuesta ver al principio. Pregúntate siempre: «¿en qué fila o columna caería sí o sí esta zona?».</p>
 <h2>4. Reparte la cuenta</h2>
 <p>Si hay una pieza por fila y por columna, dos zonas pequeñas que comparten las mismas dos filas ya se las reparten: ninguna otra pieza puede ir en esas filas. Contar cuántas piezas caben en un grupo de filas frente a cuántas hacen falta resuelve situaciones que a simple vista parecen abiertas.</p>
+<p>La versión general: si n zonas tienen todas sus casillas dentro de las mismas n filas, esas filas pertenecen a esas zonas. Cualquier otra zona debe sacar su pieza de las filas restantes. Funciona igual con columnas.</p>
 <h2>5. La contradicción de un paso</h2>
 <p>Cuando no encuentres ninguna deducción directa, prueba una hipótesis: «si pongo aquí, ¿qué pasa?». Si dos pasos después te quedas sin sitio para una zona, descartas esa casilla. Úsalo con moderación y solo cuando todo lo demás se haya agotado; abusar de él cansa y favorece los fallos.</p>
+<h2>Un ejemplo completo en 4×4</h2>
+<p>Tablero de cuatro filas y cuatro columnas con cuatro zonas, A, B, C y D. Cada letra es la zona de la casilla:</p>
+<pre>A A B B
+C C B B
+C C D D
+D D D D</pre>
+<p>Escrito casilla por casilla (fila, columna), las zonas son:</p>
+<ul>
+<li><strong>A:</strong> (1,1) y (1,2).</li>
+<li><strong>B:</strong> (1,3), (1,4), (2,3) y (2,4).</li>
+<li><strong>C:</strong> (2,1), (2,2), (3,1) y (3,2).</li>
+<li><strong>D:</strong> el resto: (3,3), (3,4) y toda la fila 4.</li>
+</ul>
+<p>Reglas: una pieza por fila, por columna y por zona, y ninguna toca a otra, tampoco en diagonal.</p>
+<ol>
+<li><strong>La zona A está solo en la fila 1.</strong> Por tanto la pieza de la fila 1 es la de A, y las casillas de B en esa fila, (1,3) y (1,4), quedan descartadas. B solo conserva (2,3) y (2,4).</li>
+<li><strong>Ahora B está solo en la fila 2.</strong> La pieza de la fila 2 es la de B, así que se descartan (2,1) y (2,2) de C. C conserva (3,1) y (3,2).</li>
+<li><strong>C está solo en la fila 3.</strong> La pieza de la fila 3 es la de C, y se descartan (3,3) y (3,4) de D. La pieza de D irá en la fila 4. En cadena, una deducción llevó a la siguiente.</li>
+<li><strong>Columnas y vecinas.</strong> Si A fuera (1,1), la de B no podría estar en la columna 1; tendría (2,3) o (2,4). Probemos: con A en (1,1), C no puede estar en (3,1) por la columna, luego sería (3,2). Entonces B no puede ser (2,3), que toca a (3,2) en diagonal, y quedaría (2,4). La fila 4 necesita la columna que falta, la 3, y (4,3) toca a (3,2) en diagonal. Contradicción, así que A no está en (1,1).</li>
+<li><strong>Por tanto A está en (1,2).</strong> La casilla (2,3) toca en diagonal a (1,2), de modo que B es (2,4). La columna 2 ya está ocupada, luego C es (3,1). Solo queda la columna 3 para la fila 4: D en (4,3). Comprobación: ninguna pareja se toca.</li>
+</ol>
+<p>Solución: (1,2), (2,4), (3,1), (4,3). Tres pasos fueron deducciones directas por zonas y solo el cuarto necesitó una hipótesis de dos pasos. Es una proporción bastante representativa.</p>
+<h2>Un segundo ejemplo: contar filas contra zonas</h2>
+<p>Imagina un tablero de seis filas y seis zonas donde dos zonas pequeñas, P y Q, tienen todas sus casillas en las filas 2 y 3. Cada fila admite una sola pieza, así que P y Q se reparten esas dos filas, una cada una. Ninguna otra zona puede colocar su pieza en las filas 2 y 3, aunque tenga casillas ahí. Sin mirar una sola vecindad, has tachado de golpe todas las casillas de otras zonas en esas dos filas.</p>
+<p>Lo difícil es notarlo. Una forma práctica de entrenar el ojo es hacer, al empezar, una pasada solo para anotar en qué filas y columnas cae cada zona, sin colocar nada. Con ese mapa mental, las zonas que ocupan una o dos líneas se destacan enseguida y el resto del puzle se ordena a su alrededor.</p>
+<h2>Cómo practicar</h2>
+<p>Empieza por tableros pequeños, de cinco o seis casillas de lado, hasta que las tres primeras técnicas te salgan sin pensar. Después sube de tamaño. Cuando falles, no borres todo: busca la primera pieza que no pudiste justificar con una razón concreta, porque el error casi siempre empieza ahí. Y escribe las razones con palabras, aunque sea mentalmente: «esta zona solo cabe en la fila 3». Si no consigues formular la frase, todavía no es una deducción.</p>
 <h2>Errores típicos</h2>
 <ul>
 <li>Colocar una pieza «porque parece que sí» sin comprobar el recuento de su fila y su zona.</li>
 <li>Olvidar las diagonales cuando las reglas las incluyen.</li>
 <li>No revisar el tablero entero tras cada pieza: la deducción nueva casi siempre está lejos de donde acabas de jugar.</li>
+<li>Marcar demasiado pronto. Una marca es una afirmación de que la casilla es imposible; si la pones por intuición, un error se arrastra durante todo el puzle.</li>
+<li>Descartar una zona pequeña porque «ya tiene bastante». Las zonas pequeñas son las que mandan, no las que sobran.</li>
 </ul>
-<p>La práctica diaria funciona mejor que las sesiones largas. Con diez o quince minutos al día, a las dos semanas ves patrones que antes no veías.</p>
+<h2>Cómo adaptar el método a otras reglas</h2>
+<p>Si el juego permite tocarse en diagonal y solo prohíbe el contacto por los lados, tacha solo cuatro vecinas en lugar de ocho, y espera más casillas libres. Si hay más de una pieza por fila o por zona, la lógica de recuento sigue valiendo, pero el «solo caben n» cambia al número que corresponda. En tableros más grandes, apunta primero las zonas que ocupan una sola línea y deja las hipótesis para el final.</p>
+<h2>Preguntas frecuentes</h2>
+<h3>¿Hace falta probar y equivocarse?</h3>
+<p>En un puzle bien diseñado no. Todas las casillas se pueden deducir con las técnicas de arriba. La hipótesis de un paso es una herramienta de comprobación, no una apuesta.</p>
+<h3>¿Qué pasa si me quedo bloqueado?</h3>
+<p>Revisa las marcas: lo más frecuente es que falte alguna casilla tachada alrededor de una pieza recién puesta. Después busca zonas que quepan en una sola fila o columna, y por último cuenta zonas contra filas.</p>
+<h3>¿Importa el orden en que coloco las piezas?</h3>
+<p>No cambia la solución, pero sí lo cómodo del camino. Empieza siempre por la zona más pequeña o por la línea con menos opciones.</p>
+<h3>¿Las diagonales cuentan siempre?</h3>
+<p>Depende del juego. En muchos puzles de este tipo se prohíbe tocarse también en diagonal; en otros solo por los lados. Lee las reglas antes de empezar, porque cambia todas las deducciones.</p>
+<h3>¿Sirve para ejercitar la mente?</h3>
+<p>Entrena la costumbre de razonar con calma y comprobar cada paso, y a muchas personas les resulta una pausa agradable. No hay datos nuestros que prometan beneficios medibles, así que no te lo vendemos como un tratamiento. Si buscas ideas de rutina, mira <a href="/guias/diez-minutos-al-dia-para-la-cabeza/">diez minutos al día para la cabeza</a>.</p>
+<h2>Práctica diaria</h2>
+<p>La práctica diaria funciona mejor que las sesiones largas. Con diez o quince minutos al día, a las dos semanas ves patrones que antes no veías. Si quieres variar, el <a href="/guias/binario-reglas-y-tecnicas/">Binario</a> trabaja otro tipo de deducción, más de conteo que de geometría, y <a href="/guias/flota-hundir-la-flota-en-solitario/">Flota</a> comparte la regla de que los barcos no se pueden tocar.</p>
 </article><p><a href="/guias/">← Más guías</a></p>
 </main>
 <footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/guias/">Guías</a> · <a href="/sobre-nosotros/">Sobre nosotros</a> · <a href="/contacto/">Contacto</a> · <a href="/privacidad/">Privacidad</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</footer>

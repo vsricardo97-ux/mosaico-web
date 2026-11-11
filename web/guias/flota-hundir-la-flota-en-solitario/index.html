@@ -20,25 +20,75 @@
 <body>
 <header class="sitio"><div class="caja"><a class="marca" href="/">Mosaico Lab</a><nav><a href="/guias/">Guías</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a></nav></div></header>
 <main class="caja">
-<p><a href="/guias/">← Todas las guías</a></p><article><h1>Hundir la flota en solitario: técnicas para resolverlo</h1><p><small>Por el equipo de Mosaico Lab · octubre de 2026</small></p>
+<p><a href="/guias/">← Todas las guías</a></p><article><h1>Hundir la flota en solitario: técnicas para resolverlo</h1><p><small>Por el equipo de Mosaico Lab · noviembre de 2026</small></p>
 <p>La versión en solitario de Hundir la flota es un puzle de lógica, no un juego de suerte. No disparas: te dan el tablero casi vacío, unos números en los bordes y la lista de barcos que hay escondidos, y tienes que deducir dónde está cada uno. Se conoce también como Battleship Solitaire o Bimaru, y es uno de los cuatro puzles diarios de <a href="/tesela/">Tesela</a>, donde se llama Flota.</p>
+<p>Esta guía explica las reglas con precisión, propone un método para atacar cualquier tablero, recorre ejemplos de razonamiento y enumera los fallos que más se repiten. Si te gustan los puzles de contar casillas, también te servirá la guía del <a href="/guias/binario-reglas-y-tecnicas/">Binario</a>, que comparte buena parte de la manera de pensar.</p>
 <h2>Las reglas</h2>
 <ul>
 <li>Cada número al borde de una fila o una columna indica cuántas casillas de esa línea están ocupadas por barcos.</li>
 <li>Los barcos son rectos, horizontales o verticales. En un tablero de 10×10 suele haber un barco de cuatro casillas, dos de tres, tres de dos y cuatro de una.</li>
 <li>Dos barcos no pueden tocarse, ni siquiera en diagonal. Siempre hay agua entre ellos.</li>
 </ul>
+<p>De estas reglas se desprende algo que conviene tener presente desde el principio: con la flota estándar, los barcos ocupan 4 + 6 + 6 + 4 = 20 casillas. Por tanto, la suma de todos los números de las filas es 20, y la de las columnas también. Si al empezar un puzle las sumas no te cuadran, has leído mal algún número de los bordes. Es una comprobación de diez segundos que ahorra mucho tiempo.</p>
+<p>Otra consecuencia: ningún barco se dobla en ángulo, así que dos casillas ocupadas en diagonal siempre indican que algo está mal en tu tablero.</p>
+<h2>Cómo se marca un tablero</h2>
+<p>Cada casilla tiene tres estados: sin decidir, agua y barco. Marcar el agua en cuanto la deduces es tan importante como colocar barcos, porque cada casilla de agua reduce las opciones de las líneas que la cruzan. Quien solo anota los barcos se queda sin información a mitad de puzle.</p>
 <h2>Empieza por el agua</h2>
 <p>Una fila o columna con un cero se rellena entera de agua. Es el primer paso de casi todos los puzles y a menudo llena una porción importante del tablero. Después, cada pista que te dan del tipo «aquí hay un trozo de barco» te permite marcar agua alrededor, incluidas las diagonales.</p>
+<p>Un detalle que conviene recordar: las diagonales de cualquier casilla de barco son agua siempre, sea cual sea la pieza. Si una casilla de barco está en una posición cualquiera, las cuatro casillas que la tocan por las esquinas quedan descartadas.</p>
 <h2>Fíjate en la forma de cada pieza</h2>
 <p>Las casillas con forma conocida son tu mejor aliada. Una punta redondeada sabe de qué lado continúa el barco y de cuál no; un submarino de una casilla está rodeado de agua por todas partes; un trozo central te dice que el barco sigue por los dos lados. Marca de inmediato lo que esa forma implica.</p>
+<p>Un ejemplo: una punta redondeada con el extremo abierto hacia la derecha. A su izquierda, arriba y abajo hay agua, y a la derecha hay al menos una casilla más de barco. Son tres casillas de agua y una de barco con una sola pista.</p>
+<p>Con un trozo central pasa algo parecido. Si está en horizontal, las casillas de arriba y abajo son agua y las dos de los lados son barco. Un barco con trozo central tiene como mínimo tres casillas, así que ya no puede ser de las de dos ni de las de una.</p>
 <h2>Casillas que no pueden ser otra cosa</h2>
 <p>Si una fila necesita cuatro casillas ocupadas y solo le quedan cuatro libres, todas son barco. Y si falta una sola casilla para completar el número de la línea, fíjate en cuál de las libres encaja con los barcos que faltan.</p>
+<p>La regla inversa es igual de útil: cuando una línea ya tiene todas las casillas de barco que indica su número, todo lo que queda libre en ella es agua. Conviene revisar cada fila y cada columna después de cada colocación, porque a menudo una línea se completa sin que lo notes y deja huecos que se podían rellenar de agua desde hacía rato.</p>
 <h2>El barco más grande</h2>
 <p>Busca dónde cabe el barco de cuatro casillas. Si solo hay un hueco posible, ya lo tienes colocado, y sus casillas centrales son seguras aunque no sepas aún su orientación exacta. Haz lo mismo con los de tres después, y deja los submarinos, que son los más versátiles, para el final.</p>
+<p>Hay un truco de solapamiento que da muchas casillas seguras. Si un barco de longitud L tiene que ir en un tramo de N casillas libres seguidas, las casillas que ocupa en cualquiera de sus posiciones son 2L − N (siempre que ese número sea positivo). Un barco de cuatro en un tramo de cinco ocupa seguro las tres del medio. Uno de cuatro en un tramo de seis, las dos centrales. Uno de tres en un tramo de cuatro, las dos centrales. No sabes en qué extremo termina, pero sí por dónde pasa.</p>
 <h2>Cuenta los barcos</h2>
 <p>Si ya has colocado todos los barcos de un tamaño, cualquier casilla suelta que quede es de un tamaño distinto. Llevar la cuenta de la flota te ayuda a descartar posibilidades cuando el puzle se pone difícil.</p>
-<p>Con estas ideas, un tablero de dificultad media se resuelve en pocos minutos sin necesidad de probar al azar.</p>
+<p>Un caso típico: ya has colocado el barco de cuatro y los dos de tres. Un tramo de tres casillas libres con un número que pide tres ocupadas ya no puede esconder un barco de tres, porque no quedan. La cuenta de la flota convierte un hueco ambiguo en una contradicción, y la contradicción te dice por dónde no ir.</p>
+<h2>Un método por pasos</h2>
+<ol>
+<li>Comprueba que las sumas de filas y de columnas dan el mismo total.</li>
+<li>Rellena de agua todas las líneas con un cero.</li>
+<li>Aplica las pistas ya colocadas: agua alrededor de cada pieza, incluidas las diagonales, y casillas obligadas según su forma.</li>
+<li>Recorre las líneas con un número alto en relación con los huecos libres y busca casillas obligadas por solapamiento.</li>
+<li>Coloca el barco de cuatro, luego los de tres, luego los de dos. Los submarinos, al final.</li>
+<li>Cada vez que marques algo, vuelve a mirar su fila y su columna: puede que se hayan completado.</li>
+<li>Si te atascas, cuenta los barcos que faltan por tamaño y busca el sitio donde cada uno aún cabe.</li>
+</ol>
+<p>El paso seis es el que más se omite y el que más rinde. Un puzle bien resuelto es una cadena de pequeñas consecuencias, y cada una abre la siguiente.</p>
+<h2>Errores típicos</h2>
+<ul>
+<li><strong>Olvidar las diagonales.</strong> Es el fallo más frecuente. Dos barcos en diagonal están prohibidos aunque no compartan lado.</li>
+<li><strong>No marcar el agua.</strong> Lo que has deducido y no anotas, lo tienes que deducir de nuevo. Y es fácil que la segunda vez no lo veas.</li>
+<li><strong>Completar un barco con una longitud incorrecta.</strong> Antes de dar por cerrado un barco, comprueba que su tamaño existe en la flota y que quedan unidades de ese tamaño.</li>
+<li><strong>Adivinar.</strong> Un tablero bien hecho tiene una única solución que se alcanza deduciendo. Si estás probando al azar, es que hay una deducción que todavía no has visto. Vuelve a las líneas con números pequeños y a las piezas con forma.</li>
+<li><strong>Leer mal un número del borde.</strong> Si te sale una contradicción tarde, revisa primero los bordes antes de desmontar medio tablero.</li>
+</ul>
+<h2>Ejemplo de razonamiento</h2>
+<p>Mira una columna con el número 4 y seis casillas libres seguidas, de la A a la F, con agua por encima y por debajo. Todavía no has colocado el barco de cuatro, y este es el único tramo donde cabe. Con L = 4 y N = 6 hay 2 × 4 − 6 = 2 casillas seguras: la C y la D. Las marcas como barco y pones agua en todas las casillas que las rodean en las columnas vecinas. Con eso, las columnas de al lado ganan casillas de agua y sus propios números se vuelven más fáciles de cumplir. Ninguna de las dos casillas la habrías podido fijar mirando solo una casilla suelta; salen de contar.</p>
+<p>Cuando una fila se resiste, deja de insistir y pasa a otra línea. Al volver, tendrá más casillas decididas.</p>
+<h2>Consejos de práctica</h2>
+<ul>
+<li>Haz un puzle al día antes de buscar ayuda. El reconocimiento de patrones se afina con repetición, no con pruebas largas.</li>
+<li>Cuando termines, repasa el tablero resuelto y fíjate en qué paso fue el primero que se podía haber dado y no viste. Con el tiempo, eso se vuelve costumbre.</li>
+<li>Alterna con otros puzles de lógica. Los de <a href="/guias/puzles-de-colocar-sin-tocarse/">colocar piezas sin que se toquen</a> entrenan justo la regla de las diagonales, y los hábitos para mantener la práctica constante están en <a href="/guias/diez-minutos-al-dia-para-la-cabeza/">diez minutos al día para la cabeza</a>.</li>
+</ul>
+<h2>Preguntas frecuentes</h2>
+<h3>¿Todos los puzles de flota tienen una única solución?</h3>
+<p>Los bien construidos, sí. Eso es lo que permite resolverlos por deducción pura. Si en algún punto parece que hay dos opciones igual de buenas, lo habitual es que falte una casilla por marcar o que se haya malinterpretado un número.</p>
+<h3>¿Los barcos pueden tocar el borde del tablero?</h3>
+<p>Sí. Ocupar casillas del borde no está prohibido. Lo único que no pueden hacer es tocarse entre sí, ni por los lados ni por las esquinas.</p>
+<h3>¿Por qué importa tanto el agua si no tengo que dibujarla?</h3>
+<p>Porque cada casilla de agua descarta posiciones para los barcos que quedan por colocar. Sin el agua anotada, hay que sostener esa información de cabeza y es fácil perderla. Anotarla libera atención para deducir.</p>
+<h3>¿Qué hago si me quedo sin ideas?</h3>
+<p>Cuenta los barcos que faltan por tamaño y busca, para cada uno, los huecos donde todavía cabe. Después revisa las líneas con números pequeños, que son las que tienen menos combinaciones. Y si aun así no avanza, deja el puzle unos minutos y vuelve: la mirada fresca encuentra lo que la cansada pasa por alto.</p>
+<h3>¿Es lo mismo que el juego de mesa Hundir la flota?</h3>
+<p>Comparte los barcos y el tablero, pero no las reglas. En el juego de mesa se dispara contra un rival sin ver su tablero. En la versión en solitario no hay disparos ni rival: todo se deduce a partir de los números de los bordes y de las pistas iniciales.</p>
+<p>Con estas ideas, un tablero de dificultad media se resuelve en pocos minutos sin necesidad de probar al azar. Si quieres practicar con uno cada día, lo tienes en <a href="/tesela/">Tesela</a>.</p>
 </article><p><a href="/guias/">← Más guías</a></p>
 </main>
 <footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/guias/">Guías</a> · <a href="/sobre-nosotros/">Sobre nosotros</a> · <a href="/contacto/">Contacto</a> · <a href="/privacidad/">Privacidad</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</footer>
