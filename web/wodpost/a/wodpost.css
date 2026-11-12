@@ -510,3 +510,29 @@ h3 { font-size: 28px; line-height: 1; font-weight: 600; margin-bottom: 10px; }
 .iphone-pasos p { font-size: 17px; }
 .iphone-rejilla { width: calc(100% - 2 * var(--margen)); }
 @media (max-width: 800px) { .iphone-rejilla { grid-template-columns: 1fr; border-radius: 28px; } .iphone .boton { width: 100%; text-align: center; } }
+
+/* Las dos puertas de la portada: Android (Google Play) e iPhone (beta de TestFlight).
+   Un guion en <head> marca data-so en <html>; la puerta del móvil que visita va primero y en lima. */
+.puertas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 12px 16px; max-width: 720px; margin-bottom: 14px; }
+.puerta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.puerta .boton { width: 100%; min-height: 56px; padding: 8px 20px; line-height: 1.15; text-align: center; flex-wrap: wrap; column-gap: .3em; }
+.puerta .boton b { font-weight: 700; }
+.puerta .boton b::after { content: " ·"; font-weight: 500; }
+.puerta-nota { margin: 0; padding: 0 6px; font-size: 14px; line-height: 1.4; color: var(--suave); }
+.puerta-nota a { color: var(--texto); text-underline-offset: 3px; }
+.puertas-ver { margin: 0 0 24px; font-size: 16px; }
+.puertas-ver a { display: inline-block; padding: 8px 0; color: var(--texto); font-weight: 500; text-underline-offset: 4px; }
+.barra-iphone { display: none; }
+.barra-android, .barra-iphone { white-space: nowrap; }
+[data-so="iphone"] .barra-iphone { display: inline-flex; }
+[data-so="iphone"] .barra-android { display: none; }
+[data-so="iphone"] .puerta[data-puerta="iphone"],
+[data-so="android"] .puerta[data-puerta="android"] { order: -1; }
+[data-so="iphone"] .puerta[data-puerta="android"] .boton,
+[data-so="android"] .puerta[data-puerta="iphone"] .boton { background: transparent; color: var(--texto); box-shadow: inset 0 0 0 1.5px var(--linea-fuerte); }
+[data-so="iphone"] .puerta[data-puerta="android"] .puerta-nota,
+[data-so="android"] .puerta[data-puerta="iphone"] .puerta-nota,
+[data-so="android"] .aviso-portada { display: none; }
+@media (max-width: 760px) {
+  .puertas-ver { margin-bottom: 20px; }
+}

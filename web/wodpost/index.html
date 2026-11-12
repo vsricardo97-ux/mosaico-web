@@ -25,6 +25,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Wodpost","operatingSystem":"Android","applicationCategory":"PhotographyApplication","description":"Haz foto a la pizarra de tu box y Wodpost lee el WOD y te deja la tarjeta para tu historia.","url":"https://mosaicolab.app/wodpost/","inLanguage":["es","en"],"author":{"@type":"Organization","name":"Mosaico Lab","url":"https://mosaicolab.app/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
 <link rel="preload" href="/wodpost/a/BarlowCondensed-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.setAttribute("data-so",/iPhone|iPad|iPod/.test(navigator.userAgent)?"iphone":/Android/.test(navigator.userAgent)?"android":"otro")</script>
 <link rel="stylesheet" href="/wodpost/a/wodpost.css">
 </head>
 <body>
@@ -43,7 +44,8 @@
       <a href="#preguntas">Preguntas</a>
     </nav>
     <nav class="idioma" aria-label="Idioma"><a href="/wodpost/" aria-current="true" lang="es">ES</a><a href="/wodpost/en/" hreflang="en" lang="en">EN</a></nav>
-    <a class="boton boton-peque" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Android</a>
+    <a class="boton boton-peque barra-android" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Android</a>
+    <a class="boton boton-peque barra-iphone" href="https://testflight.apple.com/join/ywNGPSG3" rel="noopener">iPhone</a>
   </div>
 </header>
 
@@ -55,12 +57,19 @@
     <div class="portada-texto">
       <h1 id="titulo" class="aparece"><span>Foto a la pizarra.</span> <span>Historia lista.</span></h1>
       <p class="entrada aparece">Wodpost lee el WOD de la pizarra de tu box, de una captura de la app de tu entreno o de una foto a la pantalla del ordenador, y te deja la tarjeta para tu historia de Instagram, encima de tu foto o tu vídeo. Sin teclear el entreno.</p>
-      <div class="acciones aparece">
-        <a class="boton" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Descárgala en Google Play</a>
-        <a class="boton boton-linea" href="#como-va">Ver cómo va</a>
+      <div class="puertas aparece">
+        <div class="puerta" data-puerta="android">
+          <a class="boton" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra"><b>Android</b> Descárgala en Google Play</a>
+          <p class="puerta-nota">Gratis en Google Play, hoy.</p>
+        </div>
+        <div class="puerta" data-puerta="iphone">
+          <a class="boton" href="https://testflight.apple.com/join/ywNGPSG3" rel="noopener"><b>iPhone</b> Entra en la beta de TestFlight</a>
+          <p class="puerta-nota">Aún no está en la App Store. Versión de prueba gratis, 200 plazas, puede tener fallos. <a href="#iphone">Cómo entrar</a></p>
+        </div>
       </div>
+      <p class="puertas-ver aparece"><a href="#como-va">Ver cómo va</a></p>
       <form class="aviso-portada aparece" method="post" action="https://avisame.vsricardo97.workers.dev/avisame" aria-labelledby="portada-aviso">
-        <p id="portada-aviso" class="aviso-etiqueta"><strong>¿iPhone?</strong> Te avisamos el día que salga en la App Store.</p>
+        <p id="portada-aviso" class="aviso-etiqueta"><strong>¿Prefieres esperar a la App Store?</strong> Un correo el día que salga la app de iPhone.</p>
         <input type="hidden" name="idea" value="wodpost-pronto">
         <input type="hidden" name="anuncio" value="web-wodpost-portada">
         <input type="hidden" name="acepto" value="si">
@@ -336,7 +345,7 @@
       <details class="aparece"><summary>¿Necesito Instagram?</summary><p>No. Puedes guardar la tarjeta en Fotos o mandarla por WhatsApp o donde quieras. El botón de Instagram solo te ahorra un paso.</p></details>
       <details class="aparece"><summary>¿Lee la letra a mano de la pizarra?</summary><p>Sí, también a rotulador y con tachones. Cuando duda de algo te lo marca para que lo toques. Y no hace falta que sea una pizarra: vale una captura de la app de tu box o de tu entreno, y también una foto a la pantalla del ordenador.</p></details>
       <details class="aparece"><summary>¿Qué entrenos entiende?</summary><p>For time, AMRAP, EMOM, rondas, chippers, fuerza con series y RM, y la mezcla de partes de una clase normal: calentamiento, fuerza y WOD.</p></details>
-      <details class="aparece"><summary>¿Hay versión para Android?</summary><p>Sí, ya está en <a href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Google Play</a>. La de iPhone llega pronto: si quieres que te avisemos, déjanos tu correo abajo.</p></details>
+      <details class="aparece"><summary>¿Hay versión para Android?</summary><p>Sí, ya está en <a href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Google Play</a>. La de iPhone aún no está en la App Store: puedes <a href="#iphone">probar la versión de prueba en TestFlight</a> o dejarnos tu correo abajo y te avisamos el día que salga.</p></details>
       <details class="aparece"><summary>¿Cuenta calorías?</summary><p>Solo si tú quieres, y vienen apagadas. Es una cifra aproximada (la media de un abanico, con «~» y «est.») a partir de tu peso y del tiempo de trabajo, no una medida ni consejo médico.</p></details>
       <details class="aparece"><summary>¿Y si no hay pizarra?</summary><p>Dicta el entreno con la voz o escríbelo, y Wodpost lo convierte en entreno. Tu voz se pasa a texto y no se guarda; el texto va a la IA de Anthropic y se borra en 30 días como mucho.</p></details>
       <details class="aparece"><summary>¿Hace vídeos?</summary><p>Sí, con 18 años o más. Subes los clips que grabaste entrenando, la IA elige las mejores repes, las corta al ritmo de la música y pone tu tarjeta encima. Tú lo retocas si quieres. Cuesta 3 créditos, uno a la semana; con Premium tienes 4 al mes.</p></details>

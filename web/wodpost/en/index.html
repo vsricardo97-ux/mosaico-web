@@ -25,6 +25,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Wodpost","operatingSystem":"Android","applicationCategory":"PhotographyApplication","description":"Photograph your box whiteboard and Wodpost reads the WOD and gives you a card for your story.","url":"https://mosaicolab.app/wodpost/en/","inLanguage":["es","en"],"author":{"@type":"Organization","name":"Mosaico Lab","url":"https://mosaicolab.app/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
 <link rel="preload" href="/wodpost/a/BarlowCondensed-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.setAttribute("data-so",/iPhone|iPad|iPod/.test(navigator.userAgent)?"iphone":/Android/.test(navigator.userAgent)?"android":"otro")</script>
 <link rel="stylesheet" href="/wodpost/a/wodpost.css">
 </head>
 <body>
@@ -43,7 +44,8 @@
       <a href="#preguntas">FAQ</a>
     </nav>
     <nav class="idioma" aria-label="Language"><a href="/wodpost/" hreflang="es" lang="es">ES</a><a href="/wodpost/en/" aria-current="true" lang="en">EN</a></nav>
-    <a class="boton boton-peque" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Android</a>
+    <a class="boton boton-peque barra-android" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Android</a>
+    <a class="boton boton-peque barra-iphone" href="https://testflight.apple.com/join/ywNGPSG3" rel="noopener">iPhone</a>
   </div>
 </header>
 
@@ -53,14 +55,21 @@
   <img class="portada-foto" src="/wodpost/a/pizarra-box.webp" srcset="/wodpost/a/pizarra-box-960.webp 960w, /wodpost/a/pizarra-box.webp 1920w" sizes="100vw" alt="A box whiteboard with the class times written in chalk" fetchpriority="high">
   <div class="marco portada-dentro">
     <div class="portada-texto">
-      <h1 id="titulo" class="aparece"><span>Photo the whiteboard.</span> <span>Story ready.</span></h1>
+      <h1 id="titulo" class="aparece"><span>Snap the board.</span> <span>Post your WOD.</span></h1>
       <p class="entrada aparece">Wodpost reads the WOD from your box whiteboard, a screenshot of your training app or a photo of a computer screen, and gives you the card for your Instagram story, on top of your workout photo or video. No typing the workout.</p>
-      <div class="acciones aparece">
-        <a class="boton" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Get it on Google Play</a>
-        <a class="boton boton-linea" href="#como-va">See how it works</a>
+      <div class="puertas aparece">
+        <div class="puerta" data-puerta="android">
+          <a class="boton" href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra"><b>Android</b> Get it on Google Play</a>
+          <p class="puerta-nota">Free on Google Play, today.</p>
+        </div>
+        <div class="puerta" data-puerta="iphone">
+          <a class="boton" href="https://testflight.apple.com/join/ywNGPSG3" rel="noopener"><b>iPhone</b> Join the TestFlight beta</a>
+          <p class="puerta-nota">Not on the App Store yet. Free test version, 200 spots, may have bugs. <a href="#iphone">How to join</a></p>
+        </div>
       </div>
+      <p class="puertas-ver aparece"><a href="#como-va">See how it works</a></p>
       <form class="aviso-portada aparece" method="post" action="https://avisame.vsricardo97.workers.dev/avisame" aria-labelledby="portada-aviso">
-        <p id="portada-aviso" class="aviso-etiqueta"><strong>iPhone?</strong> We’ll email you the day it hits the App Store.</p>
+        <p id="portada-aviso" class="aviso-etiqueta"><strong>Rather wait for the App Store?</strong> One email the day the iPhone app is out.</p>
         <input type="hidden" name="idea" value="wodpost-pronto">
         <input type="hidden" name="lang" value="en">
         <input type="hidden" name="anuncio" value="web-wodpost-portada">
@@ -337,7 +346,7 @@
       <details class="aparece"><summary>Do I need Instagram?</summary><p>No. You can save the card to Photos or send it on WhatsApp or anywhere. The Instagram button just saves you a step.</p></details>
       <details class="aparece"><summary>Does it read handwriting?</summary><p>Yes, including marker and scribbles. When it isn’t sure, it flags it so you can tap it. And it doesn’t have to be a whiteboard: a screenshot from your box’s or training app works too, and so does a photo of a computer screen.</p></details>
       <details class="aparece"><summary>Which workouts does it understand?</summary><p>For time, AMRAP, EMOM, rounds, chippers, strength with sets and 1RM, and the mix of parts in a normal class: warm-up, strength and WOD.</p></details>
-      <details class="aparece"><summary>Is there an Android version?</summary><p>Yes, it’s already on <a href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Google Play</a>. The iPhone version is coming soon: leave your email below and we’ll tell you.</p></details>
+      <details class="aparece"><summary>Is there an Android version?</summary><p>Yes, it’s already on <a href="https://play.google.com/store/apps/details?id=app.mosaicolab.pizarra">Google Play</a>. The iPhone version isn’t on the App Store yet: you can <a href="#iphone">try the test version on TestFlight</a> or leave your email below and we’ll tell you the day it’s out.</p></details>
       <details class="aparece"><summary>Does it count calories?</summary><p>Only if you want, and they’re off by default. It’s a rough figure (the average of a range, shown with “~” and “est.”) from your weight and work time, not a measurement or medical advice.</p></details>
       <details class="aparece"><summary>No whiteboard?</summary><p>Dictate the workout by voice or type it, and Wodpost turns it into a workout. Your voice is turned into text and isn’t kept; the text goes to Anthropic’s AI and is deleted within 30 days at most.</p></details>
       <details class="aparece"><summary>Does it make videos?</summary><p>Yes, if you’re 18 or over. Upload the clips you filmed while training: the AI picks your best reps, cuts them to the beat and puts your card on top. You can tweak it if you like. It costs 3 credits, one a week; with Premium you get 4 a month.</p></details>
