@@ -1,0 +1,124 @@
+<!doctype html>
+<!-- Pending professional review: written by Lola (not a lawyer), 18-11-2026. Notice for TestFlight testers (iPhone): adds to /wodpost/privacy/ what only the test versions do. English version of /wodpost/beta/privacidad/ (if you change one, change the other). Linked from the TestFlight notes and the test build; not in the sitemap or the store app's pages. Check against the code of apps/pizarra and servicios/lectura-pizarra whenever the video changes. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Wodpost for testers: privacy notice for test versions | Mosaico Lab</title>
+<link rel="icon" href="/wodpost/a/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/wodpost/a/favicon.png?v=3" sizes="32x32" type="image/png">
+<link rel="icon" href="/wodpost/a/favicon-48.png?v=3" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/wodpost/a/apple-touch-icon.png?v=3">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="stylesheet" href="/assets/estilo.css">
+<link rel="stylesheet" href="/wodpost/a/legal.css">
+<link rel="alternate" hreflang="es" href="/wodpost/beta/privacidad/">
+</head>
+<body>
+<header class="sitio">
+  <div class="caja">
+    <a class="marca" href="/wodpost/"><img src="/wodpost/a/favicon-48.png" width="30" height="30" alt="">Wodpost</a>
+    <nav>
+      <a href="/wodpost/beta/privacidad/" hreflang="es" lang="es">Español</a>
+    </nav>
+  </div>
+</header>
+
+<main class="caja">
+  <h1>Wodpost for testers: privacy notice</h1>
+  <p><strong>Last updated:</strong> 18 November 2026</p>
+
+  <p>This notice is for people testing Wodpost on iPhone with <strong>TestFlight</strong>, Apple's app for trying versions before release. It adds to the <a href="/wodpost/privacy/">Wodpost privacy policy</a>: everything in that policy also applies to the test versions. Here is what only these versions do: making videos from your clips, original sound, video alerts and the data Apple passes to us through TestFlight.</p>
+  <p>Your test version may not have every feature in this notice. If you don't use a feature, its part doesn't apply to you.</p>
+
+  <h2>1. Who is responsible</h2>
+  <p>The same as in section 1 of the <a href="/wodpost/privacy/">privacy policy</a> (Mosaico Lab). Privacy email: <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. Other details are in the <a href="/aviso-legal/">legal notice</a> (in Spanish).</p>
+
+  <h2>2. Quick summary</h2>
+  <div class="tabla">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Where it's stored</th><th>Does it reach us?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td data-label="What">Videos you edit on your phone ("Edit it myself"), your voice-over and subtitles</td><td data-label="Where it's stored">Only on your phone</td><td data-label="Does it reach us?">No (section 3)</td></tr>
+        <tr><td data-label="What">Clips you upload for the AI edit</td><td data-label="Where it's stored">On our service on Cloudflare</td><td data-label="Does it reach us?">Yes. Originals are deleted in about 3 hours (up to 4); the edited video when you delete it (section 4)</td></tr>
+        <tr><td data-label="What">Sound of your clips (only if you turn on "Original sound")</td><td data-label="Where it's stored">With your video on our service on Cloudflare</td><td data-label="Does it reach us?">Yes, only if you turn it on; deleted with the video (section 4)</td></tr>
+        <tr><td data-label="What">A few frames of your clips, to tell which movement you're doing</td><td data-label="Where it's stored">Pass through our service to Anthropic</td><td data-label="Does it reach us?">We don't keep them; Anthropic deletes them within 30 days (section 4)</td></tr>
+        <tr><td data-label="What">Long video: a reduced copy without sound, and photos of the people in it so you can pick which one is you</td><td data-label="Where it's stored">On our service on Cloudflare</td><td data-label="Does it reach us?">Yes, for 24 hours at most (section 5)</td></tr>
+        <tr><td data-label="What">A video you pick in Google Drive (if you connect Drive)</td><td data-label="Where it's stored">Downloaded by our service on Cloudflare</td><td data-label="Does it reach us?">Yes; the original is deleted once it's cut and never stays more than about 3 hours (section 5)</td></tr>
+        <tr><td data-label="What">Notification code and time zone (if you allow video alerts)</td><td data-label="Where it's stored">With your video on our service on Cloudflare; the alert goes through Expo and Apple</td><td data-label="Does it reach us?">Yes; the code is deleted when the edit finishes or the clips expire (up to 4 hours; section 6)</td></tr>
+        <tr><td data-label="What">Crashes, usage of the test version and the comments and screenshots you send from TestFlight</td><td data-label="Where it's stored">Collected by Apple</td><td data-label="Does it reach us?">Yes, Apple shows them to us in its console (section 7)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3. What stays on your phone ("Edit it myself")</h2>
+  <ul>
+    <li><strong>Videos you pick:</strong> the video is edited on your phone. The app reads only the videos you pick straight from your camera roll, without copying or uploading them. It asks for permission to access Photos to do this; if you don't give it, it reads no videos. The edited video is kept only on your phone, with its workout, until you delete it or tap "Delete my data". Nothing is uploaded unless you choose the AI edit (section 4) or the long video (section 5).</li>
+    <li><strong>Voice-over and your clips' sound:</strong> if you record your voice with the microphone or use your clips' original sound, everything is processed on your phone. The recording is kept only in the app while you edit the video, isn't sent to us or anyone else, and you can delete it from the editor. The app asks for microphone permission only when you tap "Record voice".</li>
+    <li><strong>Automatic subtitles (optional):</strong> they use your phone's speech recognition, on the device only. The audio never leaves it and we don't keep what you say; the text only appears on the video you make on your phone. If your phone can't recognise that language offline, there are no subtitles: no cloud service is used. The app asks for speech recognition permission only when you tap "Subtitles". This is different from dictating your workout by voice (section 4.6 of the policy), where the recording is sent to our service to turn it into text.</li>
+  </ul>
+  <p><strong>Legal basis:</strong> what's needed for the app to work as you ask (Art. 6(1)(b) GDPR). We have no access to this data.</p>
+
+  <h2>4. AI edit: your clips</h2>
+  <p>The clips you choose are uploaded to our service on <strong>Cloudflare</strong> (processor; see section 4.2 of the policy). Our AI detects the movements and counts the reps to build the video; it does not identify you. <strong>Legal basis:</strong> providing the service you ask for (Art. 6(1)(b) GDPR).</p>
+  <ul>
+    <li><strong>Original clips:</strong> deleted about 3 hours after the upload finishes, whether you edit or not (deletion runs periodically, so it can take a little longer, up to 4 hours). If the edit fails because of us, we keep them for that time so you can edit by hand without uploading them again.</li>
+    <li><strong>Edited video and trimmed clips</strong> (with AI, or by hand in older test versions, which edited it on our service): we keep them without location or date and, unless you turn on "Original sound", without sound, until you delete them in Settings › "Delete my data", which deletes everything immediately.</li>
+    <li><strong>Which movement you're doing:</strong> to get the movement name right, we may send <strong>Anthropic</strong> (Anthropic, PBC; processor, as in section 4.2 of the policy) a strip of a few downsized frames from your clip. We only ask it for the movement name, chosen from your workout's list: nothing about who you are, your face, age, body or health. We don't keep that request. Anthropic doesn't train its models on it and deletes its copy <strong>within 30 days</strong>, unless it needs it to investigate abuse or the law requires it.</li>
+    <li><strong>Original sound (optional):</strong> it is off by default. If you turn it on before making the video, we keep the sound of your clips with the trimmed clips and mix it under the music. It can include other people's voices and any music playing in the gym. We only use it to mix it: we don't transcribe it or analyse it to recognise anyone. It is deleted with the video, with "Delete my data". If you are 14 to 17, the option is not available and we keep no sound. Legal basis: providing the service you ask for (Art. 6(1)(b) GDPR) and, for other people's voices, legitimate interest (Art. 6(1)(f)), with the same safeguards as for their image (section 8).</li>
+  </ul>
+
+  <h2>5. Long video and Google Drive (18 or over)</h2>
+  <p>With the long video you can pick a whole video of your session (for example, filmed on a tripod, up to about 30 minutes) so we can find the parts where you appear. Only if you're 18 or over and after you've seen the notice in the app.</p>
+  <ul>
+    <li><strong>Reduced copy:</strong> your phone makes a small copy of the video (low resolution, few frames per second and <strong>no sound</strong>) and uploads it to our service on Cloudflare. If the video comes from Google Drive, our service makes that copy.</li>
+    <li><strong>Picking yourself:</strong> our AI looks for the people in it and follows each one by their posture and the colour of their clothes, only within that video, to show you a photo of each so you can pick which one is you. <strong>It doesn't recognise faces or identify anyone</strong>, and it doesn't compare with other videos. Once you pick, we delete the photos of the other people.</li>
+    <li><strong>Segments:</strong> then the segments where you appear are cut and go on to the edit in section 4 (same retention and the same use of Anthropic to name each segment).</li>
+    <li><strong>From Google Drive (optional):</strong> if you choose "Connect Google Drive", Google asks for your permission on its own screen and you pick a single video. We ask Google for the narrowest permission (only the files you pick with its picker): we don't see the rest of your Drive, your email or your profile, and it isn't a sign-in. Our service downloads that video, uses the permission only for that, doesn't store it and revokes it when done. The original video is deleted when the segments are cut, if it fails, if you cancel or with "Delete my data", and never stays on our service for more than about 3 hours. Google's policy applies to what Google keeps (<a href="https://policies.google.com/privacy">policies.google.com/privacy</a>).</li>
+    <li><strong>How long:</strong> the reduced copy, the photos of the people and the search results are deleted <strong>24 hours</strong> after you start at the latest, sooner if you cancel or it fails, and with "Delete my data". The resulting video is kept as in section 4.</li>
+    <li><strong>Legal basis:</strong> providing the service you ask for (Art. 6(1)(b) GDPR) and, for other people who appear, legitimate interest (Art. 6(1)(f); section 8).</li>
+  </ul>
+
+  <h2>6. Video alerts (if you allow notifications)</h2>
+  <p>We keep with your video your phone's notification code (created by the system; it is not your Apple ID or advertising identifier) and your time zone, only to tell you that your clips are uploaded and not yet edited, that they are about to be deleted, that the upload has stalled, or that your video is ready or has failed. We send at most 2 reminders per video and never between 9:30 pm and 9:00 am in your time zone; the alert that your video is ready or has failed may arrive at night, but silently. Alerts contain no advertising and no details of your workout.</p>
+  <ul>
+    <li><strong>How long:</strong> the code is deleted when the edit finishes, when you cancel, or when the clips are deleted (about 3 hours after the upload finishes, up to 4); the time zone stays with the video, without identifying you, until you delete it.</li>
+    <li><strong>Who's involved:</strong> alerts go through the <strong>Expo</strong> notification service (650 Industries, Inc., United States; processor, with the transfer safeguards described in its policy: <a href="https://expo.dev/privacy">expo.dev/privacy</a>) and through <strong>Apple</strong>'s. If you turn off the permission in your phone's settings, they stop.</li>
+    <li><strong>Legal basis:</strong> providing the service you ask for (Art. 6(1)(b) GDPR).</li>
+  </ul>
+
+  <h2>7. What Apple passes to us through TestFlight</h2>
+  <p>TestFlight belongs to Apple, which decides what it collects and explains it in <a href="https://www.apple.com/legal/privacy/data/en/test-flight/">its TestFlight notice</a>. Of what it collects, Apple shows us in its console (App Store Connect):</p>
+  <ul>
+    <li><strong>Always:</strong> whether you accepted the invitation, installs and sessions, the version you have, your phone's model, system and language, a device identifier and crash reports (including how long the app had been open).</li>
+    <li><strong>If you send us feedback from TestFlight:</strong> your text and screenshots, and technical data from that moment (carrier, time zone, connection type, battery, free space, screen resolution).</li>
+    <li><strong>Your name and email:</strong> only if we invited you by email. If you joined through the public link, Apple doesn't show them to us.</li>
+  </ul>
+  <p>We only use it to find and fix bugs and improve Wodpost; we don't link it to your boards or your app identifier and we don't pass it to anyone. Apple keeps feedback for one year and crash data until the bugs are fixed; anything we copy to fix a bug we delete once we no longer need it. <strong>Legal basis:</strong> our legitimate interest in testing and fixing the app before release (Art. 6(1)(f) GDPR). If you don't want it collected, the only way is to stop using the test version: Apple doesn't let you turn it off.</p>
+
+  <h2>8. Other people in your videos</h2>
+  <p>Other people may appear in a gym. Please upload only videos in which you appear or that you have permission to use, and check before publishing the video. We process those images only to build your video, on the basis of legitimate interest (Art. 6(1)(f) GDPR), without recognising anyone. If you appear in someone else's video and want us to delete it, write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>.</p>
+
+  <h2>9. Your rights</h2>
+  <ul>
+    <li><strong>Delete my data:</strong> in Settings, "Delete my data" immediately deletes your videos, clips, sound and long videos from our service, as well as what section 4.5 of the policy describes.</li>
+    <li><strong>If you delete the app without tapping "Delete my data"</strong>, we can't tell which videos are yours. Write to us with the approximate date and time and we'll look for them.</li>
+    <li>Your other rights, how to exercise them and where to complain (Spanish Data Protection Agency, <a href="https://www.aepd.es">www.aepd.es</a>) are in section 10 of the <a href="/wodpost/privacy/">policy</a>. You can also ask us about what Apple keeps through TestFlight.</li>
+  </ul>
+
+  <h2>10. Changes</h2>
+  <p>Test versions change often. If we change something important, we'll update this notice and the date above and, if your consent is needed, ask you in the app.</p>
+
+  <h2>11. Contact</h2>
+  <p><a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a> · <a href="/aviso-legal/">Legal notice</a></p>
+</main>
+
+<footer class="sitio caja">
+  Wodpost is an app by <a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Legal notice</a>. This site uses no cookies. It counts visits anonymously, with no personal data (Cloudflare Web Analytics).
+</footer>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<!-- Borrador pendiente de revisión profesional: lo redactó Lola (no es abogada), 18-11-2026. Aviso para testers de TestFlight (iPhone): completa /wodpost/privacidad/ con lo que solo hacen las versiones de prueba. Se enlaza desde las notas de TestFlight y desde la build de pruebas; no va en el sitemap ni en las páginas de la app de tienda. Versión en inglés: /wodpost/beta/privacy/ (si cambias una, cambia la otra). Revisar contra el código de apps/pizarra y servicios/lectura-pizarra en cada cambio del vídeo. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Wodpost para testers: aviso de privacidad de las versiones de prueba | Mosaico Lab</title>
+<link rel="icon" href="/wodpost/a/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/wodpost/a/favicon.png?v=3" sizes="32x32" type="image/png">
+<link rel="icon" href="/wodpost/a/favicon-48.png?v=3" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/wodpost/a/apple-touch-icon.png?v=3">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="stylesheet" href="/assets/estilo.css">
+<link rel="stylesheet" href="/wodpost/a/legal.css">
+<link rel="alternate" hreflang="en" href="/wodpost/beta/privacy/">
+</head>
+<body>
+<header class="sitio">
+  <div class="caja">
+    <a class="marca" href="/wodpost/"><img src="/wodpost/a/favicon-48.png" width="30" height="30" alt="">Wodpost</a>
+    <nav>
+      <a href="/wodpost/beta/privacy/" hreflang="en" lang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main class="caja">
+  <h1>Wodpost para testers: aviso de privacidad</h1>
+  <p><strong>Última actualización:</strong> 18 de noviembre de 2026</p>
+
+  <p>Este aviso es para quien prueba Wodpost en iPhone con <strong>TestFlight</strong>, la app de Apple para probar versiones antes de que salgan. Completa la <a href="/wodpost/privacidad/">política de privacidad de Wodpost</a>: todo lo que dice esa política vale también en las versiones de prueba. Aquí está lo que solo hacen estas versiones: montar vídeos con tus clips, el sonido original, los avisos del vídeo y los datos que Apple nos pasa por TestFlight.</p>
+  <p>Puede que tu versión de prueba no tenga todas las funciones de este aviso. Si no usas una función, su parte no se te aplica.</p>
+
+  <h2>1. Quién es el responsable</h2>
+  <p>El mismo que en la sección 1 de la <a href="/wodpost/privacidad/">política de privacidad</a> (Mosaico Lab). Correo de privacidad: <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. El resto de datos del titular están en el <a href="/aviso-legal/">aviso legal</a>.</p>
+
+  <h2>2. Resumen rápido</h2>
+  <div class="tabla">
+    <table>
+      <thead>
+        <tr><th>Qué</th><th>Dónde se guarda</th><th>¿Nos llega a nosotros?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td data-label="Qué">Vídeos que montas tú en el móvil («Lo edito yo»), tu voz en off y los subtítulos</td><td data-label="Dónde se guarda">Solo en tu móvil</td><td data-label="¿Nos llega a nosotros?">No (sección 3)</td></tr>
+        <tr><td data-label="Qué">Clips que subes para el montaje con IA</td><td data-label="Dónde se guarda">En nuestro servicio en Cloudflare</td><td data-label="¿Nos llega a nosotros?">Sí. Los originales se borran en unas 3 horas (hasta 4); el vídeo montado, cuando tú lo borras (sección 4)</td></tr>
+        <tr><td data-label="Qué">Sonido de tus clips (solo si activas «Sonido original»)</td><td data-label="Dónde se guarda">Con tu vídeo en nuestro servicio en Cloudflare</td><td data-label="¿Nos llega a nosotros?">Sí, solo si lo activas; se borra con el vídeo (sección 4)</td></tr>
+        <tr><td data-label="Qué">Unos fotogramas de tus clips, para saber qué movimiento haces</td><td data-label="Dónde se guarda">Pasan por nuestro servicio hasta Anthropic</td><td data-label="¿Nos llega a nosotros?">No los guardamos; Anthropic los borra en 30 días como mucho (sección 4)</td></tr>
+        <tr><td data-label="Qué">Vídeo largo: una copia reducida y sin sonido, y fotos de las personas que salen para que elijas cuál eres tú</td><td data-label="Dónde se guarda">En nuestro servicio en Cloudflare</td><td data-label="¿Nos llega a nosotros?">Sí, como mucho 24 horas (sección 5)</td></tr>
+        <tr><td data-label="Qué">Vídeo que eliges en Google Drive (si conectas Drive)</td><td data-label="Dónde se guarda">Lo baja nuestro servicio en Cloudflare</td><td data-label="¿Nos llega a nosotros?">Sí; el original se borra al cortarlo y nunca pasa de unas 3 horas (sección 5)</td></tr>
+        <tr><td data-label="Qué">Código de notificaciones y zona horaria (si permites los avisos del vídeo)</td><td data-label="Dónde se guarda">Con tu vídeo en nuestro servicio en Cloudflare; el aviso pasa por Expo y Apple</td><td data-label="¿Nos llega a nosotros?">Sí; el código se borra al terminar el montaje o al caducar los clips (hasta 4 horas; sección 6)</td></tr>
+        <tr><td data-label="Qué">Fallos, uso de la versión de prueba y los comentarios y capturas que mandes desde TestFlight</td><td data-label="Dónde se guarda">Los recoge Apple</td><td data-label="¿Nos llega a nosotros?">Sí, Apple nos los enseña en su consola (sección 7)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3. Lo que se queda en tu móvil («Lo edito yo»)</h2>
+  <ul>
+    <li><strong>Vídeos que eliges:</strong> el vídeo se monta en tu móvil. La app lee directamente de tu carrete solo los vídeos que eliges, sin copiarlos y sin subirlos. Para eso te pide permiso para acceder a Fotos; si no lo das, no lee ningún vídeo. El vídeo montado se guarda solo en tu móvil, junto a su entreno, hasta que lo borres o toques «Borrar mis datos». Solo se sube algo si eliges el montaje con IA (sección 4) o el vídeo largo (sección 5).</li>
+    <li><strong>Voz en off y sonido de tus clips:</strong> si grabas tu voz con el micrófono o usas el sonido original de tus clips, todo se procesa en tu móvil. La grabación se guarda solo en la app mientras montas el vídeo, no se envía a nosotros ni a nadie y puedes borrarla desde el editor. La app te pide permiso para el micrófono solo cuando pulsas «Grabar voz».</li>
+    <li><strong>Subtítulos automáticos (opcional):</strong> usan el reconocimiento de voz de tu móvil, solo en el dispositivo. El audio no sale de él y no guardamos lo que dices; el texto solo aparece en el vídeo que montas en tu móvil. Si tu móvil no puede reconocer ese idioma sin internet, no hay subtítulos: no se usa ningún servicio en la nube. La app te pide permiso para el reconocimiento de voz solo cuando pulsas «Subtítulos». Esto es distinto de dictar el entreno por voz (sección 4.6 de la política), donde la grabación sí se envía a nuestro servicio para pasarla a texto.</li>
+  </ul>
+  <p><strong>Base legal:</strong> lo necesario para que la app funcione como pides (artículo 6.1.b del RGPD). Nosotros no tenemos acceso a estos datos.</p>
+
+  <h2>4. Montaje con IA: tus clips</h2>
+  <p>Los clips que eliges se suben a nuestro servicio en <strong>Cloudflare</strong> (encargado del tratamiento; ver la sección 4.2 de la política). Nuestra IA detecta los movimientos y cuenta las repeticiones para montar el vídeo; no te identifica. <strong>Base legal:</strong> prestarte el servicio que pides (artículo 6.1.b del RGPD).</p>
+  <ul>
+    <li><strong>Clips originales:</strong> se borran unas 3 horas después de acabar la subida, montes o no (el borrado se hace de forma periódica, así que puede tardar un poco más, hasta 4 horas). Si el montaje falla por nuestra culpa, los guardamos ese tiempo para que puedas montarlo a mano sin volver a subirlos.</li>
+    <li><strong>Vídeo montado y clips recortados</strong> (con IA, o a mano en las versiones de prueba anteriores, que lo montaban en nuestro servicio): los guardamos, sin ubicación ni fecha y, salvo que actives «Sonido original», sin sonido, hasta que los borres en Ajustes › «Borrar mis datos», que lo borra todo al momento.</li>
+    <li><strong>Qué movimiento haces:</strong> para acertar el nombre del movimiento, podemos enviar a <strong>Anthropic</strong> (Anthropic, PBC; encargado, como en la sección 4.2 de la política) una tira de unos pocos fotogramas reducidos de tu clip. Solo le pedimos el nombre del movimiento, elegido de la lista de tu entreno: nada sobre quién eres, tu cara, tu edad, tu cuerpo ni tu salud. Nosotros no guardamos esa petición. Anthropic no entrena sus modelos con ella y borra su copia en <strong>30 días como mucho</strong>, salvo que la necesite para investigar un abuso o lo exija la ley.</li>
+    <li><strong>Sonido original (opcional):</strong> viene apagado. Si lo activas antes de montar, guardamos el sonido de tus clips con los clips recortados y lo mezclamos por debajo de la música. Puede incluir la voz de otras personas y la música que sonara en el gimnasio. Solo lo usamos para mezclarlo: no lo transcribimos ni lo analizamos para reconocer a nadie. Se borra con el vídeo, con «Borrar mis datos». Si tienes entre 14 y 17 años, la opción no está disponible y no guardamos sonido. Base legal: prestarte el servicio que pides (artículo 6.1.b del RGPD) y, para la voz de otras personas, el interés legítimo (artículo 6.1.f), con las mismas garantías que para su imagen (sección 8).</li>
+  </ul>
+
+  <h2>5. Vídeo largo y Google Drive (18 o más)</h2>
+  <p>Con el vídeo largo puedes elegir un vídeo entero de tu sesión (por ejemplo, grabado con trípode, de hasta unos 30 minutos) para que saquemos los tramos en los que sales tú. Solo con 18 años o más y después de ver el aviso en la app.</p>
+  <ul>
+    <li><strong>Copia reducida:</strong> tu móvil hace una copia pequeña del vídeo (baja resolución, pocas imágenes por segundo y <strong>sin sonido</strong>) y la sube a nuestro servicio en Cloudflare. Si el vídeo viene de Google Drive, esa copia la hace nuestro servicio.</li>
+    <li><strong>Elegir quién eres:</strong> nuestra IA busca a las personas que salen y sigue a cada una por su postura y el color de su ropa, solo dentro de ese vídeo, para enseñarte una foto de cada una y que elijas cuál eres tú. <strong>No reconoce caras ni identifica a nadie</strong>, y no compara con otros vídeos. Cuando eliges, borramos las fotos de las demás personas.</li>
+    <li><strong>Tramos:</strong> después se cortan los tramos en los que sales tú y siguen el montaje de la sección 4 (mismos plazos y mismo uso de Anthropic para nombrar cada tramo).</li>
+    <li><strong>Desde Google Drive (opcional):</strong> si eliges «Conectar Google Drive», Google te pide permiso en su propia pantalla y tú eliges un solo vídeo. Le pedimos a Google el permiso más limitado (solo los archivos que tú eliges con su selector): no vemos el resto de tu Drive, ni tu correo, ni tu perfil, y no es un inicio de sesión. Nuestro servicio baja ese vídeo, usa el permiso solo para eso, no lo guarda y lo retira al acabar. El vídeo original se borra al cortar los tramos, al fallar, al cancelar o con «Borrar mis datos», y nunca pasa de unas 3 horas en nuestro servicio. Para lo que guarda Google se aplica su política (<a href="https://policies.google.com/privacy">policies.google.com/privacy</a>).</li>
+    <li><strong>Cuánto tiempo:</strong> la copia reducida, las fotos de las personas y lo que sale de la búsqueda se borran como mucho <strong>24 horas</strong> después de empezar, antes si cancelas o falla, y con «Borrar mis datos». El vídeo que sale se guarda como en la sección 4.</li>
+    <li><strong>Base legal:</strong> prestarte el servicio que pides (artículo 6.1.b del RGPD) y, para las demás personas que salen, el interés legítimo (artículo 6.1.f; sección 8).</li>
+  </ul>
+
+  <h2>6. Avisos del vídeo (si permites las notificaciones)</h2>
+  <p>Guardamos con tu vídeo el código de notificaciones de tu móvil (lo crea el sistema; no es tu Apple ID ni el identificador de publicidad) y tu zona horaria, solo para avisarte de que tus clips están subidos y sin montar, de que se van a borrar, de que la subida se ha parado o de que tu vídeo está listo o ha fallado. Como mucho te mandamos 2 recordatorios por vídeo y nunca entre las 21:30 y las 9:00 de tu zona horaria; el aviso de que el vídeo está listo o ha fallado puede llegar de noche, pero sin sonido. Los avisos no llevan publicidad ni datos de tu entreno.</p>
+  <ul>
+    <li><strong>Cuánto tiempo:</strong> el código se borra cuando termina el montaje, cuando cancelas o cuando se borran los clips (unas 3 horas después de acabar la subida, hasta 4); la zona horaria se queda con el vídeo, sin identificarte, hasta que lo borres.</li>
+    <li><strong>Quién interviene:</strong> los avisos pasan por el servicio de notificaciones de <strong>Expo</strong> (650 Industries, Inc., Estados Unidos; encargado del tratamiento, con las garantías para la transferencia que indica en su política: <a href="https://expo.dev/privacy">expo.dev/privacy</a>) y por el de <strong>Apple</strong>. Si quitas el permiso en los ajustes del móvil, dejan de llegar.</li>
+    <li><strong>Base legal:</strong> prestarte el servicio que pides (artículo 6.1.b del RGPD).</li>
+  </ul>
+
+  <h2>7. Lo que Apple nos pasa por TestFlight</h2>
+  <p>TestFlight es de Apple, que decide qué recoge y lo explica en <a href="https://www.apple.com/es/legal/privacy/data/es/test-flight/">su aviso de TestFlight</a>. De lo que recoge, Apple nos enseña en su consola (App Store Connect):</p>
+  <ul>
+    <li><strong>Siempre:</strong> si has aceptado la invitación, instalaciones y sesiones, la versión que tienes, el modelo, el sistema y el idioma del móvil, un identificador del dispositivo y los informes de fallos (cuánto llevaba abierta la app al cerrarse).</li>
+    <li><strong>Si nos mandas comentarios desde TestFlight:</strong> tu texto y tus capturas, y datos técnicos del momento (operador, zona horaria, tipo de conexión, batería, espacio libre, resolución de pantalla).</li>
+    <li><strong>Tu nombre y tu correo:</strong> solo si te invitamos por correo. Si entraste con el enlace público, Apple no nos los enseña.</li>
+  </ul>
+  <p>Solo lo usamos para encontrar y arreglar fallos y mejorar Wodpost, no lo unimos a tus pizarras ni a tu identificador de la app y no lo pasamos a nadie. Apple guarda los comentarios un año y los fallos hasta que se arreglan; lo que copiemos para arreglar un fallo lo borramos cuando ya no nos sirva. <strong>Base legal:</strong> nuestro interés legítimo en probar y arreglar la app antes de publicarla (artículo 6.1.f del RGPD). Si no quieres que se recojan, la única forma es dejar de usar la versión de prueba: Apple no deja apagarlo.</p>
+
+  <h2>8. Otras personas en tus vídeos</h2>
+  <p>En un gimnasio pueden salir otras personas. Te pedimos que subas solo vídeos en los que salgas tú o tengas su permiso, y que lo compruebes antes de publicar el vídeo. Tratamos esas imágenes solo para montar tu vídeo, por interés legítimo (artículo 6.1.f del RGPD), sin reconocer a nadie. Si sales en el vídeo de otra persona y quieres que lo borremos, escríbenos a <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>.</p>
+
+  <h2>9. Tus derechos</h2>
+  <ul>
+    <li><strong>Borrar mis datos:</strong> en Ajustes, «Borrar mis datos» borra al momento tus vídeos, clips, sonido y vídeos largos de nuestro servicio, además de lo que dice la sección 4.5 de la política.</li>
+    <li><strong>Si borras la app sin tocar «Borrar mis datos»</strong>, nosotros no podemos saber cuáles son tus vídeos. Escríbenos con el día y la hora aproximada y lo buscamos.</li>
+    <li>El resto de derechos, cómo ejercerlos y dónde reclamar (Agencia Española de Protección de Datos, <a href="https://www.aepd.es">www.aepd.es</a>) están en la sección 10 de la <a href="/wodpost/privacidad/">política</a>. Lo que guarda Apple por TestFlight también nos lo puedes pedir a nosotros.</li>
+  </ul>
+
+  <h2>10. Cambios</h2>
+  <p>Las versiones de prueba cambian a menudo. Si cambiamos algo importante, actualizaremos este aviso y la fecha de arriba y, si hace falta tu consentimiento, te lo pediremos en la app.</p>
+
+  <h2>11. Contacto</h2>
+  <p><a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a> · <a href="/aviso-legal/">Aviso legal</a></p>
+</main>
+
+<footer class="sitio caja">
+  Wodpost es una app de <a href="/">Mosaico Lab</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).
+</footer>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
