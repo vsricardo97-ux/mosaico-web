@@ -31,9 +31,9 @@
 
 <main class="caja">
   <h1>Primera Línea privacy policy</h1>
-  <p><strong>Last updated:</strong> 14 November 2026</p>
+  <p><strong>Last updated:</strong> 18 November 2026</p>
 
-  <p>Primera Línea is a logic puzzle for iPhone and Android. You can play without giving us any data: there are no accounts or sign-up, and your progress stays on your device. Only if you join the optional weekly marathon leaderboard, your alias and your best run of the week reach us (section 3.2). We fund it with ads served by Google and with an optional purchase to remove them. This page explains what data is collected, why, and how you decide. Where the text says "iPhone", Android works the same way with your Android phone and Google Play; only section 6 (measuring installs from ads) is Android-only.</p>
+  <p>Primera Línea is a logic puzzle for iPhone and Android. You can play without giving us any data: there are no accounts or sign-up, and your progress stays on your device. Only if you join the optional weekly marathon leaderboard do we receive your alias, your best run of each week and your league rewards (section 3.2). We fund it with ads served by Google and with an optional purchase to remove them. This page explains what data is collected, why, and how you decide. Where the text says "iPhone", Android works the same way with your Android phone and Google Play; only section 6 (measuring installs from ads) is Android-only.</p>
 
   <h2>1. Who is responsible</h2>
   <ul>
@@ -54,8 +54,7 @@
         <tr><td>The time you usually play (only if you turn on that reminder)</td><td>Only on your device</td><td>No</td></tr>
         <tr><td>Your age group (18 or over, 14 to 17, under 14) and your consent choices</td><td>On your device</td><td>No</td></tr>
         <tr><td>Whether you bought "Remove ads"</td><td>On your device and with Apple / Google</td><td>No</td></tr>
-        <tr><td>If you join the weekly marathon leaderboard (age 14 or over): a random identifier, your alias (public), your best run of the week and the badge you choose to show</td><td>On our server (Cloudflare) for up to 8 weeks</td><td>Yes, only if you join (section 3.2)</td></tr>
-        <tr><td>If you join the weekly marathon leaderboard (age 14 or over): a random identifier, your alias (public), your best run of the week and the badge you choose to show</td><td>On our server (Cloudflare) for up to 8 weeks</td><td>Yes, only if you join (section 3.2)</td></tr>
+        <tr><td>If you join the weekly marathon leaderboard (age 14 or over): a random identifier, your alias (public), your best run of each week, the cap you choose to show and your league rewards (starfish, league, podiums and crowns)</td><td>On our server (Cloudflare): runs for 8 weeks; your alias and rewards until 12 months after the app last connects to the leaderboard</td><td>Yes, only if you join (section 3.2)</td></tr>
         <tr><td>Technical and advertising data when ads are shown</td><td>Collected by Google</td><td>We do not see it individually</td></tr>
         <tr><td>Android only, 18+ and with your consent: advertising ID, Google Play referrer, IP address, device model, language and country, to measure installs that come from ads</td><td>Received by AppsFlyer and, through it, TikTok and Meta (section 6)</td><td>We do not see it individually</td></tr>
         <tr><td>Data about the last ad, if you report it</td><td>On your device</td><td>Only if you send the email</td></tr>
@@ -84,16 +83,50 @@
   <p>The weekly leaderboard is <strong>optional</strong> and <strong>off by default</strong>. It is only for people who have said they are <strong>14 or over</strong> (section 8). If you do not tap "Join", nothing of yours is sent; you can look at the list without joining. If you join, the app sends to our server (a Cloudflare service):</p>
   <ul>
     <li>A <strong>random identifier</strong> created only for the leaderboard (it is not your advertising ID, your vendor ID, your name or your Apple ID).</li>
-    <li>Your <strong>alias</strong>, which <strong>anyone looking at the leaderboard will see</strong>. The app suggests one and you can change it once an hour. Do not use your real name: we never ask for it. We check that nobody else has it and that it does not contain certain offensive words.</li>
-    <li>Your <strong>best marathon run of each week</strong>: the boards solved and their solution (to check they are real), the attempt number, the time played, the spare time at the end and the ice creams you used and on which board. The list shows, next to your alias, the boards, the time and the ice creams.</li>
-    <li>If you choose one, the <strong>badge</strong> you want to show next to your alias.</li>
-    <li>When each run starts, the app asks for a <strong>seal</strong>: we sign it with the start time, your identifier, the week and the attempt, and it is used to check that the result is possible.</li>
+    <li>Your <strong>alias</strong>, which other players will see (see "What others see" below). It comes from a list in the app (for example, "Faro Valiente"): nobody types their own, so it never contains your name. If you don't like it, you can ask for another one from the list once an hour. If someone else already has it, a number is added.</li>
+    <li>Your <strong>best marathon run of each week</strong>. To check it is real and work out the points, the app sends each board you clear with its solution, how long it took you, the floats you had left and the ones you lost, whether you used any help or tried again, and the ice creams you had and where they came from. The server replays the run, works out the points and <strong>doesn't keep the board-by-board detail</strong>, only the summary explained below.</li>
+    <li>If you pick one, the <strong>cap</strong> you want to show next to your alias.</li>
+    <li>When each run starts, the app asks for a <strong>seal</strong>: we sign it with the start time, your identifier, the week and the attempt, and it lets us check the result is possible.</li>
+    <li>While you play, the app may ask <strong>who is just ahead of you</strong>, sending your points and time at that moment. This isn't stored.</li>
   </ul>
-  <p>On the server we keep your identifier, your alias and when you set it, the badge, how many weeks you have been first (the crown), and for each week your best result with the time it arrived. We do not send your age, your location, your advertising ID, your campaign progress or anything about your purchases. Cloudflare sees your IP address to serve the request; we do not store it: only a hashed, shortened summary of it, to limit abuse (requests per hour), which is deleted within a week at most. The server keeps no access logs.</p>
-  <p><strong>Why and legal basis:</strong> to show the leaderboard, your rank and the week's crown, and to prevent cheating and abuse. Basis: it is the service you ask for when you join (GDPR article 6.1.b); preventing cheating and abuse is our legitimate interest in a fair list and a service that holds up (article 6.1.f).</p>
-  <p><strong>How long:</strong> every Monday, results and crowns <strong>older than 8 weeks</strong> are deleted automatically, and with them your alias if you have no results left. If you stop playing or delete the app without deleting your data, it disappears this way, at most about 9 weeks after your last result.</p>
+  <p><strong>What we store:</strong></p>
+  <ul>
+    <li>Your identifier, your alias and when you set it, your cap and the last time the app connected to the leaderboard.</li>
+    <li>For each week, your best score: points, boards played and cleared, total time, highest difficulty, how many times you used help, your starting and cooler ice creams, when it arrived and whether the server flagged it as doubtful.</li>
+    <li>Your <strong>league rewards</strong>: starfish (and the league they give you), how many times you finished 1st, 2nd or 3rd, and the weeks you wore the crown.</li>
+    <li><strong>Anti-cheat notes:</strong> if a score looks doubtful or someone wins the crown, we keep a note with your identifier, the week, the reason, your points, the boards played and the time since the run started. At most one per reason and week. It doesn't include your alias or IP. Only our team sees it, to check doubtful podiums by hand, and it isn't used for anything else.</li>
+  </ul>
+  <p>We don't send your age, location, advertising ID, campaign progress or anything about your purchase. Cloudflare sees your IP address to handle the request, but we don't store it: only a shortened, hashed summary used to limit abuse (requests per hour), deleted within a week at the latest. The server keeps no access logs.</p>
+  <p><strong>What others see:</strong></p>
+  <ul>
+    <li>On the week's list (the top 50), people see your alias, cap, points, boards, time, ice creams and, if you wear it, the crown; if you are in the top three, also the podium frame. The list also sends other players' apps your league, the highest difficulty in your run and how many times you used help.</li>
+    <li>Also, <strong>any player who has joined can see the players just ahead of them</strong>, even outside the top 50. If you are ahead of someone, they can see your alias, cap, league, points, time and position.</li>
+    <li>If you typed your own alias before 17 November 2026, it is no longer shown: one from the list is shown instead.</li>
+    <li>Your identifier is never shown.</li>
+  </ul>
+  <p><strong>Doubtful scores:</strong> if a run looks impossible (for example, times faster than a person can play or points far outside the normal range), it stays on the list but doesn't count for the podium, the crown or that week's starfish. The server decides this with the same rules for everyone. If you think it's a mistake, write to us and we'll check it by hand.</p>
+  <p><strong>Why and legal basis:</strong></p>
+  <ul>
+    <li>To show the leaderboard, your position, who is ahead of you, the podium, the crown and your league. Basis: it is the service you ask for when you join (GDPR Article 6.1.b).</li>
+    <li>To prevent cheating and abuse. Basis: our legitimate interest in a fair list and a service that holds up (Article 6.1.f).</li>
+  </ul>
+  <p><strong>How long:</strong></p>
+  <ul>
+    <li><strong>Each week's runs, podiums and crowns</strong> are deleted automatically after <strong>8 weeks</strong>.</li>
+    <li><strong>Anti-cheat notes</strong> are deleted automatically within 2 weeks at the latest.</li>
+    <li><strong>Your alias, cap and league rewards</strong> (starfish, league, podiums and crowns won) are kept while you keep using the leaderboard, even if you stop playing: you don't lose starfish for not playing. The app connects on its own when you open it with the leaderboard turned on, when you look at the list and when you play the marathon.</li>
+    <li><strong>If 12 months go by without the app connecting</strong> with your identifier, they are deleted completely, with no anonymous copy left. If you have no rewards, your alias is deleted sooner: 8 weeks after your last score.</li>
+    <li><strong>If you delete the app without tapping "Delete my data",</strong> your alias stops appearing on the list within 8 weeks at most, and the rest is deleted after 12 months.</li>
+    <li>Cloudflare's technical backups (which let the server be restored to how it was at an earlier moment) may keep deleted data for up to 30 more days.</li>
+  </ul>
   <p><strong>Where:</strong> Cloudflare (Cloudflare, Inc., USA) hosts the server as a processor. The data may be processed outside the European Economic Area; Cloudflare relies on the EU-US Data Privacy Framework and standard contractual clauses. Its policy is at <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a>.</p>
-  <p><strong>Your rights:</strong> in <strong>Leaderboard &gt; My alias and settings</strong> you can change your alias, tap <strong>"Stop sending my results"</strong> (what was already sent stays until it expires or you delete it) or tap <strong>"Delete my data"</strong>: your alias, results, crowns and badge are removed from the server at once. You can also write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>; since there is no account, we will ask for your alias to find your data.</p>
+  <p><strong>Your rights:</strong> in <strong>Leaderboard &gt; My alias and settings</strong> you can:</p>
+  <ul>
+    <li>change your alias for another one from the list;</li>
+    <li>tap <strong>"Stop sending my scores"</strong>: what was already sent stays until it expires as explained above, or until you delete it;</li>
+    <li>tap <strong>"Delete my data"</strong>: your alias, scores, starfish, podiums, crowns, cap and any anti-cheat notes are deleted from the server straight away.</li>
+  </ul>
+  <p>You can also write to <a href="mailto:hola@mosaicolab.app">hola@mosaicolab.app</a>. As there is no account, we'll ask for your alias to find your data.</p>
 
   <h2>4. Ads</h2>
 
@@ -217,7 +250,7 @@
     <li><strong>Changing your answer:</strong> in <strong>Settings &gt; Privacy</strong> you can answer if you have not yet or, if you already did, use <strong>"Change my age answer"</strong>. If you have any problem, write to us and we will help.</li>
     <li><strong>Ad content:</strong> we ask Google for a content ceiling by age, on its own scale: for 14 to 17, at most <strong>PG</strong> (may require parental guidance); from 18, at most <strong>T</strong> (for teens). <strong>They are not "all audiences" ads</strong>: that would be Google's G category, which we do not use as a ceiling. We also block categories such as gambling, alcohol, dating or loans. Google's filter is not perfect: if you see something inappropriate, tell us (section 4.1).</li>
     <li><strong>Purchases:</strong> minors' purchases may need parental approval through Apple Family Sharing's <strong>"Ask to Buy"</strong> or Google Play's family controls.</li>
-    <li><strong>Weekly leaderboard:</strong> only offered, and only sends data, if you have said you are 14 or over. With under 14, "Prefer not to say" or no answer, nothing is sent. If you change your year to under 14 after joining, the app stops sending; to delete what was already sent, write to us (or wait for it to expire after 8 weeks). Your alias is public: do not use your real name (section 3.2).</li>
+    <li><strong>Weekly leaderboard:</strong> only offered, and only sends data, if you have said you are 14 or over. If you are under 14 or haven't answered, nothing is sent. If you change your age answer to "Under 14" after joining, the app stops sending and <strong>deletes your leaderboard data straight away</strong> (alias, scores and rewards); if you're offline, it does so the next time you open the app. If your app hasn't been updated yet and doesn't do this on its own, tap "Delete my data" in <strong>Leaderboard &gt; My alias and settings</strong> or write to us. Your alias is public and comes from a list, so it never contains your name (section 3.2).</li>
     <li>If you are a parent or guardian and believe a child's data has been processed, write to the email in section 1.</li>
   </ul>
 
