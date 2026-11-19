@@ -26,7 +26,7 @@
 <h2>Las reglas, bien dichas</h2>
 <ol>
 <li><strong>Una sola línea.</strong> El camino empieza en el 1, termina en el número más alto y no se bifurca ni se cruza.</li>
-<li><strong>Todas las casillas.</strong> No queda ninguna en blanco. Esto es lo que lo distingue de un simple «une el 1 con el 16».</li>
+<li><strong>Todas las casillas.</strong> No queda ninguna en blanco. Esto es lo que lo distingue de un simple «une el 1 con el último número».</li>
 <li><strong>Números en orden.</strong> Si el 5 está en una casilla, el camino llega a ella exactamente cuando lleva cinco casillas recorridas. Las casillas con número no son «puntos de paso» cualesquiera: son fotos fijas del recorrido.</li>
 </ol>
 <p>Esa tercera regla es la clave. Cada número te dice «en el paso k estoy aquí», y eso fija mucho más de lo que parece.</p>
@@ -41,7 +41,7 @@
 <p>Esto sirve para dos cosas. Primero, para detectar al momento una pista imposible: si dos números parecen pedir una distancia con la paridad equivocada, hay un error en tu dibujo. Segundo, para elegir entre dos opciones: si una casilla es del color equivocado para recibir el número 12, descártala.</p>
 <h2>Deducción 4: no dejes casillas aisladas</h2>
 <p>A mitad del puzle, el camino que llevas dibujado puede partir el tablero en zonas. Si dejas una zona rodeada de línea y no hay forma de entrar y salir de ella a tiempo, el camino tendrá que volver sobre sus pasos, y eso es ilegal. Antes de aceptar un paso, mira dónde quedan las casillas libres: si una casilla o una pequeña zona queda cortada del resto, ese paso es un error.</p>
-<p>Una versión muy frecuente de esto son los «callejones»: una casilla vacía con una sola vecina libre. Si no es el último número, el camino no puede acabar ahí, así que tienes que haber cometido un fallo antes. Revisa los pasos recientes.</p>
+<p>Una versión muy frecuente de esto son los «callejones»: una casilla vacía con una sola vecina libre. Si no es el 1 ni el último número, el camino no puede acabar ahí, así que tienes que haber cometido un fallo antes. Revisa los pasos recientes.</p>
 <h2>Un ejemplo completo en 4×4</h2>
 <p>Los guiones son casillas vacías. Fila 1 arriba, columna 1 a la izquierda:</p>
 <pre>1 _ 9 _
@@ -52,7 +52,7 @@ _ 5 _ _</pre>
 <li><strong>La esquina de abajo a la derecha.</strong> No es ni el 1 ni el 16, así que el camino entra y sale por sus dos vecinas: la de arriba (que ya es el 16) y la de la izquierda. Como el 16 es el final y solo puede tener una vecina anterior, esa esquina es el 15 y la casilla de su izquierda es el 14. Encaja con el 13, que está justo encima.</li>
 <li><strong>La esquina de arriba a la derecha.</strong> Sus vecinas son el 9, a su izquierda, y la casilla de debajo. El camino pasa por las dos. Esa casilla de debajo tiene a su vez otras dos vecinas: la de abajo, que es el 16 y ya está unido al 15, así que no vale; y la de su izquierda. Resultado: cuatro casillas seguidas formando una cadena, que va del 9 a la casilla de la fila 2, columna 3, pasando por la esquina y por la de debajo. O bien es 9-10-11-12, o bien es 9-8-7-6.</li>
 <li><strong>Elegir el sentido.</strong> La cadena acaba en una casilla de la fila 2, columna 3. Si esa casilla fuera el 6, estaría a tres movimientos del 5 y solo hay un paso entre ellos. No sirve. Entonces es la otra: esquina = 10, casilla de debajo = 11 y la fila 2, columna 3 = 12, justo encima del 13. Todo encaja.</li>
-<li><strong>El 8.</strong> El 9 ya tiene vecinas ocupadas por el 10 y el 12. Su única vecina libre es la de su izquierda, que es el 8.</li>
+<li><strong>El 8.</strong> Al lado del 9 ya están el 10 (a su derecha) y el 12 (debajo), así que el 8 solo puede estar a su izquierda.</li>
 <li><strong>La izquierda.</strong> El 7 tiene que ser vecina del 8 y libre: solo queda la de debajo, fila 2 columna 2. El 6 está al lado del 7 y al lado del 5: la casilla fila 3 columna 2 cumple las dos cosas. El resto, de arriba abajo por la primera columna, son el 2, el 3 y el 4.</li>
 </ol>
 <p>Resultado final:</p>
