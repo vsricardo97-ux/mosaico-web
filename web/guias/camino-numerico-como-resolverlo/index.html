@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo resolver el puzle del Camino: esquinas, distancias y paridad | Mosaico Lab</title>
+<meta name="description" content="Las deducciones para resolver un Camino numérico sin adivinar: esquinas, distancia entre números, paridad y casillas aisladas, con un ejemplo en 4×4.">
+<meta name="theme-color" content="#12607A">
+<meta name="google-adsense-account" content="ca-pub-4488435659395641">
+<link rel="canonical" href="https://mosaicolab.app/guias/camino-numerico-como-resolverlo/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Mosaico Lab">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Cómo resolver el puzle del Camino: esquinas, distancias y paridad | Mosaico Lab">
+<meta property="og:description" content="Las deducciones para resolver un Camino numérico sin adivinar: esquinas, distancia entre números, paridad y casillas aisladas, con un ejemplo en 4×4.">
+<meta property="og:url" content="https://mosaicolab.app/guias/camino-numerico-como-resolverlo">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/assets/estilo.css">
+</head>
+<body>
+<header class="sitio"><div class="caja"><a class="marca" href="/">Mosaico Lab</a><nav><a href="/guias/">Guías</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a></nav></div></header>
+<main class="caja">
+<p><a href="/guias/">← Todas las guías</a></p><article><h1>Cómo resolver el puzle del Camino: esquinas, distancias y paridad</h1><p><small>Por el equipo de Mosaico Lab · noviembre de 2026</small></p>
+<p>El puzle del Camino cabe en una frase: hay una cuadrícula con algunos números, y hay que dibujar un único recorrido que pase por todas las casillas, una sola vez cada una, y que atraviese los números en orden, del 1 hasta el más alto. El recorrido avanza de casilla en casilla por los lados, nunca en diagonal. Los matemáticos lo llaman un camino hamiltoniano con pistas, pero no hace falta saberlo para disfrutarlo.</p>
+<p>Parece un laberinto, pero no se resuelve a base de tanteo. Casi todo se puede deducir mirando esquinas, bordes y distancias. Esta guía explica las deducciones que usamos nosotros, con un ejemplo completo en 4×4 que puedes copiar en papel y comprobar.</p>
+<h2>Las reglas, bien dichas</h2>
+<ol>
+<li><strong>Una sola línea.</strong> El camino empieza en el 1, termina en el número más alto y no se bifurca ni se cruza.</li>
+<li><strong>Todas las casillas.</strong> No queda ninguna en blanco. Esto es lo que lo distingue de un simple «une el 1 con el 16».</li>
+<li><strong>Números en orden.</strong> Si el 5 está en una casilla, el camino llega a ella exactamente cuando lleva cinco casillas recorridas. Las casillas con número no son «puntos de paso» cualesquiera: son fotos fijas del recorrido.</li>
+</ol>
+<p>Esa tercera regla es la clave. Cada número te dice «en el paso k estoy aquí», y eso fija mucho más de lo que parece.</p>
+<h2>Deducción 1: las esquinas no tienen opción</h2>
+<p>Una casilla de esquina tiene solo dos vecinas. Si no es el principio ni el final del camino, el camino tiene que entrar por una vecina y salir por la otra, así que <em>las dos vecinas de cada esquina quedan unidas a ella</em>. Es lo primero que hay que dibujar: pon un pequeño trazo desde cada esquina hacia sus dos vecinas.</p>
+<p>Lo mismo ocurre, con más matices, en cualquier casilla a la que solo puedan llegar dos vecinas libres: si una casilla tiene exactamente dos vecinas disponibles, el camino pasa por las dos. Si tiene solo una, la casilla es un extremo (el 1 o el último número); y si no tiene ninguna disponible, el puzle está mal.</p>
+<h2>Deducción 2: la distancia máxima</h2>
+<p>Si el 5 está en una casilla y el 9 en otra, entre las dos hay cuatro pasos. La distancia en casillas entre ellas (contando solo movimientos horizontales y verticales) no puede ser mayor que cuatro. Es un filtro muy útil para descartar caminos: si un número está demasiado lejos para llegar a tiempo, esa opción queda fuera.</p>
+<p>Ejemplo: el 5 está en la fila 4, columna 2. ¿Puede estar el 6 en la fila 2, columna 3? Desde el 5 hay tres movimientos hasta esa casilla (dos hacia arriba y uno hacia un lado), pero entre el 5 y el 6 solo hay un paso. Imposible. La misma comprobación sirve con cualquier par de números y con cualquier casilla vacía que quieras asignarles.</p>
+<h2>Deducción 3: la paridad del tablero</h2>
+<p>Imagina que pintas la cuadrícula como un tablero de ajedrez. Cada paso del camino cambia de color: de casilla clara a oscura, de oscura a clara. De ahí sale una regla muy práctica: <strong>si dos números se llevan un número par de pasos, están en casillas del mismo color; si se llevan un número impar, de distinto color</strong>. Entre el 5 y el 9 hay cuatro pasos, así que están en el mismo color. Entre el 5 y el 6, uno, y por eso son vecinas y de colores distintos.</p>
+<p>Esto sirve para dos cosas. Primero, para detectar al momento una pista imposible: si dos números parecen pedir una distancia con la paridad equivocada, hay un error en tu dibujo. Segundo, para elegir entre dos opciones: si una casilla es del color equivocado para recibir el número 12, descártala.</p>
+<h2>Deducción 4: no dejes casillas aisladas</h2>
+<p>A mitad del puzle, el camino que llevas dibujado puede partir el tablero en zonas. Si dejas una zona rodeada de línea y no hay forma de entrar y salir de ella a tiempo, el camino tendrá que volver sobre sus pasos, y eso es ilegal. Antes de aceptar un paso, mira dónde quedan las casillas libres: si una casilla o una pequeña zona queda cortada del resto, ese paso es un error.</p>
+<p>Una versión muy frecuente de esto son los «callejones»: una casilla vacía con una sola vecina libre. Si no es el último número, el camino no puede acabar ahí, así que tienes que haber cometido un fallo antes. Revisa los pasos recientes.</p>
+<h2>Un ejemplo completo en 4×4</h2>
+<p>Los guiones son casillas vacías. Fila 1 arriba, columna 1 a la izquierda:</p>
+<pre>1 _ 9 _
+_ _ _ _
+_ _ 13 16
+_ 5 _ _</pre>
+<ol>
+<li><strong>La esquina de abajo a la derecha.</strong> No es ni el 1 ni el 16, así que el camino entra y sale por sus dos vecinas: la de arriba (que ya es el 16) y la de la izquierda. Como el 16 es el final y solo puede tener una vecina anterior, esa esquina es el 15 y la casilla de su izquierda es el 14. Encaja con el 13, que está justo encima.</li>
+<li><strong>La esquina de arriba a la derecha.</strong> Sus vecinas son el 9, a su izquierda, y la casilla de debajo. El camino pasa por las dos. Esa casilla de debajo tiene a su vez otras dos vecinas: la de abajo, que es el 16 y ya está unido al 15, así que no vale; y la de su izquierda. Resultado: cuatro casillas seguidas formando una cadena, que va del 9 a la casilla de la fila 2, columna 3, pasando por la esquina y por la de debajo. O bien es 9-10-11-12, o bien es 9-8-7-6.</li>
+<li><strong>Elegir el sentido.</strong> La cadena acaba en una casilla de la fila 2, columna 3. Si esa casilla fuera el 6, estaría a tres movimientos del 5 y solo hay un paso entre ellos. No sirve. Entonces es la otra: esquina = 10, casilla de debajo = 11 y la fila 2, columna 3 = 12, justo encima del 13. Todo encaja.</li>
+<li><strong>El 8.</strong> El 9 ya tiene vecinas ocupadas por el 10 y el 12. Su única vecina libre es la de su izquierda, que es el 8.</li>
+<li><strong>La izquierda.</strong> El 7 tiene que ser vecina del 8 y libre: solo queda la de debajo, fila 2 columna 2. El 6 está al lado del 7 y al lado del 5: la casilla fila 3 columna 2 cumple las dos cosas. El resto, de arriba abajo por la primera columna, son el 2, el 3 y el 4.</li>
+</ol>
+<p>Resultado final:</p>
+<pre>1  8  9 10
+2  7 12 11
+3  6 13 16
+4  5 14 15</pre>
+<p>Comprueba que es un único camino que pasa por las dieciséis casillas, que avanza siempre a una vecina por los lados y que cada número está donde decía la pista. Y fíjate en que no hemos probado nada «a ver qué pasa»: cada paso se deducía del anterior.</p>
+<h2>Errores típicos</h2>
+<ul>
+<li><strong>Dibujar primero el camino del 1 al final.</strong> Es la tentación de casi todo el mundo, y falla porque deja los rincones para el final. Empieza por las esquinas y los números intermedios.</li>
+<li><strong>Olvidar que el camino es una sola línea.</strong> Dos tramos que parecen compatibles pueden ser, en realidad, dos caminos sin conexión. Si tienes tramos sueltos, piensa cómo se unirán.</li>
+<li><strong>Ignorar la paridad.</strong> Muchos atascos de última hora son una casilla del color equivocado. Pintarla de ajedrez en una esquina de la hoja resuelve muchos dudosos.</li>
+<li><strong>Corregir tarde.</strong> Si algo no encaja, el fallo suele estar tres o cuatro pasos atrás. Borra con decisión.</li>
+</ul>
+<h2>Preguntas frecuentes</h2>
+<h3>¿Hace falta adivinar alguna vez?</h3>
+<p>En un puzle bien hecho, no. Si tienes que probar dos caminos a ciegas, probablemente te ha faltado una de las deducciones de arriba, casi siempre la de la paridad o la de las esquinas.</p>
+<h3>¿Por qué importan tanto las esquinas?</h3>
+<p>Porque son las únicas casillas del tablero que no dejan elegir. Una casilla del borde tiene tres vecinas y una del interior, cuatro: en la esquina, solo dos, y eso fuerza el recorrido.</p>
+<h3>¿Cuánto debería tardar un puzle?</h3>
+<p>Uno de 5×5 se resuelve en pocos minutos. Los de 7×7 piden más tiempo, sobre todo al principio, hasta que el ojo aprende a buscar esquinas y paridad.</p>
+<h3>¿Sirve esto con cualquier tamaño?</h3>
+<p>Sí. Las deducciones son las mismas; en tableros grandes simplemente hay más sitios donde aplicarlas.</p>
+<h2>Para seguir practicando</h2>
+<p>La idea de ir descartando opciones es común a otros puzles: mira cómo se aplica en el <a href="/guias/binario-reglas-y-tecnicas/">Binario</a>, en los <a href="/guias/puzles-de-colocar-sin-tocarse/">puzles de colocar sin tocarse</a> y en la <a href="/guias/flota-hundir-la-flota-en-solitario/">Flota</a>.</p>
+<p>En <a href="/tesela/">Tesela</a> el Camino es uno de los cuatro puzles diarios, en tamaños de 5×5, 6×6 y 7×7, y se puede probar desde la web sin instalar nada.</p>
+</article><p><a href="/guias/">← Más guías</a></p>
+</main>
+<footer class="sitio caja"><a href="/">Mosaico Lab</a> · <a href="/guias/">Guías</a> · <a href="/sobre-nosotros/">Sobre nosotros</a> · <a href="/contacto/">Contacto</a> · <a href="/privacidad/">Privacidad</a> · <a href="/aviso-legal/">Aviso legal</a>. Esta web no usa cookies. Cuenta las visitas de forma anónima, sin datos personales (Cloudflare Web Analytics).</footer>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36771d31c3d949fb8e5f091a1cb186a2"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
